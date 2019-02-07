@@ -1,0 +1,78 @@
+# Copyright 2019-present Open Networking Foundation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Makefile for voltha-protos
+
+default: test
+
+# variables
+
+PROTO_FILES := $(wildcard protos/*.proto)
+
+PROTO_PYTHON_DEST_DIR := python/voltha-protos
+PROTO_PYTHON_PB2 := $(foreach f, $(PROTO_FILES), $(patsubst protos/%.proto,$(PROTO_PYTHON_DEST_DIR)/%_pb2.py,$(f)))
+
+print:
+	echo "Proto files: $(PROTO_FILES)"
+	echo "Python PB2 files: $(PROTO_PYTHON_PB2)"
+
+# generic targets
+protos: python-protos go-protos
+
+build: python-build go-build
+
+test: python-test go-test
+
+clean: python-clean go-clean
+
+# python targets
+python-protos: $(PROTO_PYTHON_PB2)
+
+venv_protos:
+	virtualenv $@;\
+	source ./$@/bin/activate ;\
+	pip install grpcio-tools googleapis-common-protos
+
+$(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/%.proto Makefile venv_protos
+	source ./venv_protos/bin/activate ;\
+	python -m grpc_tools.protoc \
+		-I protos \
+		--python_out=$(PROTO_PYTHON_DEST_DIR) \
+		--grpc_python_out=$(PROTO_PYTHON_DEST_DIR) \
+		--descriptor_set_out=$(PROTO_PYTHON_DEST_DIR)/$(basename $(notdir $<)).desc \
+		--include_imports \
+		--include_source_info \
+		$<
+
+python-build: setup.py
+	python ./setup.py sdist
+
+python-test: tox.ini setup.py python-protos
+	tox
+
+python-clean:
+	rm -rf venv_protos .coverage coverage.xml nose2-results.xml dist
+
+# go targets
+go-protos:
+	echo "FIXME: Add golang protos"
+
+go-build:
+	echo "FIXME: Add golang build"
+
+go-test:
+	echo "FIXME: Add golang tests"
+
+go-clean:
+	echo "FIXME: Add golang cleanup"
