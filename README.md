@@ -17,6 +17,14 @@ paths](https://github.com/grpc/grpc/issues/9575#issuecomment-293934506).
 > package or the golang [go-genproto](https://github.com/google/go-genproto)
 > repo.
 
+## Building locally
+
+### Python
+
+make build
+
+use dist/*.tar.gz for local imports
+
 ## Using voltha-protos in your project
 
 ### Python

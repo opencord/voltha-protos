@@ -30,7 +30,7 @@ SHELL = bash -e -o pipefail
 # Generic targets
 protos: python-protos go-protos
 
-build: python-build go-build
+build: protos python-build go-build
 
 test: python-test go-test
 
