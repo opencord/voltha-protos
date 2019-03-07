@@ -19,6 +19,7 @@ default: test
 PROTO_FILES := $(wildcard protos/voltha_protos/*.proto)
 PROTO_PYTHON_DEST_DIR := python/voltha_protos
 PROTO_PYTHON_PB2 := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_PYTHON_DEST_DIR)/%_pb2.py,$(f)))
+PROTO_PYTHON_PB2_GRPC := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_PYTHON_DEST_DIR)/%_pb2_grpc.py,$(f)))
 
 print:
 	echo "Proto files: $(PROTO_FILES)"
@@ -62,7 +63,12 @@ python-test: tox.ini setup.py python-protos
 	tox
 
 python-clean:
-	rm -rf venv_protos .coverage coverage.xml nose2-results.xml dist $(PROTO_PYTHON_PB2) $(PROTO_PYTHON_DEST_DIR)*.desc
+	rm -rf venv_protos .coverage coverage.xml nose2-results.xml dist $(PROTO_PYTHON_PB2) $(PROTO_PYTHON_PB2_GRPC) $(PROTO_PYTHON_DEST_DIR)/*.desc
+	find python/ -name '*.pyc' | xargs rm -f
+	rm -rf python/voltha_protos.egg-info
+	rm -rf .tox
+	rm -rf python/__pycache__/
+	rm -rf python/test/__pycache__/
 
 # Go targets
 go-protos:
