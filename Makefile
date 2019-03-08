@@ -23,14 +23,14 @@ PROTO_PYTHON_PB2 := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos
 print:
 	echo "Proto files: $(PROTO_FILES)"
 	echo "Python PB2 files: $(PROTO_PYTHON_PB2)"
-
+	
 # set default shell
 SHELL = bash -e -o pipefail
 
 # Generic targets
 protos: python-protos go-protos
 
-build: protos python-build go-build
+build: protos python-build go-protos
 
 test: python-test go-test
 
@@ -66,10 +66,7 @@ python-clean:
 
 # Go targets
 go-protos:
-	echo "FIXME: Add golang protos"
-
-go-build:
-	echo "FIXME: Add golang build"
+	./build_go_protos.sh protos
 
 go-test:
 	echo "FIXME: Add golang tests"
