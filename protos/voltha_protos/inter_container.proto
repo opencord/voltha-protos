@@ -97,6 +97,8 @@ message InterAdapterMessageType {
         OMCI_RESPONSE = 3;
         METRICS_REQUEST = 4;
         METRICS_RESPONSE = 5;
+        ONU_IND_REQUEST = 6;
+        ONU_IND_RESPONSE = 7;
     }
 }
 
