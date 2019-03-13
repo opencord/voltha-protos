@@ -57,7 +57,7 @@ export PB_VARS="\
 	OMCI_PB"
 
 export OTHER_INCLUDES="/usr/local/include/googleapis"
-export PROTO_DESC_FILE="${SRC_DIR}/voltha.pb"
+export PROTO_DESC_FILE="go/voltha.pb"
 
 for pb_var in $PB_VARS
 do
