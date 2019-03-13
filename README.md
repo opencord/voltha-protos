@@ -17,13 +17,40 @@ paths](https://github.com/grpc/grpc/issues/9575#issuecomment-293934506).
 > package or the golang [go-genproto](https://github.com/google/go-genproto)
 > repo.
 
+## Go environment
+
+Get the Voltha-protos repository:
+```
+git clone https://gerrit.opencord.org/voltha-protos
+cd voltha-protos
+```
+
+### Setting up the Go environment
+
+After installing Go on the MAC, the GOPATH environment variable should be set to ~/go.
+Create a symbolic link in the $GOPATH/src tree to the voltha-go repository:
+
+```
+mkdir $GOPATH/src/github.com/opencord
+ln -s ~/repos/voltha-protos $GOPATH/src/github.com/opencord/voltha-protos
+```
+
+## Go dependencies
+
+### install dependencies
+
+```
+go install ./vendor/github.com/golang/protobuf/protoc-gen-go
+```
+
 ## Building locally
 
-### Python
-
+```
 make build
+```
 
-use dist/*.tar.gz for local imports
+use dist/*.tar.gz for local python imports
+use go/ for local go imports
 
 ## Using voltha-protos in your project
 
