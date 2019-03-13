@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-go/protos/voltha";
+option go_package = "github.com/opencord/voltha-protos/go/voltha";
 
 package voltha;
 
@@ -22,7 +22,7 @@ message AdapterConfig {
 // Adapter (software plugin)
 message Adapter {
 
-    // Unique name of adapter, matching the python packate name under
+    // Unique name of adapter, matching the python package name under
     // voltha/adapters.
     string id = 1 [(access) = READ_ONLY];
     string vendor = 2 [(access) = READ_ONLY];

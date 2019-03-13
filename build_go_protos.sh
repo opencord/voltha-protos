@@ -17,6 +17,8 @@
 export PARENT_DIR="$1"
 export SRC_DIR="${PARENT_DIR}/voltha_protos"
 
+export LD_LIBRARY_PATH=/usr/local/lib
+
 echo $SRC_DIR
 
 export MAPS=Mgoogle/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor
@@ -57,7 +59,7 @@ export PB_VARS="\
 	OMCI_PB"
 
 export OTHER_INCLUDES="/usr/local/include/googleapis"
-export PROTO_DESC_FILE="${SRC_DIR}/voltha.pb"
+export PROTO_DESC_FILE="go/voltha.pb"
 
 for pb_var in $PB_VARS
 do
