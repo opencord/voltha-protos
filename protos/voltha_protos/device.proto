@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-go/protos/voltha";
+option go_package = "github.com/opencord/voltha-protos/go/voltha";
 
 package voltha;
 
@@ -16,7 +16,7 @@ message DeviceType {
     // Unique name for the device type
     string id = 1;
 
-    // Unique venor id for the device type applicable to ONU
+    // Unique vendor id for the device type applicable to ONU
     // 4 bytes of vendor id from ONU serial number
     string vendor_id = 5;
 
@@ -25,8 +25,7 @@ message DeviceType {
     // Name of the adapter that handles device type
     string adapter = 2;
 
-    // Capabilitities
-
+    // Capabilities
     bool accepts_bulk_flow_update = 3;
     bool accepts_add_remove_flow_updates = 4;
     bool accepts_direct_logical_flows_update = 7;
@@ -125,9 +124,10 @@ message ImageDownload {
     enum ImageActivateState {
         IMAGE_UNKNOWN = 0;
         IMAGE_INACTIVE = 1;
-        IMAGE_ACTIVATE = 2;
+        IMAGE_ACTIVATING = 2;
         IMAGE_ACTIVE = 3;
-        IMAGE_REVERT = 4;
+        IMAGE_REVERTING = 4;
+        IMAGE_REVERTED = 5;
     }
 
     // Device Identifier
@@ -264,9 +264,10 @@ message Device {
         uint32 onu_session_id = 7; // session identifier for the ONU; optional
     };
 
+    // Device contact MAC address (format: "xx:xx:xx:xx:xx:xx")
+    string mac_address = 13;
+
     oneof address {
-        // Device contact MAC address (format: "xx:xx:xx:xx:xx:xx")
-        string mac_address = 13;
 
         // Device contact IPv4 address (format: "a.b.c.d" or can use hostname too)
         string ipv4_address = 14;
