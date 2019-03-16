@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ea004ae_66c55c72",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2019-03-16T01:15:36Z",
+      "side": 1,
+      "message": "Is this needed in the Makefile?  I realize it\u0027s convenient, but some users might have it installed in a different path.\n\nI\u0027ve used something like:\n\n    protoc --version || echo \"You need to install a protobuf compiler, see README\"\n\nto check if a tool is installed, and direct users to fix their dev environment.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 37
+      },
+      "revId": "ea8e3533427e0a7e00533ea55f15d10b932c6522",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
