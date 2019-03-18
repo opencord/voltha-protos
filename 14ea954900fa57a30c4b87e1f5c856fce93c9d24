@@ -22,6 +22,30 @@
       "revId": "14ea954900fa57a30c4b87e1f5c856fce93c9d24",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5bbbe7f_5b2f1e39",
+        "filename": "Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-03-18T09:52:34Z",
+      "side": 1,
+      "message": "I tested with 3.7.0 and there were no changes to the stubs output. So I went ahead and pushed it.",
+      "parentUuid": "0489cf3d_97158f8e",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "14ea954900fa57a30c4b87e1f5c856fce93c9d24",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
