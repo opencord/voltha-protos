@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0489cf3d_97158f8e",
+        "filename": "Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2019-03-18T05:05:25Z",
+      "side": 1,
+      "message": "Consider updating this - v3.3.0 is from early 2017, Jenkins systems used for testing have v3.6.1, which is mid-2018,  and v3.7.0 was just released a few weeks ago.   I would pick either v3.6.1 or v3.7.0.",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "14ea954900fa57a30c4b87e1f5c856fce93c9d24",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
