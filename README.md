@@ -40,7 +40,7 @@ ln -s ~/repos/voltha-protos $GOPATH/src/github.com/opencord/voltha-protos
 ### install dependencies
 
 ```
-go install ./vendor/github.com/golang/protobuf/protoc-gen-go
+go get vendor/github.com/golang/protobuf/protoc-gen-go
 ```
 
 ## Building locally
@@ -62,9 +62,13 @@ Use: `from voltha_protos import voltha_pb2`
 
 ### go
 
-`go get github.com/opencord/voltha-protos`
-or 
-`dep ensure` if using dep
+```
+go get github.com/opencord/voltha-protos
+cd $GOPATH/github.com/opencord/voltha-protos
+make build
+````
+protos should be importable from github.com/opencord/voltha-protos/go/packagename
+
 
 To use the libraries, import protos with the root path github.com/opencord/voltha-protos/go/
 
