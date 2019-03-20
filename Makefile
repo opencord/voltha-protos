@@ -80,9 +80,9 @@ python-clean:
 
 # Go targets
 go-protos:
-ifeq (, $(shell which protoc))
+ifeq ("", "$(shell which protoc)")
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	@echo "It looks like you don't have protocol buffer tools installed."
+	@echo "It looks like you don't have a version of protocol buffer tools."
 	@echo "To install the protocol buffer toolchain, you can run:"
 	@echo "    make install-protoc"
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -91,7 +91,15 @@ endif
 	./build_go_protos.sh protos
 
 go-test:
-	echo "FIXME: Add golang tests"
+ifneq ("libprotoc 3.7.0", "$(shell protoc --version)")
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	@echo "It looks like you don't have protocol buffer tools ${PROTOC_VERSION} installed."
+>---@echo "To install this version, you can run:"
+	@echo "    make install-protoc"
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	false
+endif
+	test/test-go-proto-consistency.sh
 
 go-clean:
 	echo "FIXME: Add golang cleanup"
@@ -109,5 +117,5 @@ install-protoc:
 	    cd $(PROTOC_DIR); \
 	    ./configure --prefix=$(PROTOC_PREFIX); \
 	    make; \
-	    sudo make install
-
+	    sudo make install; \ 
+	    sudo ldconfig

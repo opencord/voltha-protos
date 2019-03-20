@@ -1,11 +1,10 @@
 syntax = "proto3";
 
+option go_package = "github.com/opencord/voltha-protos/go/inter_container";
+
 import "google/protobuf/any.proto";
 import "voltha_protos/openflow_13.proto";
 import public "voltha_protos/logical_device.proto";
-
-
-option go_package = "github.com/opencord/voltha-protos/go/inter_container";
 
 package voltha;
 
