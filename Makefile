@@ -117,5 +117,5 @@ install-protoc:
 	    cd $(PROTOC_DIR); \
 	    ./configure --prefix=$(PROTOC_PREFIX); \
 	    make; \
-	    sudo make install; \ 
+	    sudo make install; \
 	    sudo ldconfig
