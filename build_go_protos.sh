@@ -1,7 +1,4 @@
 #!/bin/sh
-
-set -e
-
 # Copyright 2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +12,8 @@ set -e
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+set -e
 
 export PARENT_DIR="$1"
 export SRC_DIR="${PARENT_DIR}/voltha_protos"
@@ -58,7 +57,7 @@ export PB_VARS="\
     OF_PB \
     OMCI_PB \
     AFROUTER_PB \
-	OMCI_PB"
+    OMCI_PB"
 
 export OTHER_INCLUDES="/usr/local/include/googleapis"
 export PROTO_DESC_FILE="go/voltha.pb"
