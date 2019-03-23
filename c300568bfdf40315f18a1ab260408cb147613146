@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f5a530f_d2d45f79",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000436
+      },
+      "writtenOn": "2019-03-23T15:49:53Z",
+      "side": 1,
+      "message": "This basically carries over from voltha-go\u0027s setup notes, but it would be nice if there were a cleaner way to get a \"released\" version.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 89
+      },
+      "revId": "c300568bfdf40315f18a1ab260408cb147613146",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
