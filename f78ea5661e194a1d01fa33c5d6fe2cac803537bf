@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e05f2b1d_700ba933",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1000436
+      },
+      "writtenOn": "2019-03-25T12:33:55Z",
+      "side": 1,
+      "message": "These changes are not in the voltha 1.x origin version nor the openolt agent copy of the proto.  At a minimum the changes would have to be in the agent proto to be of any use.  \n\nIt would be better to avoid openolt.proto changes altogether  so that both the 1.x and 2.x version of adapters can work with the same agent.  Or at least change voltha 1.x and agent protos if there is some functional deficiency.  The concern is if 1.x proto and 2.x protos change independently they have forked and we have a messy merge to deal with.",
+      "range": {
+        "startLine": 361,
+        "startChar": 3,
+        "endLine": 362,
+        "endChar": 70
+      },
+      "revId": "f78ea5661e194a1d01fa33c5d6fe2cac803537bf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
