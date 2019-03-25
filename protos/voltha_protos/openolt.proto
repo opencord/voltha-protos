@@ -358,6 +358,8 @@ message Flow {
     sfixed32 priority = 9;
     fixed64 cookie = 12; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
     fixed32 port_no = 13; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
+    string  category = 14; //Need to get same flow ID for Upstream and downstream flows on broadcom-BAL based OLTs
+    fixed64 flow_store_cookie = 15; // Need unique flow ID per GEM port
 }
 
 message SerialNumber {
