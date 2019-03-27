@@ -26,7 +26,7 @@ echo $SRC_DIR
 export MAPS=Mgoogle/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor
 export INCS="\
     -I $PARENT_DIR \
-    -I /usr/local/include/googleapis"
+    -I ${PARENT_DIR}/google/api"
 
 export VOLTHA_PB="\
     $SRC_DIR/adapter.proto \
@@ -48,6 +48,7 @@ export IETF_PB="$SRC_DIR/ietf_interfaces.proto"
 export OF_PB="$SRC_DIR/openflow_13.proto"
 export OMCI_PB="$SRC_DIR/omci*.proto"
 export AFROUTER_PB="$SRC_DIR/afrouter.proto"
+export OPENOLT_PB="$SRC_DIR/openolt.proto"
 
 export PB_VARS="\
     VOLTHA_PB \
@@ -58,9 +59,11 @@ export PB_VARS="\
     OF_PB \
     OMCI_PB \
     AFROUTER_PB \
-	OMCI_PB"
+    OMCI_PB \
+    OPENOLT_PB"
 
-export OTHER_INCLUDES="/usr/local/include/googleapis"
+
+export OTHER_INCLUDES="${PARENT_DIR}/google/api"
 export PROTO_DESC_FILE="go/voltha.pb"
 
 for pb_var in $PB_VARS
