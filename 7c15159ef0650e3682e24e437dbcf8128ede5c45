@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06e35234_ef6cb6d8",
+        "filename": "build_go_protos.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000436
+      },
+      "writtenOn": "2019-03-28T11:08:47Z",
+      "side": 1,
+      "message": "So we no longer need to git clone the googleapis repo?  If so thats good, ill update the notes in my other commit to remove.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "7c15159ef0650e3682e24e437dbcf8128ede5c45",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
