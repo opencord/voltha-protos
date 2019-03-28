@@ -46,6 +46,30 @@
       "revId": "c300568bfdf40315f18a1ab260408cb147613146",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65309e2a_4360f1cf",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000436
+      },
+      "writtenOn": "2019-03-28T11:27:00Z",
+      "side": 1,
+      "message": "Seems it does, but William has a commit that fixes the build shell script to remove the need for the git clone at all. \n\nhttps://gerrit.opencord.org/#/c/13451/\n\nThe two google protos we need are already copied in the proto directory in this repo.  If the github you mention above can be \"go get\" then we may not need the copies in the protos directory here at all.\n\nWe may need to discuss.",
+      "parentUuid": "54c7f00c_9501b70a",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 89
+      },
+      "revId": "c300568bfdf40315f18a1ab260408cb147613146",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
