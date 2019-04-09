@@ -22,6 +22,30 @@
       "revId": "f78ea5661e194a1d01fa33c5d6fe2cac803537bf",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f63f9f9_b17ead4f",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1000548
+      },
+      "writtenOn": "2019-04-09T13:42:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e05f2b1d_700ba933",
+      "range": {
+        "startLine": 361,
+        "startChar": 3,
+        "endLine": 362,
+        "endChar": 70
+      },
+      "revId": "f78ea5661e194a1d01fa33c5d6fe2cac803537bf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
