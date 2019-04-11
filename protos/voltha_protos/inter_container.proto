@@ -82,6 +82,11 @@ message PortCapability {
     LogicalPort port = 1;
 }
 
+message TechProfileDownload {
+    uint32 uni_id = 1;
+    string path = 2;
+}
+
 message DeviceDiscovered {
     string id = 1;
     string parent_id = 2;
@@ -99,6 +104,7 @@ message InterAdapterMessageType {
         METRICS_RESPONSE = 5;
         ONU_IND_REQUEST = 6;
         ONU_IND_RESPONSE = 7;
+        TECH_PROFILE_DOWNLOAD_REQUEST = 8;
     }
 }
 
