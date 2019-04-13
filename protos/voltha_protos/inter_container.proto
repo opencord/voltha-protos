@@ -99,6 +99,7 @@ message InterAdapterMessageType {
         METRICS_RESPONSE = 5;
         ONU_IND_REQUEST = 6;
         ONU_IND_RESPONSE = 7;
+        TECH_PROFILE_DOWNLOAD_REQUEST = 8;
     }
 }
 
@@ -114,6 +115,11 @@ message InterAdapterHeader {
 
 message InterAdapterOmciMessage {
     bytes message = 1; // OMCI_REQUEST or OMCI_RESPONSE
+}
+
+message InterAdapterTechProfileDownloadMessage {
+    uint32 uni_id = 1;
+    string path = 2;
 }
 
 message InterAdapterResponseBody {
