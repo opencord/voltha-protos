@@ -40,6 +40,9 @@ PROTOC_TARBALL := protobuf-python-$(PROTOC_VERSION).tar.gz
 PROTOC_DOWNLOAD_URI := $(PROTOC_DOWNLOAD_PREFIX)/v$(PROTOC_VERSION)/$(PROTOC_TARBALL)
 PROTOC_BUILD_TMP_DIR := "/tmp/protobuf-build-$(shell uname -s | tr '[:upper:]' '[:lower:]')"
 
+# Force pb file to be regenrated every time.  Otherwise the make process assumes whats there is still ok
+.PHONY: go/voltha.pb
+
 print:
 	@echo "Proto files: $(PROTO_FILES)"
 	@echo "Python PB2 files: $(PROTO_PYTHON_PB2)"
