@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c84085a_b5ed245e",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-04-15T21:00:01Z",
+      "side": 1,
+      "message": "I am not sure it makes sense to clean the files under go/ when we commit those to the repository. It seems like it could cause confusion.",
+      "revId": "d72940f4f080fe73251e3b960cea8bec8669e868",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
