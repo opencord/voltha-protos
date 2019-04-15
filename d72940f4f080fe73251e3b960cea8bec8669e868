@@ -16,6 +16,24 @@
       "revId": "d72940f4f080fe73251e3b960cea8bec8669e868",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c9d3b78_0bc489c0",
+        "filename": "Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2019-04-15T21:04:38Z",
+      "side": 1,
+      "message": "This target is run from the test script.  \n\nWould it be better if this was changed to only remove `go_temp`, and the removal of the artifacts for regeneration happened in that script?",
+      "parentUuid": "2c84085a_b5ed245e",
+      "revId": "d72940f4f080fe73251e3b960cea8bec8669e868",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
