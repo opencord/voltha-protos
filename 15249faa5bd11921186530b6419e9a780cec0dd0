@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f32ce03_769df1a3",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2019-04-17T20:00:50Z",
+      "side": 1,
+      "message": "This is a good idea for the local dev cycle.  \n\nQA jobs running `make test` will delete and regenerate the file, but that assumes it\u0027s committed which isn\u0027t the case during local dev.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "15249faa5bd11921186530b6419e9a780cec0dd0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
