@@ -2023,8 +2023,8 @@ message ofp_group_desc {
 };
 
 message ofp_group_entry {
-    ofp_group_desc desc = 1 [(voltha.yang_inline_node).id = 'desc',
-                            (voltha.yang_inline_node).type = 'openflow_13-ofp_group_desc'];
+    ofp_group_desc desc = 1 [(common.yang_inline_node).id = 'desc',
+                            (common.yang_inline_node).type = 'openflow_13-ofp_group_desc'];
     ofp_group_stats stats = 2;
 };
 
