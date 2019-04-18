@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/ietf";
 
-package ietf_interfaces;
+package ietf;
 
 message Interfaces {
     repeated Interface all_interfaces = 1;
