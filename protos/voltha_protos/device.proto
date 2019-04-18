@@ -100,7 +100,7 @@ message Images {
 }
 
 message ImageDownload {
-    option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     enum ImageDownloadState {
         DOWNLOAD_UNKNOWN = 0;
@@ -176,7 +176,7 @@ message ImageDownloads {
 }
 
 message Port {
-    option (voltha.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     enum PortType {
         UNKNOWN = 0;
@@ -194,9 +194,9 @@ message Port {
 
     PortType type = 3;  //  Type of port
 
-    AdminState.AdminState admin_state = 5;
+    common.AdminState.AdminState admin_state = 5;
 
-    OperStatus.OperStatus oper_status = 6;
+    common.OperStatus.OperStatus oper_status = 6;
 
     string device_id = 7;  // Unique .id of device that owns this port
 
@@ -221,7 +221,7 @@ message Ports {
 
 // A Physical Device instance
 message Device {
-    option (voltha.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     // Voltha's device identifier
     string id = 1 [(access) = READ_ONLY];
@@ -283,13 +283,13 @@ message Device {
 
     ProxyAddress proxy_address = 19;
 
-    AdminState.AdminState admin_state = 16;
+    common.AdminState.AdminState admin_state = 16;
 
-    OperStatus.OperStatus oper_status = 17 [(access) = READ_ONLY];
+    common.OperStatus.OperStatus oper_status = 17 [(access) = READ_ONLY];
 
     string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
 
-    ConnectStatus.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
+    common.ConnectStatus.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
 
     // TODO additional common attribute here
 

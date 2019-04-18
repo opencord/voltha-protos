@@ -19,7 +19,7 @@ syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/common";
 
-package voltha;
+package common;
 
 import "google/protobuf/descriptor.proto";
 
