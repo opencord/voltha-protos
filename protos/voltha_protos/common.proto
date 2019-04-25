@@ -2,22 +2,13 @@ syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/common";
 
-package common;
+package voltha;
 
 import "voltha_protos/yang_options.proto";
 
 // Convey a resource identifier
 message ID {
     string id = 1;
-}
-
-// Represents a list of IDs
-message IDs {
-    repeated ID items = 1;
-}
-
-enum TestModeKeys {
-    api_test=0;
 }
 
 message LogLevel {
@@ -30,7 +21,6 @@ message LogLevel {
         WARNING = 2;
         ERROR = 3;
         CRITICAL = 4;
-        FATAL = 5;
     }
 }
 
@@ -47,17 +37,15 @@ message AdminState {
         PREPROVISIONED = 1;
 
         // The device is enabled for activation and operation
-        ENABLED = 2;
+        ENABLED = 3;
 
         // The device is disabled and shall not perform its intended forwarding
         // functions other than being available for re-activation.
-        DISABLED = 3;
+        DISABLED = 2;
 
-        // The device is in the state of image download
+        // The deive is in the state of image download
         DOWNLOADING_IMAGE = 4;
 
-        // The device is marked to be deleted
-        DELETED = 5;
     }
 }
 
@@ -118,5 +106,3 @@ message OperationResp {
     // Additional Info
     string additional_info = 2;
 }
-
-

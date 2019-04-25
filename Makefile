@@ -118,19 +118,19 @@ $(PROTO_GO_PB): $(PROTO_FILES) go_temp
 	@echo "Creating $@"
 	cd protos && protoc \
     --go_out=MAPS=Mgoogle/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor,plugins=grpc,paths=source_relative:../go_temp \
-    -I . voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.go/\1.proto/p' )
+    -I . -I ./voltha_protos voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.go/\1.proto/p' )
 	mkdir -p $(dir $@)
 	mv go_temp/voltha_protos/$(notdir $@) $@
 
 go/voltha.pb: ${PROTO_FILES}
 	@echo "Creating $@"
-	protoc -I protos -I protos/google/api \
+	protoc -I protos/voltha_protos -I protos -I protos/google/api \
     --include_imports --include_source_info \
     --descriptor_set_out=$@ \
     ${PROTO_FILES}
 
 go-test:
-ifneq ("libprotoc 3.7.0", "$(shell protoc --version)")
+ifneq ("libprotoc 3.7.1", "$(shell protoc --version)")
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 	@echo "It looks like you don't have protocol buffer tools ${PROTOC_VERSION} installed."
 	@echo "To install this version, you can run:"
