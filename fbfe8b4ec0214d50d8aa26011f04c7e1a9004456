@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "ef7b5e7c_9e37ea98",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2019-04-25T23:17:11Z",
+      "side": 1,
+      "message": "I\u0027d opine that this is reintroducing an obvious error that was found and corrected, which is hard to make a good argument for.",
+      "parentUuid": "e723f86a_26447c6c",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "fbfe8b4ec0214d50d8aa26011f04c7e1a9004456",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e3e0950e_e4fdceef",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 3
