@@ -2023,8 +2023,8 @@ message ofp_group_desc {
 };
 
 message ofp_group_entry {
-    ofp_group_desc desc = 1 [(common.yang_inline_node).id = 'desc',
-                            (common.yang_inline_node).type = 'openflow_13-ofp_group_desc'];
+    ofp_group_desc desc = 1 [(voltha.yang_inline_node).id = 'desc',
+                            (voltha.yang_inline_node).type = 'openflow_13-ofp_group_desc'];
     ofp_group_stats stats = 2;
 };
 
@@ -2091,6 +2091,12 @@ message ofp_meter_features {
     uint32    max_bands = 4;    /* Maximum bands per meters */
     uint32    max_color = 5;    /* Maximum color value */
 };
+
+message ofp_meter_entry {
+    ofp_meter_config config=1 [(voltha.yang_inline_node).id = 'config',
+                              (voltha.yang_inline_node).type = 'openflow_13-ofp_meter_config'];
+    ofp_meter_stats stats=2;
+}
 
 /* Body for ofp_multipart_request/reply of type OFPMP_EXPERIMENTER. */
 message ofp_experimenter_multipart_header {
@@ -2268,7 +2274,7 @@ message Flows {
 }
 
 message Meters {
-    repeated ofp_meter_config items = 1;
+    repeated ofp_meter_entry items = 1;
 }
 
 message FlowGroups {
@@ -2283,7 +2289,6 @@ message FlowChanges {
 message FlowGroupChanges {
     FlowGroups to_add = 1;
     FlowGroups to_remove = 2;
-    FlowGroups to_update = 3;
 }
 
 message PacketIn {
@@ -2300,5 +2305,6 @@ message ChangeEvent {
     string id = 1; // LogicalDevice.id
     oneof event {
         ofp_port_status port_status = 2;
+        ofp_flow_removed flow_removed = 3;
     }
 }
