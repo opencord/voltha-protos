@@ -10,20 +10,29 @@ option go_package = "github.com/opencord/voltha-protos/go/voltha";
 
 package voltha;
 
-import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
 
-import public "voltha_protos/meta.proto";
-import public "voltha_protos/common.proto";
-import public "voltha_protos/health.proto";
-import public "voltha_protos/logical_device.proto";
-import public "voltha_protos/device.proto";
-import public "voltha_protos/adapter.proto";
-import public "voltha_protos/openflow_13.proto";
+import "yang_options.proto";
 
-import "voltha_protos/omci_mib_db.proto";
-import "voltha_protos/omci_alarm_db.proto";
-import "voltha_protos/yang_options.proto";
+import public "meta.proto";
+import public "common.proto";
+import public "health.proto";
+import public "logical_device.proto";
+import public "device.proto";
+import public "adapter.proto";
+import public "openflow_13.proto";
+import "bbf_fiber.proto";
+import "bbf_fiber_base.proto";
+import "bbf_fiber_gemport_body.proto";
+import "bbf_fiber_multicast_distribution_set_body.proto";
+import "bbf_fiber_multicast_gemport_body.proto";
+import "bbf_fiber_tcont_body.proto";
+import "bbf_fiber_traffic_descriptor_profile_body.proto";
+import "omci_mib_db.proto";
+import "omci_alarm_db.proto";
+
 
 option java_package = "org.opencord.voltha";
 option java_outer_classname = "VolthaProtos";
@@ -44,7 +53,7 @@ message DeviceGroups {
 
 
 message AlarmFilterRuleKey {
-    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+    option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     enum AlarmFilterRuleKey {
         id = 0;
@@ -70,59 +79,144 @@ message AlarmFilters {
     repeated AlarmFilter filters = 1;
 }
 
-message Logging {
-    common.LogLevel.LogLevel level = 1;
-    string package_name = 2;
-}
-
-// CoreInstance represents a core instance.  It is data held in memory when a core
-// is running.  This data is not persistent.
-message CoreInstance {
-    option (common.yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
+// Top-level (root) node for a Voltha Instance
+message VolthaInstance {
+    option (yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
 
     string instance_id = 1  [(access) = READ_ONLY];
 
-    HealthStatus health = 2 [(child_node) = {}];
+    string version = 2 [(access) = READ_ONLY];
 
+    LogLevel.LogLevel log_level = 3;
+
+    HealthStatus health = 10 [(child_node) = {}];
+
+    repeated Adapter adapters = 11 [(child_node) = {key: "id" }];
+
+    repeated LogicalDevice logical_devices = 12 [(child_node) = {key: "id"}];
+
+    repeated Device devices = 13 [(child_node) = {key: "id"}];
+
+    repeated DeviceType device_types = 14 [(child_node) = {key: "id"}];
+
+    repeated DeviceGroup device_groups = 15 [(child_node) = {key: "id"}];
+
+    repeated AlarmFilter alarm_filters = 16 [(child_node) = {key: "id"}];
+
+    repeated bbf_fiber.ChannelgroupConfig channel_groups = 17
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.ChannelpartitionConfig channel_partitions = 18
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.ChannelpairConfig channel_pairs = 19
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.OntaniConfig ont_anis = 20
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.VOntaniConfig v_ont_anis = 21
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.VEnetConfig v_enets = 22
+        [(child_node) = {key: "name"}];
+
+    repeated
+        bbf_fiber.TrafficDescriptorProfileData traffic_descriptor_profiles = 23
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.TcontsConfigData tconts = 24
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.GemportsConfigData gemports = 25
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.MulticastGemportsConfigData multicast_gemports = 26
+        [(child_node) = {key: "name"}];
+
+    repeated
+        bbf_fiber.MulticastDistributionSetData multicast_distibution_sets = 27
+        [(child_node) = {key: "name"}];
+
+    repeated
+        omci.MibDeviceData omci_mibs = 28
+        [(child_node) = {key: "device_id"}];
+
+    repeated
+        alarm.AlarmDeviceData omci_alarms = 29
+        [(child_node) = {key: "device_id"}];
 }
 
-message CoreInstances {
-    option (common.yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
-    repeated CoreInstance items = 1;
+message VolthaInstances {
+    option (yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
+    repeated string items = 1;
 }
 
-// Voltha represents the Voltha cluster data.  Each Core instance will hold a subset of
-// the entire cluster. However, some items (e.g. adapters) will be held by all cores
-// for better performance
+// Voltha representing the entire Voltha cluster
 message Voltha {
-    option (common.yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
+    option (yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
 
     string version = 1 [(access) = READ_ONLY];
 
-    repeated Adapter adapters = 2 [(child_node) = {key: "id"}];
+    LogLevel.LogLevel log_level = 2;
 
-    repeated LogicalDevice logical_devices = 3 [(child_node) = {key: "id"}];
+    repeated VolthaInstance instances = 3 [(child_node) = {key: "instance_id"}];
 
-    repeated Device devices = 4 [(child_node) = {key: "id"}];
+    repeated Adapter adapters = 11 [(child_node) = {key: "id"}];
 
-    repeated DeviceType device_types = 5 [(child_node) = {key: "id"}];
+    repeated LogicalDevice logical_devices = 12 [(child_node) = {key: "id"}];
 
-    repeated DeviceGroup device_groups = 6 [(child_node) = {key: "id"}];
+    repeated Device devices = 13 [(child_node) = {key: "id"}];
 
-    repeated AlarmFilter alarm_filters = 7 [(child_node) = {key: "id"}];
+    repeated DeviceGroup device_groups = 15 [(child_node) = {key: "id"}];
+
+    repeated bbf_fiber.ChannelgroupConfig channel_groups = 16
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.ChannelpartitionConfig channel_partitions = 17
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.ChannelpairConfig channel_pairs = 18
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.OntaniConfig ont_anis = 19
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.VOntaniConfig v_ont_anis = 20
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.VEnetConfig v_enets = 21
+        [(child_node) = {key: "name"}];
+
+    repeated
+        bbf_fiber.TrafficDescriptorProfileData traffic_descriptor_profiles = 23
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.TcontsConfigData tconts = 24
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.GemportsConfigData gemports = 25
+        [(child_node) = {key: "name"}];
+
+    repeated bbf_fiber.MulticastGemportsConfigData multicast_gemports = 26
+        [(child_node) = {key: "name"}];
+
+    repeated
+        bbf_fiber.MulticastDistributionSetData multicast_distibution_sets = 27
+        [(child_node) = {key: "name"}];
 
     repeated
         omci.MibDeviceData omci_mib_database = 28
         [(child_node) = {key: "device_id"}];
 
     repeated
-        omci.AlarmDeviceData omci_alarm_database = 29
+        alarm.AlarmDeviceData omci_alarm_database = 29
         [(child_node) = {key: "device_id"}];
 }
 
 // Device Self Test Response
 message SelfTestResponse {
-    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+    option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
 	enum SelfTestResult  {
 	    SUCCESS = 0;
@@ -141,42 +235,14 @@ message OfAgentSubscriber {
     string voltha_id = 2;
 }
 
-// Identifies a membership group a Core belongs to
-message Membership {
-    //  Group name
-    string group_name = 1;
-
-    // Unique ID of a container within that group
-    string id = 2;
-}
-
 /*
- * Voltha APIs
+ * Cluster-wide Voltha APIs
+ *
+ * These APIs are potentially dispatched to the leader of the Voltha cluster,
+ * to a specific Voltha instance which owns the given device or logical device.
  *
  */
-service VolthaService {
-
-    // Get more information on a given physical device
-    rpc UpdateLogLevel(Logging) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-            get: "/api/v1/logs"
-        };
-    }
-
-    // Get the membership group of a Voltha Core
-    rpc GetMembership(google.protobuf.Empty) returns(Membership) {
-        option (google.api.http) = {
-            get: "/api/v1/membership"
-        };
-    }
-
-    // Set the membership group of a Voltha Core
-    rpc UpdateMembership(Membership) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/v1/membership"
-            body: "*"
-        };
-    }
+service VolthaGlobalService {
 
     // Get high level information on the Voltha cluster
     rpc GetVoltha(google.protobuf.Empty) returns(Voltha) {
@@ -185,17 +251,17 @@ service VolthaService {
         };
     }
 
-    // List all Voltha cluster core instances
-    rpc ListCoreInstances(google.protobuf.Empty) returns(CoreInstances) {
+    // List all Voltha cluster instances
+    rpc ListVolthaInstances(google.protobuf.Empty) returns(VolthaInstances) {
         option (google.api.http) = {
             get: "/api/v1/instances"
         };
-        option (common.yang_xml_tag).xml_tag = 'items';
-        option (common.yang_xml_tag).list_items_name = 'items';
+        option (voltha.yang_xml_tag).xml_tag = 'items';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
     }
 
     // Get details on a Voltha cluster instance
-    rpc GetCoreInstance(common.ID) returns(CoreInstance) {
+    rpc GetVolthaInstance(ID) returns(VolthaInstance) {
         option (google.api.http) = {
             get: "/api/v1/instances/{id}"
         };
@@ -206,7 +272,7 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/adapters"
         };
-        option (common.yang_xml_tag).xml_tag = 'adapters';
+        option (voltha.yang_xml_tag).xml_tag = 'adapters';
     }
 
 
@@ -215,22 +281,30 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices"
         };
-        option (common.yang_xml_tag).xml_tag = 'logical_devices';
+        option (voltha.yang_xml_tag).xml_tag = 'logical_devices';
+    }
+
+    // List all reachable logical devices managed by the Voltha cluster
+    rpc ListReachableLogicalDevices(google.protobuf.Empty) returns
+    (LogicalDevices) {
+        option (google.api.http) = {
+            get: "/api/v1/reachable_logical_devices"
+        };
     }
 
     // Get additional information on a given logical device
-    rpc GetLogicalDevice(common.ID) returns(LogicalDevice) {
+    rpc GetLogicalDevice(ID) returns(LogicalDevice) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}"
         };
     }
 
     // List ports of a logical device
-    rpc ListLogicalDevicePorts(common.ID) returns(LogicalPorts) {
+    rpc ListLogicalDevicePorts(ID) returns(LogicalPorts) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/ports"
         };
-        option (common.yang_xml_tag).xml_tag = 'ports';
+        option (voltha.yang_xml_tag).xml_tag = 'ports';
     }
 
     // Gets a logical device port
@@ -238,7 +312,7 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/ports/{port_id}"
         };
-        option (common.yang_xml_tag).xml_tag = 'port';
+        option (voltha.yang_xml_tag).xml_tag = 'port';
     }
 
     // Enables a logical device port
@@ -256,12 +330,12 @@ service VolthaService {
     }
 
     // List all flows of a logical device
-    rpc ListLogicalDeviceFlows(common.ID) returns(openflow_13.Flows) {
+    rpc ListLogicalDeviceFlows(ID) returns(openflow_13.Flows) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/flows"
         };
-        option (common.yang_xml_tag).xml_tag = 'flows';
-        option (common.yang_xml_tag).list_items_name = 'items';
+        option (voltha.yang_xml_tag).xml_tag = 'flows';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
     }
 
     // Update flow table for logical device
@@ -282,21 +356,22 @@ service VolthaService {
         };
     }
 
-    // Get all meter stats for logical device
-    rpc GetMeterStatsOfLogicalDevice(common.ID)
-            returns(openflow_13.MeterStatsReply) {
+    // List all meters of a logical device
+    rpc ListLogicalDeviceMeters(ID) returns (openflow_13.Meters) {
         option (google.api.http) = {
-            get: "/api/v1/logical_devices/{id}/meters_stats"
+            get: "/api/v1/logical_devices/{id}/meters"
         };
+        option (voltha.yang_xml_tag).xml_tag = 'meters';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
     }
 
     // List all flow groups of a logical device
-    rpc ListLogicalDeviceFlowGroups(common.ID) returns(openflow_13.FlowGroups) {
+    rpc ListLogicalDeviceFlowGroups(ID) returns(openflow_13.FlowGroups) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/flow_groups"
         };
-        option (common.yang_xml_tag).xml_tag = 'flow_groups';
-        option (common.yang_xml_tag).list_items_name = 'items';
+        option (voltha.yang_xml_tag).xml_tag = 'flow_groups';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
     }
 
     // Update group table for device
@@ -313,28 +388,11 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/devices"
         };
-        option (common.yang_xml_tag).xml_tag = 'devices';
-    }
-
-    // List all physical devices IDs controlled by the Voltha cluster
-    rpc ListDeviceIds(google.protobuf.Empty) returns(common.IDs) {
-        option (google.api.http) = {
-            get: "/api/v1/deviceids"
-        };
-        option (common.yang_xml_tag).xml_tag = 'id';
-        option (common.yang_xml_tag).list_items_name = 'items';
-    }
-
-    // Request to a voltha Core to reconcile a set of devices based on their IDs
-    rpc ReconcileDevices(common.IDs) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/v1/deviceids"
-            body: "*"
-        };
+        option (voltha.yang_xml_tag).xml_tag = 'devices';
     }
 
     // Get more information on a given physical device
-    rpc GetDevice(common.ID) returns(Device) {
+    rpc GetDevice(ID) returns(Device) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}"
         };
@@ -351,28 +409,28 @@ service VolthaService {
     // Enable a device.  If the device was in pre-provisioned state then it
     // will transition to ENABLED state.  If it was is DISABLED state then it
     // will transition to ENABLED state as well.
-    rpc EnableDevice(common.ID) returns(google.protobuf.Empty) {
+    rpc EnableDevice(ID) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/enable"
         };
     }
 
     // Disable a device
-    rpc DisableDevice(common.ID) returns(google.protobuf.Empty) {
+    rpc DisableDevice(ID) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/disable"
         };
     }
 
     // Reboot a device
-    rpc RebootDevice(common.ID) returns(google.protobuf.Empty) {
+    rpc RebootDevice(ID) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/reboot"
         };
     }
 
     // Delete a device
-    rpc DeleteDevice(common.ID) returns(google.protobuf.Empty) {
+    rpc DeleteDevice(ID) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/v1/devices/{id}/delete"
         };
@@ -381,7 +439,7 @@ service VolthaService {
     // Request an image download to the standby partition
     // of a device.
     // Note that the call is expected to be non-blocking.
-    rpc DownloadImage(ImageDownload) returns(common.OperationResp) {
+    rpc DownloadImage(ImageDownload) returns(OperationResp) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/image_downloads/{name}"
             body: "*"
@@ -404,14 +462,14 @@ service VolthaService {
     }
 
     // List image download db records for a given device
-    rpc ListImageDownloads(common.ID) returns(ImageDownloads) {
+    rpc ListImageDownloads(ID) returns(ImageDownloads) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/image_downloads"
         };
     }
 
     // Cancel an existing image download process on a device
-    rpc CancelImageDownload(ImageDownload) returns(common.OperationResp) {
+    rpc CancelImageDownload(ImageDownload) returns(OperationResp) {
         option (google.api.http) = {
             delete: "/api/v1/devices/{id}/image_downloads/{name}"
         };
@@ -424,7 +482,7 @@ service VolthaService {
     // If no reboot, then a reboot is required to make the
     // activated image running on device
     // Note that the call is expected to be non-blocking.
-    rpc ActivateImageUpdate(ImageDownload) returns(common.OperationResp) {
+    rpc ActivateImageUpdate(ImageDownload) returns(OperationResp) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/image_downloads/{name}/image_update"
             body: "*"
@@ -438,7 +496,7 @@ service VolthaService {
     // If no reboot, then a reboot is required to make the
     // previous image running on device
     // Note that the call is expected to be non-blocking.
-    rpc RevertImageUpdate(ImageDownload) returns(common.OperationResp) {
+    rpc RevertImageUpdate(ImageDownload) returns(OperationResp) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/image_downloads/{name}/image_revert"
             body: "*"
@@ -446,15 +504,15 @@ service VolthaService {
     }
 
     // List ports of a device
-    rpc ListDevicePorts(common.ID) returns(Ports) {
+    rpc ListDevicePorts(ID) returns(Ports) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/ports"
         };
-        option (common.yang_xml_tag).xml_tag = 'ports';
+        option (voltha.yang_xml_tag).xml_tag = 'ports';
     }
 
     // List pm config of a device
-    rpc ListDevicePmConfigs(common.ID) returns(PmConfigs) {
+    rpc ListDevicePmConfigs(ID) returns(PmConfigs) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/pm_configs"
         };
@@ -469,21 +527,21 @@ service VolthaService {
     }
 
     // List all flows of a device
-    rpc ListDeviceFlows(common.ID) returns(openflow_13.Flows) {
+    rpc ListDeviceFlows(ID) returns(openflow_13.Flows) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/flows"
         };
-        option (common.yang_xml_tag).xml_tag = 'flows';
-        option (common.yang_xml_tag).list_items_name = 'items';
+        option (voltha.yang_xml_tag).xml_tag = 'flows';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
     }
 
     // List all flow groups of a device
-    rpc ListDeviceFlowGroups(common.ID) returns(openflow_13.FlowGroups) {
+    rpc ListDeviceFlowGroups(ID) returns(openflow_13.FlowGroups) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/flow_groups"
         };
-        option (common.yang_xml_tag).xml_tag = 'flow_groups';
-        option (common.yang_xml_tag).list_items_name = 'items';
+        option (voltha.yang_xml_tag).xml_tag = 'flow_groups';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
     }
 
     // List device types known to Voltha
@@ -491,11 +549,11 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/device_types"
         };
-        option (common.yang_xml_tag).xml_tag = 'device_types';
+        option (voltha.yang_xml_tag).xml_tag = 'device_types';
     }
 
     // Get additional information on a device type
-    rpc GetDeviceType(common.ID) returns(DeviceType) {
+    rpc GetDeviceType(ID) returns(DeviceType) {
         option (google.api.http) = {
             get: "/api/v1/device_types/{id}"
         };
@@ -506,9 +564,1141 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/device_groups"
         };
-        option (common.yang_xml_tag).xml_tag = 'device_groups';
+        option (voltha.yang_xml_tag).xml_tag = 'device_groups';
     }
 
+    // Get additional information on a device group
+    rpc GetDeviceGroup(ID) returns(DeviceGroup) {
+        option (google.api.http) = {
+            get: "/api/v1/device_groups/{id}"
+        };
+    }
+
+    rpc CreateAlarmFilter(AlarmFilter) returns(AlarmFilter) {
+        option (google.api.http) = {
+            post: "/api/v1/alarm_filters"
+            body: "*"
+        };
+    }
+
+    rpc GetAlarmFilter(ID) returns(AlarmFilter) {
+        option (google.api.http) = {
+            get: "/api/v1/alarm_filters/{id}"
+        };
+    }
+
+    rpc UpdateAlarmFilter(AlarmFilter) returns(AlarmFilter) {
+        option (google.api.http) = {
+            put: "/api/v1/alarm_filters/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeleteAlarmFilter(ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/alarm_filters/{id}"
+        };
+    }
+
+    rpc ListAlarmFilters(google.protobuf.Empty) returns(AlarmFilters) {
+        option (google.api.http) = {
+            get: "/api/v1/alarm_filters"
+        };
+    }
+
+    // List all Channel Groups
+    rpc GetAllChannelgroupConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllChannelgroupConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/channel_groups"
+        };
+    }
+    // Create Channel Group
+    rpc CreateChannelgroup(bbf_fiber.ChannelgroupConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/channel_groups/{name}"
+            body: "*"
+        };
+    }
+    // Update Channel Group
+    rpc UpdateChannelgroup(bbf_fiber.ChannelgroupConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/channel_groups/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Channel Group
+    rpc DeleteChannelgroup(bbf_fiber.ChannelgroupConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/channel_groups/{name}/delete"
+        };
+    }
+    // List all channel partitions
+    rpc GetAllChannelpartitionConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllChannelpartitionConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/channel_partitions"
+        };
+    }
+    // Create a channel partition
+    rpc CreateChannelpartition(bbf_fiber.ChannelpartitionConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/channel_partitions/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel partition
+    rpc UpdateChannelpartition(bbf_fiber.ChannelpartitionConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/channel_partitions/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a channel partition
+    rpc DeleteChannelpartition(bbf_fiber.ChannelpartitionConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/channel_partitions/{name}/delete"
+        };
+    }
+
+    // List all channel pairs managed by this Voltha instance
+    rpc GetAllChannelpairConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllChannelpairConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/channel_pairs"
+        };
+    }
+    // Create a channel pair
+    rpc CreateChannelpair(bbf_fiber.ChannelpairConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/channel_pairs/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel pair
+    rpc UpdateChannelpair(bbf_fiber.ChannelpairConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/channel_pairs/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a channel pair
+    rpc DeleteChannelpair(bbf_fiber.ChannelpairConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/channel_pairs/{name}/delete"
+        };
+    }
+    // List all channel terminations managed by this Voltha instance
+    rpc GetAllChannelterminationConfig(ID)
+            returns(bbf_fiber.AllChannelterminationConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/devices/{id}/channel_terminations"
+        };
+    }
+    // Create a channel termination
+    rpc CreateChanneltermination(bbf_fiber.ChannelterminationConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/devices/{id}/channel_terminations/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel termination
+    rpc UpdateChanneltermination(bbf_fiber.ChannelterminationConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/devices/{id}/channel_terminations/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a channel termination
+    rpc DeleteChanneltermination(bbf_fiber.ChannelterminationConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/devices/{id}/channel_terminations/{name}/delete"
+        };
+    }
+    // List all ont configs managed by this Voltha instance
+    rpc GetAllOntaniConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllOntaniConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/ont_anis"
+        };
+    }
+    // Create an ont configs
+    rpc CreateOntani(bbf_fiber.OntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/ont_anis/{name}"
+            body: "*"
+        };
+    }
+    // Update an ont configs
+    rpc UpdateOntani(bbf_fiber.OntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/ont_anis/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete an ont configs
+    rpc DeleteOntani(bbf_fiber.OntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/ont_anis/{name}/delete"
+        };
+    }
+    // List all vont configs managed by this Voltha instance
+    rpc GetAllVOntaniConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllVOntaniConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/v_ont_anis"
+        };
+    }
+    // Create a vont configs
+    rpc CreateVOntani(bbf_fiber.VOntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/v_ont_anis/{name}"
+            body: "*"
+        };
+    }
+    // Update a vont configs
+    rpc UpdateVOntani(bbf_fiber.VOntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/v_ont_anis/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a vont configs
+    rpc DeleteVOntani(bbf_fiber.VOntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/v_ont_anis/{name}/delete"
+        };
+    }
+    // List all venet configs managed by this Voltha instance
+    rpc GetAllVEnetConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllVEnetConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/v_enets"
+        };
+    }
+    // Create venet configs
+    rpc CreateVEnet(bbf_fiber.VEnetConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/v_enets/{name}"
+            body: "*"
+        };
+    }
+    // Update venet configs
+    rpc UpdateVEnet(bbf_fiber.VEnetConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/v_enets/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete venet configs
+    rpc DeleteVEnet(bbf_fiber.VEnetConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/v_enets/{name}/delete"
+        };
+    }
+
+    // List all Traffic Descriptors Profiles
+    rpc GetAllTrafficDescriptorProfileData(google.protobuf.Empty)
+            returns(bbf_fiber.AllTrafficDescriptorProfileData) {
+        option (google.api.http) = {
+            get: "/api/v1/traffic_descriptor_profiles"
+        };
+    }
+    // Create Traffic Descriptor Profile
+    rpc CreateTrafficDescriptorProfileData(
+            bbf_fiber.TrafficDescriptorProfileData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/traffic_descriptor_profiles/{name}"
+            body: "*"
+        };
+    }
+    // Update Traffic Descriptor Profile
+    rpc UpdateTrafficDescriptorProfileData(
+            bbf_fiber.TrafficDescriptorProfileData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/traffic_descriptor_profiles/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Traffic Descriptor Profile
+    rpc DeleteTrafficDescriptorProfileData(
+            bbf_fiber.TrafficDescriptorProfileData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/traffic_descriptor_profiles/{name}/delete"
+        };
+    }
+
+    // List all Tconts
+    rpc GetAllTcontsConfigData(google.protobuf.Empty)
+            returns(bbf_fiber.AllTcontsConfigData) {
+        option (google.api.http) = {
+            get: "/api/v1/tconts"
+        };
+    }
+    // Create Tcont
+    rpc CreateTcontsConfigData(bbf_fiber.TcontsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/tconts/{name}"
+            body: "*"
+        };
+    }
+    // Update Tcont
+    rpc UpdateTcontsConfigData(bbf_fiber.TcontsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/tconts/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Tcont
+    rpc DeleteTcontsConfigData(bbf_fiber.TcontsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/tconts/{name}/delete"
+        };
+    }
+
+    // List all Gemports
+    rpc GetAllGemportsConfigData(google.protobuf.Empty)
+            returns(bbf_fiber.AllGemportsConfigData) {
+        option (google.api.http) = {
+            get: "/api/v1/gemports"
+        };
+    }
+    // Create Gemport
+    rpc CreateGemportsConfigData(bbf_fiber.GemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/gemports/{name}"
+            body: "*"
+        };
+    }
+    // Update Gemport
+    rpc UpdateGemportsConfigData(bbf_fiber.GemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/gemports/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Gemport
+    rpc DeleteGemportsConfigData(bbf_fiber.GemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/gemports/{name}/delete"
+        };
+    }
+
+    // List all Multicast Gemports
+    rpc GetAllMulticastGemportsConfigData(google.protobuf.Empty)
+            returns(bbf_fiber.AllMulticastGemportsConfigData) {
+        option (google.api.http) = {
+            get: "/api/v1/multicast_gemports"
+        };
+    }
+    // Create Multicast Gemport
+    rpc CreateMulticastGemportsConfigData(
+            bbf_fiber.MulticastGemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/multicast_gemports/{name}"
+            body: "*"
+        };
+    }
+    // Update Multicast Gemport
+    rpc UpdateMulticastGemportsConfigData(
+            bbf_fiber.MulticastGemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/multicast_gemports/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Multicast Gemport
+    rpc DeleteMulticastGemportsConfigData(
+            bbf_fiber.MulticastGemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/multicast_gemports/{name}/delete"
+        };
+    }
+
+    // List all Multicast Distribution Sets
+    rpc GetAllMulticastDistributionSetData(google.protobuf.Empty)
+            returns(bbf_fiber.AllMulticastDistributionSetData) {
+        option (google.api.http) = {
+            get: "/api/v1/multicast_distibution_sets"
+        };
+    }
+    // Create Multicast Distribution Set
+    rpc CreateMulticastDistributionSetData(
+            bbf_fiber.MulticastDistributionSetData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/multicast_distribution_sets/{name}"
+            body: "*"
+        };
+    }
+    // Update Multicast Distribution Set
+    rpc UpdateMulticastDistributionSetData(
+            bbf_fiber.MulticastDistributionSetData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/multicast_distribution_sets/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Multicast Distribution Set
+    rpc DeleteMulticastDistributionSetData(
+            bbf_fiber.MulticastDistributionSetData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/multicast_distribution_sets/{name}/delete"
+        };
+    }
+
+    rpc GetImages(ID) returns(Images) {
+        option (google.api.http) = {
+            get: "/api/v1/devices/{id}/images"
+        };
+    }
+
+    rpc SelfTest(ID) returns(SelfTestResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/devices/{id}/self_test"
+        };
+    }
+
+    // OpenOMCI MIB information
+    rpc GetMibDeviceData(ID) returns(omci.MibDeviceData) {
+        option (google.api.http) = {
+            get: "/api/v1/openomci/{id}/mib"
+        };
+    }
+
+    // OpenOMCI ALARM information
+    rpc GetAlarmDeviceData(ID) returns(alarm.AlarmDeviceData) {
+        option (google.api.http) = {
+            get: "/api/v1/openomci/{id}/alarm"
+        };
+    }
+
+    // Simulate an Alarm
+    rpc SimulateAlarm(SimulateAlarmRequest) returns(OperationResp) {
+        option (google.api.http) = {
+            post: "/api/v1/devices/{id}/simulate_larm"
+            body: "*"
+        };
+    }
+}
+
+/*
+ * Per-instance APIs
+ *
+ * These APIs are always served locally by the Voltha instance on which the
+ * call is made.
+ */
+service VolthaLocalService {
+
+    // Get information on this Voltha instance
+    rpc GetVolthaInstance(google.protobuf.Empty) returns(VolthaInstance) {
+        option (google.api.http) = {
+            get: "/api/v1/local"
+        };
+    }
+
+    // Get the health state of the Voltha instance
+    rpc GetHealth(google.protobuf.Empty) returns(HealthStatus) {
+        option (google.api.http) = {
+            get: "/api/v1/local/health"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'health';
+    }
+
+    // List all active adapters (plugins) in this Voltha instance
+    rpc ListAdapters(google.protobuf.Empty) returns(Adapters) {
+        option (google.api.http) = {
+            get: "/api/v1/local/adapters"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'adapters';
+    }
+
+    // List all logical devices managed by this Voltha instance
+    rpc ListLogicalDevices(google.protobuf.Empty) returns(LogicalDevices) {
+        option (google.api.http) = {
+            get: "/api/v1/local/logical_devices"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'logical_devices';
+    }
+
+    // List all reachable logical devices managed by this Voltha instance
+    rpc ListReachableLogicalDevices(google.protobuf.Empty) returns
+    (LogicalDevices) {
+        option (google.api.http) = {
+            get: "/api/v1/local/reachable_logical_devices"
+        };
+    }
+
+    // Get additional information on given logical device
+    rpc GetLogicalDevice(ID) returns(LogicalDevice) {
+        option (google.api.http) = {
+            get: "/api/v1/local/logical_devices/{id}"
+        };
+    }
+
+    // List ports of a logical device
+    rpc ListLogicalDevicePorts(ID) returns(LogicalPorts) {
+        option (google.api.http) = {
+            get: "/api/v1/local/logical_devices/{id}/ports"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'ports';
+    }
+
+    // Gets a logical device port
+    rpc GetLogicalDevicePort(LogicalPortId) returns(LogicalPort) {
+        option (google.api.http) = {
+            get: "/api/v1/logical_devices/{id}/ports/{port_id}"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'port';
+    }
+
+    // Enables a logical device port
+    rpc EnableLogicalDevicePort(LogicalPortId) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/logical_devices/{id}/ports/{port_id}/enable"
+        };
+    }
+
+    // Disables a logical device port
+    rpc DisableLogicalDevicePort(LogicalPortId) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/logical_devices/{id}/ports/{port_id}/disable"
+        };
+    }
+
+    // List all flows of a logical device
+    rpc ListLogicalDeviceFlows(ID) returns(openflow_13.Flows) {
+        option (google.api.http) = {
+            get: "/api/v1/local/logical_devices/{id}/flows"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'flows';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
+    }
+
+    // Update flow table for logical device
+    rpc UpdateLogicalDeviceFlowTable(openflow_13.FlowTableUpdate)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/logical_devices/{id}/flows"
+            body: "*"
+        };
+    }
+
+    // Update meter table for logical device
+    rpc UpdateLogicalDeviceMeterTable(openflow_13.MeterModUpdate)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/logical_devices/{id}/meters"
+            body: "*"
+        };
+    }
+
+
+    // List all flow groups of a logical device
+    rpc ListLogicalDeviceFlowGroups(ID) returns(openflow_13.FlowGroups) {
+        option (google.api.http) = {
+            get: "/api/v1/local/logical_devices/{id}/flow_groups"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'flow_groups';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
+    }
+
+    // List all meters of a logical device
+    rpc ListLogicalDeviceMeters(ID) returns (openflow_13.Meters) {
+        option (google.api.http) = {
+            get: "/api/v1/local/logical_devices/{id}/meters"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'meters';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
+    }
+
+    // Update group table for logical device
+    rpc UpdateLogicalDeviceFlowGroupTable(openflow_13.FlowGroupTableUpdate)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/logical_devices/{id}/flow_groups"
+            body: "*"
+        };
+    }
+
+    // List all physical devices managed by this Voltha instance
+    rpc ListDevices(google.protobuf.Empty) returns(Devices) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'devices';
+    }
+
+    // Get additional information on this device
+    rpc GetDevice(ID) returns(Device) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}"
+        };
+    }
+
+    // Pre-provision a new physical device
+    rpc CreateDevice(Device) returns(Device) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices"
+            body: "*"
+        };
+    }
+
+    // Enable a device.  If the device was in pre-provisioned state then it
+    // will tansition to ENABLED state.  If it was is DISABLED state then it
+    // will tansition to ENABLED state as well.
+    rpc EnableDevice(ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/enable"
+        };
+    }
+
+    // Disable a device
+    rpc DisableDevice(ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/disable"
+        };
+    }
+
+    // Reboot a device
+    rpc RebootDevice(ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/reboot"
+        };
+    }
+
+    // Delete a device
+    rpc DeleteDevice(ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/devices/{id}/delete"
+        };
+    }
+
+    // Request an image download to the standby partition
+    // of a device.
+    // Note that the call is expected to be non-blocking
+    rpc DownloadImage(ImageDownload) returns(OperationResp) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/image_downloads/{name}"
+            body: "*"
+        };
+    }
+
+    // Get image download status on a device
+    // The request retrieves progress on device and updates db record
+    rpc GetImageDownloadStatus(ImageDownload) returns(ImageDownload) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/image_downloads/{name}/status"
+        };
+    }
+
+    // Get image download db record
+    rpc GetImageDownload(ImageDownload) returns(ImageDownload) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/image_downloads/{name}"
+        };
+    }
+
+    // List image download db records for a given device
+    rpc ListImageDownloads(ID) returns(ImageDownloads) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/image_downloads"
+        };
+    }
+
+    // Cancel an image download process on a device
+    rpc CancelImageDownload(ImageDownload) returns(OperationResp) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/devices/{id}/image_downloads/{name}"
+        };
+    }
+
+    // Install and Activate a downloaded image from standby
+    // partition to active partition
+    // A subsequent call to reboot will cause the newly update image
+    // to become active
+    // Note that the call is expected to be non-blocking.
+    rpc ActivateImageUpdate(ImageDownload) returns(OperationResp) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/image_downloads/{name}/image_update"
+            body: "*"
+        };
+    }
+
+    // Uninstall and deactivate an image update on a device,
+    // and revert back to pre update image
+    // A subsequent call to reboot will cause the pre update image
+    // to become active
+    // Note that the call is expected to be non-blocking.
+    rpc RevertImageUpdate(ImageDownload) returns(OperationResp) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/image_downloads/{name}/image_revert"
+            body: "*"
+        };
+    }
+
+    // List ports of a device
+    rpc ListDevicePorts(ID) returns(Ports) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/ports"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'ports';
+    }
+
+    // List pm config of a device
+    rpc ListDevicePmConfigs(ID) returns(PmConfigs) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/pm_configs"
+        };
+    }
+
+    // Update the pm config of a device
+    rpc UpdateDevicePmConfigs(voltha.PmConfigs) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/pm_configs"
+            body: "*"
+        };
+    }
+
+    // List all flows of a device
+    rpc ListDeviceFlows(ID) returns(openflow_13.Flows) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/flows"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'flows';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
+    }
+
+    // List all flow groups of a device
+    rpc ListDeviceFlowGroups(ID) returns(openflow_13.FlowGroups) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/flow_groups"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'flow_groups';
+        option (voltha.yang_xml_tag).list_items_name = 'items';
+    }
+
+    // List device types know to Voltha instance
+    rpc ListDeviceTypes(google.protobuf.Empty) returns(DeviceTypes) {
+        option (google.api.http) = {
+            get: "/api/v1/local/device_types"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'device_types';
+    }
+
+    // Get additional information on given device type
+    rpc GetDeviceType(ID) returns(DeviceType) {
+        option (google.api.http) = {
+            get: "/api/v1/local/device_types/{id}"
+        };
+    }
+
+    // List device sharding groups managed by this Voltha instance
+    rpc ListDeviceGroups(google.protobuf.Empty) returns(DeviceGroups) {
+        option (google.api.http) = {
+            get: "/api/v1/local/device_groups"
+        };
+        option (voltha.yang_xml_tag).xml_tag = 'device_groups';
+    }
+
+    // Get more information on given device shard
+    rpc GetDeviceGroup(ID) returns(DeviceGroup) {
+        option (google.api.http) = {
+            get: "/api/v1/local/device_groups/{id}"
+        };
+    }
+    // List all channel groups managed by this Voltha instance
+    rpc GetAllChannelgroupConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllChannelgroupConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/channel_groups"
+        };
+    }
+    // Create a channel group
+    rpc CreateChannelgroup(bbf_fiber.ChannelgroupConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/channel_groups/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel group
+    rpc UpdateChannelgroup(bbf_fiber.ChannelgroupConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/channel_groups/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delate a channel group
+    rpc DeleteChannelgroup(bbf_fiber.ChannelgroupConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/channel_groups/{name}/delete"
+        };
+    }
+    // List all channel partitions managed by this Voltha instance
+    rpc GetAllChannelpartitionConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllChannelpartitionConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/channel_partitions"
+        };
+    }
+    // Create a channel partition
+    rpc CreateChannelpartition(bbf_fiber.ChannelpartitionConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/channel_partitions/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel partition
+    rpc UpdateChannelpartition(bbf_fiber.ChannelpartitionConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/channel_partitions/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a channel partition
+    rpc DeleteChannelpartition(bbf_fiber.ChannelpartitionConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/channel_partitions/{name}/delete"
+        };
+    }
+    // List all channel pairs managed by this Voltha instance
+    rpc GetAllChannelpairConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllChannelpairConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/channel_pairs"
+        };
+    }
+    // Create a channel pair
+    rpc CreateChannelpair(bbf_fiber.ChannelpairConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/channel_pairs/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel pair
+    rpc UpdateChannelpair(bbf_fiber.ChannelpairConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/channel_pairs/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a channel pair
+    rpc DeleteChannelpair(bbf_fiber.ChannelpairConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/channel_pairs/{name}/delete"
+        };
+    }
+
+    // List all channel terminations managed by this Voltha instance
+    rpc GetAllChannelterminationConfig(ID)
+            returns(bbf_fiber.AllChannelterminationConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/devices/{id}/channel_terminations"
+        };
+    }
+    // Create a channel termination
+    rpc CreateChanneltermination(bbf_fiber.ChannelterminationConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/channel_terminations/{name}"
+            body: "*"
+        };
+    }
+    // Update a channel termination
+    rpc UpdateChanneltermination(bbf_fiber.ChannelterminationConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/devices/{id}/channel_terminations/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a channel termination
+    rpc DeleteChanneltermination(bbf_fiber.ChannelterminationConfig)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/devices/{id}/channel_terminations/{name}/delete"
+        };
+    }
+    // List all ont configs managed by this Voltha instance
+    rpc GetAllOntaniConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllOntaniConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/ont_anis"
+        };
+    }
+    // Create an ont configs
+    rpc CreateOntani(bbf_fiber.OntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/ont_anis/{name}"
+            body: "*"
+        };
+    }
+    // Update an ont configs
+    rpc UpdateOntani(bbf_fiber.OntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/ont_anis/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete an ont configs
+    rpc DeleteOntani(bbf_fiber.OntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/ont_anis/{name}/delete"
+        };
+    }
+    // List all vont configs managed by this Voltha instance
+    rpc GetAllVOntaniConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllVOntaniConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/v_ont_anis"
+        };
+    }
+    // Create a vont configs
+    rpc CreateVOntani(bbf_fiber.VOntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/v_ont_anis/{name}"
+            body: "*"
+        };
+    }
+    // Update a vont configs
+    rpc UpdateVOntani(bbf_fiber.VOntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/v_ont_anis/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete a vont configs
+    rpc DeleteVOntani(bbf_fiber.VOntaniConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/v_ont_anis/{name}/delete"
+        };
+    }
+    // List all venet configs managed by this Voltha instance
+    rpc GetAllVEnetConfig(google.protobuf.Empty)
+            returns(bbf_fiber.AllVEnetConfig) {
+        option (google.api.http) = {
+            get: "/api/v1/local/v_enets"
+        };
+    }
+    // Create venet configs
+    rpc CreateVEnet(bbf_fiber.VEnetConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/v_enets/{name}"
+            body: "*"
+        };
+    }
+    // Update venet configs
+    rpc UpdateVEnet(bbf_fiber.VEnetConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/v_enets/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete venet configs
+    rpc DeleteVEnet(bbf_fiber.VEnetConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/v_enets/{name}/delete"
+        };
+    }
+
+    // List all Traffic Descriptor Profiles
+    rpc GetAllTrafficDescriptorProfileData(google.protobuf.Empty)
+            returns(bbf_fiber.AllTrafficDescriptorProfileData) {
+        option (google.api.http) = {
+            get: "/api/v1/local/traffic_descriptor_profiles"
+        };
+    }
+    // Create Traffic Descriptor Profile
+    rpc CreateTrafficDescriptorProfileData(
+            bbf_fiber.TrafficDescriptorProfileData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/traffic_descriptor_profiles/{name}"
+            body: "*"
+        };
+    }
+    // Update Traffic Descriptor Profile
+    rpc UpdateTrafficDescriptorProfileData(
+            bbf_fiber.TrafficDescriptorProfileData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/traffic_descriptor_profiles/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Traffic Descriptor Profile
+    rpc DeleteTrafficDescriptorProfileData(
+            bbf_fiber.TrafficDescriptorProfileData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/traffic_descriptor_profiles/{name}/delete"
+        };
+    }
+
+    // List all Tconts
+    rpc GetAllTcontsConfigData(google.protobuf.Empty)
+            returns(bbf_fiber.AllTcontsConfigData) {
+        option (google.api.http) = {
+            get: "/api/v1/local/tconts"
+        };
+    }
+    // Create Tcont
+    rpc CreateTcontsConfigData(bbf_fiber.TcontsConfigData)
+        returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/tconts/{name}"
+            body: "*"
+        };
+    }
+    // Update Tcont
+    rpc UpdateTcontsConfigData(bbf_fiber.TcontsConfigData)
+        returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/tconts/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Tcont
+    rpc DeleteTcontsConfigData(bbf_fiber.TcontsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/tconts/{name}/delete"
+        };
+    }
+
+    // List all Gemports
+    rpc GetAllGemportsConfigData(google.protobuf.Empty)
+            returns(bbf_fiber.AllGemportsConfigData) {
+        option (google.api.http) = {
+            get: "/api/v1/local/gemports"
+        };
+    }
+    // Create Gemport
+    rpc CreateGemportsConfigData(bbf_fiber.GemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/gemports/{name}"
+            body: "*"
+        };
+    }
+    // Update Gemport
+    rpc UpdateGemportsConfigData(bbf_fiber.GemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/gemports/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Gemport
+    rpc DeleteGemportsConfigData(bbf_fiber.GemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/gemports/{name}/delete"
+        };
+    }
+
+    // List all Multicast Gemports
+    rpc GetAllMulticastGemportsConfigData(google.protobuf.Empty)
+            returns(bbf_fiber.AllMulticastGemportsConfigData) {
+        option (google.api.http) = {
+            get: "/api/v1/local/multicast_gemports"
+        };
+    }
+    // Create Multicast Gemport
+    rpc CreateMulticastGemportsConfigData(
+            bbf_fiber.MulticastGemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/multicast_gemports/{name}"
+            body: "*"
+        };
+    }
+    // Update Multicast Gemport
+    rpc UpdateMulticastGemportsConfigData(
+            bbf_fiber.MulticastGemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/multicast_gemports/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Multicast Gemport
+    rpc DeleteMulticastGemportsConfigData(
+            bbf_fiber.MulticastGemportsConfigData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/multicast_gemports/{name}/delete"
+        };
+    }
+
+    // List all Multicast Distribution Sets
+    rpc GetAllMulticastDistributionSetData(google.protobuf.Empty)
+            returns(bbf_fiber.AllMulticastDistributionSetData) {
+        option (google.api.http) = {
+            get: "/api/v1/local/multicast_distibution_sets"
+        };
+    }
+    // Create Multicast Distribution Set
+    rpc CreateMulticastDistributionSetData(
+            bbf_fiber.MulticastDistributionSetData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/multicast_distribution_sets/{name}"
+            body: "*"
+        };
+    }
+    // Update Multicast Distribution Set
+    rpc UpdateMulticastDistributionSetData(
+            bbf_fiber.MulticastDistributionSetData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/local/multicast_distribution_sets/{name}/modify"
+            body: "*"
+        };
+    }
+    // Delete Multicast Distribution Set
+    rpc DeleteMulticastDistributionSetData(
+            bbf_fiber.MulticastDistributionSetData)
+            returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/local/multicast_distribution_sets/{name}/delete"
+        };
+    }
     // Stream control packets to the dataplane
     rpc StreamPacketsOut(stream openflow_13.PacketOut)
         returns(google.protobuf.Empty) {
@@ -526,79 +1716,71 @@ service VolthaService {
         // This does not have an HTTP representation
     }
 
-    // Get additional information on a device group
-    rpc GetDeviceGroup(common.ID) returns(DeviceGroup) {
-        option (google.api.http) = {
-            get: "/api/v1/device_groups/{id}"
-        };
-    }
-
     rpc CreateAlarmFilter(AlarmFilter) returns(AlarmFilter) {
         option (google.api.http) = {
-            post: "/api/v1/alarm_filters"
+            post: "/api/v1/local/alarm_filters"
             body: "*"
         };
     }
 
-    rpc GetAlarmFilter(common.ID) returns(AlarmFilter) {
+    rpc GetAlarmFilter(ID) returns(AlarmFilter) {
         option (google.api.http) = {
-            get: "/api/v1/alarm_filters/{id}"
+            get: "/api/v1/local/alarm_filters/{id}"
         };
     }
 
     rpc UpdateAlarmFilter(AlarmFilter) returns(AlarmFilter) {
         option (google.api.http) = {
-            put: "/api/v1/alarm_filters/{id}"
+            put: "/api/v1/local/alarm_filters/{id}"
             body: "*"
         };
     }
 
-    rpc DeleteAlarmFilter(common.ID) returns(google.protobuf.Empty) {
+    rpc DeleteAlarmFilter(ID) returns(google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/api/v1/alarm_filters/{id}"
+            delete: "/api/v1/local/alarm_filters/{id}"
         };
     }
 
     rpc ListAlarmFilters(google.protobuf.Empty) returns(AlarmFilters) {
         option (google.api.http) = {
-            get: "/api/v1/alarm_filters"
+            get: "/api/v1/local/alarm_filters"
         };
     }
 
-    rpc GetImages(common.ID) returns(Images) {
+    rpc GetImages(ID) returns(Images) {
         option (google.api.http) = {
-            get: "/api/v1/devices/{id}/images"
+            get: "/api/v1/local/devices/{id}/images"
         };
     }
 
-    rpc SelfTest(common.ID) returns(SelfTestResponse) {
+    rpc SelfTest(ID) returns(SelfTestResponse) {
         option (google.api.http) = {
-            post: "/api/v1/devices/{id}/self_test"
+            post: "/api/v1/local/devices/{id}/self_test"
         };
     }
+
+    rpc Subscribe(OfAgentSubscriber) returns (OfAgentSubscriber) {}
 
     // OpenOMCI MIB information
-    rpc GetMibDeviceData(common.ID) returns(omci.MibDeviceData) {
+    rpc GetMibDeviceData(ID) returns(omci.MibDeviceData) {
         option (google.api.http) = {
             get: "/api/v1/openomci/{id}/mib"
         };
     }
 
     // OpenOMCI ALARM information
-    rpc GetAlarmDeviceData(common.ID) returns(omci.AlarmDeviceData) {
+    rpc GetAlarmDeviceData(ID) returns(alarm.AlarmDeviceData) {
         option (google.api.http) = {
             get: "/api/v1/openomci/{id}/alarm"
         };
     }
 
     // Simulate an Alarm
-    rpc SimulateAlarm(SimulateAlarmRequest) returns(common.OperationResp) {
+    rpc SimulateAlarm(SimulateAlarmRequest) returns(OperationResp) {
         option (google.api.http) = {
-            post: "/api/v1/devices/{id}/simulate_larm"
+            post: "/api/v1/devices/{id}/simulate_alarm"
             body: "*"
         };
     }
-    rpc Subscribe (OfAgentSubscriber) returns (OfAgentSubscriber) {
-    }
 }
-

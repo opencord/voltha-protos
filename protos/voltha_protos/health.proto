@@ -6,7 +6,7 @@ package voltha;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "voltha_protos/meta.proto";
+import "meta.proto";
 
 // Encode health status of a Voltha instance
 message HealthStatus {

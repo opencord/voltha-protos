@@ -5,14 +5,14 @@ option go_package = "github.com/opencord/voltha-protos/go/voltha";
 package voltha;
 
 import "google/protobuf/any.proto";
-import "voltha_protos/common.proto";
-import "voltha_protos/meta.proto";
+import "common.proto";
+import "meta.proto";
 
 
 message AdapterConfig {
 
     // Common adapter config attributes here
-    common.LogLevel.LogLevel log_level = 1;
+    LogLevel.LogLevel log_level = 1;
 
     // Custom (vendor-specific) configuration attributes
     google.protobuf.Any additional_config = 64;

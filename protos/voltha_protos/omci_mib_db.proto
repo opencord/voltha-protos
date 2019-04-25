@@ -19,7 +19,7 @@ option go_package = "github.com/opencord/voltha-protos/go/omci";
 
 package omci;
 
-import "voltha_protos/meta.proto";
+import "meta.proto";
 
 
 message MibAttributeData {

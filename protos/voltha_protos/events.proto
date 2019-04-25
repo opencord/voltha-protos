@@ -4,7 +4,7 @@ option go_package = "github.com/opencord/voltha-protos/go/voltha";
 
 package voltha;
 
-import "voltha_protos/meta.proto";
+import "meta.proto";
 import "google/api/annotations.proto";
 
 message ConfigEventType {

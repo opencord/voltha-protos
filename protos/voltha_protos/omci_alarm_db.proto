@@ -17,9 +17,9 @@ syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/omci";
 
-package omci;
+package alarm;
 
-import "voltha_protos/meta.proto";
+import "meta.proto";
 
 
 message AlarmAttributeData {

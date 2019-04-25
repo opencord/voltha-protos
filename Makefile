@@ -68,9 +68,10 @@ venv_protos:
 $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
 	python -m grpc_tools.protoc \
+    -I protos/voltha_protos \
     -I protos \
-    --python_out=python \
-    --grpc_python_out=python \
+    --python_out=python/voltha_protos \
+    --grpc_python_out=python/voltha_protos \
     --descriptor_set_out=$(PROTO_PYTHON_DEST_DIR)/$(basename $(notdir $<)).desc \
     --include_imports \
     --include_source_info \
@@ -118,13 +119,13 @@ $(PROTO_GO_PB): $(PROTO_FILES) go_temp
 	@echo "Creating $@"
 	cd protos && protoc \
     --go_out=MAPS=Mgoogle/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor,plugins=grpc,paths=source_relative:../go_temp \
-    -I . voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.go/\1.proto/p' )
+    -I . -I ./voltha_protos voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.go/\1.proto/p' )
 	mkdir -p $(dir $@)
 	mv go_temp/voltha_protos/$(notdir $@) $@
 
 go/voltha.pb: ${PROTO_FILES}
 	@echo "Creating $@"
-	protoc -I protos -I protos/google/api \
+	protoc -I protos/voltha_protos -I protos -I protos/google/api \
     --include_imports --include_source_info \
     --descriptor_set_out=$@ \
     ${PROTO_FILES}
