@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a450ad05_88f654bb",
+        "filename": "Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-25T23:06:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f9b98e2_137c7cac",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 23
+      },
+      "revId": "fbfe8b4ec0214d50d8aa26011f04c7e1a9004456",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "007512a7_50a2f15e",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-04-25T23:00:34Z",
       "side": 1,
       "message": "Spelling",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "fbfe8b4ec0214d50d8aa26011f04c7e1a9004456",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e723f86a_26447c6c",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-25T23:06:11Z",
+      "side": 1,
+      "message": "Do we want to fix the errors or copy the protos over from the 1.x source tree verbatim?",
+      "parentUuid": "007512a7_50a2f15e",
       "range": {
         "startLine": 46,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b5773e18_3ec73532",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-25T23:06:11Z",
+      "side": 1,
+      "message": "do we want to fix these types of things or copy verbatim from the 1.x source tree?",
+      "parentUuid": "e3e0950e_e4fdceef",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "fbfe8b4ec0214d50d8aa26011f04c7e1a9004456",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d9e40528_9f4b6fa3",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2019-04-25T23:00:34Z",
       "side": 1,
       "message": "Spelling",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "fbfe8b4ec0214d50d8aa26011f04c7e1a9004456",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b363fd78_a3b30f5b",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-25T23:06:11Z",
+      "side": 1,
+      "message": "do we want to fix these types of things or copy verbatim from the 1.x source tree?",
+      "parentUuid": "d9e40528_9f4b6fa3",
       "range": {
         "startLine": 29,
         "startChar": 7,
