@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61e0a7e0_f403ff2f",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2019-04-25T22:33:23Z",
+      "side": 1,
+      "message": "I think this might be why the job is failing - this strips the `voltha_protos` path component from the import path.  See this link from the README: https://github.com/grpc/grpc/issues/9575#issuecomment-293934506",
+      "range": {
+        "startLine": 71,
+        "startChar": 3,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "revId": "77b4b0fc7fee6e80ee6783a3c74034391587cbdc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
