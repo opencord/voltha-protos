@@ -130,7 +130,7 @@ go/voltha.pb: ${PROTO_FILES}
     ${PROTO_FILES}
 
 go-test:
-ifneq ("libprotoc 3.7.0", "$(shell protoc --version)")
+ifneq ("libprotoc 3.7.1", "$(shell protoc --version)")
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 	@echo "It looks like you don't have protocol buffer tools ${PROTOC_VERSION} installed."
 	@echo "To install this version, you can run:"

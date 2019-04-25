@@ -12,7 +12,7 @@ import "voltha_protos/meta.proto";
 message AdapterConfig {
 
     // Common adapter config attributes here
-    common.LogLevel.LogLevel log_level = 1;
+    LogLevel.LogLevel log_level = 1;
 
     // Custom (vendor-specific) configuration attributes
     google.protobuf.Any additional_config = 64;

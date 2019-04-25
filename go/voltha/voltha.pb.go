@@ -7,7 +7,9 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/any"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	bbf_fiber "github.com/opencord/voltha-protos/go/bbf_fiber"
 	common "github.com/opencord/voltha-protos/go/common"
 	omci "github.com/opencord/voltha-protos/go/omci"
 	openflow_13 "github.com/opencord/voltha-protos/go/openflow_13"
@@ -47,9 +49,6 @@ var E_Access = common.E_Access
 // ID from public import voltha_protos/common.proto
 type ID = common.ID
 
-// IDs from public import voltha_protos/common.proto
-type IDs = common.IDs
-
 // LogLevel from public import voltha_protos/common.proto
 type LogLevel = common.LogLevel
 
@@ -65,14 +64,6 @@ type ConnectStatus = common.ConnectStatus
 // OperationResp from public import voltha_protos/common.proto
 type OperationResp = common.OperationResp
 
-// TestModeKeys from public import voltha_protos/common.proto
-type TestModeKeys = common.TestModeKeys
-
-var TestModeKeys_name = common.TestModeKeys_name
-var TestModeKeys_value = common.TestModeKeys_value
-
-const TestModeKeys_api_test = TestModeKeys(common.TestModeKeys_api_test)
-
 // LogLevel_LogLevel from public import voltha_protos/common.proto
 type LogLevel_LogLevel = common.LogLevel_LogLevel
 
@@ -84,7 +75,6 @@ const LogLevel_INFO = LogLevel_LogLevel(common.LogLevel_INFO)
 const LogLevel_WARNING = LogLevel_LogLevel(common.LogLevel_WARNING)
 const LogLevel_ERROR = LogLevel_LogLevel(common.LogLevel_ERROR)
 const LogLevel_CRITICAL = LogLevel_LogLevel(common.LogLevel_CRITICAL)
-const LogLevel_FATAL = LogLevel_LogLevel(common.LogLevel_FATAL)
 
 // AdminState_AdminState from public import voltha_protos/common.proto
 type AdminState_AdminState = common.AdminState_AdminState
@@ -97,7 +87,6 @@ const AdminState_PREPROVISIONED = AdminState_AdminState(common.AdminState_PREPRO
 const AdminState_ENABLED = AdminState_AdminState(common.AdminState_ENABLED)
 const AdminState_DISABLED = AdminState_AdminState(common.AdminState_DISABLED)
 const AdminState_DOWNLOADING_IMAGE = AdminState_AdminState(common.AdminState_DOWNLOADING_IMAGE)
-const AdminState_DELETED = AdminState_AdminState(common.AdminState_DELETED)
 
 // OperStatus_OperStatus from public import voltha_protos/common.proto
 type OperStatus_OperStatus = common.OperStatus_OperStatus
@@ -420,6 +409,9 @@ type OfpMeterConfig = openflow_13.OfpMeterConfig
 // OfpMeterFeatures from public import voltha_protos/openflow_13.proto
 type OfpMeterFeatures = openflow_13.OfpMeterFeatures
 
+// OfpMeterEntry from public import voltha_protos/openflow_13.proto
+type OfpMeterEntry = openflow_13.OfpMeterEntry
+
 // OfpExperimenterMultipartHeader from public import voltha_protos/openflow_13.proto
 type OfpExperimenterMultipartHeader = openflow_13.OfpExperimenterMultipartHeader
 
@@ -498,6 +490,7 @@ type PacketOut = openflow_13.PacketOut
 // ChangeEvent from public import voltha_protos/openflow_13.proto
 type ChangeEvent = openflow_13.ChangeEvent
 type ChangeEvent_PortStatus = openflow_13.ChangeEvent_PortStatus
+type ChangeEvent_FlowRemoved = openflow_13.ChangeEvent_FlowRemoved
 
 // OfpPortNo from public import voltha_protos/openflow_13.proto
 type OfpPortNo = openflow_13.OfpPortNo
@@ -1323,7 +1316,7 @@ func (x SelfTestResponse_SelfTestResult) String() string {
 }
 
 func (SelfTestResponse_SelfTestResult) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{10, 0}
+	return fileDescriptor_e084f1a60ce7016c, []int{9, 0}
 }
 
 type DeviceGroup struct {
@@ -1584,164 +1577,293 @@ func (m *AlarmFilters) GetFilters() []*AlarmFilter {
 	return nil
 }
 
-type Logging struct {
-	Level                common.LogLevel_LogLevel `protobuf:"varint,1,opt,name=level,proto3,enum=common.LogLevel_LogLevel" json:"level,omitempty"`
-	PackageName          string                   `protobuf:"bytes,2,opt,name=package_name,json=packageName,proto3" json:"package_name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
-	XXX_unrecognized     []byte                   `json:"-"`
-	XXX_sizecache        int32                    `json:"-"`
+// Top-level (root) node for a Voltha Instance
+type VolthaInstance struct {
+	InstanceId                string                                    `protobuf:"bytes,1,opt,name=instance_id,json=instanceId,proto3" json:"instance_id,omitempty"`
+	Version                   string                                    `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	LogLevel                  common.LogLevel_LogLevel                  `protobuf:"varint,3,opt,name=log_level,json=logLevel,proto3,enum=voltha.LogLevel_LogLevel" json:"log_level,omitempty"`
+	Health                    *HealthStatus                             `protobuf:"bytes,10,opt,name=health,proto3" json:"health,omitempty"`
+	Adapters                  []*Adapter                                `protobuf:"bytes,11,rep,name=adapters,proto3" json:"adapters,omitempty"`
+	LogicalDevices            []*LogicalDevice                          `protobuf:"bytes,12,rep,name=logical_devices,json=logicalDevices,proto3" json:"logical_devices,omitempty"`
+	Devices                   []*Device                                 `protobuf:"bytes,13,rep,name=devices,proto3" json:"devices,omitempty"`
+	DeviceTypes               []*DeviceType                             `protobuf:"bytes,14,rep,name=device_types,json=deviceTypes,proto3" json:"device_types,omitempty"`
+	DeviceGroups              []*DeviceGroup                            `protobuf:"bytes,15,rep,name=device_groups,json=deviceGroups,proto3" json:"device_groups,omitempty"`
+	AlarmFilters              []*AlarmFilter                            `protobuf:"bytes,16,rep,name=alarm_filters,json=alarmFilters,proto3" json:"alarm_filters,omitempty"`
+	ChannelGroups             []*bbf_fiber.ChannelgroupConfig           `protobuf:"bytes,17,rep,name=channel_groups,json=channelGroups,proto3" json:"channel_groups,omitempty"`
+	ChannelPartitions         []*bbf_fiber.ChannelpartitionConfig       `protobuf:"bytes,18,rep,name=channel_partitions,json=channelPartitions,proto3" json:"channel_partitions,omitempty"`
+	ChannelPairs              []*bbf_fiber.ChannelpairConfig            `protobuf:"bytes,19,rep,name=channel_pairs,json=channelPairs,proto3" json:"channel_pairs,omitempty"`
+	OntAnis                   []*bbf_fiber.OntaniConfig                 `protobuf:"bytes,20,rep,name=ont_anis,json=ontAnis,proto3" json:"ont_anis,omitempty"`
+	VOntAnis                  []*bbf_fiber.VOntaniConfig                `protobuf:"bytes,21,rep,name=v_ont_anis,json=vOntAnis,proto3" json:"v_ont_anis,omitempty"`
+	VEnets                    []*bbf_fiber.VEnetConfig                  `protobuf:"bytes,22,rep,name=v_enets,json=vEnets,proto3" json:"v_enets,omitempty"`
+	TrafficDescriptorProfiles []*bbf_fiber.TrafficDescriptorProfileData `protobuf:"bytes,23,rep,name=traffic_descriptor_profiles,json=trafficDescriptorProfiles,proto3" json:"traffic_descriptor_profiles,omitempty"`
+	Tconts                    []*bbf_fiber.TcontsConfigData             `protobuf:"bytes,24,rep,name=tconts,proto3" json:"tconts,omitempty"`
+	Gemports                  []*bbf_fiber.GemportsConfigData           `protobuf:"bytes,25,rep,name=gemports,proto3" json:"gemports,omitempty"`
+	MulticastGemports         []*bbf_fiber.MulticastGemportsConfigData  `protobuf:"bytes,26,rep,name=multicast_gemports,json=multicastGemports,proto3" json:"multicast_gemports,omitempty"`
+	MulticastDistibutionSets  []*bbf_fiber.MulticastDistributionSetData `protobuf:"bytes,27,rep,name=multicast_distibution_sets,json=multicastDistibutionSets,proto3" json:"multicast_distibution_sets,omitempty"`
+	OmciMibs                  []*omci.MibDeviceData                     `protobuf:"bytes,28,rep,name=omci_mibs,json=omciMibs,proto3" json:"omci_mibs,omitempty"`
+	OmciAlarms                []*omci.AlarmDeviceData                   `protobuf:"bytes,29,rep,name=omci_alarms,json=omciAlarms,proto3" json:"omci_alarms,omitempty"`
+	XXX_NoUnkeyedLiteral      struct{}                                  `json:"-"`
+	XXX_unrecognized          []byte                                    `json:"-"`
+	XXX_sizecache             int32                                     `json:"-"`
 }
 
-func (m *Logging) Reset()         { *m = Logging{} }
-func (m *Logging) String() string { return proto.CompactTextString(m) }
-func (*Logging) ProtoMessage()    {}
-func (*Logging) Descriptor() ([]byte, []int) {
+func (m *VolthaInstance) Reset()         { *m = VolthaInstance{} }
+func (m *VolthaInstance) String() string { return proto.CompactTextString(m) }
+func (*VolthaInstance) ProtoMessage()    {}
+func (*VolthaInstance) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e084f1a60ce7016c, []int{6}
 }
 
-func (m *Logging) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Logging.Unmarshal(m, b)
+func (m *VolthaInstance) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_VolthaInstance.Unmarshal(m, b)
 }
-func (m *Logging) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Logging.Marshal(b, m, deterministic)
+func (m *VolthaInstance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_VolthaInstance.Marshal(b, m, deterministic)
 }
-func (m *Logging) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Logging.Merge(m, src)
+func (m *VolthaInstance) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_VolthaInstance.Merge(m, src)
 }
-func (m *Logging) XXX_Size() int {
-	return xxx_messageInfo_Logging.Size(m)
+func (m *VolthaInstance) XXX_Size() int {
+	return xxx_messageInfo_VolthaInstance.Size(m)
 }
-func (m *Logging) XXX_DiscardUnknown() {
-	xxx_messageInfo_Logging.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Logging proto.InternalMessageInfo
-
-func (m *Logging) GetLevel() common.LogLevel_LogLevel {
-	if m != nil {
-		return m.Level
-	}
-	return common.LogLevel_DEBUG
+func (m *VolthaInstance) XXX_DiscardUnknown() {
+	xxx_messageInfo_VolthaInstance.DiscardUnknown(m)
 }
 
-func (m *Logging) GetPackageName() string {
-	if m != nil {
-		return m.PackageName
-	}
-	return ""
-}
+var xxx_messageInfo_VolthaInstance proto.InternalMessageInfo
 
-// CoreInstance represents a core instance.  It is data held in memory when a core
-// is running.  This data is not persistent.
-type CoreInstance struct {
-	InstanceId           string        `protobuf:"bytes,1,opt,name=instance_id,json=instanceId,proto3" json:"instance_id,omitempty"`
-	Health               *HealthStatus `protobuf:"bytes,2,opt,name=health,proto3" json:"health,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *CoreInstance) Reset()         { *m = CoreInstance{} }
-func (m *CoreInstance) String() string { return proto.CompactTextString(m) }
-func (*CoreInstance) ProtoMessage()    {}
-func (*CoreInstance) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{7}
-}
-
-func (m *CoreInstance) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CoreInstance.Unmarshal(m, b)
-}
-func (m *CoreInstance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CoreInstance.Marshal(b, m, deterministic)
-}
-func (m *CoreInstance) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CoreInstance.Merge(m, src)
-}
-func (m *CoreInstance) XXX_Size() int {
-	return xxx_messageInfo_CoreInstance.Size(m)
-}
-func (m *CoreInstance) XXX_DiscardUnknown() {
-	xxx_messageInfo_CoreInstance.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CoreInstance proto.InternalMessageInfo
-
-func (m *CoreInstance) GetInstanceId() string {
+func (m *VolthaInstance) GetInstanceId() string {
 	if m != nil {
 		return m.InstanceId
 	}
 	return ""
 }
 
-func (m *CoreInstance) GetHealth() *HealthStatus {
+func (m *VolthaInstance) GetVersion() string {
+	if m != nil {
+		return m.Version
+	}
+	return ""
+}
+
+func (m *VolthaInstance) GetLogLevel() common.LogLevel_LogLevel {
+	if m != nil {
+		return m.LogLevel
+	}
+	return common.LogLevel_DEBUG
+}
+
+func (m *VolthaInstance) GetHealth() *HealthStatus {
 	if m != nil {
 		return m.Health
 	}
 	return nil
 }
 
-type CoreInstances struct {
-	Items                []*CoreInstance `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+func (m *VolthaInstance) GetAdapters() []*Adapter {
+	if m != nil {
+		return m.Adapters
+	}
+	return nil
 }
 
-func (m *CoreInstances) Reset()         { *m = CoreInstances{} }
-func (m *CoreInstances) String() string { return proto.CompactTextString(m) }
-func (*CoreInstances) ProtoMessage()    {}
-func (*CoreInstances) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{8}
+func (m *VolthaInstance) GetLogicalDevices() []*LogicalDevice {
+	if m != nil {
+		return m.LogicalDevices
+	}
+	return nil
 }
 
-func (m *CoreInstances) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CoreInstances.Unmarshal(m, b)
-}
-func (m *CoreInstances) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CoreInstances.Marshal(b, m, deterministic)
-}
-func (m *CoreInstances) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CoreInstances.Merge(m, src)
-}
-func (m *CoreInstances) XXX_Size() int {
-	return xxx_messageInfo_CoreInstances.Size(m)
-}
-func (m *CoreInstances) XXX_DiscardUnknown() {
-	xxx_messageInfo_CoreInstances.DiscardUnknown(m)
+func (m *VolthaInstance) GetDevices() []*Device {
+	if m != nil {
+		return m.Devices
+	}
+	return nil
 }
 
-var xxx_messageInfo_CoreInstances proto.InternalMessageInfo
+func (m *VolthaInstance) GetDeviceTypes() []*DeviceType {
+	if m != nil {
+		return m.DeviceTypes
+	}
+	return nil
+}
 
-func (m *CoreInstances) GetItems() []*CoreInstance {
+func (m *VolthaInstance) GetDeviceGroups() []*DeviceGroup {
+	if m != nil {
+		return m.DeviceGroups
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetAlarmFilters() []*AlarmFilter {
+	if m != nil {
+		return m.AlarmFilters
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetChannelGroups() []*bbf_fiber.ChannelgroupConfig {
+	if m != nil {
+		return m.ChannelGroups
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetChannelPartitions() []*bbf_fiber.ChannelpartitionConfig {
+	if m != nil {
+		return m.ChannelPartitions
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetChannelPairs() []*bbf_fiber.ChannelpairConfig {
+	if m != nil {
+		return m.ChannelPairs
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetOntAnis() []*bbf_fiber.OntaniConfig {
+	if m != nil {
+		return m.OntAnis
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetVOntAnis() []*bbf_fiber.VOntaniConfig {
+	if m != nil {
+		return m.VOntAnis
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetVEnets() []*bbf_fiber.VEnetConfig {
+	if m != nil {
+		return m.VEnets
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetTrafficDescriptorProfiles() []*bbf_fiber.TrafficDescriptorProfileData {
+	if m != nil {
+		return m.TrafficDescriptorProfiles
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetTconts() []*bbf_fiber.TcontsConfigData {
+	if m != nil {
+		return m.Tconts
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetGemports() []*bbf_fiber.GemportsConfigData {
+	if m != nil {
+		return m.Gemports
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetMulticastGemports() []*bbf_fiber.MulticastGemportsConfigData {
+	if m != nil {
+		return m.MulticastGemports
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetMulticastDistibutionSets() []*bbf_fiber.MulticastDistributionSetData {
+	if m != nil {
+		return m.MulticastDistibutionSets
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetOmciMibs() []*omci.MibDeviceData {
+	if m != nil {
+		return m.OmciMibs
+	}
+	return nil
+}
+
+func (m *VolthaInstance) GetOmciAlarms() []*omci.AlarmDeviceData {
+	if m != nil {
+		return m.OmciAlarms
+	}
+	return nil
+}
+
+type VolthaInstances struct {
+	Items                []string `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *VolthaInstances) Reset()         { *m = VolthaInstances{} }
+func (m *VolthaInstances) String() string { return proto.CompactTextString(m) }
+func (*VolthaInstances) ProtoMessage()    {}
+func (*VolthaInstances) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e084f1a60ce7016c, []int{7}
+}
+
+func (m *VolthaInstances) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_VolthaInstances.Unmarshal(m, b)
+}
+func (m *VolthaInstances) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_VolthaInstances.Marshal(b, m, deterministic)
+}
+func (m *VolthaInstances) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_VolthaInstances.Merge(m, src)
+}
+func (m *VolthaInstances) XXX_Size() int {
+	return xxx_messageInfo_VolthaInstances.Size(m)
+}
+func (m *VolthaInstances) XXX_DiscardUnknown() {
+	xxx_messageInfo_VolthaInstances.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_VolthaInstances proto.InternalMessageInfo
+
+func (m *VolthaInstances) GetItems() []string {
 	if m != nil {
 		return m.Items
 	}
 	return nil
 }
 
-// Voltha represents the Voltha cluster data.  Each Core instance will hold a subset of
-// the entire cluster. However, some items (e.g. adapters) will be held by all cores
-// for better performance
+// Voltha representing the entire Voltha cluster
 type Voltha struct {
-	Version              string                  `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`
-	Adapters             []*Adapter              `protobuf:"bytes,2,rep,name=adapters,proto3" json:"adapters,omitempty"`
-	LogicalDevices       []*LogicalDevice        `protobuf:"bytes,3,rep,name=logical_devices,json=logicalDevices,proto3" json:"logical_devices,omitempty"`
-	Devices              []*Device               `protobuf:"bytes,4,rep,name=devices,proto3" json:"devices,omitempty"`
-	DeviceTypes          []*DeviceType           `protobuf:"bytes,5,rep,name=device_types,json=deviceTypes,proto3" json:"device_types,omitempty"`
-	DeviceGroups         []*DeviceGroup          `protobuf:"bytes,6,rep,name=device_groups,json=deviceGroups,proto3" json:"device_groups,omitempty"`
-	AlarmFilters         []*AlarmFilter          `protobuf:"bytes,7,rep,name=alarm_filters,json=alarmFilters,proto3" json:"alarm_filters,omitempty"`
-	OmciMibDatabase      []*omci.MibDeviceData   `protobuf:"bytes,28,rep,name=omci_mib_database,json=omciMibDatabase,proto3" json:"omci_mib_database,omitempty"`
-	OmciAlarmDatabase    []*omci.AlarmDeviceData `protobuf:"bytes,29,rep,name=omci_alarm_database,json=omciAlarmDatabase,proto3" json:"omci_alarm_database,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Version                   string                                    `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`
+	LogLevel                  common.LogLevel_LogLevel                  `protobuf:"varint,2,opt,name=log_level,json=logLevel,proto3,enum=voltha.LogLevel_LogLevel" json:"log_level,omitempty"`
+	Instances                 []*VolthaInstance                         `protobuf:"bytes,3,rep,name=instances,proto3" json:"instances,omitempty"`
+	Adapters                  []*Adapter                                `protobuf:"bytes,11,rep,name=adapters,proto3" json:"adapters,omitempty"`
+	LogicalDevices            []*LogicalDevice                          `protobuf:"bytes,12,rep,name=logical_devices,json=logicalDevices,proto3" json:"logical_devices,omitempty"`
+	Devices                   []*Device                                 `protobuf:"bytes,13,rep,name=devices,proto3" json:"devices,omitempty"`
+	DeviceGroups              []*DeviceGroup                            `protobuf:"bytes,15,rep,name=device_groups,json=deviceGroups,proto3" json:"device_groups,omitempty"`
+	ChannelGroups             []*bbf_fiber.ChannelgroupConfig           `protobuf:"bytes,16,rep,name=channel_groups,json=channelGroups,proto3" json:"channel_groups,omitempty"`
+	ChannelPartitions         []*bbf_fiber.ChannelpartitionConfig       `protobuf:"bytes,17,rep,name=channel_partitions,json=channelPartitions,proto3" json:"channel_partitions,omitempty"`
+	ChannelPairs              []*bbf_fiber.ChannelpairConfig            `protobuf:"bytes,18,rep,name=channel_pairs,json=channelPairs,proto3" json:"channel_pairs,omitempty"`
+	OntAnis                   []*bbf_fiber.OntaniConfig                 `protobuf:"bytes,19,rep,name=ont_anis,json=ontAnis,proto3" json:"ont_anis,omitempty"`
+	VOntAnis                  []*bbf_fiber.VOntaniConfig                `protobuf:"bytes,20,rep,name=v_ont_anis,json=vOntAnis,proto3" json:"v_ont_anis,omitempty"`
+	VEnets                    []*bbf_fiber.VEnetConfig                  `protobuf:"bytes,21,rep,name=v_enets,json=vEnets,proto3" json:"v_enets,omitempty"`
+	TrafficDescriptorProfiles []*bbf_fiber.TrafficDescriptorProfileData `protobuf:"bytes,23,rep,name=traffic_descriptor_profiles,json=trafficDescriptorProfiles,proto3" json:"traffic_descriptor_profiles,omitempty"`
+	Tconts                    []*bbf_fiber.TcontsConfigData             `protobuf:"bytes,24,rep,name=tconts,proto3" json:"tconts,omitempty"`
+	Gemports                  []*bbf_fiber.GemportsConfigData           `protobuf:"bytes,25,rep,name=gemports,proto3" json:"gemports,omitempty"`
+	MulticastGemports         []*bbf_fiber.MulticastGemportsConfigData  `protobuf:"bytes,26,rep,name=multicast_gemports,json=multicastGemports,proto3" json:"multicast_gemports,omitempty"`
+	MulticastDistibutionSets  []*bbf_fiber.MulticastDistributionSetData `protobuf:"bytes,27,rep,name=multicast_distibution_sets,json=multicastDistibutionSets,proto3" json:"multicast_distibution_sets,omitempty"`
+	OmciMibDatabase           []*omci.MibDeviceData                     `protobuf:"bytes,28,rep,name=omci_mib_database,json=omciMibDatabase,proto3" json:"omci_mib_database,omitempty"`
+	OmciAlarmDatabase         []*omci.AlarmDeviceData                   `protobuf:"bytes,29,rep,name=omci_alarm_database,json=omciAlarmDatabase,proto3" json:"omci_alarm_database,omitempty"`
+	XXX_NoUnkeyedLiteral      struct{}                                  `json:"-"`
+	XXX_unrecognized          []byte                                    `json:"-"`
+	XXX_sizecache             int32                                     `json:"-"`
 }
 
 func (m *Voltha) Reset()         { *m = Voltha{} }
 func (m *Voltha) String() string { return proto.CompactTextString(m) }
 func (*Voltha) ProtoMessage()    {}
 func (*Voltha) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{9}
+	return fileDescriptor_e084f1a60ce7016c, []int{8}
 }
 
 func (m *Voltha) XXX_Unmarshal(b []byte) error {
@@ -1769,6 +1891,20 @@ func (m *Voltha) GetVersion() string {
 	return ""
 }
 
+func (m *Voltha) GetLogLevel() common.LogLevel_LogLevel {
+	if m != nil {
+		return m.LogLevel
+	}
+	return common.LogLevel_DEBUG
+}
+
+func (m *Voltha) GetInstances() []*VolthaInstance {
+	if m != nil {
+		return m.Instances
+	}
+	return nil
+}
+
 func (m *Voltha) GetAdapters() []*Adapter {
 	if m != nil {
 		return m.Adapters
@@ -1790,13 +1926,6 @@ func (m *Voltha) GetDevices() []*Device {
 	return nil
 }
 
-func (m *Voltha) GetDeviceTypes() []*DeviceType {
-	if m != nil {
-		return m.DeviceTypes
-	}
-	return nil
-}
-
 func (m *Voltha) GetDeviceGroups() []*DeviceGroup {
 	if m != nil {
 		return m.DeviceGroups
@@ -1804,9 +1933,79 @@ func (m *Voltha) GetDeviceGroups() []*DeviceGroup {
 	return nil
 }
 
-func (m *Voltha) GetAlarmFilters() []*AlarmFilter {
+func (m *Voltha) GetChannelGroups() []*bbf_fiber.ChannelgroupConfig {
 	if m != nil {
-		return m.AlarmFilters
+		return m.ChannelGroups
+	}
+	return nil
+}
+
+func (m *Voltha) GetChannelPartitions() []*bbf_fiber.ChannelpartitionConfig {
+	if m != nil {
+		return m.ChannelPartitions
+	}
+	return nil
+}
+
+func (m *Voltha) GetChannelPairs() []*bbf_fiber.ChannelpairConfig {
+	if m != nil {
+		return m.ChannelPairs
+	}
+	return nil
+}
+
+func (m *Voltha) GetOntAnis() []*bbf_fiber.OntaniConfig {
+	if m != nil {
+		return m.OntAnis
+	}
+	return nil
+}
+
+func (m *Voltha) GetVOntAnis() []*bbf_fiber.VOntaniConfig {
+	if m != nil {
+		return m.VOntAnis
+	}
+	return nil
+}
+
+func (m *Voltha) GetVEnets() []*bbf_fiber.VEnetConfig {
+	if m != nil {
+		return m.VEnets
+	}
+	return nil
+}
+
+func (m *Voltha) GetTrafficDescriptorProfiles() []*bbf_fiber.TrafficDescriptorProfileData {
+	if m != nil {
+		return m.TrafficDescriptorProfiles
+	}
+	return nil
+}
+
+func (m *Voltha) GetTconts() []*bbf_fiber.TcontsConfigData {
+	if m != nil {
+		return m.Tconts
+	}
+	return nil
+}
+
+func (m *Voltha) GetGemports() []*bbf_fiber.GemportsConfigData {
+	if m != nil {
+		return m.Gemports
+	}
+	return nil
+}
+
+func (m *Voltha) GetMulticastGemports() []*bbf_fiber.MulticastGemportsConfigData {
+	if m != nil {
+		return m.MulticastGemports
+	}
+	return nil
+}
+
+func (m *Voltha) GetMulticastDistibutionSets() []*bbf_fiber.MulticastDistributionSetData {
+	if m != nil {
+		return m.MulticastDistibutionSets
 	}
 	return nil
 }
@@ -1837,7 +2036,7 @@ func (m *SelfTestResponse) Reset()         { *m = SelfTestResponse{} }
 func (m *SelfTestResponse) String() string { return proto.CompactTextString(m) }
 func (*SelfTestResponse) ProtoMessage()    {}
 func (*SelfTestResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{10}
+	return fileDescriptor_e084f1a60ce7016c, []int{9}
 }
 
 func (m *SelfTestResponse) XXX_Unmarshal(b []byte) error {
@@ -1879,7 +2078,7 @@ func (m *OfAgentSubscriber) Reset()         { *m = OfAgentSubscriber{} }
 func (m *OfAgentSubscriber) String() string { return proto.CompactTextString(m) }
 func (*OfAgentSubscriber) ProtoMessage()    {}
 func (*OfAgentSubscriber) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{11}
+	return fileDescriptor_e084f1a60ce7016c, []int{10}
 }
 
 func (m *OfAgentSubscriber) XXX_Unmarshal(b []byte) error {
@@ -1914,56 +2113,6 @@ func (m *OfAgentSubscriber) GetVolthaId() string {
 	return ""
 }
 
-// Identifies a membership group a Core belongs to
-type Membership struct {
-	//  Group name
-	GroupName string `protobuf:"bytes,1,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
-	// Unique ID of a container within that group
-	Id                   string   `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Membership) Reset()         { *m = Membership{} }
-func (m *Membership) String() string { return proto.CompactTextString(m) }
-func (*Membership) ProtoMessage()    {}
-func (*Membership) Descriptor() ([]byte, []int) {
-	return fileDescriptor_e084f1a60ce7016c, []int{12}
-}
-
-func (m *Membership) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Membership.Unmarshal(m, b)
-}
-func (m *Membership) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Membership.Marshal(b, m, deterministic)
-}
-func (m *Membership) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Membership.Merge(m, src)
-}
-func (m *Membership) XXX_Size() int {
-	return xxx_messageInfo_Membership.Size(m)
-}
-func (m *Membership) XXX_DiscardUnknown() {
-	xxx_messageInfo_Membership.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Membership proto.InternalMessageInfo
-
-func (m *Membership) GetGroupName() string {
-	if m != nil {
-		return m.GroupName
-	}
-	return ""
-}
-
-func (m *Membership) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
 func init() {
 	proto.RegisterEnum("voltha.AlarmFilterRuleKey_AlarmFilterRuleKey", AlarmFilterRuleKey_AlarmFilterRuleKey_name, AlarmFilterRuleKey_AlarmFilterRuleKey_value)
 	proto.RegisterEnum("voltha.SelfTestResponse_SelfTestResult", SelfTestResponse_SelfTestResult_name, SelfTestResponse_SelfTestResult_value)
@@ -1973,174 +2122,324 @@ func init() {
 	proto.RegisterType((*AlarmFilterRule)(nil), "voltha.AlarmFilterRule")
 	proto.RegisterType((*AlarmFilter)(nil), "voltha.AlarmFilter")
 	proto.RegisterType((*AlarmFilters)(nil), "voltha.AlarmFilters")
-	proto.RegisterType((*Logging)(nil), "voltha.Logging")
-	proto.RegisterType((*CoreInstance)(nil), "voltha.CoreInstance")
-	proto.RegisterType((*CoreInstances)(nil), "voltha.CoreInstances")
+	proto.RegisterType((*VolthaInstance)(nil), "voltha.VolthaInstance")
+	proto.RegisterType((*VolthaInstances)(nil), "voltha.VolthaInstances")
 	proto.RegisterType((*Voltha)(nil), "voltha.Voltha")
 	proto.RegisterType((*SelfTestResponse)(nil), "voltha.SelfTestResponse")
 	proto.RegisterType((*OfAgentSubscriber)(nil), "voltha.OfAgentSubscriber")
-	proto.RegisterType((*Membership)(nil), "voltha.Membership")
 }
 
 func init() { proto.RegisterFile("voltha_protos/voltha.proto", fileDescriptor_e084f1a60ce7016c) }
 
 var fileDescriptor_e084f1a60ce7016c = []byte{
-	// 2478 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x5a, 0x5b, 0x6f, 0x1b, 0xc7,
-	0x15, 0x16, 0x75, 0xd7, 0x21, 0x29, 0x92, 0x47, 0x17, 0xd3, 0x94, 0x64, 0x4b, 0x13, 0xc7, 0x76,
-	0xe4, 0x88, 0x8c, 0xad, 0xc4, 0x68, 0x9d, 0x06, 0xa9, 0x75, 0xb1, 0xca, 0x5a, 0x16, 0xd9, 0xa5,
-	0x65, 0xb7, 0x4d, 0x0c, 0x62, 0xc9, 0x1d, 0x51, 0x0b, 0x2f, 0xb9, 0xec, 0xce, 0x52, 0xae, 0xe0,
-	0x06, 0x05, 0xd2, 0x2b, 0xfa, 0xd8, 0xfc, 0x85, 0x02, 0x05, 0x8a, 0xfe, 0x15, 0x3f, 0xf5, 0x0f,
-	0x14, 0x45, 0x1f, 0xfa, 0xd8, 0x27, 0xb7, 0x8f, 0xc5, 0x5c, 0x96, 0xdc, 0xe5, 0xee, 0xea, 0x92,
-	0x06, 0xc8, 0x93, 0xb5, 0x73, 0xce, 0x7c, 0xdf, 0x37, 0x67, 0xce, 0x9c, 0x3d, 0x9c, 0x35, 0x14,
-	0x4e, 0x6c, 0xcb, 0x3d, 0xd6, 0xeb, 0x5d, 0xc7, 0x76, 0x6d, 0x56, 0x92, 0x4f, 0x45, 0xf1, 0x84,
-	0x93, 0xf2, 0xa9, 0xb0, 0xdc, 0xb2, 0xed, 0x96, 0x45, 0x4b, 0x7a, 0xd7, 0x2c, 0xe9, 0x9d, 0x8e,
-	0xed, 0xea, 0xae, 0x69, 0x77, 0x98, 0xf4, 0x2a, 0x2c, 0x29, 0xab, 0x78, 0x6a, 0xf4, 0x8e, 0x4a,
-	0xb4, 0xdd, 0x75, 0x4f, 0x95, 0x31, 0x1f, 0x84, 0x6f, 0x53, 0x57, 0x81, 0x17, 0x86, 0x88, 0x9b,
-	0x76, 0xbb, 0x6d, 0x77, 0xa2, 0x6d, 0xc7, 0x54, 0xb7, 0xdc, 0x63, 0x65, 0x23, 0x41, 0x9b, 0x65,
-	0xb7, 0xcc, 0xa6, 0x6e, 0xd5, 0x0d, 0x7a, 0x62, 0x36, 0x69, 0xf4, 0xfc, 0x80, 0x6d, 0x29, 0x68,
-	0xd3, 0x0d, 0xbd, 0xeb, 0x52, 0x47, 0x19, 0xaf, 0x07, 0x8d, 0x76, 0x97, 0x76, 0x8e, 0x2c, 0xfb,
-	0x55, 0xfd, 0xee, 0x66, 0x8c, 0x43, 0xbb, 0x69, 0xd6, 0xdb, 0x66, 0xa3, 0x6e, 0x34, 0x94, 0xc3,
-	0x5a, 0x84, 0x83, 0x6e, 0xe9, 0x4e, 0x7b, 0xe0, 0xb2, 0x1a, 0x74, 0x39, 0xd5, 0x3b, 0xad, 0xba,
-	0xdd, 0xf5, 0x85, 0x94, 0xfc, 0x29, 0x01, 0xc9, 0x1d, 0x21, 0x7a, 0xcf, 0xb1, 0x7b, 0x5d, 0x5c,
-	0x80, 0x51, 0xd3, 0xc8, 0x27, 0x56, 0x13, 0xb7, 0x67, 0xb6, 0x26, 0xfe, 0xf5, 0xf6, 0xcd, 0x4a,
-	0x42, 0x1b, 0x35, 0x0d, 0x2c, 0x43, 0x26, 0xb8, 0x7c, 0x96, 0x1f, 0x5d, 0x1d, 0xbb, 0x9d, 0xbc,
-	0xb7, 0x50, 0x54, 0xfb, 0xb8, 0x2f, 0xcd, 0x12, 0x6b, 0x6b, 0xe6, 0x1f, 0x6f, 0xdf, 0xac, 0x8c,
-	0x73, 0x2c, 0x6d, 0xd6, 0xf2, 0x5b, 0x18, 0x6e, 0xc2, 0x94, 0x07, 0x31, 0x26, 0x20, 0x66, 0x3d,
-	0x88, 0xf0, 0x5c, 0xcf, 0x93, 0x7c, 0x17, 0x52, 0x3e, 0x95, 0x0c, 0xdf, 0x83, 0x09, 0xd3, 0xa5,
-	0x6d, 0x96, 0x4f, 0x08, 0x88, 0xb9, 0x20, 0x84, 0x70, 0xd2, 0xa4, 0x07, 0xf9, 0x25, 0xe0, 0x43,
-	0x1e, 0x95, 0x47, 0xa6, 0xe5, 0x52, 0x47, 0xeb, 0x59, 0xf4, 0x31, 0x3d, 0x25, 0x8d, 0xa8, 0x51,
-	0x9c, 0xe4, 0xac, 0xd9, 0x11, 0x9c, 0x86, 0x71, 0xf7, 0xb4, 0x4b, 0xb3, 0x09, 0x4c, 0xc1, 0x34,
-	0xa3, 0x27, 0xd4, 0x31, 0xdd, 0xd3, 0xec, 0x28, 0x66, 0x20, 0xe9, 0x50, 0x66, 0xf7, 0x9c, 0x26,
-	0xad, 0x9b, 0x46, 0x76, 0x8c, 0x9b, 0x9b, 0xba, 0x4b, 0x5b, 0xb6, 0x73, 0x9a, 0x1d, 0xc7, 0x34,
-	0xcc, 0x48, 0xc1, 0xdc, 0x38, 0xf1, 0x60, 0xe2, 0xdf, 0x6f, 0xdf, 0xac, 0x8c, 0x90, 0x63, 0xc8,
-	0x0c, 0x51, 0xe1, 0xa7, 0x30, 0xf6, 0x92, 0x9e, 0x8a, 0x30, 0xcf, 0xde, 0xdb, 0xf0, 0xc4, 0x87,
-	0x05, 0x45, 0x0c, 0x69, 0x7c, 0x26, 0xce, 0xc3, 0xc4, 0x89, 0x6e, 0xf5, 0x68, 0x7e, 0x94, 0xef,
-	0x94, 0x26, 0x1f, 0x48, 0x0d, 0x92, 0xbe, 0x09, 0x71, 0x7b, 0xb9, 0x01, 0x13, 0x4e, 0xcf, 0xea,
-	0xef, 0xe0, 0x95, 0x18, 0x7a, 0x4d, 0x7a, 0x91, 0x4f, 0x20, 0xe5, 0xb3, 0x30, 0xdc, 0x80, 0xa9,
-	0x23, 0xf9, 0xe7, 0x70, 0xf0, 0xfd, 0x00, 0x9e, 0x0f, 0x79, 0x01, 0x53, 0xfb, 0x76, 0xab, 0x65,
-	0x76, 0x5a, 0x58, 0x82, 0x09, 0x8b, 0x9e, 0x50, 0x4b, 0xad, 0xfb, 0x6a, 0x51, 0x9d, 0xc4, 0x7d,
-	0xbb, 0xb5, 0xcf, 0xc7, 0xfb, 0x7f, 0x68, 0xd2, 0x0f, 0xd7, 0x20, 0xd5, 0xd5, 0x9b, 0x2f, 0xf5,
-	0x16, 0xad, 0x77, 0xf4, 0xb6, 0xb7, 0xd8, 0xa4, 0x1a, 0x3b, 0xd0, 0xdb, 0x94, 0x38, 0x90, 0xda,
-	0xb6, 0x1d, 0x5a, 0xee, 0x30, 0x57, 0xef, 0x34, 0x29, 0xde, 0x84, 0xa4, 0xa9, 0xfe, 0xae, 0x0f,
-	0x2f, 0x1e, 0x3c, 0x4b, 0xd9, 0xc0, 0x4d, 0x98, 0x94, 0x67, 0x5d, 0x80, 0x26, 0xef, 0xcd, 0x7b,
-	0x8b, 0xf8, 0x81, 0x18, 0xad, 0xb9, 0xba, 0xdb, 0x63, 0x5b, 0x13, 0x3c, 0x15, 0x47, 0x34, 0xe5,
-	0xfa, 0x60, 0xe2, 0xbf, 0x1c, 0x87, 0x6c, 0x41, 0xda, 0xcf, 0xc9, 0x70, 0x3d, 0x98, 0x8d, 0x7d,
-	0x2c, 0xbf, 0x97, 0x4a, 0x47, 0x0f, 0xe3, 0xef, 0xe3, 0x30, 0xf9, 0x4c, 0x78, 0xe1, 0x75, 0x98,
-	0x3a, 0xa1, 0x0e, 0x33, 0xed, 0x4e, 0x50, 0xae, 0x37, 0x8a, 0xf7, 0x61, 0x5a, 0xd5, 0x0e, 0x6f,
-	0xcf, 0x32, 0xfd, 0x90, 0xcb, 0x71, 0xff, 0x99, 0xe9, 0xfb, 0x46, 0x1d, 0xda, 0xb1, 0xff, 0xff,
-	0xd0, 0x8e, 0x5f, 0xf4, 0xd0, 0xe2, 0xf7, 0x21, 0xa5, 0x8e, 0x03, 0x3f, 0x4c, 0x2c, 0x3f, 0x21,
-	0x66, 0x62, 0x70, 0xe6, 0xd3, 0xd3, 0x6e, 0x60, 0x76, 0xd2, 0xe8, 0x0f, 0x33, 0xdc, 0x86, 0xb4,
-	0x42, 0x68, 0x89, 0x73, 0x9f, 0x9f, 0x8c, 0x3d, 0xee, 0x7e, 0x0c, 0x45, 0xab, 0x6a, 0xc5, 0x36,
-	0xa4, 0x65, 0x59, 0xf4, 0xd2, 0x76, 0x2a, 0x36, 0x6d, 0x03, 0x20, 0xba, 0x3f, 0xeb, 0x7f, 0x04,
-	0xb9, 0x41, 0x05, 0xd6, 0x5d, 0xbd, 0xa1, 0x33, 0x9a, 0x5f, 0x56, 0x40, 0xdc, 0x52, 0x7c, 0x62,
-	0x36, 0xa4, 0x9c, 0x1d, 0xdd, 0xd5, 0xb7, 0xb2, 0x1c, 0x28, 0xe9, 0xab, 0x07, 0x5a, 0x86, 0x7b,
-	0x71, 0x27, 0x35, 0x1b, 0x9f, 0xc3, 0x9c, 0xbf, 0x66, 0x7b, 0xa0, 0x2b, 0x6a, 0x8b, 0x04, 0xa8,
-	0xd0, 0x76, 0x26, 0xac, 0x90, 0x25, 0xdd, 0x14, 0x82, 0x97, 0x62, 0x7f, 0x4d, 0x40, 0xb6, 0x46,
-	0xad, 0xa3, 0xa7, 0x94, 0xb9, 0x1a, 0x65, 0x5d, 0xbb, 0xc3, 0x78, 0xe5, 0x99, 0x74, 0x28, 0xeb,
-	0x59, 0xae, 0x3a, 0x84, 0xb7, 0xbc, 0x28, 0x0c, 0x7b, 0xfa, 0x07, 0x7a, 0x96, 0xab, 0xa9, 0x69,
-	0xa4, 0x0a, 0xb3, 0x41, 0x0b, 0x26, 0x61, 0xaa, 0x76, 0xb8, 0xbd, 0xbd, 0x5b, 0xab, 0x65, 0x47,
-	0xf8, 0xc3, 0xa3, 0x87, 0xe5, 0xfd, 0x43, 0x6d, 0x37, 0x9b, 0xc0, 0x1c, 0xa4, 0x0f, 0x2a, 0x4f,
-	0xeb, 0xb5, 0xc3, 0x6a, 0xb5, 0xa2, 0x3d, 0xdd, 0xdd, 0xc9, 0x8e, 0xf2, 0xa1, 0xc3, 0x83, 0xc7,
-	0x07, 0x95, 0xe7, 0x07, 0xf5, 0x5d, 0x4d, 0xab, 0x68, 0xd9, 0x31, 0xaf, 0x4c, 0x56, 0x20, 0x57,
-	0x39, 0x7a, 0xd8, 0xa2, 0x1d, 0xb7, 0xd6, 0x6b, 0xb0, 0xa6, 0x63, 0x36, 0xa8, 0x83, 0x2b, 0x00,
-	0xf6, 0x91, 0xce, 0x07, 0xfb, 0xa7, 0x59, 0x9b, 0x51, 0x23, 0x65, 0x03, 0x97, 0x60, 0x46, 0xbd,
-	0xe1, 0x4c, 0x43, 0x55, 0x87, 0x69, 0x39, 0x50, 0x36, 0xc8, 0xc7, 0x00, 0x4f, 0x68, 0xbb, 0x41,
-	0x1d, 0x76, 0x6c, 0x76, 0x39, 0x92, 0xc8, 0x21, 0x59, 0x49, 0x14, 0x92, 0x18, 0xe1, 0x75, 0x04,
-	0x67, 0x45, 0xad, 0x94, 0x10, 0xa3, 0xa6, 0x71, 0xef, 0xcf, 0x25, 0x48, 0xcb, 0xf3, 0x59, 0xa3,
-	0x0e, 0x8f, 0x35, 0x56, 0x60, 0xf6, 0xb0, 0x6b, 0xe8, 0x2e, 0xf5, 0xaa, 0x14, 0x66, 0x7c, 0xc7,
-	0x88, 0x17, 0xb8, 0xc2, 0x62, 0x51, 0x36, 0x28, 0x45, 0xaf, 0x41, 0x29, 0xee, 0xf2, 0x06, 0x85,
-	0xcc, 0x7f, 0xf9, 0xb7, 0x7f, 0x7e, 0x35, 0x3a, 0x8b, 0x29, 0xd1, 0xd7, 0x9c, 0xdc, 0xe5, 0xad,
-	0x04, 0xc3, 0xe7, 0x90, 0xde, 0xa3, 0xae, 0x4f, 0x62, 0xcc, 0xf4, 0x42, 0xff, 0xc4, 0x0c, 0x7c,
-	0x49, 0x41, 0x40, 0xce, 0x23, 0x7a, 0x90, 0xed, 0x01, 0xce, 0x0b, 0xc8, 0x4a, 0xa5, 0x3e, 0xec,
-	0x08, 0x8c, 0x58, 0xb9, 0x2b, 0x02, 0xfb, 0x0a, 0x89, 0xc0, 0x7e, 0x90, 0x58, 0xc7, 0x1d, 0x98,
-	0xd9, 0xa3, 0xae, 0x2a, 0x5e, 0x71, 0x9a, 0xfb, 0xf5, 0x41, 0xfa, 0x91, 0x8c, 0xc0, 0x9c, 0xc1,
-	0x29, 0x85, 0x89, 0x3d, 0xc8, 0xed, 0x9b, 0xcc, 0x0d, 0x16, 0xd2, 0x38, 0xb4, 0x85, 0xa8, 0x8a,
-	0xca, 0xc8, 0xdd, 0x3f, 0xfc, 0xe7, 0xcd, 0xca, 0x94, 0x2a, 0xbe, 0xe2, 0x6f, 0x94, 0x7f, 0x0b,
-	0xb2, 0x39, 0xcc, 0x79, 0x0b, 0x30, 0xfb, 0x0c, 0x35, 0xc8, 0xec, 0xd1, 0x00, 0x2b, 0x82, 0xf7,
-	0x1e, 0x2a, 0xef, 0x14, 0x22, 0x4b, 0x37, 0xb9, 0x26, 0xf0, 0xf2, 0xb8, 0x18, 0xc2, 0x2b, 0xbd,
-	0x36, 0x8d, 0x2f, 0x50, 0x87, 0x14, 0x5f, 0xcb, 0x43, 0xaf, 0xf0, 0xc6, 0x2d, 0x23, 0x3b, 0x54,
-	0xb6, 0x19, 0xb9, 0xc5, 0x55, 0xc3, 0xa0, 0xbe, 0x0b, 0x22, 0xc4, 0xac, 0x47, 0xd4, 0xaf, 0xe5,
-	0xaf, 0x01, 0x39, 0xc5, 0x7e, 0xb0, 0x2c, 0xc7, 0x11, 0x2d, 0x46, 0x16, 0x78, 0x46, 0x3e, 0xe2,
-	0x74, 0xb9, 0xd0, 0x6b, 0x41, 0xb0, 0x5e, 0xc5, 0x2b, 0xbe, 0xf4, 0xf4, 0x9b, 0xf1, 0x33, 0xc8,
-	0xee, 0xd1, 0x20, 0x77, 0x20, 0x6a, 0xd1, 0xef, 0x13, 0x72, 0x43, 0xe0, 0x5e, 0xc3, 0xe5, 0x18,
-	0x5c, 0x19, 0x3c, 0x07, 0x16, 0x43, 0x2b, 0xab, 0xda, 0x8e, 0xcb, 0xa2, 0x37, 0x46, 0xf9, 0x09,
-	0x0f, 0x72, 0x5f, 0x25, 0x40, 0x97, 0x3f, 0x09, 0xb6, 0x1b, 0x48, 0xce, 0x62, 0x2b, 0x09, 0x4f,
-	0xfc, 0x55, 0x02, 0xe6, 0x87, 0x57, 0xc4, 0x11, 0x71, 0x21, 0x82, 0xa6, 0x6c, 0x14, 0xe6, 0x22,
-	0x86, 0xc9, 0xa7, 0x9c, 0x7c, 0x12, 0xc6, 0x39, 0xa4, 0xe0, 0x2e, 0xe2, 0xfb, 0xe7, 0x73, 0x97,
-	0x5e, 0xf3, 0x7f, 0xea, 0x7c, 0xe5, 0xbf, 0x49, 0xc0, 0x95, 0xdd, 0x8e, 0xde, 0xb0, 0xe8, 0x85,
-	0x85, 0xc4, 0x1d, 0xd9, 0x8f, 0x85, 0x80, 0x8f, 0xc8, 0xe6, 0x65, 0x04, 0x94, 0xa8, 0x20, 0xc7,
-	0xdf, 0x25, 0x20, 0xbf, 0x63, 0xb2, 0x6f, 0x44, 0xc8, 0xf7, 0x84, 0x90, 0xfb, 0xe4, 0xc3, 0x4b,
-	0x09, 0x31, 0x24, 0x3b, 0xfe, 0x22, 0x22, 0x17, 0x1e, 0x59, 0xf6, 0xab, 0x60, 0x2e, 0x60, 0xd1,
-	0xff, 0x6b, 0x49, 0xd8, 0xc9, 0x96, 0xca, 0x04, 0x3e, 0x1a, 0x2e, 0x05, 0xe7, 0x65, 0x85, 0x98,
-	0xc5, 0xb3, 0x62, 0xb9, 0x5f, 0xe2, 0x83, 0x02, 0x9e, 0x0a, 0x79, 0xcb, 0x21, 0x62, 0x31, 0x2e,
-	0xe7, 0xc4, 0x86, 0x64, 0x43, 0x48, 0xb8, 0x45, 0x2e, 0x20, 0x81, 0x97, 0xd7, 0x5f, 0x27, 0x60,
-	0x25, 0x42, 0xc5, 0x13, 0xea, 0x52, 0x47, 0xca, 0x58, 0x0a, 0xc8, 0x10, 0x86, 0x27, 0xb6, 0x71,
-	0x8e, 0x8a, 0xa2, 0x50, 0x71, 0x9b, 0xbc, 0x73, 0xa6, 0x8a, 0x36, 0x07, 0x13, 0x32, 0x5e, 0xc3,
-	0xb2, 0x78, 0x3b, 0xb9, 0xd4, 0xe1, 0xcd, 0x30, 0xab, 0x1c, 0xc5, 0x9f, 0xff, 0xe5, 0xb0, 0x20,
-	0x31, 0x47, 0xa3, 0x5d, 0xeb, 0x94, 0xdc, 0x15, 0xcc, 0x77, 0xf0, 0xbd, 0x0b, 0x30, 0xd7, 0x19,
-	0x9f, 0x87, 0x7f, 0x4c, 0xc0, 0x52, 0x64, 0x22, 0xa8, 0x96, 0xce, 0x4f, 0x7e, 0x25, 0xb4, 0x29,
-	0xd2, 0x89, 0x1c, 0xf0, 0x34, 0x48, 0x43, 0x52, 0x98, 0x64, 0xff, 0x18, 0x4a, 0x8c, 0x75, 0xbc,
-	0x7d, 0xee, 0xae, 0xa8, 0xb9, 0xf8, 0x55, 0x02, 0xd6, 0x62, 0xd2, 0x43, 0x30, 0xca, 0xcd, 0x59,
-	0x8b, 0x96, 0x73, 0x91, 0x44, 0xd9, 0x14, 0x92, 0x36, 0xc8, 0x85, 0x25, 0xf1, 0x7d, 0x7a, 0x01,
-	0x49, 0x1e, 0xa9, 0xf3, 0xde, 0x08, 0x99, 0x60, 0xcb, 0xcc, 0xc8, 0xbb, 0x3c, 0x16, 0x33, 0xfd,
-	0xb6, 0x5e, 0x50, 0xe7, 0x30, 0xe3, 0x51, 0x7b, 0xa5, 0xdf, 0x80, 0xf4, 0x00, 0xbe, 0x6c, 0xc4,
-	0x13, 0x24, 0x07, 0x5b, 0xc2, 0x48, 0x91, 0x83, 0x8b, 0x36, 0xfa, 0xac, 0xb7, 0xb2, 0xe4, 0x30,
-	0x0d, 0x86, 0x87, 0x90, 0xd5, 0x68, 0xd3, 0xee, 0x34, 0x4d, 0x8b, 0x7a, 0x2b, 0xf1, 0x03, 0xc6,
-	0x86, 0x6c, 0x59, 0x60, 0x2e, 0x92, 0x30, 0x26, 0x8f, 0xcd, 0xae, 0xe8, 0x54, 0x22, 0x12, 0x76,
-	0xe8, 0xd7, 0x8b, 0x07, 0x83, 0xf3, 0x43, 0xcb, 0x97, 0x6f, 0xa8, 0x1f, 0x42, 0x6a, 0xdb, 0xa1,
-	0xba, 0xab, 0xa4, 0xe1, 0xd0, 0xec, 0x10, 0x9a, 0xea, 0xcd, 0xc8, 0x70, 0x30, 0xb9, 0xa4, 0xe7,
-	0x90, 0x92, 0x25, 0x3f, 0x42, 0x55, 0xdc, 0x22, 0xdf, 0x11, 0x78, 0x2b, 0x64, 0x29, 0x4a, 0x9d,
-	0x57, 0xc4, 0x7f, 0x02, 0x69, 0x55, 0xc3, 0x2f, 0x81, 0xac, 0xde, 0xd0, 0x64, 0x39, 0x12, 0xd9,
-	0xab, 0xca, 0xcf, 0x21, 0xa5, 0xd1, 0x86, 0x6d, 0xbb, 0xdf, 0x98, 0x66, 0x47, 0xc0, 0x71, 0xe0,
-	0x1d, 0x6a, 0x51, 0xf7, 0x6b, 0x04, 0x63, 0x3d, 0x1a, 0xd8, 0x10, 0x70, 0xd8, 0x83, 0xf4, 0x8e,
-	0xfd, 0xaa, 0x63, 0xd9, 0xba, 0x51, 0x6e, 0xeb, 0x2d, 0x3a, 0x78, 0x8b, 0x89, 0x47, 0xcf, 0x56,
-	0x58, 0xf0, 0x08, 0x2b, 0x5d, 0xea, 0x88, 0xab, 0x46, 0xfe, 0xf3, 0x87, 0xdc, 0x17, 0x1c, 0x1f,
-	0x90, 0x3b, 0x91, 0x1c, 0x26, 0x87, 0xa8, 0x1b, 0x0a, 0x83, 0x95, 0x5e, 0xf3, 0x5f, 0x14, 0x5f,
-	0xf0, 0xcd, 0xfd, 0x32, 0x01, 0x8b, 0x7b, 0xd4, 0x0d, 0x70, 0xc8, 0x9b, 0x84, 0x78, 0x01, 0x51,
-	0xc3, 0xe4, 0x81, 0x10, 0xf0, 0x21, 0xde, 0xbb, 0x84, 0x80, 0x12, 0x93, 0x4c, 0x3d, 0xd1, 0xac,
-	0x05, 0xf0, 0x2e, 0xc9, 0xae, 0xea, 0x10, 0x5e, 0x66, 0xf9, 0x78, 0x24, 0x1b, 0xd4, 0x00, 0x12,
-	0x1b, 0xda, 0xd1, 0x28, 0x36, 0x46, 0xde, 0x17, 0x74, 0x37, 0xf1, 0xc6, 0x45, 0xe8, 0xf0, 0xe7,
-	0x30, 0xb7, 0xcd, 0x5b, 0x6f, 0xeb, 0x82, 0x2b, 0x8c, 0xdc, 0x60, 0xb5, 0xc2, 0xf5, 0x4b, 0xad,
-	0xf0, 0xf7, 0x09, 0x98, 0x7b, 0xd8, 0x74, 0xcd, 0x13, 0xdd, 0xa5, 0x82, 0x45, 0x96, 0xf3, 0x4b,
-	0x52, 0x6f, 0x0b, 0xea, 0x4f, 0xc8, 0x77, 0x2e, 0xb3, 0xb5, 0x72, 0xb8, 0x27, 0xf8, 0x78, 0xa2,
-	0xfd, 0x36, 0x01, 0x39, 0x8d, 0x9e, 0x50, 0xc7, 0xfd, 0x56, 0x84, 0x38, 0x82, 0x9a, 0x0b, 0xf9,
-	0x1c, 0x32, 0x83, 0xd7, 0x43, 0xb8, 0x6b, 0x4f, 0x7b, 0x8a, 0x64, 0xbb, 0x5e, 0x0c, 0xb5, 0xeb,
-	0xcb, 0x58, 0x88, 0xa4, 0x97, 0x6d, 0xfa, 0x0b, 0x98, 0xf3, 0xa1, 0xb7, 0xb7, 0xed, 0xce, 0x91,
-	0xd9, 0x0a, 0x32, 0xe4, 0xfa, 0x0c, 0x9e, 0x99, 0xdc, 0x12, 0xc8, 0x6b, 0x78, 0x3d, 0x1a, 0xb9,
-	0x5d, 0x6f, 0x2a, 0x9c, 0x0e, 0x2c, 0xc8, 0xc8, 0x0d, 0x13, 0x84, 0x41, 0x63, 0xcb, 0xd1, 0xba,
-	0xec, 0x2f, 0xc9, 0x79, 0x64, 0x3c, 0x58, 0x6d, 0x7f, 0xb0, 0x2e, 0xd6, 0xd6, 0x3e, 0x38, 0xb3,
-	0xad, 0x8d, 0x8b, 0x5e, 0xbf, 0x9d, 0x9d, 0x0f, 0xf2, 0x5d, 0xa6, 0x7b, 0x7a, 0x74, 0x81, 0xee,
-	0x89, 0xe0, 0x6a, 0x2c, 0xbf, 0xd7, 0x35, 0xd9, 0xfe, 0x45, 0xcb, 0x5b, 0xbd, 0xb8, 0x16, 0x62,
-	0x2e, 0x7c, 0x33, 0xc8, 0x48, 0x89, 0xb3, 0xce, 0x06, 0x6f, 0x12, 0xa3, 0xdf, 0xd6, 0xd2, 0x86,
-	0x9a, 0xb8, 0x56, 0x19, 0x40, 0x0c, 0xc5, 0x38, 0x44, 0x41, 0xd6, 0x04, 0xdc, 0x12, 0x5e, 0x8d,
-	0x82, 0x93, 0x1d, 0x00, 0x83, 0xec, 0x60, 0x11, 0x2a, 0x8a, 0x71, 0xab, 0x98, 0x8f, 0xb8, 0x9c,
-	0x54, 0x57, 0x15, 0x99, 0xa1, 0xeb, 0x4c, 0x79, 0xcf, 0x82, 0x0b, 0x43, 0xc4, 0x2a, 0x72, 0x8f,
-	0x20, 0x5b, 0x73, 0x1d, 0xaa, 0xb7, 0xab, 0x7a, 0xf3, 0x25, 0x75, 0x59, 0xa5, 0xe7, 0xe2, 0x62,
-	0x60, 0xbb, 0xa4, 0xa1, 0xd2, 0x73, 0x63, 0xd3, 0x73, 0xe4, 0x76, 0x02, 0x77, 0x45, 0x73, 0x45,
-	0xcd, 0x13, 0xaa, 0x80, 0xca, 0x9d, 0x33, 0x2e, 0x5a, 0xc2, 0xf8, 0xe5, 0x0e, 0x19, 0xf9, 0x20,
-	0x81, 0x8f, 0x61, 0x4e, 0xc1, 0x6c, 0x1f, 0xeb, 0x9d, 0x16, 0xdd, 0x3d, 0xa1, 0x1d, 0x37, 0x3e,
-	0x0c, 0xf9, 0x00, 0x92, 0x6f, 0x8a, 0x00, 0x3b, 0x84, 0xd9, 0xfe, 0x26, 0xc9, 0x0f, 0x4f, 0xfe,
-	0x5d, 0x8a, 0xba, 0xdf, 0x25, 0x24, 0x3a, 0xe5, 0x55, 0xb4, 0xe4, 0x3e, 0xd5, 0x21, 0x27, 0x3b,
-	0x35, 0xff, 0x67, 0x90, 0xa8, 0x8b, 0xde, 0x42, 0xd4, 0x20, 0x59, 0x15, 0x14, 0x05, 0xd2, 0xdf,
-	0x90, 0xc0, 0xbd, 0x31, 0x3f, 0xc2, 0x52, 0xb7, 0x1f, 0x3d, 0x52, 0xb7, 0x1f, 0x34, 0xa4, 0x3b,
-	0x00, 0x2a, 0x75, 0x1b, 0x90, 0x93, 0x95, 0xe8, 0xeb, 0xe9, 0x7e, 0x57, 0x50, 0x5c, 0x2f, 0x9c,
-	0x41, 0xc1, 0xc5, 0x7f, 0x06, 0x39, 0xd9, 0x6e, 0xc5, 0xe9, 0x8f, 0xcb, 0x22, 0xb5, 0x84, 0xf5,
-	0xb3, 0x96, 0x50, 0x97, 0x47, 0x24, 0xf0, 0xa9, 0xe8, 0xdc, 0x23, 0xe2, 0xf7, 0xf6, 0xae, 0x1d,
-	0x31, 0x3a, 0xfa, 0xb8, 0x2f, 0x9a, 0x79, 0xf1, 0x6a, 0x63, 0xd1, 0xcd, 0xbc, 0xb4, 0x79, 0x1d,
-	0x22, 0x2e, 0xc5, 0xbf, 0xd8, 0x18, 0xfe, 0x18, 0xa6, 0xbd, 0x6b, 0xec, 0x00, 0x58, 0x3e, 0xee,
-	0x3e, 0x9c, 0xdc, 0x14, 0xb0, 0xab, 0xe4, 0x5a, 0x24, 0x2c, 0xa3, 0xd6, 0x51, 0xdd, 0xe5, 0x68,
-	0xcf, 0x44, 0xff, 0x15, 0xf8, 0x1a, 0x30, 0x94, 0x24, 0xe1, 0xcf, 0x05, 0xe1, 0x1a, 0xc4, 0x0f,
-	0x0f, 0xf7, 0x53, 0x3f, 0x8e, 0xcd, 0x06, 0x7e, 0x0e, 0xe8, 0xa5, 0x5e, 0x0c, 0x72, 0xf4, 0x37,
-	0x83, 0x70, 0x3c, 0x82, 0xd8, 0x22, 0xca, 0xc8, 0x20, 0x5d, 0x33, 0xdb, 0x3d, 0xcb, 0xcb, 0x41,
-	0x5c, 0xee, 0x07, 0xc2, 0x3f, 0xac, 0xd1, 0x9f, 0xf5, 0x28, 0x73, 0xe3, 0x7a, 0x8a, 0xd0, 0x55,
-	0x47, 0x30, 0x46, 0x0a, 0xa9, 0xce, 0x91, 0x78, 0x42, 0x6e, 0xc3, 0x4c, 0xff, 0xae, 0x1f, 0xaf,
-	0x7a, 0x84, 0xa1, 0xaf, 0x00, 0x85, 0x78, 0x13, 0x19, 0xd9, 0x32, 0x61, 0xce, 0x76, 0x5a, 0xa2,
-	0xda, 0x34, 0x6d, 0xc7, 0x50, 0xae, 0x5b, 0x29, 0x79, 0xf1, 0x5c, 0x15, 0x5f, 0xbe, 0x7f, 0x7a,
-	0xa7, 0x65, 0xba, 0xc7, 0xbd, 0x06, 0x57, 0x5d, 0xf2, 0x3c, 0xd5, 0xff, 0x40, 0xd8, 0x50, 0x1f,
-	0xc7, 0x5b, 0xb6, 0x1a, 0xf8, 0xcb, 0xe8, 0x62, 0xc5, 0x03, 0x7b, 0xe6, 0xbf, 0xc4, 0xae, 0x8e,
-	0x56, 0xc7, 0xaa, 0xe3, 0xd5, 0x89, 0xea, 0x64, 0x75, 0xaa, 0x3a, 0xdd, 0x98, 0x14, 0x13, 0x37,
-	0xff, 0x17, 0x00, 0x00, 0xff, 0xff, 0xaa, 0x83, 0xb9, 0x38, 0xd8, 0x20, 0x00, 0x00,
+	// 4908 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x5d, 0x5b, 0x73, 0x1c, 0xc7,
+	0x75, 0xe6, 0xf0, 0x02, 0x02, 0x8d, 0xdb, 0xa2, 0x01, 0x02, 0x4b, 0x5c, 0x48, 0xa2, 0x45, 0x91,
+	0xe0, 0xca, 0x04, 0x78, 0x13, 0x65, 0x51, 0x52, 0x28, 0xe2, 0x42, 0x0a, 0x16, 0x49, 0xc0, 0x0b,
+	0x92, 0x52, 0xa4, 0x30, 0xeb, 0xd9, 0xdd, 0x06, 0x38, 0xd2, 0xee, 0x0e, 0xb4, 0x33, 0x0b, 0x09,
+	0xa1, 0x6c, 0xd9, 0x4a, 0x2c, 0x29, 0x4e, 0xe2, 0x4a, 0x62, 0xbb, 0xa2, 0x58, 0x29, 0x57, 0xe2,
+	0xa4, 0x5c, 0xe5, 0x54, 0xfe, 0x40, 0x7e, 0x84, 0x9e, 0xf2, 0x9a, 0xa7, 0x54, 0x1e, 0xf2, 0x98,
+	0x27, 0x25, 0x95, 0x87, 0x54, 0xaa, 0x6f, 0xb3, 0xdd, 0xd3, 0xd3, 0xb3, 0xb3, 0xbb, 0xb3, 0x88,
+	0x5d, 0xa5, 0x37, 0xec, 0x74, 0xf7, 0xf9, 0xbe, 0xee, 0x73, 0xb6, 0xfb, 0x74, 0xf7, 0x37, 0x0b,
+	0x30, 0xbd, 0xe7, 0x56, 0xfc, 0x27, 0x76, 0x61, 0xb7, 0xee, 0xfa, 0xae, 0xb7, 0xc4, 0x3e, 0x2d,
+	0xd2, 0x4f, 0xb0, 0x8f, 0x7d, 0x9a, 0x9e, 0xd9, 0x71, 0xdd, 0x9d, 0x0a, 0x5e, 0xa2, 0x4f, 0x8b,
+	0x8d, 0xed, 0x25, 0x5c, 0xdd, 0xf5, 0xf7, 0x59, 0xa5, 0xe9, 0x93, 0xe1, 0x42, 0xbb, 0x26, 0x8a,
+	0x66, 0x79, 0x91, 0xbd, 0xeb, 0x2c, 0xd9, 0xb5, 0x9a, 0xeb, 0xdb, 0xbe, 0xe3, 0xd6, 0x3c, 0x5e,
+	0x7a, 0x46, 0x45, 0xde, 0xb7, 0x6b, 0x3b, 0x05, 0x77, 0x57, 0xae, 0x91, 0x55, 0x6b, 0x54, 0xb1,
+	0xcf, 0x99, 0x4d, 0x87, 0x58, 0x97, 0xdc, 0x6a, 0xd5, 0xad, 0x45, 0x97, 0x3d, 0xc1, 0x76, 0xc5,
+	0x7f, 0xc2, 0xcb, 0x90, 0x5a, 0x56, 0x71, 0x77, 0x9c, 0x92, 0x5d, 0x29, 0x94, 0xf1, 0x9e, 0x53,
+	0xc2, 0xd1, 0xed, 0x95, 0xb2, 0x19, 0xb5, 0xcc, 0x2e, 0xdb, 0xbb, 0x3e, 0xae, 0xf3, 0xc2, 0xd3,
+	0x6a, 0xa1, 0xbb, 0x8b, 0x6b, 0xdb, 0x15, 0xf7, 0xfd, 0xc2, 0xe5, 0xab, 0xbc, 0xc2, 0x9c, 0x5a,
+	0xa1, 0x58, 0xdc, 0x2e, 0x6c, 0x3b, 0xc5, 0xa0, 0x3d, 0x32, 0x14, 0x17, 0x8a, 0xb6, 0x27, 0x08,
+	0xe4, 0x4c, 0x75, 0x76, 0x70, 0x75, 0xd7, 0xad, 0xfb, 0x85, 0xa2, 0x5b, 0x16, 0xc3, 0xff, 0x8a,
+	0xa9, 0x6e, 0xb5, 0x51, 0xf1, 0x9d, 0x92, 0xed, 0xf9, 0x85, 0xb2, 0xe3, 0xf9, 0x75, 0xa7, 0xd8,
+	0x20, 0xa3, 0x5e, 0xf0, 0xb0, 0xd2, 0xfc, 0x5a, 0xeb, 0xe6, 0x11, 0xa0, 0x0b, 0xa6, 0x56, 0x7e,
+	0xc9, 0xad, 0x25, 0xa3, 0xe7, 0xd7, 0xed, 0xed, 0x6d, 0xa7, 0x54, 0x28, 0x63, 0xaf, 0x54, 0x77,
+	0x76, 0x7d, 0xb7, 0x4e, 0xea, 0x6c, 0x3b, 0x15, 0x2c, 0x37, 0x0f, 0x8f, 0x76, 0xb5, 0xe4, 0x14,
+	0xaa, 0x4e, 0xb1, 0x50, 0x2e, 0xf2, 0x0a, 0xf3, 0x11, 0x15, 0xec, 0x8a, 0x5d, 0xaf, 0x06, 0x55,
+	0xd0, 0x3f, 0x58, 0x60, 0x70, 0x95, 0xfa, 0xf7, 0x4e, 0xdd, 0x6d, 0xec, 0xc2, 0x13, 0xe0, 0xb0,
+	0x53, 0xce, 0x5a, 0x67, 0xac, 0x85, 0x81, 0xe5, 0x63, 0xff, 0xf1, 0xd5, 0x97, 0x73, 0x56, 0xfe,
+	0xb0, 0x53, 0x86, 0xeb, 0x60, 0x54, 0x8d, 0x14, 0x2f, 0x7b, 0xf8, 0xcc, 0x91, 0x85, 0xc1, 0x2b,
+	0x27, 0x16, 0xf9, 0xf7, 0xe5, 0x2e, 0x2b, 0x66, 0xb6, 0x96, 0x07, 0xfe, 0xed, 0xab, 0x2f, 0xe7,
+	0x8e, 0x12, 0x5b, 0xf9, 0x91, 0x8a, 0x5c, 0xe2, 0xc1, 0xab, 0xe0, 0xb8, 0x30, 0x71, 0x84, 0x9a,
+	0x18, 0x11, 0x26, 0xf4, 0xb6, 0xa2, 0x26, 0x7a, 0x11, 0x0c, 0x49, 0x2c, 0x3d, 0x78, 0x01, 0x1c,
+	0x73, 0x7c, 0x5c, 0xf5, 0xb2, 0x16, 0x35, 0x31, 0xae, 0x9a, 0xa0, 0x95, 0xf2, 0xac, 0x06, 0xfa,
+	0x08, 0xc0, 0x5b, 0xa4, 0xcf, 0xb7, 0x9d, 0x8a, 0x8f, 0xeb, 0xf9, 0x46, 0x05, 0xbf, 0x8e, 0xf7,
+	0x51, 0x31, 0xea, 0x29, 0xec, 0x23, 0xa8, 0x99, 0x43, 0xb0, 0x1f, 0x1c, 0xf5, 0xf7, 0x77, 0x71,
+	0xc6, 0x82, 0x43, 0xa0, 0xdf, 0xc3, 0x7b, 0xb8, 0xee, 0xf8, 0xfb, 0x99, 0xc3, 0x70, 0x14, 0x0c,
+	0xd6, 0xb1, 0xe7, 0x36, 0xea, 0x25, 0x5c, 0x70, 0xca, 0x99, 0x23, 0xa4, 0xb8, 0x64, 0xfb, 0x78,
+	0xc7, 0xad, 0xef, 0x67, 0x8e, 0xc2, 0x61, 0x30, 0xc0, 0x08, 0x93, 0xc2, 0x63, 0x37, 0x8e, 0xfd,
+	0xe7, 0x57, 0x5f, 0xce, 0x1d, 0x42, 0x4f, 0xc0, 0x68, 0x08, 0x0a, 0xde, 0x04, 0x47, 0xde, 0xc5,
+	0xfb, 0x74, 0x98, 0x47, 0xae, 0x5c, 0x14, 0xe4, 0x75, 0x42, 0x11, 0x8f, 0xf2, 0xa4, 0x25, 0x9c,
+	0x00, 0xc7, 0xf6, 0xec, 0x4a, 0x03, 0x67, 0x0f, 0x13, 0x4f, 0xe5, 0xd9, 0x07, 0xb4, 0x05, 0x06,
+	0xa5, 0x06, 0x26, 0x5f, 0x5e, 0x04, 0xc7, 0xea, 0x8d, 0x4a, 0xe0, 0xc1, 0x29, 0x03, 0x7c, 0x9e,
+	0xd5, 0x42, 0xaf, 0x80, 0x21, 0xa9, 0xc4, 0x83, 0x17, 0xc1, 0xf1, 0x6d, 0xf6, 0x67, 0x78, 0xf0,
+	0x65, 0x03, 0xa2, 0x0e, 0xfa, 0xdf, 0x21, 0x30, 0xf2, 0x88, 0x96, 0xaf, 0xd7, 0x3c, 0xdf, 0xae,
+	0x95, 0x30, 0x3c, 0x07, 0x06, 0x1d, 0xfe, 0x77, 0x21, 0x4c, 0x10, 0x88, 0x92, 0xf5, 0x32, 0x3c,
+	0x0d, 0x8e, 0xef, 0xe1, 0xba, 0xe7, 0xb8, 0x35, 0xd6, 0x4d, 0x51, 0x47, 0x3c, 0x85, 0xd7, 0xc1,
+	0x40, 0xc5, 0xdd, 0x29, 0x54, 0xf0, 0x1e, 0xae, 0x64, 0x8f, 0xd0, 0xc1, 0x3c, 0x29, 0xc5, 0xe3,
+	0x5d, 0xf2, 0x3c, 0xf8, 0x23, 0xdf, 0x5f, 0xe1, 0x7f, 0xc1, 0xab, 0xa0, 0x8f, 0xcd, 0x89, 0x59,
+	0x70, 0xc6, 0x5a, 0x18, 0xbc, 0x32, 0x21, 0x1a, 0xbd, 0x46, 0x9f, 0x6e, 0xf9, 0xb6, 0xdf, 0xf0,
+	0x96, 0x8f, 0x91, 0x38, 0x3c, 0x94, 0xe7, 0x55, 0xe1, 0x75, 0xd0, 0xcf, 0x27, 0x3b, 0x2f, 0x3b,
+	0x48, 0x3b, 0x3e, 0x1a, 0x74, 0x9c, 0x3d, 0x97, 0x23, 0x37, 0xa8, 0x1b, 0xf5, 0xd5, 0x19, 0xea,
+	0xfe, 0xab, 0x33, 0x9c, 0xf4, 0xab, 0x03, 0x5f, 0x05, 0x43, 0x3c, 0x28, 0x49, 0x48, 0x7b, 0xd9,
+	0x11, 0xda, 0x12, 0xaa, 0x2d, 0x1f, 0xec, 0xef, 0x2a, 0xad, 0x07, 0xcb, 0xc1, 0x63, 0x0f, 0xae,
+	0x80, 0x61, 0x6e, 0x61, 0x87, 0x7e, 0xfb, 0xb2, 0xa3, 0xc6, 0x2f, 0x9d, 0x6c, 0x83, 0xc3, 0xf2,
+	0x6f, 0xec, 0x0a, 0x18, 0x66, 0x53, 0x8f, 0x08, 0x9e, 0x8c, 0x31, 0x78, 0x14, 0x23, 0xb6, 0x1c,
+	0x7b, 0xdf, 0x06, 0x23, 0xa5, 0x27, 0x76, 0xad, 0x86, 0x2b, 0x82, 0xca, 0x18, 0xb5, 0x32, 0xb7,
+	0xd8, 0x5c, 0x49, 0x56, 0x58, 0x05, 0x5a, 0xbe, 0xe2, 0xd6, 0xb6, 0x9d, 0x9d, 0xe5, 0x41, 0x62,
+	0xaf, 0x0f, 0x1c, 0xad, 0xd9, 0x55, 0x9c, 0x1f, 0xe6, 0x16, 0x38, 0xaf, 0xc7, 0x00, 0x0a, 0x93,
+	0xbb, 0x76, 0xdd, 0x77, 0xe8, 0xea, 0x9b, 0x85, 0xd4, 0xec, 0xbc, 0x6e, 0x36, 0xa8, 0x13, 0x65,
+	0x7a, 0x8c, 0x5b, 0xda, 0x0c, 0x0c, 0xc1, 0xfb, 0x60, 0xb8, 0x69, 0xde, 0xa9, 0x7b, 0xd9, 0x71,
+	0x6a, 0x79, 0x36, 0xca, 0xb2, 0x53, 0x8f, 0x32, 0x3a, 0x14, 0x18, 0x75, 0xea, 0x1e, 0xbc, 0x09,
+	0xfa, 0xc9, 0x22, 0x62, 0xd7, 0x1c, 0x2f, 0x3b, 0xc1, 0xbf, 0xbf, 0x4d, 0x53, 0x1b, 0x35, 0xdf,
+	0xae, 0x39, 0x51, 0x56, 0x8e, 0xbb, 0x35, 0xff, 0x56, 0xcd, 0x21, 0x7e, 0x00, 0x7b, 0x85, 0xc0,
+	0xc4, 0x09, 0x6a, 0x22, 0x2b, 0x99, 0x78, 0x64, 0xb6, 0xd1, 0xbf, 0xb7, 0xc1, 0x8d, 0xbc, 0x0c,
+	0x8e, 0xef, 0x15, 0x70, 0x0d, 0xfb, 0x5e, 0x76, 0x92, 0x5a, 0x98, 0x94, 0x2d, 0xac, 0xd5, 0xb0,
+	0x1f, 0xd5, 0xbe, 0x6f, 0x8f, 0x94, 0x78, 0xd0, 0x07, 0x33, 0xe6, 0x05, 0xce, 0xcb, 0x4e, 0x51,
+	0x8b, 0xe7, 0x25, 0x8b, 0x0f, 0x58, 0xed, 0xd5, 0xa0, 0xf2, 0x26, 0xab, 0xbb, 0x6a, 0xfb, 0xb6,
+	0x0a, 0x71, 0xd2, 0x37, 0x54, 0x25, 0xdf, 0x83, 0x3e, 0xba, 0x00, 0x7b, 0xd9, 0x2c, 0x05, 0x98,
+	0x91, 0x01, 0x68, 0x01, 0xe3, 0xac, 0x1b, 0xe5, 0xed, 0xe0, 0x6d, 0xd0, 0xcf, 0x97, 0x7b, 0x2f,
+	0x7b, 0x52, 0x8b, 0xbb, 0x3b, 0xbc, 0xc8, 0x64, 0x25, 0x68, 0x0b, 0x8b, 0x00, 0x6a, 0x09, 0x84,
+	0x97, 0x9d, 0xa6, 0x16, 0xcf, 0x49, 0x16, 0xef, 0x89, 0x4a, 0xad, 0x4c, 0x8f, 0x55, 0xc3, 0x35,
+	0x61, 0x1d, 0x4c, 0xab, 0x39, 0x8e, 0x94, 0xe2, 0x78, 0xd9, 0x19, 0x6d, 0x88, 0x03, 0xac, 0x55,
+	0x29, 0x1f, 0xda, 0xc2, 0xbe, 0x0e, 0x96, 0xad, 0xca, 0x55, 0x9b, 0x35, 0x3d, 0xb8, 0x0c, 0x06,
+	0x44, 0x0e, 0xe2, 0x65, 0x67, 0xf9, 0xd7, 0x9b, 0x3c, 0x59, 0xbc, 0xe7, 0x14, 0xd9, 0x24, 0x41,
+	0xcd, 0x65, 0x88, 0xb9, 0x41, 0x69, 0xad, 0xcc, 0xf7, 0x93, 0x5a, 0xf7, 0x9c, 0x22, 0x99, 0x2d,
+	0x07, 0x9b, 0x69, 0x8a, 0x97, 0x9d, 0xe3, 0xd1, 0x45, 0x3f, 0xb2, 0x39, 0x22, 0xd6, 0x10, 0x20,
+	0x8d, 0x69, 0x35, 0xef, 0xc6, 0xb1, 0xff, 0x26, 0xab, 0x05, 0x5a, 0x04, 0xa3, 0xea, 0xfa, 0xe3,
+	0x91, 0xd5, 0xb3, 0x99, 0x3d, 0x0c, 0xf0, 0x44, 0x41, 0xd4, 0xff, 0x9f, 0x41, 0xd0, 0xc7, 0x1a,
+	0xc8, 0x0b, 0x90, 0xd5, 0x7a, 0x01, 0x3a, 0x9c, 0x7c, 0x01, 0x7a, 0x0d, 0x0c, 0x88, 0x75, 0x4e,
+	0x64, 0x41, 0x93, 0xa2, 0x9d, 0x4a, 0x76, 0x19, 0x92, 0x3e, 0x0e, 0x2b, 0x2b, 0x66, 0xbe, 0xd9,
+	0xf8, 0xb7, 0x76, 0x55, 0x4a, 0x65, 0x4d, 0xd1, 0x97, 0x83, 0x4c, 0x6f, 0x96, 0x83, 0xb1, 0x9e,
+	0x2d, 0x07, 0x30, 0xbd, 0xe5, 0x60, 0xbc, 0xfb, 0xe5, 0x60, 0xa2, 0xeb, 0xe5, 0xe0, 0xc4, 0xd7,
+	0xcb, 0xc1, 0xd7, 0xcb, 0x01, 0x5b, 0x0e, 0xbe, 0x0d, 0xc6, 0x9a, 0x5b, 0x52, 0xdb, 0xb7, 0xc9,
+	0x1e, 0xbe, 0xbd, 0x65, 0x61, 0x94, 0x2f, 0x0b, 0xab, 0xbc, 0x35, 0x7c, 0x13, 0x8c, 0xcb, 0x9b,
+	0x58, 0x61, 0xb4, 0xdd, 0x55, 0x62, 0x2c, 0x58, 0x25, 0x84, 0x65, 0x31, 0xf9, 0xff, 0x93, 0x05,
+	0x32, 0x5b, 0xb8, 0xb2, 0xfd, 0x00, 0x7b, 0x7e, 0x1e, 0x7b, 0xbb, 0x6e, 0xcd, 0x23, 0xbb, 0xb5,
+	0xbe, 0x3a, 0xf6, 0x1a, 0x15, 0x9f, 0x6f, 0xd8, 0xce, 0x8b, 0x49, 0x2a, 0x5c, 0x53, 0x7e, 0xd0,
+	0xa8, 0xf8, 0x79, 0xde, 0x0c, 0x6d, 0x82, 0x11, 0xb5, 0x04, 0x0e, 0x82, 0xe3, 0x5b, 0x0f, 0x57,
+	0x56, 0xd6, 0xb6, 0xb6, 0x32, 0x87, 0xc8, 0x87, 0xdb, 0xb7, 0xd6, 0xef, 0x3e, 0xcc, 0xaf, 0x65,
+	0x2c, 0x38, 0x06, 0x86, 0xef, 0x6f, 0x3c, 0x28, 0x6c, 0x3d, 0xdc, 0xdc, 0xdc, 0xc8, 0x3f, 0x58,
+	0x5b, 0xcd, 0x1c, 0x26, 0x8f, 0x1e, 0xde, 0x7f, 0xfd, 0xfe, 0xc6, 0x1b, 0xf7, 0x0b, 0x6b, 0xf9,
+	0xfc, 0x46, 0x3e, 0x73, 0x44, 0x6c, 0x2d, 0x37, 0xc0, 0xd8, 0xc6, 0xf6, 0xad, 0x1d, 0x5c, 0xf3,
+	0xb7, 0x1a, 0x45, 0x12, 0xe2, 0x45, 0x5c, 0x87, 0x73, 0x00, 0xb8, 0xdb, 0x36, 0x79, 0x18, 0xec,
+	0xae, 0xf2, 0x03, 0xfc, 0xc9, 0x7a, 0x19, 0xce, 0x80, 0x01, 0x7e, 0x2c, 0xe0, 0x94, 0xf9, 0xf6,
+	0xb1, 0x9f, 0x3d, 0x58, 0x2f, 0x5f, 0xf9, 0xd7, 0xb7, 0xc0, 0x38, 0x5b, 0x80, 0xee, 0x54, 0xdc,
+	0xa2, 0x5d, 0xd9, 0xc2, 0x75, 0x32, 0x68, 0x70, 0x15, 0x0c, 0xdc, 0xc1, 0x3e, 0x5f, 0x16, 0x27,
+	0x17, 0xd9, 0xa9, 0xd6, 0xa2, 0x38, 0xf0, 0x5a, 0x5c, 0xab, 0xee, 0xfa, 0xfb, 0xd3, 0x23, 0xea,
+	0x12, 0x86, 0x46, 0x3f, 0xfe, 0x97, 0x7f, 0xff, 0xc9, 0xe1, 0x01, 0x78, 0x9c, 0x1e, 0x7f, 0xed,
+	0x5d, 0x86, 0xfb, 0x60, 0xfc, 0xae, 0xe3, 0xf9, 0xe1, 0xe5, 0xd8, 0x64, 0x6f, 0x2a, 0x7a, 0x49,
+	0xf4, 0xd0, 0xe5, 0x1f, 0xfd, 0xd7, 0x97, 0x73, 0xc7, 0xf9, 0x22, 0x4e, 0xff, 0x86, 0xec, 0x6f,
+	0x0a, 0x38, 0x0e, 0xc7, 0x38, 0xe0, 0x52, 0x73, 0x9d, 0x7c, 0x03, 0x8c, 0x05, 0x1d, 0x08, 0x36,
+	0xa2, 0x40, 0x00, 0xac, 0xaf, 0x4e, 0x1b, 0xd6, 0x5f, 0x74, 0x8a, 0xda, 0xcc, 0xc2, 0x49, 0xcd,
+	0xe6, 0xd2, 0x53, 0xa7, 0xfc, 0x5d, 0x68, 0x83, 0x21, 0xd2, 0xa7, 0x5b, 0x62, 0x61, 0x35, 0x75,
+	0x26, 0x13, 0x5a, 0x96, 0x3d, 0x74, 0x9e, 0x30, 0x07, 0xcd, 0xf5, 0x9b, 0x02, 0x41, 0x98, 0x11,
+	0x40, 0xc1, 0x5a, 0xfd, 0x14, 0x40, 0x02, 0x71, 0x57, 0x5d, 0x76, 0x4d, 0x40, 0x93, 0x91, 0x0b,
+	0xb8, 0x87, 0x9e, 0x27, 0x70, 0x63, 0xda, 0xb2, 0x4f, 0x51, 0x4f, 0xc2, 0x29, 0x81, 0x1a, 0x2a,
+	0x86, 0x1f, 0x80, 0x19, 0x02, 0x9e, 0xc7, 0x76, 0xe9, 0x89, 0x5d, 0xac, 0xe0, 0x2e, 0x59, 0x5c,
+	0xa0, 0x78, 0xcf, 0xc0, 0x79, 0x81, 0x57, 0x17, 0x86, 0x0b, 0x61, 0xe4, 0xb7, 0x41, 0xe6, 0x0e,
+	0x56, 0x7b, 0xad, 0x78, 0x2c, 0x3a, 0x53, 0x41, 0x67, 0x29, 0xc2, 0x29, 0x38, 0x6b, 0xe8, 0x11,
+	0x73, 0x5b, 0x1d, 0x4c, 0x6a, 0x63, 0xba, 0x49, 0xa7, 0x4a, 0x19, 0x62, 0x22, 0x04, 0x41, 0x6b,
+	0xa0, 0xeb, 0x3c, 0xfc, 0xe8, 0xd4, 0x4a, 0xd1, 0xce, 0x42, 0x14, 0x87, 0xb6, 0xc4, 0x26, 0xe1,
+	0x3f, 0xb4, 0xc0, 0x44, 0xb8, 0x47, 0xc4, 0x22, 0x3c, 0x11, 0x01, 0xb3, 0x5e, 0x9e, 0x1e, 0x8f,
+	0x78, 0x8c, 0x6e, 0x12, 0xf0, 0x3e, 0x70, 0x94, 0x98, 0xa4, 0xd8, 0x8b, 0xf0, 0x1b, 0xad, 0xb1,
+	0x97, 0x9e, 0xd2, 0x53, 0x4a, 0xd2, 0xf3, 0x1f, 0x5a, 0x60, 0x6a, 0xad, 0xa6, 0xb9, 0x32, 0x8e,
+	0x88, 0xc1, 0xc9, 0xe8, 0x25, 0x4a, 0xe0, 0x79, 0x74, 0xb5, 0x1d, 0x02, 0x4b, 0x98, 0x82, 0xc3,
+	0x4f, 0x2d, 0x90, 0x5d, 0x75, 0xbc, 0x54, 0x88, 0xbc, 0x4c, 0x89, 0x5c, 0x47, 0xd7, 0xda, 0x22,
+	0x52, 0x66, 0xe8, 0xf0, 0xc3, 0x88, 0x58, 0xb8, 0x5d, 0x71, 0xdf, 0x57, 0x63, 0x01, 0x2e, 0xca,
+	0xc7, 0xd9, 0xb4, 0x1c, 0x2d, 0xf3, 0x48, 0x20, 0x4f, 0xf5, 0x89, 0xa8, 0x55, 0x54, 0xd0, 0x56,
+	0x24, 0x2a, 0x66, 0x1f, 0xee, 0x96, 0x6d, 0x1f, 0x6b, 0x04, 0x1e, 0x50, 0x7a, 0xb3, 0x1a, 0x30,
+	0x7d, 0xce, 0xda, 0x18, 0x87, 0xe4, 0x22, 0xa5, 0x70, 0x1e, 0x25, 0xa0, 0x70, 0xc3, 0xca, 0xc1,
+	0x3f, 0xb2, 0xc0, 0x5c, 0x04, 0x8b, 0x7b, 0xd8, 0xc7, 0x75, 0x46, 0x63, 0x46, 0xa1, 0x41, 0x0b,
+	0xee, 0xb9, 0xe5, 0x16, 0x2c, 0x16, 0x29, 0x8b, 0x05, 0xf4, 0x4c, 0x2c, 0x8b, 0x2a, 0x31, 0x46,
+	0x69, 0x7c, 0xdf, 0x02, 0x53, 0x9a, 0x2f, 0x28, 0x96, 0xea, 0x8c, 0x71, 0x9d, 0x8c, 0x87, 0x56,
+	0x89, 0x07, 0xfa, 0x41, 0x1f, 0x33, 0xa7, 0xb9, 0xe3, 0x59, 0x98, 0x84, 0x05, 0xfc, 0x4b, 0x8b,
+	0xcd, 0x78, 0x9a, 0x37, 0xf8, 0x0e, 0x41, 0xa6, 0x31, 0xa5, 0xb9, 0x86, 0x55, 0x42, 0xf7, 0x09,
+	0xfa, 0x30, 0x18, 0xa4, 0x45, 0x6c, 0x6f, 0xa2, 0xf1, 0xc9, 0xc1, 0x85, 0x96, 0xbe, 0xe1, 0x6d,
+	0xe1, 0x4f, 0x2c, 0x30, 0x6f, 0x08, 0x12, 0x8a, 0xc8, 0x5c, 0x34, 0x1f, 0x4d, 0x27, 0x49, 0xb8,
+	0x5c, 0xa5, 0x94, 0x2e, 0xa2, 0xc4, 0x94, 0x88, 0xb7, 0x1e, 0x83, 0x41, 0x32, 0x52, 0xad, 0xd6,
+	0x82, 0x51, 0x75, 0x53, 0xe7, 0xa1, 0x67, 0xc9, 0x58, 0x0c, 0x04, 0xdb, 0x46, 0x0a, 0x3d, 0x06,
+	0x47, 0x05, 0xb4, 0x58, 0x00, 0xd6, 0x68, 0xd2, 0x11, 0x31, 0xf3, 0x87, 0x36, 0x98, 0x68, 0x96,
+	0x5a, 0x98, 0x84, 0x13, 0x21, 0x0b, 0x6c, 0xaa, 0xff, 0x16, 0x18, 0x5a, 0xa9, 0x63, 0xdb, 0xc7,
+	0xdc, 0x52, 0xa8, 0xb5, 0x66, 0x6d, 0x9a, 0x5a, 0x9b, 0x40, 0x61, 0x3e, 0xa4, 0xc7, 0x6f, 0x80,
+	0x21, 0x36, 0x77, 0x46, 0xb0, 0x32, 0x0d, 0xed, 0x33, 0xd4, 0xde, 0x1c, 0x9a, 0x89, 0x62, 0x27,
+	0x66, 0xc3, 0xdf, 0x05, 0xc3, 0x7c, 0x32, 0x6c, 0xc3, 0x32, 0x5f, 0xea, 0xd0, 0x6c, 0xa4, 0x65,
+	0x31, 0xbd, 0xbd, 0x01, 0x86, 0xf2, 0xb8, 0xe8, 0xba, 0x7e, 0x6a, 0x9c, 0xeb, 0xd4, 0x1c, 0x31,
+	0xbc, 0x8a, 0x2b, 0xd8, 0xef, 0x60, 0x30, 0x72, 0xd1, 0x86, 0xcb, 0xd4, 0x1c, 0x6c, 0x80, 0xe1,
+	0x55, 0xf7, 0xfd, 0x5a, 0xc5, 0xb5, 0xcb, 0xeb, 0x55, 0x7b, 0x07, 0x37, 0x97, 0x03, 0xfa, 0x51,
+	0x94, 0x35, 0x33, 0x80, 0x8d, 0x5d, 0x5c, 0xa7, 0x37, 0xab, 0x24, 0x13, 0x47, 0xd7, 0x29, 0xc6,
+	0x25, 0xf4, 0x5c, 0x24, 0x86, 0x43, 0x4c, 0x14, 0xca, 0xdc, 0x86, 0xb7, 0xf4, 0x94, 0x6c, 0x63,
+	0xbe, 0x4b, 0x9c, 0xfb, 0xb1, 0x05, 0x26, 0xef, 0x60, 0x5f, 0xc1, 0x60, 0x77, 0x01, 0x2d, 0x09,
+	0x28, 0x8f, 0xd1, 0x0d, 0x4a, 0xe0, 0x1a, 0xbc, 0xd2, 0x06, 0x81, 0x25, 0x8f, 0x21, 0x35, 0x68,
+	0xd6, 0xa3, 0xd8, 0x6b, 0x13, 0x9d, 0x7f, 0x95, 0x61, 0x3b, 0xdd, 0x87, 0xdb, 0x2c, 0xc7, 0x54,
+	0x2c, 0x79, 0xd1, 0x09, 0xb2, 0x5a, 0x07, 0x7d, 0x83, 0xc2, 0x9d, 0x83, 0x67, 0x93, 0xc0, 0xc1,
+	0x0f, 0xc0, 0xf8, 0x0a, 0xc9, 0x9e, 0x2b, 0xed, 0xf5, 0x50, 0x75, 0x30, 0xef, 0x61, 0xae, 0xad,
+	0x1e, 0x7e, 0x66, 0x81, 0xf1, 0x5b, 0x25, 0xdf, 0xd9, 0xb3, 0x7d, 0x4c, 0x51, 0xd8, 0x8c, 0xd8,
+	0x26, 0xf4, 0x0a, 0x85, 0x7e, 0x05, 0x7d, 0xb3, 0x1d, 0xd7, 0xb2, 0xc7, 0x0d, 0x8a, 0x47, 0x02,
+	0xed, 0x13, 0x0b, 0x8c, 0xe5, 0xf1, 0x1e, 0xae, 0xfb, 0xff, 0x2f, 0x44, 0xea, 0x14, 0x9a, 0x10,
+	0xf9, 0x3d, 0x30, 0xda, 0x9c, 0xc0, 0xf5, 0xf4, 0x77, 0x58, 0xfc, 0xcd, 0xf2, 0xde, 0x45, 0x2d,
+	0xef, 0x9d, 0x85, 0xd3, 0x91, 0xf0, 0x2c, 0xdf, 0x7d, 0xcc, 0xb6, 0x7b, 0xdc, 0x7a, 0x95, 0x1d,
+	0x57, 0xa8, 0x08, 0x63, 0x01, 0x82, 0x28, 0x46, 0xe7, 0xa9, 0xe5, 0x79, 0x78, 0x3a, 0xda, 0x72,
+	0xb5, 0x50, 0xe2, 0x76, 0x6a, 0xe0, 0x04, 0x1b, 0xb9, 0x30, 0x80, 0x6e, 0xd4, 0x38, 0x1d, 0xe5,
+	0x58, 0xa2, 0x86, 0x5a, 0x81, 0x91, 0xc1, 0xaa, 0xca, 0x83, 0x95, 0x2c, 0x3f, 0xbc, 0x11, 0x9b,
+	0x1f, 0x9a, 0x46, 0x2f, 0xc8, 0x0b, 0x27, 0x54, 0xbc, 0x76, 0x12, 0x90, 0xdb, 0x09, 0x12, 0x10,
+	0x04, 0xcf, 0x18, 0xf1, 0x45, 0xe2, 0xe1, 0xca, 0x9d, 0x66, 0xd7, 0x81, 0xa6, 0x65, 0x7e, 0x5c,
+	0xbf, 0x52, 0xf4, 0xd0, 0x12, 0x41, 0x1d, 0x51, 0xaf, 0x20, 0xa3, 0x57, 0x6b, 0x56, 0x06, 0xf3,
+	0x60, 0x38, 0x58, 0xf4, 0x89, 0x89, 0xd0, 0x18, 0x6b, 0x10, 0x68, 0x9e, 0x9a, 0x9b, 0x81, 0x27,
+	0xa3, 0xcc, 0xb1, 0x0c, 0xc0, 0x03, 0x99, 0x66, 0x27, 0xf8, 0x28, 0x9a, 0x7a, 0x31, 0x11, 0x71,
+	0x02, 0xcd, 0x4f, 0x1c, 0x46, 0x43, 0x67, 0xd6, 0x14, 0x78, 0x0a, 0x9e, 0x08, 0x01, 0xf3, 0x91,
+	0x7b, 0x08, 0x46, 0x82, 0x8e, 0x30, 0x6d, 0x85, 0x9a, 0xc0, 0xea, 0x30, 0x08, 0x45, 0x87, 0x05,
+	0xb7, 0xc8, 0xfa, 0x52, 0x00, 0x63, 0x2c, 0x9b, 0x91, 0x6f, 0xfa, 0xa3, 0x6e, 0x51, 0xa7, 0xa3,
+	0x1e, 0xa2, 0x33, 0x14, 0x62, 0x1a, 0x05, 0xa4, 0x95, 0x4b, 0x59, 0x12, 0xe6, 0x8c, 0xb7, 0x6c,
+	0x3d, 0x92, 0xb7, 0x6c, 0x54, 0xe3, 0xad, 0x18, 0x65, 0xbc, 0xcb, 0x60, 0x8c, 0x7d, 0x5b, 0x3b,
+	0xe3, 0xfd, 0x2c, 0x85, 0x38, 0x3d, 0x1d, 0x03, 0x41, 0xc8, 0xbf, 0x0d, 0xc6, 0x58, 0x4a, 0x62,
+	0xe2, 0x6f, 0x9a, 0x08, 0x78, 0x17, 0x72, 0x71, 0x5d, 0x28, 0xb0, 0x30, 0x52, 0xd4, 0x10, 0x2d,
+	0xc3, 0x48, 0xae, 0x8d, 0xe6, 0xc2, 0x21, 0xa3, 0xa0, 0x40, 0x1f, 0x64, 0xe9, 0xd0, 0x57, 0xf4,
+	0x4b, 0x0b, 0x23, 0xd0, 0x19, 0xe9, 0xd4, 0x36, 0xb2, 0xa5, 0x7e, 0x82, 0xa5, 0xde, 0x99, 0xc0,
+	0x06, 0x80, 0x2c, 0xa2, 0xe4, 0xb6, 0x30, 0xfe, 0x0e, 0xc5, 0x38, 0x8e, 0x0b, 0x6c, 0x66, 0x41,
+	0x73, 0xd1, 0x60, 0x52, 0xb6, 0xf5, 0x21, 0x80, 0x2c, 0x20, 0xd2, 0x80, 0x5d, 0xa2, 0xb0, 0x17,
+	0xd0, 0xd9, 0x58, 0xd8, 0xa5, 0xaa, 0x5b, 0x76, 0xb6, 0xf7, 0x09, 0xfa, 0x3e, 0x80, 0x2c, 0x50,
+	0xd2, 0x40, 0xe7, 0x29, 0x50, 0xae, 0x05, 0x3a, 0xcf, 0x6e, 0xbf, 0x6f, 0x81, 0x59, 0xc5, 0xcd,
+	0xa1, 0x4b, 0x24, 0xa3, 0xab, 0xcf, 0x46, 0xba, 0x3a, 0xd4, 0x5a, 0xff, 0x32, 0xea, 0xf7, 0x59,
+	0xf0, 0x07, 0x16, 0x98, 0x54, 0x7c, 0x1e, 0x94, 0xc1, 0xd6, 0x97, 0x5c, 0xad, 0x86, 0x01, 0xcd,
+	0x9b, 0x91, 0x25, 0xff, 0x7f, 0x66, 0x81, 0x49, 0x25, 0x00, 0x52, 0xe1, 0xa0, 0xed, 0x63, 0x8d,
+	0x1c, 0xa4, 0x60, 0xf8, 0xa1, 0x05, 0x26, 0x95, 0x68, 0x48, 0x85, 0xca, 0x25, 0xb6, 0xcb, 0xcf,
+	0x25, 0xa0, 0xc2, 0x23, 0xe3, 0x3d, 0x30, 0x15, 0x0a, 0x0c, 0x71, 0x07, 0x68, 0x8c, 0x89, 0xd3,
+	0x86, 0x98, 0x10, 0x0d, 0xf5, 0x29, 0x47, 0xb9, 0x7f, 0x84, 0x75, 0xb1, 0x9c, 0x48, 0x2d, 0x61,
+	0xec, 0x75, 0xa4, 0xb1, 0xbf, 0x3c, 0x71, 0x6b, 0xee, 0x46, 0x15, 0x24, 0xc9, 0xf3, 0xfb, 0x62,
+	0x29, 0xe8, 0x1e, 0x53, 0x3b, 0x5f, 0x8a, 0xc2, 0x94, 0x3c, 0xbd, 0x27, 0xd6, 0x87, 0xee, 0xa1,
+	0x9f, 0x63, 0x87, 0x4a, 0xb9, 0x78, 0x68, 0xee, 0xd9, 0x4f, 0x2d, 0x70, 0x4a, 0x71, 0xad, 0x8f,
+	0xeb, 0x55, 0xa7, 0x66, 0x4b, 0xdf, 0x7a, 0x79, 0x95, 0x3a, 0x17, 0xe9, 0x55, 0xad, 0x0d, 0xba,
+	0x4c, 0x39, 0x3c, 0x07, 0x2f, 0x44, 0xe6, 0x71, 0x82, 0x90, 0xd4, 0xce, 0x83, 0x3f, 0xb5, 0x40,
+	0x56, 0xf1, 0xb8, 0x54, 0x0a, 0x9f, 0xd1, 0x47, 0x42, 0x03, 0x6d, 0x79, 0x1a, 0x7c, 0x29, 0x31,
+	0x19, 0x29, 0x26, 0xbe, 0xb0, 0x40, 0x56, 0x09, 0x8a, 0xd4, 0x68, 0x2d, 0x53, 0x5a, 0x2f, 0xa3,
+	0x17, 0xda, 0xa5, 0x25, 0x85, 0xcd, 0xe7, 0x16, 0xc8, 0x2a, 0x71, 0x93, 0x1a, 0xbb, 0x9b, 0x94,
+	0xdd, 0x8b, 0xb9, 0xf6, 0xd9, 0xf1, 0xc8, 0x2a, 0x02, 0xc8, 0x02, 0x4b, 0xbe, 0xa8, 0x37, 0x4e,
+	0x17, 0xd3, 0x6a, 0x60, 0xc9, 0x6d, 0x50, 0x36, 0x7c, 0x01, 0x25, 0x64, 0x01, 0xb0, 0x24, 0x4e,
+	0xd0, 0x58, 0x7d, 0x68, 0xd2, 0x18, 0xb4, 0xca, 0xae, 0xd0, 0x54, 0xd8, 0xb4, 0x14, 0x01, 0xef,
+	0x80, 0x21, 0x16, 0x00, 0x9d, 0x82, 0xf0, 0xab, 0x25, 0x74, 0xca, 0x00, 0x22, 0xf9, 0x73, 0x47,
+	0x9c, 0x5c, 0x75, 0x8a, 0x75, 0x8e, 0x62, 0x9d, 0xc9, 0x19, 0xb1, 0xb8, 0x77, 0xb6, 0xc1, 0x38,
+	0xf3, 0xce, 0xa3, 0x44, 0xee, 0x99, 0x51, 0xdd, 0xa3, 0x34, 0x12, 0xe7, 0x92, 0x10, 0x0a, 0xcc,
+	0xa6, 0x70, 0x03, 0xee, 0x80, 0x61, 0xe6, 0x21, 0xde, 0x04, 0x1a, 0x35, 0x1c, 0x2d, 0x0f, 0x13,
+	0x4f, 0xea, 0xe6, 0x25, 0x2f, 0xd5, 0xc0, 0x30, 0xf3, 0x52, 0xe7, 0x40, 0x7c, 0xe2, 0x44, 0x67,
+	0x8c, 0x40, 0x92, 0xa7, 0xde, 0x05, 0xc3, 0xcc, 0x53, 0x9d, 0xe3, 0xf1, 0x94, 0x34, 0x17, 0x83,
+	0xc7, 0xbd, 0x55, 0xa0, 0x97, 0xc4, 0x64, 0xe0, 0x9b, 0x9a, 0x15, 0xa3, 0xaf, 0x4e, 0x86, 0x7c,
+	0xd5, 0x6c, 0x82, 0xa6, 0xc2, 0x27, 0xda, 0x5c, 0x1d, 0x03, 0xbf, 0x03, 0x06, 0xb9, 0x9b, 0x48,
+	0x6d, 0x68, 0x90, 0xc9, 0x18, 0x7b, 0xc2, 0xb7, 0xba, 0x68, 0x32, 0x64, 0x57, 0xf2, 0xcf, 0x0e,
+	0x18, 0xe4, 0xfe, 0xe9, 0x08, 0x41, 0x4b, 0xdf, 0x55, 0x04, 0xc9, 0x31, 0x65, 0x30, 0xc8, 0x1d,
+	0xd3, 0x11, 0x10, 0xdf, 0xcf, 0xe5, 0x4c, 0x40, 0xdc, 0x23, 0x3f, 0xb3, 0x00, 0x62, 0x2e, 0x89,
+	0x13, 0xfd, 0x18, 0x7d, 0x94, 0x53, 0x7d, 0x14, 0x67, 0x43, 0x84, 0x65, 0xf3, 0x92, 0x28, 0x46,
+	0x94, 0x04, 0xff, 0xc6, 0x02, 0x88, 0x79, 0x32, 0x96, 0x57, 0x52, 0xd5, 0x92, 0x71, 0x98, 0x9e,
+	0xa7, 0xa4, 0x96, 0x50, 0x2e, 0x01, 0x29, 0x29, 0x0a, 0xfe, 0xde, 0x02, 0x88, 0x85, 0x41, 0x6f,
+	0xe9, 0x89, 0x7b, 0xd7, 0xcb, 0xc9, 0xe9, 0x49, 0x21, 0xf4, 0xb7, 0x16, 0x40, 0x2c, 0x86, 0x7a,
+	0xcb, 0xf2, 0x45, 0xca, 0xf2, 0x6a, 0xae, 0x1d, 0x96, 0x3c, 0xfe, 0x9e, 0xd0, 0x1b, 0x01, 0x12,
+	0x3a, 0x21, 0x49, 0x98, 0x31, 0xe4, 0x4e, 0x85, 0x42, 0x2e, 0xd4, 0x0e, 0x4d, 0x52, 0x32, 0x19,
+	0x38, 0x12, 0x90, 0x61, 0x6a, 0x32, 0x57, 0xec, 0xc8, 0x34, 0xa4, 0x38, 0x65, 0x9a, 0xb1, 0xcf,
+	0xda, 0x39, 0x0f, 0x83, 0x91, 0x62, 0x64, 0x4f, 0x6c, 0xbf, 0xd2, 0x01, 0xd4, 0xb2, 0x7f, 0x05,
+	0x50, 0xf2, 0xba, 0x27, 0xf6, 0x5a, 0xe9, 0xe0, 0xf2, 0x65, 0x2b, 0x67, 0xc0, 0xe5, 0x7e, 0xac,
+	0x89, 0x93, 0x15, 0x5d, 0x3b, 0x97, 0xf4, 0x64, 0x45, 0x6f, 0xa9, 0x67, 0x4c, 0x81, 0xa6, 0xaf,
+	0x21, 0x92, 0xec, 0x08, 0xbc, 0x78, 0x95, 0x60, 0xf2, 0x1c, 0x4a, 0x80, 0x29, 0x67, 0x2a, 0x3c,
+	0x89, 0x4e, 0x0f, 0x56, 0xcb, 0xaa, 0x42, 0xb0, 0xca, 0x99, 0x0a, 0x4f, 0x92, 0xd3, 0x43, 0xd7,
+	0xf2, 0xac, 0x30, 0x3a, 0xf7, 0xef, 0x8f, 0x2c, 0x30, 0xcf, 0x1c, 0x1c, 0xa3, 0x92, 0x34, 0x7a,
+	0xfa, 0x82, 0xea, 0xe9, 0x18, 0x13, 0xfa, 0xe9, 0x8a, 0x2e, 0xdd, 0x84, 0x7f, 0x61, 0x81, 0x79,
+	0xe6, 0xfd, 0x38, 0x32, 0x09, 0xa5, 0x9d, 0xc9, 0x4f, 0x5b, 0x74, 0x26, 0x52, 0x64, 0x7c, 0x1e,
+	0x08, 0x08, 0x7a, 0xc9, 0x49, 0x3b, 0x7d, 0x31, 0x72, 0x92, 0xc2, 0xe6, 0x67, 0x16, 0x98, 0x67,
+	0x71, 0xd3, 0x4b, 0x6a, 0xda, 0x69, 0x8c, 0x99, 0x1a, 0x8f, 0xa9, 0x9f, 0x06, 0xb9, 0x47, 0x9c,
+	0x1a, 0x36, 0x69, 0xee, 0x11, 0x67, 0x43, 0x5c, 0x43, 0x35, 0xf5, 0x42, 0x66, 0xb1, 0xae, 0x94,
+	0x7a, 0xc4, 0xd2, 0x4a, 0xaa, 0xe6, 0x4d, 0x9e, 0x7a, 0x98, 0xdf, 0x99, 0x8d, 0x4e, 0x3d, 0x7a,
+	0x4b, 0x4f, 0x4b, 0x3d, 0x5a, 0xd3, 0x8b, 0x4c, 0x3d, 0x7a, 0xcb, 0x52, 0x4b, 0x3d, 0x12, 0xb0,
+	0xe4, 0xe1, 0x77, 0x97, 0xaa, 0x5f, 0xe8, 0x5d, 0xb0, 0x17, 0xad, 0x7e, 0x61, 0x65, 0x42, 0x52,
+	0x01, 0x67, 0xcc, 0x37, 0xc1, 0x1e, 0x7c, 0x13, 0xf4, 0x0b, 0x09, 0xb2, 0x62, 0x2c, 0x6b, 0xd2,
+	0x32, 0x8b, 0xa9, 0xb7, 0x39, 0xf1, 0x2b, 0x66, 0x3d, 0x5c, 0xd9, 0x2e, 0xf8, 0xc4, 0xda, 0x23,
+	0x2a, 0x58, 0x50, 0xa4, 0xdc, 0x61, 0xa9, 0x96, 0xa6, 0xf5, 0xd6, 0x2f, 0xed, 0xdc, 0x5d, 0x5c,
+	0x23, 0xf5, 0xb8, 0x14, 0xcb, 0x29, 0xc2, 0xc7, 0xfc, 0x60, 0x43, 0x11, 0x73, 0x87, 0xee, 0x72,
+	0x22, 0x05, 0xdf, 0xfa, 0x80, 0xa8, 0xc6, 0x69, 0x23, 0xe8, 0x81, 0xe1, 0x2d, 0xa7, 0xda, 0xa8,
+	0x88, 0x1b, 0x29, 0x38, 0x1b, 0x8c, 0x84, 0xfc, 0x38, 0x8f, 0xdf, 0x6b, 0x60, 0xcf, 0x37, 0xdd,
+	0xc2, 0x6b, 0x2a, 0x3b, 0x75, 0x90, 0xb8, 0xa5, 0x02, 0xb1, 0x74, 0xc3, 0xca, 0x5d, 0xf9, 0xe7,
+	0xef, 0x00, 0xc8, 0xf4, 0xc5, 0x77, 0xdd, 0x52, 0x53, 0x5d, 0xfd, 0x56, 0x94, 0x38, 0xb9, 0xa5,
+	0xb2, 0x36, 0x24, 0x54, 0x3e, 0x41, 0xa9, 0x8c, 0xc2, 0xe1, 0xa6, 0x82, 0xab, 0x64, 0x57, 0x60,
+	0x99, 0x86, 0x11, 0x7b, 0xb1, 0xb5, 0xf5, 0x6d, 0x95, 0xfc, 0x02, 0x2c, 0xba, 0xc0, 0xf5, 0x74,
+	0xec, 0x05, 0xd8, 0xf0, 0xad, 0x2d, 0x35, 0xcf, 0x7f, 0x5b, 0x00, 0xee, 0x74, 0xac, 0x82, 0xbe,
+	0x18, 0xa5, 0x82, 0x96, 0x2e, 0xab, 0x18, 0x4c, 0xa0, 0x85, 0xfe, 0x81, 0x95, 0x8a, 0x18, 0xfa,
+	0xa5, 0x18, 0x31, 0xf4, 0x69, 0x38, 0xa7, 0x82, 0x87, 0x85, 0xc9, 0xdf, 0x4b, 0x57, 0x12, 0xcd,
+	0xef, 0xae, 0xe0, 0x79, 0x15, 0xd5, 0x2c, 0x8c, 0xb6, 0x3b, 0x13, 0x46, 0xe7, 0x74, 0x51, 0x6a,
+	0x44, 0xef, 0xd8, 0x55, 0xe7, 0x07, 0x5d, 0xc8, 0xa3, 0x5f, 0xd6, 0x64, 0x22, 0x8a, 0xd2, 0xd1,
+	0x84, 0xf9, 0xb5, 0x48, 0xfa, 0x37, 0x5a, 0x24, 0xfd, 0xb1, 0xd5, 0xb1, 0x4a, 0xfa, 0xb5, 0x58,
+	0x15, 0x4c, 0xb2, 0xe0, 0x60, 0x9a, 0x98, 0x3f, 0xee, 0x8d, 0x56, 0x3a, 0x42, 0xfc, 0x1a, 0x4f,
+	0xe4, 0x37, 0x48, 0x31, 0xfd, 0x79, 0x1a, 0x72, 0xe5, 0x07, 0x09, 0xd4, 0x42, 0x97, 0xe0, 0x62,
+	0xc2, 0xe1, 0x11, 0xc2, 0x82, 0x4f, 0xba, 0x11, 0x73, 0x7f, 0x2b, 0x5e, 0xcc, 0x2d, 0xdd, 0x79,
+	0xc5, 0xb0, 0xe1, 0x92, 0xee, 0xbf, 0xee, 0xb5, 0x7a, 0x9a, 0xa7, 0x79, 0xa8, 0xcd, 0x11, 0x22,
+	0xfe, 0x2b, 0x75, 0xa8, 0xa1, 0x7e, 0x2e, 0x42, 0x43, 0x2d, 0xdd, 0xf2, 0x32, 0x02, 0x62, 0xc5,
+	0x78, 0x3d, 0xa9, 0x92, 0x5a, 0xdb, 0xde, 0x2a, 0x76, 0xd8, 0xda, 0xb0, 0xd9, 0xa6, 0x9e, 0x5a,
+	0x3b, 0x8a, 0x52, 0x6c, 0x32, 0x1d, 0x79, 0xfb, 0xaa, 0x6a, 0x71, 0x2e, 0x31, 0x6f, 0x66, 0x2a,
+	0x26, 0xd1, 0x42, 0x27, 0xda, 0x6a, 0xa1, 0x0c, 0x44, 0x31, 0xf6, 0xc5, 0xdc, 0xf8, 0xb8, 0x03,
+	0x85, 0x75, 0x12, 0xfe, 0x5c, 0x67, 0xfd, 0xb8, 0x03, 0x9d, 0x35, 0x37, 0x9f, 0x8b, 0x33, 0xcf,
+	0x37, 0x1a, 0x4f, 0xbb, 0x53, 0x5b, 0x6b, 0x1b, 0xb1, 0x08, 0x24, 0xb3, 0xe6, 0xfa, 0xb3, 0xb4,
+	0x34, 0xd7, 0xaf, 0x52, 0x1a, 0x37, 0xe0, 0x37, 0xdb, 0xa6, 0x21, 0x94, 0xd7, 0x4f, 0xbb, 0x56,
+	0x5e, 0xf3, 0x69, 0x00, 0xb6, 0x3f, 0x14, 0xb0, 0xd2, 0xb1, 0xfe, 0xfa, 0x0a, 0x05, 0xfd, 0x06,
+	0xcc, 0x25, 0x07, 0x85, 0xdf, 0x4b, 0x43, 0x85, 0xad, 0xed, 0x6d, 0x93, 0xf7, 0xf6, 0xc7, 0xa9,
+	0x68, 0xb1, 0xd7, 0x29, 0x81, 0x15, 0xf4, 0x3b, 0xed, 0xbb, 0x3c, 0xac, 0xc8, 0xfe, 0xd3, 0x14,
+	0x14, 0xd9, 0x5d, 0xd3, 0x69, 0xea, 0xb2, 0x8b, 0x6d, 0xe9, 0xb2, 0xaf, 0x69, 0x09, 0xb7, 0xa4,
+	0xec, 0x8d, 0x20, 0xc1, 0x12, 0xed, 0x52, 0x47, 0xea, 0x6c, 0xbe, 0xe1, 0x85, 0xcf, 0xc6, 0xd9,
+	0x6f, 0x6a, 0xb4, 0xfd, 0x14, 0x34, 0xda, 0xfc, 0xe4, 0x0e, 0x25, 0x83, 0x64, 0x57, 0x0c, 0x6d,
+	0x2b, 0xb5, 0x5f, 0x8d, 0xcd, 0x51, 0xe3, 0xc7, 0x33, 0xc8, 0x4d, 0xbb, 0xd0, 0x6b, 0xdf, 0x4d,
+	0x90, 0x81, 0x2d, 0xc0, 0x73, 0x2d, 0x58, 0x34, 0x25, 0x9d, 0xdd, 0xa9, 0xb6, 0x9f, 0x37, 0xa9,
+	0xb6, 0x0d, 0x99, 0x01, 0xd7, 0x6e, 0xbf, 0xd9, 0xae, 0x76, 0x5b, 0xd3, 0xfa, 0xeb, 0x46, 0x59,
+	0xce, 0xb1, 0xdf, 0xb5, 0x82, 0xfb, 0x05, 0xa3, 0x82, 0x5b, 0x3a, 0x28, 0x52, 0xe0, 0xf9, 0x58,
+	0xbe, 0xdd, 0xbe, 0x8e, 0x7b, 0x21, 0x2e, 0x68, 0x14, 0x35, 0xf7, 0x1f, 0xf4, 0x44, 0xf1, 0x1b,
+	0xf1, 0x0a, 0x34, 0xc1, 0x0f, 0xe9, 0x7e, 0x9f, 0xa6, 0xa9, 0xfb, 0x8d, 0xd8, 0xb6, 0xe8, 0x90,
+	0xea, 0xbb, 0x56, 0x29, 0xca, 0x7f, 0xb5, 0xb3, 0xea, 0x18, 0x74, 0xe9, 0x14, 0xf8, 0xa3, 0x34,
+	0x45, 0xc0, 0x7c, 0x1d, 0xce, 0x25, 0xe2, 0xc0, 0x53, 0xaf, 0x4f, 0x7a, 0x2b, 0x05, 0x36, 0xc4,
+	0x61, 0x84, 0x20, 0xf8, 0xd3, 0x9e, 0x08, 0x82, 0xf9, 0x90, 0xa0, 0xf3, 0xad, 0xf0, 0xa5, 0xc0,
+	0xf8, 0x71, 0x4f, 0x64, 0xc1, 0x86, 0x0d, 0x5a, 0x12, 0x71, 0xf0, 0x9f, 0xf4, 0x44, 0x1c, 0xcc,
+	0xdf, 0x51, 0xcc, 0x25, 0x26, 0xc4, 0x23, 0xe6, 0xfd, 0x1e, 0x48, 0x84, 0x9f, 0x89, 0x9e, 0x06,
+	0x55, 0xa1, 0xf0, 0x07, 0xe9, 0x09, 0x85, 0x23, 0x5e, 0x4d, 0xd7, 0xf0, 0xa4, 0x88, 0xf8, 0x28,
+	0x3d, 0xb9, 0xf0, 0x35, 0x76, 0x18, 0x88, 0x2e, 0xb4, 0x46, 0x96, 0x22, 0xe0, 0xc3, 0xf4, 0x44,
+	0xc3, 0x5c, 0xb0, 0x9b, 0x4b, 0x42, 0x80, 0x7b, 0xfc, 0xcf, 0x7a, 0x23, 0x1d, 0x7e, 0x81, 0x32,
+	0xb9, 0x0c, 0x97, 0x62, 0x52, 0x8a, 0x48, 0x01, 0xf1, 0xcf, 0x7b, 0x26, 0x20, 0xbe, 0x45, 0x29,
+	0xbd, 0x84, 0xae, 0xb7, 0x49, 0x49, 0x8a, 0x95, 0xbf, 0xeb, 0x99, 0x8c, 0xf8, 0x35, 0x4a, 0x6e,
+	0x19, 0xbd, 0xd2, 0x19, 0x39, 0x29, 0x9c, 0x7e, 0xd1, 0x33, 0x31, 0xf1, 0x1a, 0xe5, 0x78, 0x33,
+	0xd7, 0x29, 0xc7, 0x40, 0xf4, 0x94, 0x96, 0xa4, 0xf8, 0x54, 0xf4, 0x6d, 0x4e, 0x20, 0x5b, 0x75,
+	0xba, 0x15, 0x16, 0x6b, 0x7a, 0x45, 0x15, 0x40, 0x8a, 0x8c, 0xdd, 0x6e, 0xe5, 0xc5, 0xda, 0x2b,
+	0x46, 0x91, 0x50, 0x92, 0x9f, 0xab, 0xdd, 0x8a, 0x8c, 0xb5, 0xd7, 0x8a, 0xa2, 0x11, 0xb9, 0xd7,
+	0x2a, 0x29, 0x4a, 0x8d, 0xf9, 0x91, 0x1d, 0xcc, 0xaa, 0xc8, 0x92, 0xe0, 0xb8, 0xda, 0xbd, 0xe0,
+	0x58, 0x7b, 0xf7, 0x36, 0x0c, 0x22, 0x79, 0xcf, 0xef, 0x5e, 0x76, 0xcc, 0xa7, 0x5e, 0x74, 0xae,
+	0x05, 0x9c, 0xe4, 0xc1, 0xf7, 0xba, 0x17, 0x1f, 0xf3, 0xbc, 0x38, 0xd7, 0x12, 0x95, 0x7b, 0x11,
+	0xa7, 0x24, 0x41, 0x9e, 0x8b, 0x3e, 0x10, 0x16, 0x42, 0xe4, 0xed, 0xee, 0x84, 0xc8, 0x9a, 0xd8,
+	0x4f, 0xb1, 0x2e, 0xf9, 0xad, 0xda, 0x9d, 0x1c, 0xd9, 0xb0, 0xab, 0x30, 0x8a, 0x92, 0xdf, 0xe9,
+	0x4e, 0x94, 0xac, 0xbd, 0xd2, 0x13, 0x09, 0xc7, 0x3d, 0xf5, 0xc5, 0xc1, 0x49, 0x93, 0x2f, 0x47,
+	0x5f, 0x79, 0xc4, 0x09, 0x94, 0x7f, 0x79, 0x40, 0x02, 0x65, 0xed, 0xa5, 0x9f, 0x96, 0xd4, 0xa4,
+	0xe8, 0xf8, 0xf5, 0x01, 0xc9, 0x94, 0xb5, 0x57, 0x80, 0x92, 0x92, 0x94, 0x42, 0xeb, 0x57, 0x07,
+	0x24, 0x56, 0xd6, 0x5e, 0x08, 0x4a, 0xcc, 0x35, 0x90, 0xba, 0xa6, 0x2d, 0x59, 0x9e, 0x8d, 0x96,
+	0x7e, 0x70, 0xe1, 0x72, 0x23, 0x5d, 0xe1, 0xb2, 0x90, 0x1d, 0xcd, 0x44, 0x81, 0x29, 0x52, 0xd7,
+	0x54, 0xe5, 0xcb, 0x86, 0x3d, 0x89, 0x49, 0xc4, 0xbc, 0x9f, 0xae, 0x88, 0x99, 0x2f, 0x85, 0xb9,
+	0x58, 0x74, 0xee, 0x5f, 0xbf, 0x27, 0x52, 0x66, 0x43, 0xa6, 0x16, 0x68, 0x5a, 0x9f, 0xa6, 0x2f,
+	0x68, 0x36, 0xe4, 0x6e, 0x11, 0xe2, 0xd5, 0x8f, 0xad, 0xf4, 0x75, 0xcd, 0x86, 0x74, 0xce, 0x2c,
+	0x53, 0xfd, 0x28, 0x7d, 0x75, 0xb3, 0x21, 0xc1, 0x33, 0xe8, 0x51, 0xff, 0xfc, 0xa0, 0x34, 0xce,
+	0x86, 0x63, 0xa3, 0x08, 0xa5, 0xf3, 0x5f, 0x1d, 0x88, 0xd2, 0xd9, 0x70, 0x8c, 0x14, 0xab, 0x77,
+	0xfe, 0xc5, 0x81, 0xe8, 0x9d, 0x0d, 0xc7, 0x4a, 0x49, 0x54, 0xcf, 0x5f, 0x1c, 0x88, 0xea, 0xd9,
+	0x70, 0xcc, 0xd4, 0x52, 0xfb, 0xfc, 0xf3, 0x83, 0xd3, 0x3e, 0x5f, 0x8a, 0x56, 0x01, 0xc5, 0x28,
+	0xa0, 0x7f, 0x79, 0x40, 0x0a, 0x68, 0x43, 0x6e, 0x93, 0x4c, 0x07, 0xfd, 0xeb, 0x03, 0xd2, 0x41,
+	0x1b, 0x72, 0x9b, 0xb6, 0xd4, 0xd0, 0xbf, 0x3a, 0x20, 0x35, 0xb4, 0x21, 0xb7, 0x49, 0xae, 0x89,
+	0xbe, 0x0d, 0x32, 0x5b, 0x7e, 0x1d, 0xdb, 0xd5, 0x4d, 0xbb, 0xf4, 0x2e, 0xf6, 0xbd, 0x8d, 0x06,
+	0x49, 0xf2, 0xe5, 0x2b, 0x35, 0x56, 0xb0, 0xd1, 0xf0, 0x8d, 0x24, 0x0e, 0x2d, 0x58, 0x70, 0x0d,
+	0x64, 0xf2, 0xb8, 0x84, 0x9d, 0x3d, 0xcc, 0x0d, 0xad, 0xd7, 0x8c, 0xb1, 0x7c, 0x22, 0xc2, 0xfe,
+	0x7a, 0x0d, 0x1d, 0xba, 0x64, 0xc1, 0xd7, 0xc1, 0x38, 0x37, 0xb3, 0xf2, 0xc4, 0xae, 0xed, 0xe0,
+	0xb5, 0x3d, 0x4c, 0x32, 0x22, 0x93, 0xa5, 0xac, 0x62, 0x49, 0x6a, 0x42, 0x8d, 0xe1, 0xee, 0x7e,
+	0xd8, 0xc7, 0x90, 0x37, 0x69, 0x3f, 0xef, 0xf3, 0x76, 0xfb, 0x3f, 0xef, 0x63, 0x58, 0x0f, 0x22,
+	0x7e, 0x21, 0xe7, 0x9d, 0xee, 0x7e, 0xe4, 0x87, 0xef, 0xbf, 0xa6, 0x5b, 0x02, 0x91, 0x8e, 0xd8,
+	0x9d, 0xfe, 0xd4, 0x8f, 0xf6, 0x3e, 0xb0, 0xb1, 0x3b, 0xb8, 0xeb, 0x1f, 0xfc, 0x31, 0x1c, 0xad,
+	0xab, 0x3f, 0xfb, 0x93, 0x4f, 0xaa, 0xf4, 0xd7, 0x7e, 0x3c, 0xd9, 0xa4, 0x30, 0xf0, 0xe0, 0xef,
+	0xb7, 0xad, 0xf7, 0x17, 0xef, 0x13, 0x9d, 0x8d, 0x31, 0xde, 0x54, 0xfd, 0xaf, 0x80, 0x81, 0xe0,
+	0x27, 0xc7, 0x61, 0xf0, 0x3f, 0x2f, 0xb4, 0x1f, 0x23, 0x9f, 0x36, 0x17, 0xa1, 0x43, 0xbf, 0xad,
+	0xaf, 0x0e, 0xf8, 0xa9, 0xbc, 0x3a, 0xa0, 0x9d, 0x6d, 0x44, 0xbf, 0x3a, 0x60, 0xf3, 0x77, 0x07,
+	0x96, 0x1d, 0x30, 0xee, 0xd6, 0x77, 0xe8, 0x14, 0x52, 0x72, 0xeb, 0x65, 0x6e, 0x74, 0x79, 0x88,
+	0xbd, 0x06, 0xb0, 0x49, 0xff, 0xc5, 0xdb, 0x5b, 0xcf, 0xed, 0x38, 0xfe, 0x93, 0x46, 0x71, 0xb1,
+	0xe4, 0x56, 0x97, 0x44, 0x4d, 0xfe, 0x1f, 0x0d, 0x2f, 0xf2, 0xff, 0x02, 0xb7, 0xe3, 0xf2, 0x07,
+	0xff, 0x78, 0x78, 0x72, 0x43, 0x18, 0x7b, 0x24, 0xbf, 0x52, 0xb0, 0x79, 0x74, 0xf3, 0xd8, 0x66,
+	0xdf, 0xe6, 0xf1, 0xcd, 0xfe, 0xcd, 0x81, 0x4d, 0x50, 0xec, 0xa3, 0x0d, 0xaf, 0xfe, 0x5f, 0x00,
+	0x00, 0x00, 0xff, 0xff, 0x71, 0x3a, 0x6f, 0x02, 0x28, 0x71, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2151,26 +2450,22 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// VolthaServiceClient is the client API for VolthaService service.
+// VolthaGlobalServiceClient is the client API for VolthaGlobalService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type VolthaServiceClient interface {
-	// Get more information on a given physical device
-	UpdateLogLevel(ctx context.Context, in *Logging, opts ...grpc.CallOption) (*empty.Empty, error)
-	// Get the membership group of a Voltha Core
-	GetMembership(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Membership, error)
-	// Set the membership group of a Voltha Core
-	UpdateMembership(ctx context.Context, in *Membership, opts ...grpc.CallOption) (*empty.Empty, error)
+type VolthaGlobalServiceClient interface {
 	// Get high level information on the Voltha cluster
 	GetVoltha(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Voltha, error)
-	// List all Voltha cluster core instances
-	ListCoreInstances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*CoreInstances, error)
+	// List all Voltha cluster instances
+	ListVolthaInstances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*VolthaInstances, error)
 	// Get details on a Voltha cluster instance
-	GetCoreInstance(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*CoreInstance, error)
+	GetVolthaInstance(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*VolthaInstance, error)
 	// List all active adapters (plugins) in the Voltha cluster
 	ListAdapters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Adapters, error)
 	// List all logical devices managed by the Voltha cluster
 	ListLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error)
+	// List all reachable logical devices managed by the Voltha cluster
+	ListReachableLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error)
 	// Get additional information on a given logical device
 	GetLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalDevice, error)
 	// List ports of a logical device
@@ -2187,18 +2482,14 @@ type VolthaServiceClient interface {
 	UpdateLogicalDeviceFlowTable(ctx context.Context, in *openflow_13.FlowTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Update meter table for logical device
 	UpdateLogicalDeviceMeterTable(ctx context.Context, in *openflow_13.MeterModUpdate, opts ...grpc.CallOption) (*empty.Empty, error)
-	// Get all meter stats for logical device
-	GetMeterStatsOfLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.MeterStatsReply, error)
+	// List all meters of a logical device
+	ListLogicalDeviceMeters(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Meters, error)
 	// List all flow groups of a logical device
 	ListLogicalDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error)
 	// Update group table for device
 	UpdateLogicalDeviceFlowGroupTable(ctx context.Context, in *openflow_13.FlowGroupTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error)
 	// List all physical devices controlled by the Voltha cluster
 	ListDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Devices, error)
-	// List all physical devices IDs controlled by the Voltha cluster
-	ListDeviceIds(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*common.IDs, error)
-	// Request to a voltha Core to reconcile a set of devices based on their IDs
-	ReconcileDevices(ctx context.Context, in *common.IDs, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get more information on a given physical device
 	GetDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Device, error)
 	// Pre-provision a new physical device
@@ -2258,11 +2549,6 @@ type VolthaServiceClient interface {
 	GetDeviceType(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceType, error)
 	// List all device sharding groups
 	ListDeviceGroups(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceGroups, error)
-	// Stream control packets to the dataplane
-	StreamPacketsOut(ctx context.Context, opts ...grpc.CallOption) (VolthaService_StreamPacketsOutClient, error)
-	// Receive control packet stream
-	ReceivePacketsIn(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaService_ReceivePacketsInClient, error)
-	ReceiveChangeEvents(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaService_ReceiveChangeEventsClient, error)
 	// Get additional information on a device group
 	GetDeviceGroup(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceGroup, error)
 	CreateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error)
@@ -2270,6 +2556,102 @@ type VolthaServiceClient interface {
 	UpdateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error)
 	DeleteAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error)
 	ListAlarmFilters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AlarmFilters, error)
+	// List all Channel Groups
+	GetAllChannelgroupConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelgroupConfig, error)
+	// Create Channel Group
+	CreateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Channel Group
+	UpdateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Channel Group
+	DeleteChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all channel partitions
+	GetAllChannelpartitionConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpartitionConfig, error)
+	// Create a channel partition
+	CreateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel partition
+	UpdateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a channel partition
+	DeleteChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all channel pairs managed by this Voltha instance
+	GetAllChannelpairConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpairConfig, error)
+	// Create a channel pair
+	CreateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel pair
+	UpdateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a channel pair
+	DeleteChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all channel terminations managed by this Voltha instance
+	GetAllChannelterminationConfig(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*bbf_fiber.AllChannelterminationConfig, error)
+	// Create a channel termination
+	CreateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel termination
+	UpdateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a channel termination
+	DeleteChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all ont configs managed by this Voltha instance
+	GetAllOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllOntaniConfig, error)
+	// Create an ont configs
+	CreateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update an ont configs
+	UpdateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete an ont configs
+	DeleteOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all vont configs managed by this Voltha instance
+	GetAllVOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVOntaniConfig, error)
+	// Create a vont configs
+	CreateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a vont configs
+	UpdateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a vont configs
+	DeleteVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all venet configs managed by this Voltha instance
+	GetAllVEnetConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVEnetConfig, error)
+	// Create venet configs
+	CreateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update venet configs
+	UpdateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete venet configs
+	DeleteVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Traffic Descriptors Profiles
+	GetAllTrafficDescriptorProfileData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTrafficDescriptorProfileData, error)
+	// Create Traffic Descriptor Profile
+	CreateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Traffic Descriptor Profile
+	UpdateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Traffic Descriptor Profile
+	DeleteTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Tconts
+	GetAllTcontsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTcontsConfigData, error)
+	// Create Tcont
+	CreateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Tcont
+	UpdateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Tcont
+	DeleteTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Gemports
+	GetAllGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllGemportsConfigData, error)
+	// Create Gemport
+	CreateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Gemport
+	UpdateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Gemport
+	DeleteGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Multicast Gemports
+	GetAllMulticastGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastGemportsConfigData, error)
+	// Create Multicast Gemport
+	CreateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Multicast Gemport
+	UpdateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Multicast Gemport
+	DeleteMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Multicast Distribution Sets
+	GetAllMulticastDistributionSetData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastDistributionSetData, error)
+	// Create Multicast Distribution Set
+	CreateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Multicast Distribution Set
+	UpdateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Multicast Distribution Set
+	DeleteMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetImages(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Images, error)
 	SelfTest(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*SelfTestResponse, error)
 	// OpenOMCI MIB information
@@ -2278,628 +2660,912 @@ type VolthaServiceClient interface {
 	GetAlarmDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.AlarmDeviceData, error)
 	// Simulate an Alarm
 	SimulateAlarm(ctx context.Context, in *SimulateAlarmRequest, opts ...grpc.CallOption) (*common.OperationResp, error)
-	Subscribe(ctx context.Context, in *OfAgentSubscriber, opts ...grpc.CallOption) (*OfAgentSubscriber, error)
 }
 
-type volthaServiceClient struct {
+type volthaGlobalServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewVolthaServiceClient(cc *grpc.ClientConn) VolthaServiceClient {
-	return &volthaServiceClient{cc}
+func NewVolthaGlobalServiceClient(cc *grpc.ClientConn) VolthaGlobalServiceClient {
+	return &volthaGlobalServiceClient{cc}
 }
 
-func (c *volthaServiceClient) UpdateLogLevel(ctx context.Context, in *Logging, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateLogLevel", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *volthaServiceClient) GetMembership(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Membership, error) {
-	out := new(Membership)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetMembership", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *volthaServiceClient) UpdateMembership(ctx context.Context, in *Membership, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateMembership", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *volthaServiceClient) GetVoltha(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Voltha, error) {
+func (c *volthaGlobalServiceClient) GetVoltha(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Voltha, error) {
 	out := new(Voltha)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetVoltha", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetVoltha", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListCoreInstances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*CoreInstances, error) {
-	out := new(CoreInstances)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListCoreInstances", in, out, opts...)
+func (c *volthaGlobalServiceClient) ListVolthaInstances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*VolthaInstances, error) {
+	out := new(VolthaInstances)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListVolthaInstances", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetCoreInstance(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*CoreInstance, error) {
-	out := new(CoreInstance)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetCoreInstance", in, out, opts...)
+func (c *volthaGlobalServiceClient) GetVolthaInstance(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*VolthaInstance, error) {
+	out := new(VolthaInstance)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetVolthaInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListAdapters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Adapters, error) {
+func (c *volthaGlobalServiceClient) ListAdapters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Adapters, error) {
 	out := new(Adapters)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListAdapters", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListAdapters", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error) {
+func (c *volthaGlobalServiceClient) ListLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error) {
 	out := new(LogicalDevices)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListLogicalDevices", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListLogicalDevices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalDevice, error) {
+func (c *volthaGlobalServiceClient) ListReachableLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error) {
+	out := new(LogicalDevices)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListReachableLogicalDevices", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalDevice, error) {
 	out := new(LogicalDevice)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetLogicalDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetLogicalDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListLogicalDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalPorts, error) {
+func (c *volthaGlobalServiceClient) ListLogicalDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalPorts, error) {
 	out := new(LogicalPorts)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListLogicalDevicePorts", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListLogicalDevicePorts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*LogicalPort, error) {
+func (c *volthaGlobalServiceClient) GetLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*LogicalPort, error) {
 	out := new(LogicalPort)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetLogicalDevicePort", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetLogicalDevicePort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) EnableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) EnableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/EnableLogicalDevicePort", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/EnableLogicalDevicePort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) DisableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) DisableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/DisableLogicalDevicePort", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DisableLogicalDevicePort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListLogicalDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error) {
+func (c *volthaGlobalServiceClient) ListLogicalDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error) {
 	out := new(openflow_13.Flows)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListLogicalDeviceFlows", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListLogicalDeviceFlows", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) UpdateLogicalDeviceFlowTable(ctx context.Context, in *openflow_13.FlowTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) UpdateLogicalDeviceFlowTable(ctx context.Context, in *openflow_13.FlowTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateLogicalDeviceFlowTable", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateLogicalDeviceFlowTable", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) UpdateLogicalDeviceMeterTable(ctx context.Context, in *openflow_13.MeterModUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) UpdateLogicalDeviceMeterTable(ctx context.Context, in *openflow_13.MeterModUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateLogicalDeviceMeterTable", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateLogicalDeviceMeterTable", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetMeterStatsOfLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.MeterStatsReply, error) {
-	out := new(openflow_13.MeterStatsReply)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetMeterStatsOfLogicalDevice", in, out, opts...)
+func (c *volthaGlobalServiceClient) ListLogicalDeviceMeters(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Meters, error) {
+	out := new(openflow_13.Meters)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListLogicalDeviceMeters", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListLogicalDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error) {
+func (c *volthaGlobalServiceClient) ListLogicalDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error) {
 	out := new(openflow_13.FlowGroups)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListLogicalDeviceFlowGroups", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListLogicalDeviceFlowGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) UpdateLogicalDeviceFlowGroupTable(ctx context.Context, in *openflow_13.FlowGroupTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) UpdateLogicalDeviceFlowGroupTable(ctx context.Context, in *openflow_13.FlowGroupTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateLogicalDeviceFlowGroupTable", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateLogicalDeviceFlowGroupTable", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Devices, error) {
+func (c *volthaGlobalServiceClient) ListDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Devices, error) {
 	out := new(Devices)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDevices", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDevices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDeviceIds(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*common.IDs, error) {
-	out := new(common.IDs)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDeviceIds", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *volthaServiceClient) ReconcileDevices(ctx context.Context, in *common.IDs, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ReconcileDevices", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *volthaServiceClient) GetDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Device, error) {
+func (c *volthaGlobalServiceClient) GetDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Device, error) {
 	out := new(Device)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) CreateDevice(ctx context.Context, in *Device, opts ...grpc.CallOption) (*Device, error) {
+func (c *volthaGlobalServiceClient) CreateDevice(ctx context.Context, in *Device, opts ...grpc.CallOption) (*Device, error) {
 	out := new(Device)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/CreateDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) EnableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) EnableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/EnableDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/EnableDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) DisableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) DisableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/DisableDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DisableDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) RebootDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) RebootDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/RebootDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/RebootDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) DeleteDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) DeleteDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/DeleteDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) DownloadImage(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+func (c *volthaGlobalServiceClient) DownloadImage(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
 	out := new(common.OperationResp)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/DownloadImage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DownloadImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetImageDownloadStatus(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error) {
+func (c *volthaGlobalServiceClient) GetImageDownloadStatus(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error) {
 	out := new(ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetImageDownloadStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetImageDownloadStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error) {
+func (c *volthaGlobalServiceClient) GetImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error) {
 	out := new(ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetImageDownload", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetImageDownload", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListImageDownloads(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*ImageDownloads, error) {
+func (c *volthaGlobalServiceClient) ListImageDownloads(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*ImageDownloads, error) {
 	out := new(ImageDownloads)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListImageDownloads", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListImageDownloads", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) CancelImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+func (c *volthaGlobalServiceClient) CancelImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
 	out := new(common.OperationResp)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/CancelImageDownload", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CancelImageDownload", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ActivateImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+func (c *volthaGlobalServiceClient) ActivateImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
 	out := new(common.OperationResp)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ActivateImageUpdate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ActivateImageUpdate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) RevertImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+func (c *volthaGlobalServiceClient) RevertImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
 	out := new(common.OperationResp)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/RevertImageUpdate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/RevertImageUpdate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Ports, error) {
+func (c *volthaGlobalServiceClient) ListDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Ports, error) {
 	out := new(Ports)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDevicePorts", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDevicePorts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDevicePmConfigs(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*PmConfigs, error) {
+func (c *volthaGlobalServiceClient) ListDevicePmConfigs(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*PmConfigs, error) {
 	out := new(PmConfigs)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDevicePmConfigs", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDevicePmConfigs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) UpdateDevicePmConfigs(ctx context.Context, in *PmConfigs, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) UpdateDevicePmConfigs(ctx context.Context, in *PmConfigs, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateDevicePmConfigs", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateDevicePmConfigs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error) {
+func (c *volthaGlobalServiceClient) ListDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error) {
 	out := new(openflow_13.Flows)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDeviceFlows", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDeviceFlows", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error) {
+func (c *volthaGlobalServiceClient) ListDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error) {
 	out := new(openflow_13.FlowGroups)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDeviceFlowGroups", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDeviceFlowGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDeviceTypes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceTypes, error) {
+func (c *volthaGlobalServiceClient) ListDeviceTypes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceTypes, error) {
 	out := new(DeviceTypes)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDeviceTypes", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDeviceTypes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetDeviceType(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceType, error) {
+func (c *volthaGlobalServiceClient) GetDeviceType(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceType, error) {
 	out := new(DeviceType)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetDeviceType", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetDeviceType", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListDeviceGroups(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceGroups, error) {
+func (c *volthaGlobalServiceClient) ListDeviceGroups(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceGroups, error) {
 	out := new(DeviceGroups)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListDeviceGroups", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListDeviceGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) StreamPacketsOut(ctx context.Context, opts ...grpc.CallOption) (VolthaService_StreamPacketsOutClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_VolthaService_serviceDesc.Streams[0], "/voltha.VolthaService/StreamPacketsOut", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &volthaServiceStreamPacketsOutClient{stream}
-	return x, nil
-}
-
-type VolthaService_StreamPacketsOutClient interface {
-	Send(*openflow_13.PacketOut) error
-	CloseAndRecv() (*empty.Empty, error)
-	grpc.ClientStream
-}
-
-type volthaServiceStreamPacketsOutClient struct {
-	grpc.ClientStream
-}
-
-func (x *volthaServiceStreamPacketsOutClient) Send(m *openflow_13.PacketOut) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *volthaServiceStreamPacketsOutClient) CloseAndRecv() (*empty.Empty, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	m := new(empty.Empty)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *volthaServiceClient) ReceivePacketsIn(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaService_ReceivePacketsInClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_VolthaService_serviceDesc.Streams[1], "/voltha.VolthaService/ReceivePacketsIn", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &volthaServiceReceivePacketsInClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type VolthaService_ReceivePacketsInClient interface {
-	Recv() (*openflow_13.PacketIn, error)
-	grpc.ClientStream
-}
-
-type volthaServiceReceivePacketsInClient struct {
-	grpc.ClientStream
-}
-
-func (x *volthaServiceReceivePacketsInClient) Recv() (*openflow_13.PacketIn, error) {
-	m := new(openflow_13.PacketIn)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *volthaServiceClient) ReceiveChangeEvents(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaService_ReceiveChangeEventsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_VolthaService_serviceDesc.Streams[2], "/voltha.VolthaService/ReceiveChangeEvents", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &volthaServiceReceiveChangeEventsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type VolthaService_ReceiveChangeEventsClient interface {
-	Recv() (*openflow_13.ChangeEvent, error)
-	grpc.ClientStream
-}
-
-type volthaServiceReceiveChangeEventsClient struct {
-	grpc.ClientStream
-}
-
-func (x *volthaServiceReceiveChangeEventsClient) Recv() (*openflow_13.ChangeEvent, error) {
-	m := new(openflow_13.ChangeEvent)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *volthaServiceClient) GetDeviceGroup(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceGroup, error) {
+func (c *volthaGlobalServiceClient) GetDeviceGroup(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceGroup, error) {
 	out := new(DeviceGroup)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetDeviceGroup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetDeviceGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) CreateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error) {
+func (c *volthaGlobalServiceClient) CreateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error) {
 	out := new(AlarmFilter)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/CreateAlarmFilter", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateAlarmFilter", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*AlarmFilter, error) {
+func (c *volthaGlobalServiceClient) GetAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*AlarmFilter, error) {
 	out := new(AlarmFilter)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetAlarmFilter", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAlarmFilter", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) UpdateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error) {
+func (c *volthaGlobalServiceClient) UpdateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error) {
 	out := new(AlarmFilter)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/UpdateAlarmFilter", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateAlarmFilter", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) DeleteAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *volthaGlobalServiceClient) DeleteAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/DeleteAlarmFilter", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteAlarmFilter", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) ListAlarmFilters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AlarmFilters, error) {
+func (c *volthaGlobalServiceClient) ListAlarmFilters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AlarmFilters, error) {
 	out := new(AlarmFilters)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/ListAlarmFilters", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/ListAlarmFilters", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetImages(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Images, error) {
+func (c *volthaGlobalServiceClient) GetAllChannelgroupConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelgroupConfig, error) {
+	out := new(bbf_fiber.AllChannelgroupConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllChannelgroupConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateChannelgroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateChannelgroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteChannelgroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllChannelpartitionConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpartitionConfig, error) {
+	out := new(bbf_fiber.AllChannelpartitionConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllChannelpartitionConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateChannelpartition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateChannelpartition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteChannelpartition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllChannelpairConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpairConfig, error) {
+	out := new(bbf_fiber.AllChannelpairConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllChannelpairConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateChannelpair", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateChannelpair", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteChannelpair", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllChannelterminationConfig(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*bbf_fiber.AllChannelterminationConfig, error) {
+	out := new(bbf_fiber.AllChannelterminationConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllChannelterminationConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateChanneltermination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateChanneltermination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteChanneltermination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllOntaniConfig, error) {
+	out := new(bbf_fiber.AllOntaniConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllOntaniConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllVOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVOntaniConfig, error) {
+	out := new(bbf_fiber.AllVOntaniConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllVOntaniConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateVOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateVOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteVOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllVEnetConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVEnetConfig, error) {
+	out := new(bbf_fiber.AllVEnetConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllVEnetConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateVEnet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateVEnet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteVEnet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllTrafficDescriptorProfileData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTrafficDescriptorProfileData, error) {
+	out := new(bbf_fiber.AllTrafficDescriptorProfileData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllTcontsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTcontsConfigData, error) {
+	out := new(bbf_fiber.AllTcontsConfigData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllGemportsConfigData, error) {
+	out := new(bbf_fiber.AllGemportsConfigData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllMulticastGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastGemportsConfigData, error) {
+	out := new(bbf_fiber.AllMulticastGemportsConfigData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetAllMulticastDistributionSetData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastDistributionSetData, error) {
+	out := new(bbf_fiber.AllMulticastDistributionSetData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAllMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) CreateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/CreateMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) UpdateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/UpdateMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) DeleteMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/DeleteMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaGlobalServiceClient) GetImages(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Images, error) {
 	out := new(Images)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetImages", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetImages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) SelfTest(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*SelfTestResponse, error) {
+func (c *volthaGlobalServiceClient) SelfTest(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*SelfTestResponse, error) {
 	out := new(SelfTestResponse)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/SelfTest", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/SelfTest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetMibDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.MibDeviceData, error) {
+func (c *volthaGlobalServiceClient) GetMibDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.MibDeviceData, error) {
 	out := new(omci.MibDeviceData)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetMibDeviceData", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetMibDeviceData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) GetAlarmDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.AlarmDeviceData, error) {
+func (c *volthaGlobalServiceClient) GetAlarmDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.AlarmDeviceData, error) {
 	out := new(omci.AlarmDeviceData)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/GetAlarmDeviceData", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/GetAlarmDeviceData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) SimulateAlarm(ctx context.Context, in *SimulateAlarmRequest, opts ...grpc.CallOption) (*common.OperationResp, error) {
+func (c *volthaGlobalServiceClient) SimulateAlarm(ctx context.Context, in *SimulateAlarmRequest, opts ...grpc.CallOption) (*common.OperationResp, error) {
 	out := new(common.OperationResp)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/SimulateAlarm", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaGlobalService/SimulateAlarm", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *volthaServiceClient) Subscribe(ctx context.Context, in *OfAgentSubscriber, opts ...grpc.CallOption) (*OfAgentSubscriber, error) {
-	out := new(OfAgentSubscriber)
-	err := c.cc.Invoke(ctx, "/voltha.VolthaService/Subscribe", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// VolthaServiceServer is the server API for VolthaService service.
-type VolthaServiceServer interface {
-	// Get more information on a given physical device
-	UpdateLogLevel(context.Context, *Logging) (*empty.Empty, error)
-	// Get the membership group of a Voltha Core
-	GetMembership(context.Context, *empty.Empty) (*Membership, error)
-	// Set the membership group of a Voltha Core
-	UpdateMembership(context.Context, *Membership) (*empty.Empty, error)
+// VolthaGlobalServiceServer is the server API for VolthaGlobalService service.
+type VolthaGlobalServiceServer interface {
 	// Get high level information on the Voltha cluster
 	GetVoltha(context.Context, *empty.Empty) (*Voltha, error)
-	// List all Voltha cluster core instances
-	ListCoreInstances(context.Context, *empty.Empty) (*CoreInstances, error)
+	// List all Voltha cluster instances
+	ListVolthaInstances(context.Context, *empty.Empty) (*VolthaInstances, error)
 	// Get details on a Voltha cluster instance
-	GetCoreInstance(context.Context, *common.ID) (*CoreInstance, error)
+	GetVolthaInstance(context.Context, *common.ID) (*VolthaInstance, error)
 	// List all active adapters (plugins) in the Voltha cluster
 	ListAdapters(context.Context, *empty.Empty) (*Adapters, error)
 	// List all logical devices managed by the Voltha cluster
 	ListLogicalDevices(context.Context, *empty.Empty) (*LogicalDevices, error)
+	// List all reachable logical devices managed by the Voltha cluster
+	ListReachableLogicalDevices(context.Context, *empty.Empty) (*LogicalDevices, error)
 	// Get additional information on a given logical device
 	GetLogicalDevice(context.Context, *common.ID) (*LogicalDevice, error)
 	// List ports of a logical device
@@ -2916,18 +3582,14 @@ type VolthaServiceServer interface {
 	UpdateLogicalDeviceFlowTable(context.Context, *openflow_13.FlowTableUpdate) (*empty.Empty, error)
 	// Update meter table for logical device
 	UpdateLogicalDeviceMeterTable(context.Context, *openflow_13.MeterModUpdate) (*empty.Empty, error)
-	// Get all meter stats for logical device
-	GetMeterStatsOfLogicalDevice(context.Context, *common.ID) (*openflow_13.MeterStatsReply, error)
+	// List all meters of a logical device
+	ListLogicalDeviceMeters(context.Context, *common.ID) (*openflow_13.Meters, error)
 	// List all flow groups of a logical device
 	ListLogicalDeviceFlowGroups(context.Context, *common.ID) (*openflow_13.FlowGroups, error)
 	// Update group table for device
 	UpdateLogicalDeviceFlowGroupTable(context.Context, *openflow_13.FlowGroupTableUpdate) (*empty.Empty, error)
 	// List all physical devices controlled by the Voltha cluster
 	ListDevices(context.Context, *empty.Empty) (*Devices, error)
-	// List all physical devices IDs controlled by the Voltha cluster
-	ListDeviceIds(context.Context, *empty.Empty) (*common.IDs, error)
-	// Request to a voltha Core to reconcile a set of devices based on their IDs
-	ReconcileDevices(context.Context, *common.IDs) (*empty.Empty, error)
 	// Get more information on a given physical device
 	GetDevice(context.Context, *common.ID) (*Device, error)
 	// Pre-provision a new physical device
@@ -2987,11 +3649,6 @@ type VolthaServiceServer interface {
 	GetDeviceType(context.Context, *common.ID) (*DeviceType, error)
 	// List all device sharding groups
 	ListDeviceGroups(context.Context, *empty.Empty) (*DeviceGroups, error)
-	// Stream control packets to the dataplane
-	StreamPacketsOut(VolthaService_StreamPacketsOutServer) error
-	// Receive control packet stream
-	ReceivePacketsIn(*empty.Empty, VolthaService_ReceivePacketsInServer) error
-	ReceiveChangeEvents(*empty.Empty, VolthaService_ReceiveChangeEventsServer) error
 	// Get additional information on a device group
 	GetDeviceGroup(context.Context, *common.ID) (*DeviceGroup, error)
 	CreateAlarmFilter(context.Context, *AlarmFilter) (*AlarmFilter, error)
@@ -2999,6 +3656,102 @@ type VolthaServiceServer interface {
 	UpdateAlarmFilter(context.Context, *AlarmFilter) (*AlarmFilter, error)
 	DeleteAlarmFilter(context.Context, *common.ID) (*empty.Empty, error)
 	ListAlarmFilters(context.Context, *empty.Empty) (*AlarmFilters, error)
+	// List all Channel Groups
+	GetAllChannelgroupConfig(context.Context, *empty.Empty) (*bbf_fiber.AllChannelgroupConfig, error)
+	// Create Channel Group
+	CreateChannelgroup(context.Context, *bbf_fiber.ChannelgroupConfig) (*empty.Empty, error)
+	// Update Channel Group
+	UpdateChannelgroup(context.Context, *bbf_fiber.ChannelgroupConfig) (*empty.Empty, error)
+	// Delete Channel Group
+	DeleteChannelgroup(context.Context, *bbf_fiber.ChannelgroupConfig) (*empty.Empty, error)
+	// List all channel partitions
+	GetAllChannelpartitionConfig(context.Context, *empty.Empty) (*bbf_fiber.AllChannelpartitionConfig, error)
+	// Create a channel partition
+	CreateChannelpartition(context.Context, *bbf_fiber.ChannelpartitionConfig) (*empty.Empty, error)
+	// Update a channel partition
+	UpdateChannelpartition(context.Context, *bbf_fiber.ChannelpartitionConfig) (*empty.Empty, error)
+	// Delete a channel partition
+	DeleteChannelpartition(context.Context, *bbf_fiber.ChannelpartitionConfig) (*empty.Empty, error)
+	// List all channel pairs managed by this Voltha instance
+	GetAllChannelpairConfig(context.Context, *empty.Empty) (*bbf_fiber.AllChannelpairConfig, error)
+	// Create a channel pair
+	CreateChannelpair(context.Context, *bbf_fiber.ChannelpairConfig) (*empty.Empty, error)
+	// Update a channel pair
+	UpdateChannelpair(context.Context, *bbf_fiber.ChannelpairConfig) (*empty.Empty, error)
+	// Delete a channel pair
+	DeleteChannelpair(context.Context, *bbf_fiber.ChannelpairConfig) (*empty.Empty, error)
+	// List all channel terminations managed by this Voltha instance
+	GetAllChannelterminationConfig(context.Context, *common.ID) (*bbf_fiber.AllChannelterminationConfig, error)
+	// Create a channel termination
+	CreateChanneltermination(context.Context, *bbf_fiber.ChannelterminationConfig) (*empty.Empty, error)
+	// Update a channel termination
+	UpdateChanneltermination(context.Context, *bbf_fiber.ChannelterminationConfig) (*empty.Empty, error)
+	// Delete a channel termination
+	DeleteChanneltermination(context.Context, *bbf_fiber.ChannelterminationConfig) (*empty.Empty, error)
+	// List all ont configs managed by this Voltha instance
+	GetAllOntaniConfig(context.Context, *empty.Empty) (*bbf_fiber.AllOntaniConfig, error)
+	// Create an ont configs
+	CreateOntani(context.Context, *bbf_fiber.OntaniConfig) (*empty.Empty, error)
+	// Update an ont configs
+	UpdateOntani(context.Context, *bbf_fiber.OntaniConfig) (*empty.Empty, error)
+	// Delete an ont configs
+	DeleteOntani(context.Context, *bbf_fiber.OntaniConfig) (*empty.Empty, error)
+	// List all vont configs managed by this Voltha instance
+	GetAllVOntaniConfig(context.Context, *empty.Empty) (*bbf_fiber.AllVOntaniConfig, error)
+	// Create a vont configs
+	CreateVOntani(context.Context, *bbf_fiber.VOntaniConfig) (*empty.Empty, error)
+	// Update a vont configs
+	UpdateVOntani(context.Context, *bbf_fiber.VOntaniConfig) (*empty.Empty, error)
+	// Delete a vont configs
+	DeleteVOntani(context.Context, *bbf_fiber.VOntaniConfig) (*empty.Empty, error)
+	// List all venet configs managed by this Voltha instance
+	GetAllVEnetConfig(context.Context, *empty.Empty) (*bbf_fiber.AllVEnetConfig, error)
+	// Create venet configs
+	CreateVEnet(context.Context, *bbf_fiber.VEnetConfig) (*empty.Empty, error)
+	// Update venet configs
+	UpdateVEnet(context.Context, *bbf_fiber.VEnetConfig) (*empty.Empty, error)
+	// Delete venet configs
+	DeleteVEnet(context.Context, *bbf_fiber.VEnetConfig) (*empty.Empty, error)
+	// List all Traffic Descriptors Profiles
+	GetAllTrafficDescriptorProfileData(context.Context, *empty.Empty) (*bbf_fiber.AllTrafficDescriptorProfileData, error)
+	// Create Traffic Descriptor Profile
+	CreateTrafficDescriptorProfileData(context.Context, *bbf_fiber.TrafficDescriptorProfileData) (*empty.Empty, error)
+	// Update Traffic Descriptor Profile
+	UpdateTrafficDescriptorProfileData(context.Context, *bbf_fiber.TrafficDescriptorProfileData) (*empty.Empty, error)
+	// Delete Traffic Descriptor Profile
+	DeleteTrafficDescriptorProfileData(context.Context, *bbf_fiber.TrafficDescriptorProfileData) (*empty.Empty, error)
+	// List all Tconts
+	GetAllTcontsConfigData(context.Context, *empty.Empty) (*bbf_fiber.AllTcontsConfigData, error)
+	// Create Tcont
+	CreateTcontsConfigData(context.Context, *bbf_fiber.TcontsConfigData) (*empty.Empty, error)
+	// Update Tcont
+	UpdateTcontsConfigData(context.Context, *bbf_fiber.TcontsConfigData) (*empty.Empty, error)
+	// Delete Tcont
+	DeleteTcontsConfigData(context.Context, *bbf_fiber.TcontsConfigData) (*empty.Empty, error)
+	// List all Gemports
+	GetAllGemportsConfigData(context.Context, *empty.Empty) (*bbf_fiber.AllGemportsConfigData, error)
+	// Create Gemport
+	CreateGemportsConfigData(context.Context, *bbf_fiber.GemportsConfigData) (*empty.Empty, error)
+	// Update Gemport
+	UpdateGemportsConfigData(context.Context, *bbf_fiber.GemportsConfigData) (*empty.Empty, error)
+	// Delete Gemport
+	DeleteGemportsConfigData(context.Context, *bbf_fiber.GemportsConfigData) (*empty.Empty, error)
+	// List all Multicast Gemports
+	GetAllMulticastGemportsConfigData(context.Context, *empty.Empty) (*bbf_fiber.AllMulticastGemportsConfigData, error)
+	// Create Multicast Gemport
+	CreateMulticastGemportsConfigData(context.Context, *bbf_fiber.MulticastGemportsConfigData) (*empty.Empty, error)
+	// Update Multicast Gemport
+	UpdateMulticastGemportsConfigData(context.Context, *bbf_fiber.MulticastGemportsConfigData) (*empty.Empty, error)
+	// Delete Multicast Gemport
+	DeleteMulticastGemportsConfigData(context.Context, *bbf_fiber.MulticastGemportsConfigData) (*empty.Empty, error)
+	// List all Multicast Distribution Sets
+	GetAllMulticastDistributionSetData(context.Context, *empty.Empty) (*bbf_fiber.AllMulticastDistributionSetData, error)
+	// Create Multicast Distribution Set
+	CreateMulticastDistributionSetData(context.Context, *bbf_fiber.MulticastDistributionSetData) (*empty.Empty, error)
+	// Update Multicast Distribution Set
+	UpdateMulticastDistributionSetData(context.Context, *bbf_fiber.MulticastDistributionSetData) (*empty.Empty, error)
+	// Delete Multicast Distribution Set
+	DeleteMulticastDistributionSetData(context.Context, *bbf_fiber.MulticastDistributionSetData) (*empty.Empty, error)
 	GetImages(context.Context, *common.ID) (*Images, error)
 	SelfTest(context.Context, *common.ID) (*SelfTestResponse, error)
 	// OpenOMCI MIB information
@@ -3007,806 +3760,5176 @@ type VolthaServiceServer interface {
 	GetAlarmDeviceData(context.Context, *common.ID) (*omci.AlarmDeviceData, error)
 	// Simulate an Alarm
 	SimulateAlarm(context.Context, *SimulateAlarmRequest) (*common.OperationResp, error)
-	Subscribe(context.Context, *OfAgentSubscriber) (*OfAgentSubscriber, error)
 }
 
-func RegisterVolthaServiceServer(s *grpc.Server, srv VolthaServiceServer) {
-	s.RegisterService(&_VolthaService_serviceDesc, srv)
+func RegisterVolthaGlobalServiceServer(s *grpc.Server, srv VolthaGlobalServiceServer) {
+	s.RegisterService(&_VolthaGlobalService_serviceDesc, srv)
 }
 
-func _VolthaService_UpdateLogLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Logging)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateLogLevel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateLogLevel",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateLogLevel(ctx, req.(*Logging))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_GetMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetVoltha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetMembership(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetVoltha(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetMembership",
+		FullMethod: "/voltha.VolthaGlobalService/GetVoltha",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetMembership(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).GetVoltha(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_UpdateMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Membership)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateMembership(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateMembership",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateMembership(ctx, req.(*Membership))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_GetVoltha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListVolthaInstances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetVoltha(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListVolthaInstances(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetVoltha",
+		FullMethod: "/voltha.VolthaGlobalService/ListVolthaInstances",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetVoltha(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).ListVolthaInstances(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListCoreInstances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListCoreInstances(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListCoreInstances",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListCoreInstances(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_GetCoreInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetVolthaInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetCoreInstance(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetVolthaInstance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetCoreInstance",
+		FullMethod: "/voltha.VolthaGlobalService/GetVolthaInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetCoreInstance(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).GetVolthaInstance(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListAdapters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListAdapters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListAdapters(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListAdapters(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListAdapters",
+		FullMethod: "/voltha.VolthaGlobalService/ListAdapters",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListAdapters(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).ListAdapters(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListLogicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListLogicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListLogicalDevices(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListLogicalDevices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListLogicalDevices",
+		FullMethod: "/voltha.VolthaGlobalService/ListLogicalDevices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListLogicalDevices(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).ListLogicalDevices(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetLogicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListReachableLogicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).ListReachableLogicalDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/ListReachableLogicalDevices",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).ListReachableLogicalDevices(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetLogicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetLogicalDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetLogicalDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetLogicalDevice",
+		FullMethod: "/voltha.VolthaGlobalService/GetLogicalDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetLogicalDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).GetLogicalDevice(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListLogicalDevicePorts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListLogicalDevicePorts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListLogicalDevicePorts(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListLogicalDevicePorts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListLogicalDevicePorts",
+		FullMethod: "/voltha.VolthaGlobalService/ListLogicalDevicePorts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListLogicalDevicePorts(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListLogicalDevicePorts(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LogicalPortId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetLogicalDevicePort(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetLogicalDevicePort(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetLogicalDevicePort",
+		FullMethod: "/voltha.VolthaGlobalService/GetLogicalDevicePort",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetLogicalDevicePort(ctx, req.(*LogicalPortId))
+		return srv.(VolthaGlobalServiceServer).GetLogicalDevicePort(ctx, req.(*LogicalPortId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_EnableLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_EnableLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LogicalPortId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).EnableLogicalDevicePort(ctx, in)
+		return srv.(VolthaGlobalServiceServer).EnableLogicalDevicePort(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/EnableLogicalDevicePort",
+		FullMethod: "/voltha.VolthaGlobalService/EnableLogicalDevicePort",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).EnableLogicalDevicePort(ctx, req.(*LogicalPortId))
+		return srv.(VolthaGlobalServiceServer).EnableLogicalDevicePort(ctx, req.(*LogicalPortId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_DisableLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_DisableLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LogicalPortId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).DisableLogicalDevicePort(ctx, in)
+		return srv.(VolthaGlobalServiceServer).DisableLogicalDevicePort(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/DisableLogicalDevicePort",
+		FullMethod: "/voltha.VolthaGlobalService/DisableLogicalDevicePort",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).DisableLogicalDevicePort(ctx, req.(*LogicalPortId))
+		return srv.(VolthaGlobalServiceServer).DisableLogicalDevicePort(ctx, req.(*LogicalPortId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListLogicalDeviceFlows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListLogicalDeviceFlows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListLogicalDeviceFlows(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListLogicalDeviceFlows(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListLogicalDeviceFlows",
+		FullMethod: "/voltha.VolthaGlobalService/ListLogicalDeviceFlows",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListLogicalDeviceFlows(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListLogicalDeviceFlows(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_UpdateLogicalDeviceFlowTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_UpdateLogicalDeviceFlowTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(openflow_13.FlowTableUpdate)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateLogicalDeviceFlowTable(ctx, in)
+		return srv.(VolthaGlobalServiceServer).UpdateLogicalDeviceFlowTable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateLogicalDeviceFlowTable",
+		FullMethod: "/voltha.VolthaGlobalService/UpdateLogicalDeviceFlowTable",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateLogicalDeviceFlowTable(ctx, req.(*openflow_13.FlowTableUpdate))
+		return srv.(VolthaGlobalServiceServer).UpdateLogicalDeviceFlowTable(ctx, req.(*openflow_13.FlowTableUpdate))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_UpdateLogicalDeviceMeterTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_UpdateLogicalDeviceMeterTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(openflow_13.MeterModUpdate)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateLogicalDeviceMeterTable(ctx, in)
+		return srv.(VolthaGlobalServiceServer).UpdateLogicalDeviceMeterTable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateLogicalDeviceMeterTable",
+		FullMethod: "/voltha.VolthaGlobalService/UpdateLogicalDeviceMeterTable",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateLogicalDeviceMeterTable(ctx, req.(*openflow_13.MeterModUpdate))
+		return srv.(VolthaGlobalServiceServer).UpdateLogicalDeviceMeterTable(ctx, req.(*openflow_13.MeterModUpdate))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetMeterStatsOfLogicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListLogicalDeviceMeters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetMeterStatsOfLogicalDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListLogicalDeviceMeters(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetMeterStatsOfLogicalDevice",
+		FullMethod: "/voltha.VolthaGlobalService/ListLogicalDeviceMeters",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetMeterStatsOfLogicalDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListLogicalDeviceMeters(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListLogicalDeviceFlowGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListLogicalDeviceFlowGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListLogicalDeviceFlowGroups(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListLogicalDeviceFlowGroups(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListLogicalDeviceFlowGroups",
+		FullMethod: "/voltha.VolthaGlobalService/ListLogicalDeviceFlowGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListLogicalDeviceFlowGroups(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListLogicalDeviceFlowGroups(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_UpdateLogicalDeviceFlowGroupTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_UpdateLogicalDeviceFlowGroupTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(openflow_13.FlowGroupTableUpdate)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateLogicalDeviceFlowGroupTable(ctx, in)
+		return srv.(VolthaGlobalServiceServer).UpdateLogicalDeviceFlowGroupTable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateLogicalDeviceFlowGroupTable",
+		FullMethod: "/voltha.VolthaGlobalService/UpdateLogicalDeviceFlowGroupTable",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateLogicalDeviceFlowGroupTable(ctx, req.(*openflow_13.FlowGroupTableUpdate))
+		return srv.(VolthaGlobalServiceServer).UpdateLogicalDeviceFlowGroupTable(ctx, req.(*openflow_13.FlowGroupTableUpdate))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDevices(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDevices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDevices",
+		FullMethod: "/voltha.VolthaGlobalService/ListDevices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDevices(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).ListDevices(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDeviceIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDeviceIds(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDeviceIds",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDeviceIds(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_ReconcileDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.IDs)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).ReconcileDevices(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ReconcileDevices",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ReconcileDevices(ctx, req.(*common.IDs))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_GetDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetDevice",
+		FullMethod: "/voltha.VolthaGlobalService/GetDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).GetDevice(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_CreateDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_CreateDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Device)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).CreateDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).CreateDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/CreateDevice",
+		FullMethod: "/voltha.VolthaGlobalService/CreateDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).CreateDevice(ctx, req.(*Device))
+		return srv.(VolthaGlobalServiceServer).CreateDevice(ctx, req.(*Device))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_EnableDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_EnableDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).EnableDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).EnableDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/EnableDevice",
+		FullMethod: "/voltha.VolthaGlobalService/EnableDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).EnableDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).EnableDevice(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_DisableDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_DisableDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).DisableDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).DisableDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/DisableDevice",
+		FullMethod: "/voltha.VolthaGlobalService/DisableDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).DisableDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).DisableDevice(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_RebootDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_RebootDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).RebootDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).RebootDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/RebootDevice",
+		FullMethod: "/voltha.VolthaGlobalService/RebootDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).RebootDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).RebootDevice(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_DeleteDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_DeleteDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).DeleteDevice(ctx, in)
+		return srv.(VolthaGlobalServiceServer).DeleteDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/DeleteDevice",
+		FullMethod: "/voltha.VolthaGlobalService/DeleteDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).DeleteDevice(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).DeleteDevice(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_DownloadImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_DownloadImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageDownload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).DownloadImage(ctx, in)
+		return srv.(VolthaGlobalServiceServer).DownloadImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/DownloadImage",
+		FullMethod: "/voltha.VolthaGlobalService/DownloadImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).DownloadImage(ctx, req.(*ImageDownload))
+		return srv.(VolthaGlobalServiceServer).DownloadImage(ctx, req.(*ImageDownload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetImageDownloadStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetImageDownloadStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageDownload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetImageDownloadStatus(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetImageDownloadStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetImageDownloadStatus",
+		FullMethod: "/voltha.VolthaGlobalService/GetImageDownloadStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetImageDownloadStatus(ctx, req.(*ImageDownload))
+		return srv.(VolthaGlobalServiceServer).GetImageDownloadStatus(ctx, req.(*ImageDownload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetImageDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetImageDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageDownload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetImageDownload(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetImageDownload(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetImageDownload",
+		FullMethod: "/voltha.VolthaGlobalService/GetImageDownload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetImageDownload(ctx, req.(*ImageDownload))
+		return srv.(VolthaGlobalServiceServer).GetImageDownload(ctx, req.(*ImageDownload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListImageDownloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListImageDownloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListImageDownloads(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListImageDownloads(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListImageDownloads",
+		FullMethod: "/voltha.VolthaGlobalService/ListImageDownloads",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListImageDownloads(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListImageDownloads(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_CancelImageDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_CancelImageDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageDownload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).CancelImageDownload(ctx, in)
+		return srv.(VolthaGlobalServiceServer).CancelImageDownload(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/CancelImageDownload",
+		FullMethod: "/voltha.VolthaGlobalService/CancelImageDownload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).CancelImageDownload(ctx, req.(*ImageDownload))
+		return srv.(VolthaGlobalServiceServer).CancelImageDownload(ctx, req.(*ImageDownload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ActivateImageUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ActivateImageUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageDownload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ActivateImageUpdate(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ActivateImageUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ActivateImageUpdate",
+		FullMethod: "/voltha.VolthaGlobalService/ActivateImageUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ActivateImageUpdate(ctx, req.(*ImageDownload))
+		return srv.(VolthaGlobalServiceServer).ActivateImageUpdate(ctx, req.(*ImageDownload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_RevertImageUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_RevertImageUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ImageDownload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).RevertImageUpdate(ctx, in)
+		return srv.(VolthaGlobalServiceServer).RevertImageUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/RevertImageUpdate",
+		FullMethod: "/voltha.VolthaGlobalService/RevertImageUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).RevertImageUpdate(ctx, req.(*ImageDownload))
+		return srv.(VolthaGlobalServiceServer).RevertImageUpdate(ctx, req.(*ImageDownload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDevicePorts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDevicePorts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDevicePorts(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDevicePorts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDevicePorts",
+		FullMethod: "/voltha.VolthaGlobalService/ListDevicePorts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDevicePorts(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListDevicePorts(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDevicePmConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDevicePmConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDevicePmConfigs(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDevicePmConfigs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDevicePmConfigs",
+		FullMethod: "/voltha.VolthaGlobalService/ListDevicePmConfigs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDevicePmConfigs(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListDevicePmConfigs(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_UpdateDevicePmConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_UpdateDevicePmConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PmConfigs)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateDevicePmConfigs(ctx, in)
+		return srv.(VolthaGlobalServiceServer).UpdateDevicePmConfigs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateDevicePmConfigs",
+		FullMethod: "/voltha.VolthaGlobalService/UpdateDevicePmConfigs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateDevicePmConfigs(ctx, req.(*PmConfigs))
+		return srv.(VolthaGlobalServiceServer).UpdateDevicePmConfigs(ctx, req.(*PmConfigs))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDeviceFlows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDeviceFlows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDeviceFlows(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDeviceFlows(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDeviceFlows",
+		FullMethod: "/voltha.VolthaGlobalService/ListDeviceFlows",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDeviceFlows(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListDeviceFlows(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDeviceFlowGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDeviceFlowGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDeviceFlowGroups(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDeviceFlowGroups(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDeviceFlowGroups",
+		FullMethod: "/voltha.VolthaGlobalService/ListDeviceFlowGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDeviceFlowGroups(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).ListDeviceFlowGroups(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDeviceTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDeviceTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDeviceTypes(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDeviceTypes(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDeviceTypes",
+		FullMethod: "/voltha.VolthaGlobalService/ListDeviceTypes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDeviceTypes(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).ListDeviceTypes(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetDeviceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_GetDeviceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetDeviceType(ctx, in)
+		return srv.(VolthaGlobalServiceServer).GetDeviceType(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetDeviceType",
+		FullMethod: "/voltha.VolthaGlobalService/GetDeviceType",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetDeviceType(ctx, req.(*common.ID))
+		return srv.(VolthaGlobalServiceServer).GetDeviceType(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaGlobalService_ListDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListDeviceGroups(ctx, in)
+		return srv.(VolthaGlobalServiceServer).ListDeviceGroups(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListDeviceGroups",
+		FullMethod: "/voltha.VolthaGlobalService/ListDeviceGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListDeviceGroups(ctx, req.(*empty.Empty))
+		return srv.(VolthaGlobalServiceServer).ListDeviceGroups(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_StreamPacketsOut_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(VolthaServiceServer).StreamPacketsOut(&volthaServiceStreamPacketsOutServer{stream})
+func _VolthaGlobalService_GetDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetDeviceGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetDeviceGroup(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-type VolthaService_StreamPacketsOutServer interface {
+func _VolthaGlobalService_CreateAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AlarmFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateAlarmFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateAlarmFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateAlarmFilter(ctx, req.(*AlarmFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAlarmFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAlarmFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAlarmFilter(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AlarmFilter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateAlarmFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateAlarmFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateAlarmFilter(ctx, req.(*AlarmFilter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteAlarmFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteAlarmFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteAlarmFilter(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_ListAlarmFilters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).ListAlarmFilters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/ListAlarmFilters",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).ListAlarmFilters(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllChannelgroupConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelgroupConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllChannelgroupConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelgroupConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateChannelgroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelgroupConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateChannelgroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateChannelgroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateChannelgroup(ctx, req.(*bbf_fiber.ChannelgroupConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateChannelgroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelgroupConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateChannelgroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateChannelgroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateChannelgroup(ctx, req.(*bbf_fiber.ChannelgroupConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteChannelgroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelgroupConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteChannelgroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteChannelgroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteChannelgroup(ctx, req.(*bbf_fiber.ChannelgroupConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllChannelpartitionConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelpartitionConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllChannelpartitionConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelpartitionConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateChannelpartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpartitionConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateChannelpartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateChannelpartition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateChannelpartition(ctx, req.(*bbf_fiber.ChannelpartitionConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateChannelpartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpartitionConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateChannelpartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateChannelpartition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateChannelpartition(ctx, req.(*bbf_fiber.ChannelpartitionConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteChannelpartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpartitionConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteChannelpartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteChannelpartition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteChannelpartition(ctx, req.(*bbf_fiber.ChannelpartitionConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllChannelpairConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelpairConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllChannelpairConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelpairConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateChannelpair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpairConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateChannelpair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateChannelpair",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateChannelpair(ctx, req.(*bbf_fiber.ChannelpairConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateChannelpair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpairConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateChannelpair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateChannelpair",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateChannelpair(ctx, req.(*bbf_fiber.ChannelpairConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteChannelpair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpairConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteChannelpair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteChannelpair",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteChannelpair(ctx, req.(*bbf_fiber.ChannelpairConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllChannelterminationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelterminationConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllChannelterminationConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllChannelterminationConfig(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateChanneltermination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelterminationConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateChanneltermination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateChanneltermination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateChanneltermination(ctx, req.(*bbf_fiber.ChannelterminationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateChanneltermination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelterminationConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateChanneltermination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateChanneltermination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateChanneltermination(ctx, req.(*bbf_fiber.ChannelterminationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteChanneltermination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelterminationConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteChanneltermination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteChanneltermination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteChanneltermination(ctx, req.(*bbf_fiber.ChannelterminationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllOntaniConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllOntaniConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllOntaniConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllOntaniConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.OntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateOntani(ctx, req.(*bbf_fiber.OntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.OntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateOntani(ctx, req.(*bbf_fiber.OntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.OntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteOntani(ctx, req.(*bbf_fiber.OntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllVOntaniConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllVOntaniConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllVOntaniConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllVOntaniConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateVOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VOntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateVOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateVOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateVOntani(ctx, req.(*bbf_fiber.VOntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateVOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VOntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateVOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateVOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateVOntani(ctx, req.(*bbf_fiber.VOntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteVOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VOntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteVOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteVOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteVOntani(ctx, req.(*bbf_fiber.VOntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllVEnetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllVEnetConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllVEnetConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllVEnetConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateVEnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VEnetConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateVEnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateVEnet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateVEnet(ctx, req.(*bbf_fiber.VEnetConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateVEnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VEnetConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateVEnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateVEnet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateVEnet(ctx, req.(*bbf_fiber.VEnetConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteVEnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VEnetConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteVEnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteVEnet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteVEnet(ctx, req.(*bbf_fiber.VEnetConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllTrafficDescriptorProfileData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TrafficDescriptorProfileData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateTrafficDescriptorProfileData(ctx, req.(*bbf_fiber.TrafficDescriptorProfileData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TrafficDescriptorProfileData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateTrafficDescriptorProfileData(ctx, req.(*bbf_fiber.TrafficDescriptorProfileData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TrafficDescriptorProfileData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteTrafficDescriptorProfileData(ctx, req.(*bbf_fiber.TrafficDescriptorProfileData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllTcontsConfigData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TcontsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateTcontsConfigData(ctx, req.(*bbf_fiber.TcontsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TcontsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateTcontsConfigData(ctx, req.(*bbf_fiber.TcontsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TcontsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteTcontsConfigData(ctx, req.(*bbf_fiber.TcontsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllGemportsConfigData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.GemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateGemportsConfigData(ctx, req.(*bbf_fiber.GemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.GemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateGemportsConfigData(ctx, req.(*bbf_fiber.GemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.GemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteGemportsConfigData(ctx, req.(*bbf_fiber.GemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllMulticastGemportsConfigData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastGemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateMulticastGemportsConfigData(ctx, req.(*bbf_fiber.MulticastGemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastGemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateMulticastGemportsConfigData(ctx, req.(*bbf_fiber.MulticastGemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastGemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteMulticastGemportsConfigData(ctx, req.(*bbf_fiber.MulticastGemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAllMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAllMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAllMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAllMulticastDistributionSetData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_CreateMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastDistributionSetData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).CreateMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/CreateMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).CreateMulticastDistributionSetData(ctx, req.(*bbf_fiber.MulticastDistributionSetData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_UpdateMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastDistributionSetData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).UpdateMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/UpdateMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).UpdateMulticastDistributionSetData(ctx, req.(*bbf_fiber.MulticastDistributionSetData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_DeleteMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastDistributionSetData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).DeleteMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/DeleteMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).DeleteMulticastDistributionSetData(ctx, req.(*bbf_fiber.MulticastDistributionSetData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetImages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetImages(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_SelfTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).SelfTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/SelfTest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).SelfTest(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetMibDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetMibDeviceData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetMibDeviceData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetMibDeviceData(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_GetAlarmDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).GetAlarmDeviceData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/GetAlarmDeviceData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).GetAlarmDeviceData(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaGlobalService_SimulateAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SimulateAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaGlobalServiceServer).SimulateAlarm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaGlobalService/SimulateAlarm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaGlobalServiceServer).SimulateAlarm(ctx, req.(*SimulateAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _VolthaGlobalService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "voltha.VolthaGlobalService",
+	HandlerType: (*VolthaGlobalServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetVoltha",
+			Handler:    _VolthaGlobalService_GetVoltha_Handler,
+		},
+		{
+			MethodName: "ListVolthaInstances",
+			Handler:    _VolthaGlobalService_ListVolthaInstances_Handler,
+		},
+		{
+			MethodName: "GetVolthaInstance",
+			Handler:    _VolthaGlobalService_GetVolthaInstance_Handler,
+		},
+		{
+			MethodName: "ListAdapters",
+			Handler:    _VolthaGlobalService_ListAdapters_Handler,
+		},
+		{
+			MethodName: "ListLogicalDevices",
+			Handler:    _VolthaGlobalService_ListLogicalDevices_Handler,
+		},
+		{
+			MethodName: "ListReachableLogicalDevices",
+			Handler:    _VolthaGlobalService_ListReachableLogicalDevices_Handler,
+		},
+		{
+			MethodName: "GetLogicalDevice",
+			Handler:    _VolthaGlobalService_GetLogicalDevice_Handler,
+		},
+		{
+			MethodName: "ListLogicalDevicePorts",
+			Handler:    _VolthaGlobalService_ListLogicalDevicePorts_Handler,
+		},
+		{
+			MethodName: "GetLogicalDevicePort",
+			Handler:    _VolthaGlobalService_GetLogicalDevicePort_Handler,
+		},
+		{
+			MethodName: "EnableLogicalDevicePort",
+			Handler:    _VolthaGlobalService_EnableLogicalDevicePort_Handler,
+		},
+		{
+			MethodName: "DisableLogicalDevicePort",
+			Handler:    _VolthaGlobalService_DisableLogicalDevicePort_Handler,
+		},
+		{
+			MethodName: "ListLogicalDeviceFlows",
+			Handler:    _VolthaGlobalService_ListLogicalDeviceFlows_Handler,
+		},
+		{
+			MethodName: "UpdateLogicalDeviceFlowTable",
+			Handler:    _VolthaGlobalService_UpdateLogicalDeviceFlowTable_Handler,
+		},
+		{
+			MethodName: "UpdateLogicalDeviceMeterTable",
+			Handler:    _VolthaGlobalService_UpdateLogicalDeviceMeterTable_Handler,
+		},
+		{
+			MethodName: "ListLogicalDeviceMeters",
+			Handler:    _VolthaGlobalService_ListLogicalDeviceMeters_Handler,
+		},
+		{
+			MethodName: "ListLogicalDeviceFlowGroups",
+			Handler:    _VolthaGlobalService_ListLogicalDeviceFlowGroups_Handler,
+		},
+		{
+			MethodName: "UpdateLogicalDeviceFlowGroupTable",
+			Handler:    _VolthaGlobalService_UpdateLogicalDeviceFlowGroupTable_Handler,
+		},
+		{
+			MethodName: "ListDevices",
+			Handler:    _VolthaGlobalService_ListDevices_Handler,
+		},
+		{
+			MethodName: "GetDevice",
+			Handler:    _VolthaGlobalService_GetDevice_Handler,
+		},
+		{
+			MethodName: "CreateDevice",
+			Handler:    _VolthaGlobalService_CreateDevice_Handler,
+		},
+		{
+			MethodName: "EnableDevice",
+			Handler:    _VolthaGlobalService_EnableDevice_Handler,
+		},
+		{
+			MethodName: "DisableDevice",
+			Handler:    _VolthaGlobalService_DisableDevice_Handler,
+		},
+		{
+			MethodName: "RebootDevice",
+			Handler:    _VolthaGlobalService_RebootDevice_Handler,
+		},
+		{
+			MethodName: "DeleteDevice",
+			Handler:    _VolthaGlobalService_DeleteDevice_Handler,
+		},
+		{
+			MethodName: "DownloadImage",
+			Handler:    _VolthaGlobalService_DownloadImage_Handler,
+		},
+		{
+			MethodName: "GetImageDownloadStatus",
+			Handler:    _VolthaGlobalService_GetImageDownloadStatus_Handler,
+		},
+		{
+			MethodName: "GetImageDownload",
+			Handler:    _VolthaGlobalService_GetImageDownload_Handler,
+		},
+		{
+			MethodName: "ListImageDownloads",
+			Handler:    _VolthaGlobalService_ListImageDownloads_Handler,
+		},
+		{
+			MethodName: "CancelImageDownload",
+			Handler:    _VolthaGlobalService_CancelImageDownload_Handler,
+		},
+		{
+			MethodName: "ActivateImageUpdate",
+			Handler:    _VolthaGlobalService_ActivateImageUpdate_Handler,
+		},
+		{
+			MethodName: "RevertImageUpdate",
+			Handler:    _VolthaGlobalService_RevertImageUpdate_Handler,
+		},
+		{
+			MethodName: "ListDevicePorts",
+			Handler:    _VolthaGlobalService_ListDevicePorts_Handler,
+		},
+		{
+			MethodName: "ListDevicePmConfigs",
+			Handler:    _VolthaGlobalService_ListDevicePmConfigs_Handler,
+		},
+		{
+			MethodName: "UpdateDevicePmConfigs",
+			Handler:    _VolthaGlobalService_UpdateDevicePmConfigs_Handler,
+		},
+		{
+			MethodName: "ListDeviceFlows",
+			Handler:    _VolthaGlobalService_ListDeviceFlows_Handler,
+		},
+		{
+			MethodName: "ListDeviceFlowGroups",
+			Handler:    _VolthaGlobalService_ListDeviceFlowGroups_Handler,
+		},
+		{
+			MethodName: "ListDeviceTypes",
+			Handler:    _VolthaGlobalService_ListDeviceTypes_Handler,
+		},
+		{
+			MethodName: "GetDeviceType",
+			Handler:    _VolthaGlobalService_GetDeviceType_Handler,
+		},
+		{
+			MethodName: "ListDeviceGroups",
+			Handler:    _VolthaGlobalService_ListDeviceGroups_Handler,
+		},
+		{
+			MethodName: "GetDeviceGroup",
+			Handler:    _VolthaGlobalService_GetDeviceGroup_Handler,
+		},
+		{
+			MethodName: "CreateAlarmFilter",
+			Handler:    _VolthaGlobalService_CreateAlarmFilter_Handler,
+		},
+		{
+			MethodName: "GetAlarmFilter",
+			Handler:    _VolthaGlobalService_GetAlarmFilter_Handler,
+		},
+		{
+			MethodName: "UpdateAlarmFilter",
+			Handler:    _VolthaGlobalService_UpdateAlarmFilter_Handler,
+		},
+		{
+			MethodName: "DeleteAlarmFilter",
+			Handler:    _VolthaGlobalService_DeleteAlarmFilter_Handler,
+		},
+		{
+			MethodName: "ListAlarmFilters",
+			Handler:    _VolthaGlobalService_ListAlarmFilters_Handler,
+		},
+		{
+			MethodName: "GetAllChannelgroupConfig",
+			Handler:    _VolthaGlobalService_GetAllChannelgroupConfig_Handler,
+		},
+		{
+			MethodName: "CreateChannelgroup",
+			Handler:    _VolthaGlobalService_CreateChannelgroup_Handler,
+		},
+		{
+			MethodName: "UpdateChannelgroup",
+			Handler:    _VolthaGlobalService_UpdateChannelgroup_Handler,
+		},
+		{
+			MethodName: "DeleteChannelgroup",
+			Handler:    _VolthaGlobalService_DeleteChannelgroup_Handler,
+		},
+		{
+			MethodName: "GetAllChannelpartitionConfig",
+			Handler:    _VolthaGlobalService_GetAllChannelpartitionConfig_Handler,
+		},
+		{
+			MethodName: "CreateChannelpartition",
+			Handler:    _VolthaGlobalService_CreateChannelpartition_Handler,
+		},
+		{
+			MethodName: "UpdateChannelpartition",
+			Handler:    _VolthaGlobalService_UpdateChannelpartition_Handler,
+		},
+		{
+			MethodName: "DeleteChannelpartition",
+			Handler:    _VolthaGlobalService_DeleteChannelpartition_Handler,
+		},
+		{
+			MethodName: "GetAllChannelpairConfig",
+			Handler:    _VolthaGlobalService_GetAllChannelpairConfig_Handler,
+		},
+		{
+			MethodName: "CreateChannelpair",
+			Handler:    _VolthaGlobalService_CreateChannelpair_Handler,
+		},
+		{
+			MethodName: "UpdateChannelpair",
+			Handler:    _VolthaGlobalService_UpdateChannelpair_Handler,
+		},
+		{
+			MethodName: "DeleteChannelpair",
+			Handler:    _VolthaGlobalService_DeleteChannelpair_Handler,
+		},
+		{
+			MethodName: "GetAllChannelterminationConfig",
+			Handler:    _VolthaGlobalService_GetAllChannelterminationConfig_Handler,
+		},
+		{
+			MethodName: "CreateChanneltermination",
+			Handler:    _VolthaGlobalService_CreateChanneltermination_Handler,
+		},
+		{
+			MethodName: "UpdateChanneltermination",
+			Handler:    _VolthaGlobalService_UpdateChanneltermination_Handler,
+		},
+		{
+			MethodName: "DeleteChanneltermination",
+			Handler:    _VolthaGlobalService_DeleteChanneltermination_Handler,
+		},
+		{
+			MethodName: "GetAllOntaniConfig",
+			Handler:    _VolthaGlobalService_GetAllOntaniConfig_Handler,
+		},
+		{
+			MethodName: "CreateOntani",
+			Handler:    _VolthaGlobalService_CreateOntani_Handler,
+		},
+		{
+			MethodName: "UpdateOntani",
+			Handler:    _VolthaGlobalService_UpdateOntani_Handler,
+		},
+		{
+			MethodName: "DeleteOntani",
+			Handler:    _VolthaGlobalService_DeleteOntani_Handler,
+		},
+		{
+			MethodName: "GetAllVOntaniConfig",
+			Handler:    _VolthaGlobalService_GetAllVOntaniConfig_Handler,
+		},
+		{
+			MethodName: "CreateVOntani",
+			Handler:    _VolthaGlobalService_CreateVOntani_Handler,
+		},
+		{
+			MethodName: "UpdateVOntani",
+			Handler:    _VolthaGlobalService_UpdateVOntani_Handler,
+		},
+		{
+			MethodName: "DeleteVOntani",
+			Handler:    _VolthaGlobalService_DeleteVOntani_Handler,
+		},
+		{
+			MethodName: "GetAllVEnetConfig",
+			Handler:    _VolthaGlobalService_GetAllVEnetConfig_Handler,
+		},
+		{
+			MethodName: "CreateVEnet",
+			Handler:    _VolthaGlobalService_CreateVEnet_Handler,
+		},
+		{
+			MethodName: "UpdateVEnet",
+			Handler:    _VolthaGlobalService_UpdateVEnet_Handler,
+		},
+		{
+			MethodName: "DeleteVEnet",
+			Handler:    _VolthaGlobalService_DeleteVEnet_Handler,
+		},
+		{
+			MethodName: "GetAllTrafficDescriptorProfileData",
+			Handler:    _VolthaGlobalService_GetAllTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "CreateTrafficDescriptorProfileData",
+			Handler:    _VolthaGlobalService_CreateTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "UpdateTrafficDescriptorProfileData",
+			Handler:    _VolthaGlobalService_UpdateTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "DeleteTrafficDescriptorProfileData",
+			Handler:    _VolthaGlobalService_DeleteTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "GetAllTcontsConfigData",
+			Handler:    _VolthaGlobalService_GetAllTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "CreateTcontsConfigData",
+			Handler:    _VolthaGlobalService_CreateTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "UpdateTcontsConfigData",
+			Handler:    _VolthaGlobalService_UpdateTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "DeleteTcontsConfigData",
+			Handler:    _VolthaGlobalService_DeleteTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "GetAllGemportsConfigData",
+			Handler:    _VolthaGlobalService_GetAllGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "CreateGemportsConfigData",
+			Handler:    _VolthaGlobalService_CreateGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "UpdateGemportsConfigData",
+			Handler:    _VolthaGlobalService_UpdateGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "DeleteGemportsConfigData",
+			Handler:    _VolthaGlobalService_DeleteGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "GetAllMulticastGemportsConfigData",
+			Handler:    _VolthaGlobalService_GetAllMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "CreateMulticastGemportsConfigData",
+			Handler:    _VolthaGlobalService_CreateMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "UpdateMulticastGemportsConfigData",
+			Handler:    _VolthaGlobalService_UpdateMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "DeleteMulticastGemportsConfigData",
+			Handler:    _VolthaGlobalService_DeleteMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "GetAllMulticastDistributionSetData",
+			Handler:    _VolthaGlobalService_GetAllMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "CreateMulticastDistributionSetData",
+			Handler:    _VolthaGlobalService_CreateMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "UpdateMulticastDistributionSetData",
+			Handler:    _VolthaGlobalService_UpdateMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "DeleteMulticastDistributionSetData",
+			Handler:    _VolthaGlobalService_DeleteMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "GetImages",
+			Handler:    _VolthaGlobalService_GetImages_Handler,
+		},
+		{
+			MethodName: "SelfTest",
+			Handler:    _VolthaGlobalService_SelfTest_Handler,
+		},
+		{
+			MethodName: "GetMibDeviceData",
+			Handler:    _VolthaGlobalService_GetMibDeviceData_Handler,
+		},
+		{
+			MethodName: "GetAlarmDeviceData",
+			Handler:    _VolthaGlobalService_GetAlarmDeviceData_Handler,
+		},
+		{
+			MethodName: "SimulateAlarm",
+			Handler:    _VolthaGlobalService_SimulateAlarm_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "voltha_protos/voltha.proto",
+}
+
+// VolthaLocalServiceClient is the client API for VolthaLocalService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type VolthaLocalServiceClient interface {
+	// Get information on this Voltha instance
+	GetVolthaInstance(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*VolthaInstance, error)
+	// Get the health state of the Voltha instance
+	GetHealth(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*HealthStatus, error)
+	// List all active adapters (plugins) in this Voltha instance
+	ListAdapters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Adapters, error)
+	// List all logical devices managed by this Voltha instance
+	ListLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error)
+	// List all reachable logical devices managed by this Voltha instance
+	ListReachableLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error)
+	// Get additional information on given logical device
+	GetLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalDevice, error)
+	// List ports of a logical device
+	ListLogicalDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalPorts, error)
+	// Gets a logical device port
+	GetLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*LogicalPort, error)
+	// Enables a logical device port
+	EnableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Disables a logical device port
+	DisableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all flows of a logical device
+	ListLogicalDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error)
+	// Update flow table for logical device
+	UpdateLogicalDeviceFlowTable(ctx context.Context, in *openflow_13.FlowTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update meter table for logical device
+	UpdateLogicalDeviceMeterTable(ctx context.Context, in *openflow_13.MeterModUpdate, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all flow groups of a logical device
+	ListLogicalDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error)
+	// List all meters of a logical device
+	ListLogicalDeviceMeters(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Meters, error)
+	// Update group table for logical device
+	UpdateLogicalDeviceFlowGroupTable(ctx context.Context, in *openflow_13.FlowGroupTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all physical devices managed by this Voltha instance
+	ListDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Devices, error)
+	// Get additional information on this device
+	GetDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Device, error)
+	// Pre-provision a new physical device
+	CreateDevice(ctx context.Context, in *Device, opts ...grpc.CallOption) (*Device, error)
+	// Enable a device.  If the device was in pre-provisioned state then it
+	// will tansition to ENABLED state.  If it was is DISABLED state then it
+	// will tansition to ENABLED state as well.
+	EnableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Disable a device
+	DisableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Reboot a device
+	RebootDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a device
+	DeleteDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Request an image download to the standby partition
+	// of a device.
+	// Note that the call is expected to be non-blocking
+	DownloadImage(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error)
+	// Get image download status on a device
+	// The request retrieves progress on device and updates db record
+	GetImageDownloadStatus(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error)
+	// Get image download db record
+	GetImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error)
+	// List image download db records for a given device
+	ListImageDownloads(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*ImageDownloads, error)
+	// Cancel an image download process on a device
+	CancelImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error)
+	// Install and Activate a downloaded image from standby
+	// partition to active partition
+	// A subsequent call to reboot will cause the newly update image
+	// to become active
+	// Note that the call is expected to be non-blocking.
+	ActivateImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error)
+	// Uninstall and deactivate an image update on a device,
+	// and revert back to pre update image
+	// A subsequent call to reboot will cause the pre update image
+	// to become active
+	// Note that the call is expected to be non-blocking.
+	RevertImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error)
+	// List ports of a device
+	ListDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Ports, error)
+	// List pm config of a device
+	ListDevicePmConfigs(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*PmConfigs, error)
+	// Update the pm config of a device
+	UpdateDevicePmConfigs(ctx context.Context, in *PmConfigs, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all flows of a device
+	ListDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error)
+	// List all flow groups of a device
+	ListDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error)
+	// List device types know to Voltha instance
+	ListDeviceTypes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceTypes, error)
+	// Get additional information on given device type
+	GetDeviceType(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceType, error)
+	// List device sharding groups managed by this Voltha instance
+	ListDeviceGroups(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceGroups, error)
+	// Get more information on given device shard
+	GetDeviceGroup(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceGroup, error)
+	// List all channel groups managed by this Voltha instance
+	GetAllChannelgroupConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelgroupConfig, error)
+	// Create a channel group
+	CreateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel group
+	UpdateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delate a channel group
+	DeleteChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all channel partitions managed by this Voltha instance
+	GetAllChannelpartitionConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpartitionConfig, error)
+	// Create a channel partition
+	CreateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel partition
+	UpdateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a channel partition
+	DeleteChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all channel pairs managed by this Voltha instance
+	GetAllChannelpairConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpairConfig, error)
+	// Create a channel pair
+	CreateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel pair
+	UpdateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a channel pair
+	DeleteChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all channel terminations managed by this Voltha instance
+	GetAllChannelterminationConfig(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*bbf_fiber.AllChannelterminationConfig, error)
+	// Create a channel termination
+	CreateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a channel termination
+	UpdateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a channel termination
+	DeleteChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all ont configs managed by this Voltha instance
+	GetAllOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllOntaniConfig, error)
+	// Create an ont configs
+	CreateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update an ont configs
+	UpdateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete an ont configs
+	DeleteOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all vont configs managed by this Voltha instance
+	GetAllVOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVOntaniConfig, error)
+	// Create a vont configs
+	CreateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update a vont configs
+	UpdateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete a vont configs
+	DeleteVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all venet configs managed by this Voltha instance
+	GetAllVEnetConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVEnetConfig, error)
+	// Create venet configs
+	CreateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update venet configs
+	UpdateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete venet configs
+	DeleteVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Traffic Descriptor Profiles
+	GetAllTrafficDescriptorProfileData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTrafficDescriptorProfileData, error)
+	// Create Traffic Descriptor Profile
+	CreateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Traffic Descriptor Profile
+	UpdateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Traffic Descriptor Profile
+	DeleteTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Tconts
+	GetAllTcontsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTcontsConfigData, error)
+	// Create Tcont
+	CreateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Tcont
+	UpdateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Tcont
+	DeleteTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Gemports
+	GetAllGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllGemportsConfigData, error)
+	// Create Gemport
+	CreateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Gemport
+	UpdateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Gemport
+	DeleteGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Multicast Gemports
+	GetAllMulticastGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastGemportsConfigData, error)
+	// Create Multicast Gemport
+	CreateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Multicast Gemport
+	UpdateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Multicast Gemport
+	DeleteMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// List all Multicast Distribution Sets
+	GetAllMulticastDistributionSetData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastDistributionSetData, error)
+	// Create Multicast Distribution Set
+	CreateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update Multicast Distribution Set
+	UpdateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Delete Multicast Distribution Set
+	DeleteMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Stream control packets to the dataplane
+	StreamPacketsOut(ctx context.Context, opts ...grpc.CallOption) (VolthaLocalService_StreamPacketsOutClient, error)
+	// Receive control packet stream
+	ReceivePacketsIn(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaLocalService_ReceivePacketsInClient, error)
+	ReceiveChangeEvents(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaLocalService_ReceiveChangeEventsClient, error)
+	CreateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error)
+	GetAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*AlarmFilter, error)
+	UpdateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error)
+	DeleteAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error)
+	ListAlarmFilters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AlarmFilters, error)
+	GetImages(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Images, error)
+	SelfTest(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*SelfTestResponse, error)
+	Subscribe(ctx context.Context, in *OfAgentSubscriber, opts ...grpc.CallOption) (*OfAgentSubscriber, error)
+	// OpenOMCI MIB information
+	GetMibDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.MibDeviceData, error)
+	// OpenOMCI ALARM information
+	GetAlarmDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.AlarmDeviceData, error)
+	// Simulate an Alarm
+	SimulateAlarm(ctx context.Context, in *SimulateAlarmRequest, opts ...grpc.CallOption) (*common.OperationResp, error)
+}
+
+type volthaLocalServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewVolthaLocalServiceClient(cc *grpc.ClientConn) VolthaLocalServiceClient {
+	return &volthaLocalServiceClient{cc}
+}
+
+func (c *volthaLocalServiceClient) GetVolthaInstance(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*VolthaInstance, error) {
+	out := new(VolthaInstance)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetVolthaInstance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetHealth(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*HealthStatus, error) {
+	out := new(HealthStatus)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetHealth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListAdapters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Adapters, error) {
+	out := new(Adapters)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListAdapters", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error) {
+	out := new(LogicalDevices)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListLogicalDevices", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListReachableLogicalDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*LogicalDevices, error) {
+	out := new(LogicalDevices)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListReachableLogicalDevices", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetLogicalDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalDevice, error) {
+	out := new(LogicalDevice)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetLogicalDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListLogicalDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*LogicalPorts, error) {
+	out := new(LogicalPorts)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListLogicalDevicePorts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*LogicalPort, error) {
+	out := new(LogicalPort)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetLogicalDevicePort", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) EnableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/EnableLogicalDevicePort", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DisableLogicalDevicePort(ctx context.Context, in *LogicalPortId, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DisableLogicalDevicePort", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListLogicalDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error) {
+	out := new(openflow_13.Flows)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListLogicalDeviceFlows", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateLogicalDeviceFlowTable(ctx context.Context, in *openflow_13.FlowTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateLogicalDeviceFlowTable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateLogicalDeviceMeterTable(ctx context.Context, in *openflow_13.MeterModUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateLogicalDeviceMeterTable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListLogicalDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error) {
+	out := new(openflow_13.FlowGroups)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListLogicalDeviceFlowGroups", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListLogicalDeviceMeters(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Meters, error) {
+	out := new(openflow_13.Meters)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListLogicalDeviceMeters", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateLogicalDeviceFlowGroupTable(ctx context.Context, in *openflow_13.FlowGroupTableUpdate, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateLogicalDeviceFlowGroupTable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Devices, error) {
+	out := new(Devices)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDevices", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Device, error) {
+	out := new(Device)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateDevice(ctx context.Context, in *Device, opts ...grpc.CallOption) (*Device, error) {
+	out := new(Device)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) EnableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/EnableDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DisableDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DisableDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) RebootDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/RebootDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteDevice(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DownloadImage(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+	out := new(common.OperationResp)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DownloadImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetImageDownloadStatus(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error) {
+	out := new(ImageDownload)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetImageDownloadStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*ImageDownload, error) {
+	out := new(ImageDownload)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetImageDownload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListImageDownloads(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*ImageDownloads, error) {
+	out := new(ImageDownloads)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListImageDownloads", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CancelImageDownload(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+	out := new(common.OperationResp)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CancelImageDownload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ActivateImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+	out := new(common.OperationResp)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ActivateImageUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) RevertImageUpdate(ctx context.Context, in *ImageDownload, opts ...grpc.CallOption) (*common.OperationResp, error) {
+	out := new(common.OperationResp)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/RevertImageUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDevicePorts(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Ports, error) {
+	out := new(Ports)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDevicePorts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDevicePmConfigs(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*PmConfigs, error) {
+	out := new(PmConfigs)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDevicePmConfigs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateDevicePmConfigs(ctx context.Context, in *PmConfigs, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateDevicePmConfigs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDeviceFlows(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.Flows, error) {
+	out := new(openflow_13.Flows)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDeviceFlows", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDeviceFlowGroups(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*openflow_13.FlowGroups, error) {
+	out := new(openflow_13.FlowGroups)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDeviceFlowGroups", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDeviceTypes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceTypes, error) {
+	out := new(DeviceTypes)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDeviceTypes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetDeviceType(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceType, error) {
+	out := new(DeviceType)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetDeviceType", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListDeviceGroups(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DeviceGroups, error) {
+	out := new(DeviceGroups)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListDeviceGroups", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetDeviceGroup(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*DeviceGroup, error) {
+	out := new(DeviceGroup)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetDeviceGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllChannelgroupConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelgroupConfig, error) {
+	out := new(bbf_fiber.AllChannelgroupConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllChannelgroupConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateChannelgroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateChannelgroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteChannelgroup(ctx context.Context, in *bbf_fiber.ChannelgroupConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteChannelgroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllChannelpartitionConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpartitionConfig, error) {
+	out := new(bbf_fiber.AllChannelpartitionConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllChannelpartitionConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateChannelpartition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateChannelpartition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteChannelpartition(ctx context.Context, in *bbf_fiber.ChannelpartitionConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteChannelpartition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllChannelpairConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllChannelpairConfig, error) {
+	out := new(bbf_fiber.AllChannelpairConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllChannelpairConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateChannelpair", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateChannelpair", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteChannelpair(ctx context.Context, in *bbf_fiber.ChannelpairConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteChannelpair", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllChannelterminationConfig(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*bbf_fiber.AllChannelterminationConfig, error) {
+	out := new(bbf_fiber.AllChannelterminationConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllChannelterminationConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateChanneltermination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateChanneltermination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteChanneltermination(ctx context.Context, in *bbf_fiber.ChannelterminationConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteChanneltermination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllOntaniConfig, error) {
+	out := new(bbf_fiber.AllOntaniConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllOntaniConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteOntani(ctx context.Context, in *bbf_fiber.OntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllVOntaniConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVOntaniConfig, error) {
+	out := new(bbf_fiber.AllVOntaniConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllVOntaniConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateVOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateVOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteVOntani(ctx context.Context, in *bbf_fiber.VOntaniConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteVOntani", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllVEnetConfig(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllVEnetConfig, error) {
+	out := new(bbf_fiber.AllVEnetConfig)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllVEnetConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateVEnet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateVEnet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteVEnet(ctx context.Context, in *bbf_fiber.VEnetConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteVEnet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllTrafficDescriptorProfileData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTrafficDescriptorProfileData, error) {
+	out := new(bbf_fiber.AllTrafficDescriptorProfileData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteTrafficDescriptorProfileData(ctx context.Context, in *bbf_fiber.TrafficDescriptorProfileData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteTrafficDescriptorProfileData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllTcontsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllTcontsConfigData, error) {
+	out := new(bbf_fiber.AllTcontsConfigData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteTcontsConfigData(ctx context.Context, in *bbf_fiber.TcontsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteTcontsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllGemportsConfigData, error) {
+	out := new(bbf_fiber.AllGemportsConfigData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteGemportsConfigData(ctx context.Context, in *bbf_fiber.GemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllMulticastGemportsConfigData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastGemportsConfigData, error) {
+	out := new(bbf_fiber.AllMulticastGemportsConfigData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteMulticastGemportsConfigData(ctx context.Context, in *bbf_fiber.MulticastGemportsConfigData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteMulticastGemportsConfigData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAllMulticastDistributionSetData(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*bbf_fiber.AllMulticastDistributionSetData, error) {
+	out := new(bbf_fiber.AllMulticastDistributionSetData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAllMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) CreateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteMulticastDistributionSetData(ctx context.Context, in *bbf_fiber.MulticastDistributionSetData, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteMulticastDistributionSetData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) StreamPacketsOut(ctx context.Context, opts ...grpc.CallOption) (VolthaLocalService_StreamPacketsOutClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_VolthaLocalService_serviceDesc.Streams[0], "/voltha.VolthaLocalService/StreamPacketsOut", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &volthaLocalServiceStreamPacketsOutClient{stream}
+	return x, nil
+}
+
+type VolthaLocalService_StreamPacketsOutClient interface {
+	Send(*openflow_13.PacketOut) error
+	CloseAndRecv() (*empty.Empty, error)
+	grpc.ClientStream
+}
+
+type volthaLocalServiceStreamPacketsOutClient struct {
+	grpc.ClientStream
+}
+
+func (x *volthaLocalServiceStreamPacketsOutClient) Send(m *openflow_13.PacketOut) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *volthaLocalServiceStreamPacketsOutClient) CloseAndRecv() (*empty.Empty, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(empty.Empty)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *volthaLocalServiceClient) ReceivePacketsIn(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaLocalService_ReceivePacketsInClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_VolthaLocalService_serviceDesc.Streams[1], "/voltha.VolthaLocalService/ReceivePacketsIn", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &volthaLocalServiceReceivePacketsInClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type VolthaLocalService_ReceivePacketsInClient interface {
+	Recv() (*openflow_13.PacketIn, error)
+	grpc.ClientStream
+}
+
+type volthaLocalServiceReceivePacketsInClient struct {
+	grpc.ClientStream
+}
+
+func (x *volthaLocalServiceReceivePacketsInClient) Recv() (*openflow_13.PacketIn, error) {
+	m := new(openflow_13.PacketIn)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *volthaLocalServiceClient) ReceiveChangeEvents(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (VolthaLocalService_ReceiveChangeEventsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_VolthaLocalService_serviceDesc.Streams[2], "/voltha.VolthaLocalService/ReceiveChangeEvents", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &volthaLocalServiceReceiveChangeEventsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type VolthaLocalService_ReceiveChangeEventsClient interface {
+	Recv() (*openflow_13.ChangeEvent, error)
+	grpc.ClientStream
+}
+
+type volthaLocalServiceReceiveChangeEventsClient struct {
+	grpc.ClientStream
+}
+
+func (x *volthaLocalServiceReceiveChangeEventsClient) Recv() (*openflow_13.ChangeEvent, error) {
+	m := new(openflow_13.ChangeEvent)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *volthaLocalServiceClient) CreateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error) {
+	out := new(AlarmFilter)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/CreateAlarmFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*AlarmFilter, error) {
+	out := new(AlarmFilter)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAlarmFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) UpdateAlarmFilter(ctx context.Context, in *AlarmFilter, opts ...grpc.CallOption) (*AlarmFilter, error) {
+	out := new(AlarmFilter)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/UpdateAlarmFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) DeleteAlarmFilter(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/DeleteAlarmFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) ListAlarmFilters(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AlarmFilters, error) {
+	out := new(AlarmFilters)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/ListAlarmFilters", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetImages(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*Images, error) {
+	out := new(Images)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetImages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) SelfTest(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*SelfTestResponse, error) {
+	out := new(SelfTestResponse)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/SelfTest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) Subscribe(ctx context.Context, in *OfAgentSubscriber, opts ...grpc.CallOption) (*OfAgentSubscriber, error) {
+	out := new(OfAgentSubscriber)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/Subscribe", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetMibDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.MibDeviceData, error) {
+	out := new(omci.MibDeviceData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetMibDeviceData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) GetAlarmDeviceData(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*omci.AlarmDeviceData, error) {
+	out := new(omci.AlarmDeviceData)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/GetAlarmDeviceData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *volthaLocalServiceClient) SimulateAlarm(ctx context.Context, in *SimulateAlarmRequest, opts ...grpc.CallOption) (*common.OperationResp, error) {
+	out := new(common.OperationResp)
+	err := c.cc.Invoke(ctx, "/voltha.VolthaLocalService/SimulateAlarm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// VolthaLocalServiceServer is the server API for VolthaLocalService service.
+type VolthaLocalServiceServer interface {
+	// Get information on this Voltha instance
+	GetVolthaInstance(context.Context, *empty.Empty) (*VolthaInstance, error)
+	// Get the health state of the Voltha instance
+	GetHealth(context.Context, *empty.Empty) (*HealthStatus, error)
+	// List all active adapters (plugins) in this Voltha instance
+	ListAdapters(context.Context, *empty.Empty) (*Adapters, error)
+	// List all logical devices managed by this Voltha instance
+	ListLogicalDevices(context.Context, *empty.Empty) (*LogicalDevices, error)
+	// List all reachable logical devices managed by this Voltha instance
+	ListReachableLogicalDevices(context.Context, *empty.Empty) (*LogicalDevices, error)
+	// Get additional information on given logical device
+	GetLogicalDevice(context.Context, *common.ID) (*LogicalDevice, error)
+	// List ports of a logical device
+	ListLogicalDevicePorts(context.Context, *common.ID) (*LogicalPorts, error)
+	// Gets a logical device port
+	GetLogicalDevicePort(context.Context, *LogicalPortId) (*LogicalPort, error)
+	// Enables a logical device port
+	EnableLogicalDevicePort(context.Context, *LogicalPortId) (*empty.Empty, error)
+	// Disables a logical device port
+	DisableLogicalDevicePort(context.Context, *LogicalPortId) (*empty.Empty, error)
+	// List all flows of a logical device
+	ListLogicalDeviceFlows(context.Context, *common.ID) (*openflow_13.Flows, error)
+	// Update flow table for logical device
+	UpdateLogicalDeviceFlowTable(context.Context, *openflow_13.FlowTableUpdate) (*empty.Empty, error)
+	// Update meter table for logical device
+	UpdateLogicalDeviceMeterTable(context.Context, *openflow_13.MeterModUpdate) (*empty.Empty, error)
+	// List all flow groups of a logical device
+	ListLogicalDeviceFlowGroups(context.Context, *common.ID) (*openflow_13.FlowGroups, error)
+	// List all meters of a logical device
+	ListLogicalDeviceMeters(context.Context, *common.ID) (*openflow_13.Meters, error)
+	// Update group table for logical device
+	UpdateLogicalDeviceFlowGroupTable(context.Context, *openflow_13.FlowGroupTableUpdate) (*empty.Empty, error)
+	// List all physical devices managed by this Voltha instance
+	ListDevices(context.Context, *empty.Empty) (*Devices, error)
+	// Get additional information on this device
+	GetDevice(context.Context, *common.ID) (*Device, error)
+	// Pre-provision a new physical device
+	CreateDevice(context.Context, *Device) (*Device, error)
+	// Enable a device.  If the device was in pre-provisioned state then it
+	// will tansition to ENABLED state.  If it was is DISABLED state then it
+	// will tansition to ENABLED state as well.
+	EnableDevice(context.Context, *common.ID) (*empty.Empty, error)
+	// Disable a device
+	DisableDevice(context.Context, *common.ID) (*empty.Empty, error)
+	// Reboot a device
+	RebootDevice(context.Context, *common.ID) (*empty.Empty, error)
+	// Delete a device
+	DeleteDevice(context.Context, *common.ID) (*empty.Empty, error)
+	// Request an image download to the standby partition
+	// of a device.
+	// Note that the call is expected to be non-blocking
+	DownloadImage(context.Context, *ImageDownload) (*common.OperationResp, error)
+	// Get image download status on a device
+	// The request retrieves progress on device and updates db record
+	GetImageDownloadStatus(context.Context, *ImageDownload) (*ImageDownload, error)
+	// Get image download db record
+	GetImageDownload(context.Context, *ImageDownload) (*ImageDownload, error)
+	// List image download db records for a given device
+	ListImageDownloads(context.Context, *common.ID) (*ImageDownloads, error)
+	// Cancel an image download process on a device
+	CancelImageDownload(context.Context, *ImageDownload) (*common.OperationResp, error)
+	// Install and Activate a downloaded image from standby
+	// partition to active partition
+	// A subsequent call to reboot will cause the newly update image
+	// to become active
+	// Note that the call is expected to be non-blocking.
+	ActivateImageUpdate(context.Context, *ImageDownload) (*common.OperationResp, error)
+	// Uninstall and deactivate an image update on a device,
+	// and revert back to pre update image
+	// A subsequent call to reboot will cause the pre update image
+	// to become active
+	// Note that the call is expected to be non-blocking.
+	RevertImageUpdate(context.Context, *ImageDownload) (*common.OperationResp, error)
+	// List ports of a device
+	ListDevicePorts(context.Context, *common.ID) (*Ports, error)
+	// List pm config of a device
+	ListDevicePmConfigs(context.Context, *common.ID) (*PmConfigs, error)
+	// Update the pm config of a device
+	UpdateDevicePmConfigs(context.Context, *PmConfigs) (*empty.Empty, error)
+	// List all flows of a device
+	ListDeviceFlows(context.Context, *common.ID) (*openflow_13.Flows, error)
+	// List all flow groups of a device
+	ListDeviceFlowGroups(context.Context, *common.ID) (*openflow_13.FlowGroups, error)
+	// List device types know to Voltha instance
+	ListDeviceTypes(context.Context, *empty.Empty) (*DeviceTypes, error)
+	// Get additional information on given device type
+	GetDeviceType(context.Context, *common.ID) (*DeviceType, error)
+	// List device sharding groups managed by this Voltha instance
+	ListDeviceGroups(context.Context, *empty.Empty) (*DeviceGroups, error)
+	// Get more information on given device shard
+	GetDeviceGroup(context.Context, *common.ID) (*DeviceGroup, error)
+	// List all channel groups managed by this Voltha instance
+	GetAllChannelgroupConfig(context.Context, *empty.Empty) (*bbf_fiber.AllChannelgroupConfig, error)
+	// Create a channel group
+	CreateChannelgroup(context.Context, *bbf_fiber.ChannelgroupConfig) (*empty.Empty, error)
+	// Update a channel group
+	UpdateChannelgroup(context.Context, *bbf_fiber.ChannelgroupConfig) (*empty.Empty, error)
+	// Delate a channel group
+	DeleteChannelgroup(context.Context, *bbf_fiber.ChannelgroupConfig) (*empty.Empty, error)
+	// List all channel partitions managed by this Voltha instance
+	GetAllChannelpartitionConfig(context.Context, *empty.Empty) (*bbf_fiber.AllChannelpartitionConfig, error)
+	// Create a channel partition
+	CreateChannelpartition(context.Context, *bbf_fiber.ChannelpartitionConfig) (*empty.Empty, error)
+	// Update a channel partition
+	UpdateChannelpartition(context.Context, *bbf_fiber.ChannelpartitionConfig) (*empty.Empty, error)
+	// Delete a channel partition
+	DeleteChannelpartition(context.Context, *bbf_fiber.ChannelpartitionConfig) (*empty.Empty, error)
+	// List all channel pairs managed by this Voltha instance
+	GetAllChannelpairConfig(context.Context, *empty.Empty) (*bbf_fiber.AllChannelpairConfig, error)
+	// Create a channel pair
+	CreateChannelpair(context.Context, *bbf_fiber.ChannelpairConfig) (*empty.Empty, error)
+	// Update a channel pair
+	UpdateChannelpair(context.Context, *bbf_fiber.ChannelpairConfig) (*empty.Empty, error)
+	// Delete a channel pair
+	DeleteChannelpair(context.Context, *bbf_fiber.ChannelpairConfig) (*empty.Empty, error)
+	// List all channel terminations managed by this Voltha instance
+	GetAllChannelterminationConfig(context.Context, *common.ID) (*bbf_fiber.AllChannelterminationConfig, error)
+	// Create a channel termination
+	CreateChanneltermination(context.Context, *bbf_fiber.ChannelterminationConfig) (*empty.Empty, error)
+	// Update a channel termination
+	UpdateChanneltermination(context.Context, *bbf_fiber.ChannelterminationConfig) (*empty.Empty, error)
+	// Delete a channel termination
+	DeleteChanneltermination(context.Context, *bbf_fiber.ChannelterminationConfig) (*empty.Empty, error)
+	// List all ont configs managed by this Voltha instance
+	GetAllOntaniConfig(context.Context, *empty.Empty) (*bbf_fiber.AllOntaniConfig, error)
+	// Create an ont configs
+	CreateOntani(context.Context, *bbf_fiber.OntaniConfig) (*empty.Empty, error)
+	// Update an ont configs
+	UpdateOntani(context.Context, *bbf_fiber.OntaniConfig) (*empty.Empty, error)
+	// Delete an ont configs
+	DeleteOntani(context.Context, *bbf_fiber.OntaniConfig) (*empty.Empty, error)
+	// List all vont configs managed by this Voltha instance
+	GetAllVOntaniConfig(context.Context, *empty.Empty) (*bbf_fiber.AllVOntaniConfig, error)
+	// Create a vont configs
+	CreateVOntani(context.Context, *bbf_fiber.VOntaniConfig) (*empty.Empty, error)
+	// Update a vont configs
+	UpdateVOntani(context.Context, *bbf_fiber.VOntaniConfig) (*empty.Empty, error)
+	// Delete a vont configs
+	DeleteVOntani(context.Context, *bbf_fiber.VOntaniConfig) (*empty.Empty, error)
+	// List all venet configs managed by this Voltha instance
+	GetAllVEnetConfig(context.Context, *empty.Empty) (*bbf_fiber.AllVEnetConfig, error)
+	// Create venet configs
+	CreateVEnet(context.Context, *bbf_fiber.VEnetConfig) (*empty.Empty, error)
+	// Update venet configs
+	UpdateVEnet(context.Context, *bbf_fiber.VEnetConfig) (*empty.Empty, error)
+	// Delete venet configs
+	DeleteVEnet(context.Context, *bbf_fiber.VEnetConfig) (*empty.Empty, error)
+	// List all Traffic Descriptor Profiles
+	GetAllTrafficDescriptorProfileData(context.Context, *empty.Empty) (*bbf_fiber.AllTrafficDescriptorProfileData, error)
+	// Create Traffic Descriptor Profile
+	CreateTrafficDescriptorProfileData(context.Context, *bbf_fiber.TrafficDescriptorProfileData) (*empty.Empty, error)
+	// Update Traffic Descriptor Profile
+	UpdateTrafficDescriptorProfileData(context.Context, *bbf_fiber.TrafficDescriptorProfileData) (*empty.Empty, error)
+	// Delete Traffic Descriptor Profile
+	DeleteTrafficDescriptorProfileData(context.Context, *bbf_fiber.TrafficDescriptorProfileData) (*empty.Empty, error)
+	// List all Tconts
+	GetAllTcontsConfigData(context.Context, *empty.Empty) (*bbf_fiber.AllTcontsConfigData, error)
+	// Create Tcont
+	CreateTcontsConfigData(context.Context, *bbf_fiber.TcontsConfigData) (*empty.Empty, error)
+	// Update Tcont
+	UpdateTcontsConfigData(context.Context, *bbf_fiber.TcontsConfigData) (*empty.Empty, error)
+	// Delete Tcont
+	DeleteTcontsConfigData(context.Context, *bbf_fiber.TcontsConfigData) (*empty.Empty, error)
+	// List all Gemports
+	GetAllGemportsConfigData(context.Context, *empty.Empty) (*bbf_fiber.AllGemportsConfigData, error)
+	// Create Gemport
+	CreateGemportsConfigData(context.Context, *bbf_fiber.GemportsConfigData) (*empty.Empty, error)
+	// Update Gemport
+	UpdateGemportsConfigData(context.Context, *bbf_fiber.GemportsConfigData) (*empty.Empty, error)
+	// Delete Gemport
+	DeleteGemportsConfigData(context.Context, *bbf_fiber.GemportsConfigData) (*empty.Empty, error)
+	// List all Multicast Gemports
+	GetAllMulticastGemportsConfigData(context.Context, *empty.Empty) (*bbf_fiber.AllMulticastGemportsConfigData, error)
+	// Create Multicast Gemport
+	CreateMulticastGemportsConfigData(context.Context, *bbf_fiber.MulticastGemportsConfigData) (*empty.Empty, error)
+	// Update Multicast Gemport
+	UpdateMulticastGemportsConfigData(context.Context, *bbf_fiber.MulticastGemportsConfigData) (*empty.Empty, error)
+	// Delete Multicast Gemport
+	DeleteMulticastGemportsConfigData(context.Context, *bbf_fiber.MulticastGemportsConfigData) (*empty.Empty, error)
+	// List all Multicast Distribution Sets
+	GetAllMulticastDistributionSetData(context.Context, *empty.Empty) (*bbf_fiber.AllMulticastDistributionSetData, error)
+	// Create Multicast Distribution Set
+	CreateMulticastDistributionSetData(context.Context, *bbf_fiber.MulticastDistributionSetData) (*empty.Empty, error)
+	// Update Multicast Distribution Set
+	UpdateMulticastDistributionSetData(context.Context, *bbf_fiber.MulticastDistributionSetData) (*empty.Empty, error)
+	// Delete Multicast Distribution Set
+	DeleteMulticastDistributionSetData(context.Context, *bbf_fiber.MulticastDistributionSetData) (*empty.Empty, error)
+	// Stream control packets to the dataplane
+	StreamPacketsOut(VolthaLocalService_StreamPacketsOutServer) error
+	// Receive control packet stream
+	ReceivePacketsIn(*empty.Empty, VolthaLocalService_ReceivePacketsInServer) error
+	ReceiveChangeEvents(*empty.Empty, VolthaLocalService_ReceiveChangeEventsServer) error
+	CreateAlarmFilter(context.Context, *AlarmFilter) (*AlarmFilter, error)
+	GetAlarmFilter(context.Context, *common.ID) (*AlarmFilter, error)
+	UpdateAlarmFilter(context.Context, *AlarmFilter) (*AlarmFilter, error)
+	DeleteAlarmFilter(context.Context, *common.ID) (*empty.Empty, error)
+	ListAlarmFilters(context.Context, *empty.Empty) (*AlarmFilters, error)
+	GetImages(context.Context, *common.ID) (*Images, error)
+	SelfTest(context.Context, *common.ID) (*SelfTestResponse, error)
+	Subscribe(context.Context, *OfAgentSubscriber) (*OfAgentSubscriber, error)
+	// OpenOMCI MIB information
+	GetMibDeviceData(context.Context, *common.ID) (*omci.MibDeviceData, error)
+	// OpenOMCI ALARM information
+	GetAlarmDeviceData(context.Context, *common.ID) (*omci.AlarmDeviceData, error)
+	// Simulate an Alarm
+	SimulateAlarm(context.Context, *SimulateAlarmRequest) (*common.OperationResp, error)
+}
+
+func RegisterVolthaLocalServiceServer(s *grpc.Server, srv VolthaLocalServiceServer) {
+	s.RegisterService(&_VolthaLocalService_serviceDesc, srv)
+}
+
+func _VolthaLocalService_GetVolthaInstance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetVolthaInstance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetVolthaInstance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetVolthaInstance(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetHealth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetHealth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetHealth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetHealth(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListAdapters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListAdapters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListAdapters",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListAdapters(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListLogicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListLogicalDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListLogicalDevices",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListLogicalDevices(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListReachableLogicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListReachableLogicalDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListReachableLogicalDevices",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListReachableLogicalDevices(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetLogicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetLogicalDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetLogicalDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetLogicalDevice(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListLogicalDevicePorts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListLogicalDevicePorts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListLogicalDevicePorts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListLogicalDevicePorts(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogicalPortId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetLogicalDevicePort(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetLogicalDevicePort",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetLogicalDevicePort(ctx, req.(*LogicalPortId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_EnableLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogicalPortId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).EnableLogicalDevicePort(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/EnableLogicalDevicePort",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).EnableLogicalDevicePort(ctx, req.(*LogicalPortId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DisableLogicalDevicePort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogicalPortId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DisableLogicalDevicePort(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DisableLogicalDevicePort",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DisableLogicalDevicePort(ctx, req.(*LogicalPortId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListLogicalDeviceFlows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListLogicalDeviceFlows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListLogicalDeviceFlows",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListLogicalDeviceFlows(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateLogicalDeviceFlowTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(openflow_13.FlowTableUpdate)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateLogicalDeviceFlowTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateLogicalDeviceFlowTable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateLogicalDeviceFlowTable(ctx, req.(*openflow_13.FlowTableUpdate))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateLogicalDeviceMeterTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(openflow_13.MeterModUpdate)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateLogicalDeviceMeterTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateLogicalDeviceMeterTable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateLogicalDeviceMeterTable(ctx, req.(*openflow_13.MeterModUpdate))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListLogicalDeviceFlowGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListLogicalDeviceFlowGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListLogicalDeviceFlowGroups",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListLogicalDeviceFlowGroups(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListLogicalDeviceMeters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListLogicalDeviceMeters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListLogicalDeviceMeters",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListLogicalDeviceMeters(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateLogicalDeviceFlowGroupTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(openflow_13.FlowGroupTableUpdate)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateLogicalDeviceFlowGroupTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateLogicalDeviceFlowGroupTable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateLogicalDeviceFlowGroupTable(ctx, req.(*openflow_13.FlowGroupTableUpdate))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDevices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDevices",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDevices(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetDevice(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Device)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateDevice(ctx, req.(*Device))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_EnableDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).EnableDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/EnableDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).EnableDevice(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DisableDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DisableDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DisableDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DisableDevice(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_RebootDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).RebootDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/RebootDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).RebootDevice(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteDevice(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DownloadImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageDownload)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DownloadImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DownloadImage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DownloadImage(ctx, req.(*ImageDownload))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetImageDownloadStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageDownload)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetImageDownloadStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetImageDownloadStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetImageDownloadStatus(ctx, req.(*ImageDownload))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetImageDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageDownload)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetImageDownload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetImageDownload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetImageDownload(ctx, req.(*ImageDownload))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListImageDownloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListImageDownloads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListImageDownloads",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListImageDownloads(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CancelImageDownload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageDownload)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CancelImageDownload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CancelImageDownload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CancelImageDownload(ctx, req.(*ImageDownload))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ActivateImageUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageDownload)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ActivateImageUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ActivateImageUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ActivateImageUpdate(ctx, req.(*ImageDownload))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_RevertImageUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImageDownload)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).RevertImageUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/RevertImageUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).RevertImageUpdate(ctx, req.(*ImageDownload))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDevicePorts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDevicePorts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDevicePorts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDevicePorts(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDevicePmConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDevicePmConfigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDevicePmConfigs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDevicePmConfigs(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateDevicePmConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PmConfigs)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateDevicePmConfigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateDevicePmConfigs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateDevicePmConfigs(ctx, req.(*PmConfigs))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDeviceFlows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDeviceFlows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDeviceFlows",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDeviceFlows(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDeviceFlowGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDeviceFlowGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDeviceFlowGroups",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDeviceFlowGroups(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDeviceTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDeviceTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDeviceTypes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDeviceTypes(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetDeviceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetDeviceType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetDeviceType",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetDeviceType(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_ListDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).ListDeviceGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/ListDeviceGroups",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).ListDeviceGroups(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetDeviceGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetDeviceGroup(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllChannelgroupConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllChannelgroupConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllChannelgroupConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllChannelgroupConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateChannelgroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelgroupConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateChannelgroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateChannelgroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateChannelgroup(ctx, req.(*bbf_fiber.ChannelgroupConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateChannelgroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelgroupConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateChannelgroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateChannelgroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateChannelgroup(ctx, req.(*bbf_fiber.ChannelgroupConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteChannelgroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelgroupConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteChannelgroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteChannelgroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteChannelgroup(ctx, req.(*bbf_fiber.ChannelgroupConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllChannelpartitionConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllChannelpartitionConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllChannelpartitionConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllChannelpartitionConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateChannelpartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpartitionConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateChannelpartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateChannelpartition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateChannelpartition(ctx, req.(*bbf_fiber.ChannelpartitionConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateChannelpartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpartitionConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateChannelpartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateChannelpartition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateChannelpartition(ctx, req.(*bbf_fiber.ChannelpartitionConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteChannelpartition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpartitionConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteChannelpartition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteChannelpartition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteChannelpartition(ctx, req.(*bbf_fiber.ChannelpartitionConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllChannelpairConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllChannelpairConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllChannelpairConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllChannelpairConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateChannelpair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpairConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateChannelpair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateChannelpair",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateChannelpair(ctx, req.(*bbf_fiber.ChannelpairConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateChannelpair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpairConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateChannelpair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateChannelpair",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateChannelpair(ctx, req.(*bbf_fiber.ChannelpairConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteChannelpair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelpairConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteChannelpair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteChannelpair",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteChannelpair(ctx, req.(*bbf_fiber.ChannelpairConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllChannelterminationConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllChannelterminationConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllChannelterminationConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllChannelterminationConfig(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateChanneltermination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelterminationConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateChanneltermination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateChanneltermination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateChanneltermination(ctx, req.(*bbf_fiber.ChannelterminationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateChanneltermination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelterminationConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateChanneltermination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateChanneltermination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateChanneltermination(ctx, req.(*bbf_fiber.ChannelterminationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteChanneltermination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.ChannelterminationConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteChanneltermination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteChanneltermination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteChanneltermination(ctx, req.(*bbf_fiber.ChannelterminationConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllOntaniConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllOntaniConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllOntaniConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllOntaniConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.OntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateOntani(ctx, req.(*bbf_fiber.OntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.OntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateOntani(ctx, req.(*bbf_fiber.OntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.OntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteOntani(ctx, req.(*bbf_fiber.OntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllVOntaniConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllVOntaniConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllVOntaniConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllVOntaniConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateVOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VOntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateVOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateVOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateVOntani(ctx, req.(*bbf_fiber.VOntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateVOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VOntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateVOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateVOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateVOntani(ctx, req.(*bbf_fiber.VOntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteVOntani_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VOntaniConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteVOntani(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteVOntani",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteVOntani(ctx, req.(*bbf_fiber.VOntaniConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllVEnetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllVEnetConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllVEnetConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllVEnetConfig(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateVEnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VEnetConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateVEnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateVEnet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateVEnet(ctx, req.(*bbf_fiber.VEnetConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateVEnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VEnetConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateVEnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateVEnet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateVEnet(ctx, req.(*bbf_fiber.VEnetConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteVEnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.VEnetConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteVEnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteVEnet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteVEnet(ctx, req.(*bbf_fiber.VEnetConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllTrafficDescriptorProfileData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TrafficDescriptorProfileData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateTrafficDescriptorProfileData(ctx, req.(*bbf_fiber.TrafficDescriptorProfileData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TrafficDescriptorProfileData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateTrafficDescriptorProfileData(ctx, req.(*bbf_fiber.TrafficDescriptorProfileData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteTrafficDescriptorProfileData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TrafficDescriptorProfileData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteTrafficDescriptorProfileData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteTrafficDescriptorProfileData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteTrafficDescriptorProfileData(ctx, req.(*bbf_fiber.TrafficDescriptorProfileData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllTcontsConfigData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TcontsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateTcontsConfigData(ctx, req.(*bbf_fiber.TcontsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TcontsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateTcontsConfigData(ctx, req.(*bbf_fiber.TcontsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteTcontsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.TcontsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteTcontsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteTcontsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteTcontsConfigData(ctx, req.(*bbf_fiber.TcontsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllGemportsConfigData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.GemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateGemportsConfigData(ctx, req.(*bbf_fiber.GemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.GemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateGemportsConfigData(ctx, req.(*bbf_fiber.GemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.GemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteGemportsConfigData(ctx, req.(*bbf_fiber.GemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllMulticastGemportsConfigData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastGemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateMulticastGemportsConfigData(ctx, req.(*bbf_fiber.MulticastGemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastGemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateMulticastGemportsConfigData(ctx, req.(*bbf_fiber.MulticastGemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteMulticastGemportsConfigData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastGemportsConfigData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteMulticastGemportsConfigData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteMulticastGemportsConfigData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteMulticastGemportsConfigData(ctx, req.(*bbf_fiber.MulticastGemportsConfigData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAllMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAllMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAllMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAllMulticastDistributionSetData(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_CreateMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastDistributionSetData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).CreateMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/CreateMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).CreateMulticastDistributionSetData(ctx, req.(*bbf_fiber.MulticastDistributionSetData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_UpdateMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastDistributionSetData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).UpdateMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/UpdateMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).UpdateMulticastDistributionSetData(ctx, req.(*bbf_fiber.MulticastDistributionSetData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_DeleteMulticastDistributionSetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bbf_fiber.MulticastDistributionSetData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).DeleteMulticastDistributionSetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/DeleteMulticastDistributionSetData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).DeleteMulticastDistributionSetData(ctx, req.(*bbf_fiber.MulticastDistributionSetData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_StreamPacketsOut_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(VolthaLocalServiceServer).StreamPacketsOut(&volthaLocalServiceStreamPacketsOutServer{stream})
+}
+
+type VolthaLocalService_StreamPacketsOutServer interface {
 	SendAndClose(*empty.Empty) error
 	Recv() (*openflow_13.PacketOut, error)
 	grpc.ServerStream
 }
 
-type volthaServiceStreamPacketsOutServer struct {
+type volthaLocalServiceStreamPacketsOutServer struct {
 	grpc.ServerStream
 }
 
-func (x *volthaServiceStreamPacketsOutServer) SendAndClose(m *empty.Empty) error {
+func (x *volthaLocalServiceStreamPacketsOutServer) SendAndClose(m *empty.Empty) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *volthaServiceStreamPacketsOutServer) Recv() (*openflow_13.PacketOut, error) {
+func (x *volthaLocalServiceStreamPacketsOutServer) Recv() (*openflow_13.PacketOut, error) {
 	m := new(openflow_13.PacketOut)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -3814,503 +8937,657 @@ func (x *volthaServiceStreamPacketsOutServer) Recv() (*openflow_13.PacketOut, er
 	return m, nil
 }
 
-func _VolthaService_ReceivePacketsIn_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _VolthaLocalService_ReceivePacketsIn_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(empty.Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(VolthaServiceServer).ReceivePacketsIn(m, &volthaServiceReceivePacketsInServer{stream})
+	return srv.(VolthaLocalServiceServer).ReceivePacketsIn(m, &volthaLocalServiceReceivePacketsInServer{stream})
 }
 
-type VolthaService_ReceivePacketsInServer interface {
+type VolthaLocalService_ReceivePacketsInServer interface {
 	Send(*openflow_13.PacketIn) error
 	grpc.ServerStream
 }
 
-type volthaServiceReceivePacketsInServer struct {
+type volthaLocalServiceReceivePacketsInServer struct {
 	grpc.ServerStream
 }
 
-func (x *volthaServiceReceivePacketsInServer) Send(m *openflow_13.PacketIn) error {
+func (x *volthaLocalServiceReceivePacketsInServer) Send(m *openflow_13.PacketIn) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _VolthaService_ReceiveChangeEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _VolthaLocalService_ReceiveChangeEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(empty.Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(VolthaServiceServer).ReceiveChangeEvents(m, &volthaServiceReceiveChangeEventsServer{stream})
+	return srv.(VolthaLocalServiceServer).ReceiveChangeEvents(m, &volthaLocalServiceReceiveChangeEventsServer{stream})
 }
 
-type VolthaService_ReceiveChangeEventsServer interface {
+type VolthaLocalService_ReceiveChangeEventsServer interface {
 	Send(*openflow_13.ChangeEvent) error
 	grpc.ServerStream
 }
 
-type volthaServiceReceiveChangeEventsServer struct {
+type volthaLocalServiceReceiveChangeEventsServer struct {
 	grpc.ServerStream
 }
 
-func (x *volthaServiceReceiveChangeEventsServer) Send(m *openflow_13.ChangeEvent) error {
+func (x *volthaLocalServiceReceiveChangeEventsServer) Send(m *openflow_13.ChangeEvent) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _VolthaService_GetDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ID)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetDeviceGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetDeviceGroup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetDeviceGroup(ctx, req.(*common.ID))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_CreateAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_CreateAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AlarmFilter)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).CreateAlarmFilter(ctx, in)
+		return srv.(VolthaLocalServiceServer).CreateAlarmFilter(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/CreateAlarmFilter",
+		FullMethod: "/voltha.VolthaLocalService/CreateAlarmFilter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).CreateAlarmFilter(ctx, req.(*AlarmFilter))
+		return srv.(VolthaLocalServiceServer).CreateAlarmFilter(ctx, req.(*AlarmFilter))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_GetAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetAlarmFilter(ctx, in)
+		return srv.(VolthaLocalServiceServer).GetAlarmFilter(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetAlarmFilter",
+		FullMethod: "/voltha.VolthaLocalService/GetAlarmFilter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetAlarmFilter(ctx, req.(*common.ID))
+		return srv.(VolthaLocalServiceServer).GetAlarmFilter(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_UpdateAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_UpdateAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AlarmFilter)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).UpdateAlarmFilter(ctx, in)
+		return srv.(VolthaLocalServiceServer).UpdateAlarmFilter(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/UpdateAlarmFilter",
+		FullMethod: "/voltha.VolthaLocalService/UpdateAlarmFilter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).UpdateAlarmFilter(ctx, req.(*AlarmFilter))
+		return srv.(VolthaLocalServiceServer).UpdateAlarmFilter(ctx, req.(*AlarmFilter))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_DeleteAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_DeleteAlarmFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).DeleteAlarmFilter(ctx, in)
+		return srv.(VolthaLocalServiceServer).DeleteAlarmFilter(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/DeleteAlarmFilter",
+		FullMethod: "/voltha.VolthaLocalService/DeleteAlarmFilter",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).DeleteAlarmFilter(ctx, req.(*common.ID))
+		return srv.(VolthaLocalServiceServer).DeleteAlarmFilter(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_ListAlarmFilters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_ListAlarmFilters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).ListAlarmFilters(ctx, in)
+		return srv.(VolthaLocalServiceServer).ListAlarmFilters(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/ListAlarmFilters",
+		FullMethod: "/voltha.VolthaLocalService/ListAlarmFilters",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).ListAlarmFilters(ctx, req.(*empty.Empty))
+		return srv.(VolthaLocalServiceServer).ListAlarmFilters(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_GetImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetImages(ctx, in)
+		return srv.(VolthaLocalServiceServer).GetImages(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetImages",
+		FullMethod: "/voltha.VolthaLocalService/GetImages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetImages(ctx, req.(*common.ID))
+		return srv.(VolthaLocalServiceServer).GetImages(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_SelfTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_SelfTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).SelfTest(ctx, in)
+		return srv.(VolthaLocalServiceServer).SelfTest(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/SelfTest",
+		FullMethod: "/voltha.VolthaLocalService/SelfTest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).SelfTest(ctx, req.(*common.ID))
+		return srv.(VolthaLocalServiceServer).SelfTest(ctx, req.(*common.ID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VolthaService_GetMibDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ID)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetMibDeviceData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetMibDeviceData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetMibDeviceData(ctx, req.(*common.ID))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_GetAlarmDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(common.ID)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).GetAlarmDeviceData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/GetAlarmDeviceData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).GetAlarmDeviceData(ctx, req.(*common.ID))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_SimulateAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SimulateAlarmRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VolthaServiceServer).SimulateAlarm(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/voltha.VolthaService/SimulateAlarm",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).SimulateAlarm(ctx, req.(*SimulateAlarmRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VolthaService_Subscribe_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _VolthaLocalService_Subscribe_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(OfAgentSubscriber)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VolthaServiceServer).Subscribe(ctx, in)
+		return srv.(VolthaLocalServiceServer).Subscribe(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.VolthaService/Subscribe",
+		FullMethod: "/voltha.VolthaLocalService/Subscribe",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VolthaServiceServer).Subscribe(ctx, req.(*OfAgentSubscriber))
+		return srv.(VolthaLocalServiceServer).Subscribe(ctx, req.(*OfAgentSubscriber))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _VolthaService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "voltha.VolthaService",
-	HandlerType: (*VolthaServiceServer)(nil),
+func _VolthaLocalService_GetMibDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetMibDeviceData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetMibDeviceData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetMibDeviceData(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_GetAlarmDeviceData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).GetAlarmDeviceData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/GetAlarmDeviceData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).GetAlarmDeviceData(ctx, req.(*common.ID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VolthaLocalService_SimulateAlarm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SimulateAlarmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VolthaLocalServiceServer).SimulateAlarm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.VolthaLocalService/SimulateAlarm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VolthaLocalServiceServer).SimulateAlarm(ctx, req.(*SimulateAlarmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _VolthaLocalService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "voltha.VolthaLocalService",
+	HandlerType: (*VolthaLocalServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UpdateLogLevel",
-			Handler:    _VolthaService_UpdateLogLevel_Handler,
+			MethodName: "GetVolthaInstance",
+			Handler:    _VolthaLocalService_GetVolthaInstance_Handler,
 		},
 		{
-			MethodName: "GetMembership",
-			Handler:    _VolthaService_GetMembership_Handler,
-		},
-		{
-			MethodName: "UpdateMembership",
-			Handler:    _VolthaService_UpdateMembership_Handler,
-		},
-		{
-			MethodName: "GetVoltha",
-			Handler:    _VolthaService_GetVoltha_Handler,
-		},
-		{
-			MethodName: "ListCoreInstances",
-			Handler:    _VolthaService_ListCoreInstances_Handler,
-		},
-		{
-			MethodName: "GetCoreInstance",
-			Handler:    _VolthaService_GetCoreInstance_Handler,
+			MethodName: "GetHealth",
+			Handler:    _VolthaLocalService_GetHealth_Handler,
 		},
 		{
 			MethodName: "ListAdapters",
-			Handler:    _VolthaService_ListAdapters_Handler,
+			Handler:    _VolthaLocalService_ListAdapters_Handler,
 		},
 		{
 			MethodName: "ListLogicalDevices",
-			Handler:    _VolthaService_ListLogicalDevices_Handler,
+			Handler:    _VolthaLocalService_ListLogicalDevices_Handler,
+		},
+		{
+			MethodName: "ListReachableLogicalDevices",
+			Handler:    _VolthaLocalService_ListReachableLogicalDevices_Handler,
 		},
 		{
 			MethodName: "GetLogicalDevice",
-			Handler:    _VolthaService_GetLogicalDevice_Handler,
+			Handler:    _VolthaLocalService_GetLogicalDevice_Handler,
 		},
 		{
 			MethodName: "ListLogicalDevicePorts",
-			Handler:    _VolthaService_ListLogicalDevicePorts_Handler,
+			Handler:    _VolthaLocalService_ListLogicalDevicePorts_Handler,
 		},
 		{
 			MethodName: "GetLogicalDevicePort",
-			Handler:    _VolthaService_GetLogicalDevicePort_Handler,
+			Handler:    _VolthaLocalService_GetLogicalDevicePort_Handler,
 		},
 		{
 			MethodName: "EnableLogicalDevicePort",
-			Handler:    _VolthaService_EnableLogicalDevicePort_Handler,
+			Handler:    _VolthaLocalService_EnableLogicalDevicePort_Handler,
 		},
 		{
 			MethodName: "DisableLogicalDevicePort",
-			Handler:    _VolthaService_DisableLogicalDevicePort_Handler,
+			Handler:    _VolthaLocalService_DisableLogicalDevicePort_Handler,
 		},
 		{
 			MethodName: "ListLogicalDeviceFlows",
-			Handler:    _VolthaService_ListLogicalDeviceFlows_Handler,
+			Handler:    _VolthaLocalService_ListLogicalDeviceFlows_Handler,
 		},
 		{
 			MethodName: "UpdateLogicalDeviceFlowTable",
-			Handler:    _VolthaService_UpdateLogicalDeviceFlowTable_Handler,
+			Handler:    _VolthaLocalService_UpdateLogicalDeviceFlowTable_Handler,
 		},
 		{
 			MethodName: "UpdateLogicalDeviceMeterTable",
-			Handler:    _VolthaService_UpdateLogicalDeviceMeterTable_Handler,
-		},
-		{
-			MethodName: "GetMeterStatsOfLogicalDevice",
-			Handler:    _VolthaService_GetMeterStatsOfLogicalDevice_Handler,
+			Handler:    _VolthaLocalService_UpdateLogicalDeviceMeterTable_Handler,
 		},
 		{
 			MethodName: "ListLogicalDeviceFlowGroups",
-			Handler:    _VolthaService_ListLogicalDeviceFlowGroups_Handler,
+			Handler:    _VolthaLocalService_ListLogicalDeviceFlowGroups_Handler,
+		},
+		{
+			MethodName: "ListLogicalDeviceMeters",
+			Handler:    _VolthaLocalService_ListLogicalDeviceMeters_Handler,
 		},
 		{
 			MethodName: "UpdateLogicalDeviceFlowGroupTable",
-			Handler:    _VolthaService_UpdateLogicalDeviceFlowGroupTable_Handler,
+			Handler:    _VolthaLocalService_UpdateLogicalDeviceFlowGroupTable_Handler,
 		},
 		{
 			MethodName: "ListDevices",
-			Handler:    _VolthaService_ListDevices_Handler,
-		},
-		{
-			MethodName: "ListDeviceIds",
-			Handler:    _VolthaService_ListDeviceIds_Handler,
-		},
-		{
-			MethodName: "ReconcileDevices",
-			Handler:    _VolthaService_ReconcileDevices_Handler,
+			Handler:    _VolthaLocalService_ListDevices_Handler,
 		},
 		{
 			MethodName: "GetDevice",
-			Handler:    _VolthaService_GetDevice_Handler,
+			Handler:    _VolthaLocalService_GetDevice_Handler,
 		},
 		{
 			MethodName: "CreateDevice",
-			Handler:    _VolthaService_CreateDevice_Handler,
+			Handler:    _VolthaLocalService_CreateDevice_Handler,
 		},
 		{
 			MethodName: "EnableDevice",
-			Handler:    _VolthaService_EnableDevice_Handler,
+			Handler:    _VolthaLocalService_EnableDevice_Handler,
 		},
 		{
 			MethodName: "DisableDevice",
-			Handler:    _VolthaService_DisableDevice_Handler,
+			Handler:    _VolthaLocalService_DisableDevice_Handler,
 		},
 		{
 			MethodName: "RebootDevice",
-			Handler:    _VolthaService_RebootDevice_Handler,
+			Handler:    _VolthaLocalService_RebootDevice_Handler,
 		},
 		{
 			MethodName: "DeleteDevice",
-			Handler:    _VolthaService_DeleteDevice_Handler,
+			Handler:    _VolthaLocalService_DeleteDevice_Handler,
 		},
 		{
 			MethodName: "DownloadImage",
-			Handler:    _VolthaService_DownloadImage_Handler,
+			Handler:    _VolthaLocalService_DownloadImage_Handler,
 		},
 		{
 			MethodName: "GetImageDownloadStatus",
-			Handler:    _VolthaService_GetImageDownloadStatus_Handler,
+			Handler:    _VolthaLocalService_GetImageDownloadStatus_Handler,
 		},
 		{
 			MethodName: "GetImageDownload",
-			Handler:    _VolthaService_GetImageDownload_Handler,
+			Handler:    _VolthaLocalService_GetImageDownload_Handler,
 		},
 		{
 			MethodName: "ListImageDownloads",
-			Handler:    _VolthaService_ListImageDownloads_Handler,
+			Handler:    _VolthaLocalService_ListImageDownloads_Handler,
 		},
 		{
 			MethodName: "CancelImageDownload",
-			Handler:    _VolthaService_CancelImageDownload_Handler,
+			Handler:    _VolthaLocalService_CancelImageDownload_Handler,
 		},
 		{
 			MethodName: "ActivateImageUpdate",
-			Handler:    _VolthaService_ActivateImageUpdate_Handler,
+			Handler:    _VolthaLocalService_ActivateImageUpdate_Handler,
 		},
 		{
 			MethodName: "RevertImageUpdate",
-			Handler:    _VolthaService_RevertImageUpdate_Handler,
+			Handler:    _VolthaLocalService_RevertImageUpdate_Handler,
 		},
 		{
 			MethodName: "ListDevicePorts",
-			Handler:    _VolthaService_ListDevicePorts_Handler,
+			Handler:    _VolthaLocalService_ListDevicePorts_Handler,
 		},
 		{
 			MethodName: "ListDevicePmConfigs",
-			Handler:    _VolthaService_ListDevicePmConfigs_Handler,
+			Handler:    _VolthaLocalService_ListDevicePmConfigs_Handler,
 		},
 		{
 			MethodName: "UpdateDevicePmConfigs",
-			Handler:    _VolthaService_UpdateDevicePmConfigs_Handler,
+			Handler:    _VolthaLocalService_UpdateDevicePmConfigs_Handler,
 		},
 		{
 			MethodName: "ListDeviceFlows",
-			Handler:    _VolthaService_ListDeviceFlows_Handler,
+			Handler:    _VolthaLocalService_ListDeviceFlows_Handler,
 		},
 		{
 			MethodName: "ListDeviceFlowGroups",
-			Handler:    _VolthaService_ListDeviceFlowGroups_Handler,
+			Handler:    _VolthaLocalService_ListDeviceFlowGroups_Handler,
 		},
 		{
 			MethodName: "ListDeviceTypes",
-			Handler:    _VolthaService_ListDeviceTypes_Handler,
+			Handler:    _VolthaLocalService_ListDeviceTypes_Handler,
 		},
 		{
 			MethodName: "GetDeviceType",
-			Handler:    _VolthaService_GetDeviceType_Handler,
+			Handler:    _VolthaLocalService_GetDeviceType_Handler,
 		},
 		{
 			MethodName: "ListDeviceGroups",
-			Handler:    _VolthaService_ListDeviceGroups_Handler,
+			Handler:    _VolthaLocalService_ListDeviceGroups_Handler,
 		},
 		{
 			MethodName: "GetDeviceGroup",
-			Handler:    _VolthaService_GetDeviceGroup_Handler,
+			Handler:    _VolthaLocalService_GetDeviceGroup_Handler,
+		},
+		{
+			MethodName: "GetAllChannelgroupConfig",
+			Handler:    _VolthaLocalService_GetAllChannelgroupConfig_Handler,
+		},
+		{
+			MethodName: "CreateChannelgroup",
+			Handler:    _VolthaLocalService_CreateChannelgroup_Handler,
+		},
+		{
+			MethodName: "UpdateChannelgroup",
+			Handler:    _VolthaLocalService_UpdateChannelgroup_Handler,
+		},
+		{
+			MethodName: "DeleteChannelgroup",
+			Handler:    _VolthaLocalService_DeleteChannelgroup_Handler,
+		},
+		{
+			MethodName: "GetAllChannelpartitionConfig",
+			Handler:    _VolthaLocalService_GetAllChannelpartitionConfig_Handler,
+		},
+		{
+			MethodName: "CreateChannelpartition",
+			Handler:    _VolthaLocalService_CreateChannelpartition_Handler,
+		},
+		{
+			MethodName: "UpdateChannelpartition",
+			Handler:    _VolthaLocalService_UpdateChannelpartition_Handler,
+		},
+		{
+			MethodName: "DeleteChannelpartition",
+			Handler:    _VolthaLocalService_DeleteChannelpartition_Handler,
+		},
+		{
+			MethodName: "GetAllChannelpairConfig",
+			Handler:    _VolthaLocalService_GetAllChannelpairConfig_Handler,
+		},
+		{
+			MethodName: "CreateChannelpair",
+			Handler:    _VolthaLocalService_CreateChannelpair_Handler,
+		},
+		{
+			MethodName: "UpdateChannelpair",
+			Handler:    _VolthaLocalService_UpdateChannelpair_Handler,
+		},
+		{
+			MethodName: "DeleteChannelpair",
+			Handler:    _VolthaLocalService_DeleteChannelpair_Handler,
+		},
+		{
+			MethodName: "GetAllChannelterminationConfig",
+			Handler:    _VolthaLocalService_GetAllChannelterminationConfig_Handler,
+		},
+		{
+			MethodName: "CreateChanneltermination",
+			Handler:    _VolthaLocalService_CreateChanneltermination_Handler,
+		},
+		{
+			MethodName: "UpdateChanneltermination",
+			Handler:    _VolthaLocalService_UpdateChanneltermination_Handler,
+		},
+		{
+			MethodName: "DeleteChanneltermination",
+			Handler:    _VolthaLocalService_DeleteChanneltermination_Handler,
+		},
+		{
+			MethodName: "GetAllOntaniConfig",
+			Handler:    _VolthaLocalService_GetAllOntaniConfig_Handler,
+		},
+		{
+			MethodName: "CreateOntani",
+			Handler:    _VolthaLocalService_CreateOntani_Handler,
+		},
+		{
+			MethodName: "UpdateOntani",
+			Handler:    _VolthaLocalService_UpdateOntani_Handler,
+		},
+		{
+			MethodName: "DeleteOntani",
+			Handler:    _VolthaLocalService_DeleteOntani_Handler,
+		},
+		{
+			MethodName: "GetAllVOntaniConfig",
+			Handler:    _VolthaLocalService_GetAllVOntaniConfig_Handler,
+		},
+		{
+			MethodName: "CreateVOntani",
+			Handler:    _VolthaLocalService_CreateVOntani_Handler,
+		},
+		{
+			MethodName: "UpdateVOntani",
+			Handler:    _VolthaLocalService_UpdateVOntani_Handler,
+		},
+		{
+			MethodName: "DeleteVOntani",
+			Handler:    _VolthaLocalService_DeleteVOntani_Handler,
+		},
+		{
+			MethodName: "GetAllVEnetConfig",
+			Handler:    _VolthaLocalService_GetAllVEnetConfig_Handler,
+		},
+		{
+			MethodName: "CreateVEnet",
+			Handler:    _VolthaLocalService_CreateVEnet_Handler,
+		},
+		{
+			MethodName: "UpdateVEnet",
+			Handler:    _VolthaLocalService_UpdateVEnet_Handler,
+		},
+		{
+			MethodName: "DeleteVEnet",
+			Handler:    _VolthaLocalService_DeleteVEnet_Handler,
+		},
+		{
+			MethodName: "GetAllTrafficDescriptorProfileData",
+			Handler:    _VolthaLocalService_GetAllTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "CreateTrafficDescriptorProfileData",
+			Handler:    _VolthaLocalService_CreateTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "UpdateTrafficDescriptorProfileData",
+			Handler:    _VolthaLocalService_UpdateTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "DeleteTrafficDescriptorProfileData",
+			Handler:    _VolthaLocalService_DeleteTrafficDescriptorProfileData_Handler,
+		},
+		{
+			MethodName: "GetAllTcontsConfigData",
+			Handler:    _VolthaLocalService_GetAllTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "CreateTcontsConfigData",
+			Handler:    _VolthaLocalService_CreateTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "UpdateTcontsConfigData",
+			Handler:    _VolthaLocalService_UpdateTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "DeleteTcontsConfigData",
+			Handler:    _VolthaLocalService_DeleteTcontsConfigData_Handler,
+		},
+		{
+			MethodName: "GetAllGemportsConfigData",
+			Handler:    _VolthaLocalService_GetAllGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "CreateGemportsConfigData",
+			Handler:    _VolthaLocalService_CreateGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "UpdateGemportsConfigData",
+			Handler:    _VolthaLocalService_UpdateGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "DeleteGemportsConfigData",
+			Handler:    _VolthaLocalService_DeleteGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "GetAllMulticastGemportsConfigData",
+			Handler:    _VolthaLocalService_GetAllMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "CreateMulticastGemportsConfigData",
+			Handler:    _VolthaLocalService_CreateMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "UpdateMulticastGemportsConfigData",
+			Handler:    _VolthaLocalService_UpdateMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "DeleteMulticastGemportsConfigData",
+			Handler:    _VolthaLocalService_DeleteMulticastGemportsConfigData_Handler,
+		},
+		{
+			MethodName: "GetAllMulticastDistributionSetData",
+			Handler:    _VolthaLocalService_GetAllMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "CreateMulticastDistributionSetData",
+			Handler:    _VolthaLocalService_CreateMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "UpdateMulticastDistributionSetData",
+			Handler:    _VolthaLocalService_UpdateMulticastDistributionSetData_Handler,
+		},
+		{
+			MethodName: "DeleteMulticastDistributionSetData",
+			Handler:    _VolthaLocalService_DeleteMulticastDistributionSetData_Handler,
 		},
 		{
 			MethodName: "CreateAlarmFilter",
-			Handler:    _VolthaService_CreateAlarmFilter_Handler,
+			Handler:    _VolthaLocalService_CreateAlarmFilter_Handler,
 		},
 		{
 			MethodName: "GetAlarmFilter",
-			Handler:    _VolthaService_GetAlarmFilter_Handler,
+			Handler:    _VolthaLocalService_GetAlarmFilter_Handler,
 		},
 		{
 			MethodName: "UpdateAlarmFilter",
-			Handler:    _VolthaService_UpdateAlarmFilter_Handler,
+			Handler:    _VolthaLocalService_UpdateAlarmFilter_Handler,
 		},
 		{
 			MethodName: "DeleteAlarmFilter",
-			Handler:    _VolthaService_DeleteAlarmFilter_Handler,
+			Handler:    _VolthaLocalService_DeleteAlarmFilter_Handler,
 		},
 		{
 			MethodName: "ListAlarmFilters",
-			Handler:    _VolthaService_ListAlarmFilters_Handler,
+			Handler:    _VolthaLocalService_ListAlarmFilters_Handler,
 		},
 		{
 			MethodName: "GetImages",
-			Handler:    _VolthaService_GetImages_Handler,
+			Handler:    _VolthaLocalService_GetImages_Handler,
 		},
 		{
 			MethodName: "SelfTest",
-			Handler:    _VolthaService_SelfTest_Handler,
-		},
-		{
-			MethodName: "GetMibDeviceData",
-			Handler:    _VolthaService_GetMibDeviceData_Handler,
-		},
-		{
-			MethodName: "GetAlarmDeviceData",
-			Handler:    _VolthaService_GetAlarmDeviceData_Handler,
-		},
-		{
-			MethodName: "SimulateAlarm",
-			Handler:    _VolthaService_SimulateAlarm_Handler,
+			Handler:    _VolthaLocalService_SelfTest_Handler,
 		},
 		{
 			MethodName: "Subscribe",
-			Handler:    _VolthaService_Subscribe_Handler,
+			Handler:    _VolthaLocalService_Subscribe_Handler,
+		},
+		{
+			MethodName: "GetMibDeviceData",
+			Handler:    _VolthaLocalService_GetMibDeviceData_Handler,
+		},
+		{
+			MethodName: "GetAlarmDeviceData",
+			Handler:    _VolthaLocalService_GetAlarmDeviceData_Handler,
+		},
+		{
+			MethodName: "SimulateAlarm",
+			Handler:    _VolthaLocalService_SimulateAlarm_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "StreamPacketsOut",
-			Handler:       _VolthaService_StreamPacketsOut_Handler,
+			Handler:       _VolthaLocalService_StreamPacketsOut_Handler,
 			ClientStreams: true,
 		},
 		{
 			StreamName:    "ReceivePacketsIn",
-			Handler:       _VolthaService_ReceivePacketsIn_Handler,
+			Handler:       _VolthaLocalService_ReceivePacketsIn_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "ReceiveChangeEvents",
-			Handler:       _VolthaService_ReceiveChangeEvents_Handler,
+			Handler:       _VolthaLocalService_ReceiveChangeEvents_Handler,
 			ServerStreams: true,
 		},
 	},

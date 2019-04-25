@@ -8,6 +8,7 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	bbf_fiber "github.com/opencord/voltha-protos/go/bbf_fiber"
 	openflow_13 "github.com/opencord/voltha-protos/go/openflow_13"
 	grpc "google.golang.org/grpc"
 	math "math"
@@ -400,6 +401,283 @@ func (m *PonSimMetricsRequest) GetPort() int32 {
 	return 0
 }
 
+type TcontInterfaceConfig struct {
+	TrafficDescriptorProfileConfigData *bbf_fiber.TrafficDescriptorProfileData `protobuf:"bytes,1,opt,name=traffic_descriptor_profile_config_data,json=trafficDescriptorProfileConfigData,proto3" json:"traffic_descriptor_profile_config_data,omitempty"`
+	TcontsConfigData                   *bbf_fiber.TcontsConfigData             `protobuf:"bytes,2,opt,name=tconts_config_data,json=tcontsConfigData,proto3" json:"tconts_config_data,omitempty"`
+	XXX_NoUnkeyedLiteral               struct{}                                `json:"-"`
+	XXX_unrecognized                   []byte                                  `json:"-"`
+	XXX_sizecache                      int32                                   `json:"-"`
+}
+
+func (m *TcontInterfaceConfig) Reset()         { *m = TcontInterfaceConfig{} }
+func (m *TcontInterfaceConfig) String() string { return proto.CompactTextString(m) }
+func (*TcontInterfaceConfig) ProtoMessage()    {}
+func (*TcontInterfaceConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_352253851b8ea7c0, []int{8}
+}
+
+func (m *TcontInterfaceConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TcontInterfaceConfig.Unmarshal(m, b)
+}
+func (m *TcontInterfaceConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TcontInterfaceConfig.Marshal(b, m, deterministic)
+}
+func (m *TcontInterfaceConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TcontInterfaceConfig.Merge(m, src)
+}
+func (m *TcontInterfaceConfig) XXX_Size() int {
+	return xxx_messageInfo_TcontInterfaceConfig.Size(m)
+}
+func (m *TcontInterfaceConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_TcontInterfaceConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TcontInterfaceConfig proto.InternalMessageInfo
+
+func (m *TcontInterfaceConfig) GetTrafficDescriptorProfileConfigData() *bbf_fiber.TrafficDescriptorProfileData {
+	if m != nil {
+		return m.TrafficDescriptorProfileConfigData
+	}
+	return nil
+}
+
+func (m *TcontInterfaceConfig) GetTcontsConfigData() *bbf_fiber.TcontsConfigData {
+	if m != nil {
+		return m.TcontsConfigData
+	}
+	return nil
+}
+
+type InterfaceConfig struct {
+	// Types that are valid to be assigned to InterfaceType:
+	//	*InterfaceConfig_ChannelGroupConfig
+	//	*InterfaceConfig_ChannelPartitionConfig
+	//	*InterfaceConfig_ChannelPairConfig
+	//	*InterfaceConfig_ChannelTerminationConfig
+	//	*InterfaceConfig_OntAniConfig
+	//	*InterfaceConfig_VontAniConfig
+	//	*InterfaceConfig_VenetConfig
+	//	*InterfaceConfig_TrafficDescriptorProfileConfigData
+	//	*InterfaceConfig_TcontsConfigData
+	//	*InterfaceConfig_GemportsConfigData
+	//	*InterfaceConfig_MulticastGemportsConfigData
+	//	*InterfaceConfig_MulticastDistributionSetData
+	InterfaceType        isInterfaceConfig_InterfaceType `protobuf_oneof:"interface_type"`
+	XXX_NoUnkeyedLiteral struct{}                        `json:"-"`
+	XXX_unrecognized     []byte                          `json:"-"`
+	XXX_sizecache        int32                           `json:"-"`
+}
+
+func (m *InterfaceConfig) Reset()         { *m = InterfaceConfig{} }
+func (m *InterfaceConfig) String() string { return proto.CompactTextString(m) }
+func (*InterfaceConfig) ProtoMessage()    {}
+func (*InterfaceConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_352253851b8ea7c0, []int{9}
+}
+
+func (m *InterfaceConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InterfaceConfig.Unmarshal(m, b)
+}
+func (m *InterfaceConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InterfaceConfig.Marshal(b, m, deterministic)
+}
+func (m *InterfaceConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InterfaceConfig.Merge(m, src)
+}
+func (m *InterfaceConfig) XXX_Size() int {
+	return xxx_messageInfo_InterfaceConfig.Size(m)
+}
+func (m *InterfaceConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_InterfaceConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InterfaceConfig proto.InternalMessageInfo
+
+type isInterfaceConfig_InterfaceType interface {
+	isInterfaceConfig_InterfaceType()
+}
+
+type InterfaceConfig_ChannelGroupConfig struct {
+	ChannelGroupConfig *bbf_fiber.ChannelgroupConfig `protobuf:"bytes,1,opt,name=channel_group_config,json=channelGroupConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_ChannelPartitionConfig struct {
+	ChannelPartitionConfig *bbf_fiber.ChannelpartitionConfig `protobuf:"bytes,2,opt,name=channel_partition_config,json=channelPartitionConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_ChannelPairConfig struct {
+	ChannelPairConfig *bbf_fiber.ChannelpairConfig `protobuf:"bytes,3,opt,name=channel_pair_config,json=channelPairConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_ChannelTerminationConfig struct {
+	ChannelTerminationConfig *bbf_fiber.ChannelterminationConfig `protobuf:"bytes,4,opt,name=channel_termination_config,json=channelTerminationConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_OntAniConfig struct {
+	OntAniConfig *bbf_fiber.OntaniConfig `protobuf:"bytes,5,opt,name=ont_ani_config,json=ontAniConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_VontAniConfig struct {
+	VontAniConfig *bbf_fiber.VOntaniConfig `protobuf:"bytes,6,opt,name=vont_ani_config,json=vontAniConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_VenetConfig struct {
+	VenetConfig *bbf_fiber.VEnetConfig `protobuf:"bytes,7,opt,name=venet_config,json=venetConfig,proto3,oneof"`
+}
+
+type InterfaceConfig_TrafficDescriptorProfileConfigData struct {
+	TrafficDescriptorProfileConfigData *bbf_fiber.TrafficDescriptorProfileData `protobuf:"bytes,8,opt,name=traffic_descriptor_profile_config_data,json=trafficDescriptorProfileConfigData,proto3,oneof"`
+}
+
+type InterfaceConfig_TcontsConfigData struct {
+	TcontsConfigData *bbf_fiber.TcontsConfigData `protobuf:"bytes,9,opt,name=tconts_config_data,json=tcontsConfigData,proto3,oneof"`
+}
+
+type InterfaceConfig_GemportsConfigData struct {
+	GemportsConfigData *bbf_fiber.GemportsConfigData `protobuf:"bytes,10,opt,name=gemports_config_data,json=gemportsConfigData,proto3,oneof"`
+}
+
+type InterfaceConfig_MulticastGemportsConfigData struct {
+	MulticastGemportsConfigData *bbf_fiber.MulticastGemportsConfigData `protobuf:"bytes,11,opt,name=multicast_gemports_config_data,json=multicastGemportsConfigData,proto3,oneof"`
+}
+
+type InterfaceConfig_MulticastDistributionSetData struct {
+	MulticastDistributionSetData *bbf_fiber.MulticastDistributionSetData `protobuf:"bytes,12,opt,name=multicast_distribution_set_data,json=multicastDistributionSetData,proto3,oneof"`
+}
+
+func (*InterfaceConfig_ChannelGroupConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_ChannelPartitionConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_ChannelPairConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_ChannelTerminationConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_OntAniConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_VontAniConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_VenetConfig) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_TrafficDescriptorProfileConfigData) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_TcontsConfigData) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_GemportsConfigData) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_MulticastGemportsConfigData) isInterfaceConfig_InterfaceType() {}
+
+func (*InterfaceConfig_MulticastDistributionSetData) isInterfaceConfig_InterfaceType() {}
+
+func (m *InterfaceConfig) GetInterfaceType() isInterfaceConfig_InterfaceType {
+	if m != nil {
+		return m.InterfaceType
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetChannelGroupConfig() *bbf_fiber.ChannelgroupConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_ChannelGroupConfig); ok {
+		return x.ChannelGroupConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetChannelPartitionConfig() *bbf_fiber.ChannelpartitionConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_ChannelPartitionConfig); ok {
+		return x.ChannelPartitionConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetChannelPairConfig() *bbf_fiber.ChannelpairConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_ChannelPairConfig); ok {
+		return x.ChannelPairConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetChannelTerminationConfig() *bbf_fiber.ChannelterminationConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_ChannelTerminationConfig); ok {
+		return x.ChannelTerminationConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetOntAniConfig() *bbf_fiber.OntaniConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_OntAniConfig); ok {
+		return x.OntAniConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetVontAniConfig() *bbf_fiber.VOntaniConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_VontAniConfig); ok {
+		return x.VontAniConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetVenetConfig() *bbf_fiber.VEnetConfig {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_VenetConfig); ok {
+		return x.VenetConfig
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetTrafficDescriptorProfileConfigData() *bbf_fiber.TrafficDescriptorProfileData {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_TrafficDescriptorProfileConfigData); ok {
+		return x.TrafficDescriptorProfileConfigData
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetTcontsConfigData() *bbf_fiber.TcontsConfigData {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_TcontsConfigData); ok {
+		return x.TcontsConfigData
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetGemportsConfigData() *bbf_fiber.GemportsConfigData {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_GemportsConfigData); ok {
+		return x.GemportsConfigData
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetMulticastGemportsConfigData() *bbf_fiber.MulticastGemportsConfigData {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_MulticastGemportsConfigData); ok {
+		return x.MulticastGemportsConfigData
+	}
+	return nil
+}
+
+func (m *InterfaceConfig) GetMulticastDistributionSetData() *bbf_fiber.MulticastDistributionSetData {
+	if x, ok := m.GetInterfaceType().(*InterfaceConfig_MulticastDistributionSetData); ok {
+		return x.MulticastDistributionSetData
+	}
+	return nil
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*InterfaceConfig) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*InterfaceConfig_ChannelGroupConfig)(nil),
+		(*InterfaceConfig_ChannelPartitionConfig)(nil),
+		(*InterfaceConfig_ChannelPairConfig)(nil),
+		(*InterfaceConfig_ChannelTerminationConfig)(nil),
+		(*InterfaceConfig_OntAniConfig)(nil),
+		(*InterfaceConfig_VontAniConfig)(nil),
+		(*InterfaceConfig_VenetConfig)(nil),
+		(*InterfaceConfig_TrafficDescriptorProfileConfigData)(nil),
+		(*InterfaceConfig_TcontsConfigData)(nil),
+		(*InterfaceConfig_GemportsConfigData)(nil),
+		(*InterfaceConfig_MulticastGemportsConfigData)(nil),
+		(*InterfaceConfig_MulticastDistributionSetData)(nil),
+	}
+}
+
 func init() {
 	proto.RegisterType((*PonSimOnuDeviceInfo)(nil), "voltha.PonSimOnuDeviceInfo")
 	proto.RegisterType((*PonSimDeviceInfo)(nil), "voltha.PonSimDeviceInfo")
@@ -409,47 +687,86 @@ func init() {
 	proto.RegisterType((*PonSimPortMetrics)(nil), "voltha.PonSimPortMetrics")
 	proto.RegisterType((*PonSimMetrics)(nil), "voltha.PonSimMetrics")
 	proto.RegisterType((*PonSimMetricsRequest)(nil), "voltha.PonSimMetricsRequest")
+	proto.RegisterType((*TcontInterfaceConfig)(nil), "voltha.TcontInterfaceConfig")
+	proto.RegisterType((*InterfaceConfig)(nil), "voltha.InterfaceConfig")
 }
 
 func init() { proto.RegisterFile("voltha_protos/ponsim.proto", fileDescriptor_352253851b8ea7c0) }
 
 var fileDescriptor_352253851b8ea7c0 = []byte{
-	// 555 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x94, 0x41, 0x6f, 0xd3, 0x4e,
-	0x10, 0xc5, 0x93, 0xb4, 0x4d, 0x9b, 0x69, 0xf3, 0xff, 0xd3, 0x6d, 0xa9, 0xd2, 0xf4, 0x40, 0xb4,
-	0x5c, 0x22, 0x50, 0x1d, 0xda, 0x88, 0x0b, 0x48, 0x80, 0x28, 0xb4, 0xe2, 0x40, 0x89, 0x36, 0xf4,
-	0x82, 0x10, 0x96, 0x63, 0x4f, 0x52, 0x0b, 0x7b, 0xc7, 0xd8, 0xbb, 0xa9, 0xfa, 0x0d, 0xf9, 0x58,
-	0xc8, 0xbb, 0x36, 0x89, 0xab, 0x84, 0xdb, 0xee, 0xf8, 0xe5, 0xf7, 0xe6, 0x8d, 0x27, 0x86, 0xee,
-	0x9c, 0x22, 0x75, 0xeb, 0xb9, 0x49, 0x4a, 0x8a, 0xb2, 0x41, 0x42, 0x32, 0x0b, 0x63, 0xc7, 0xdc,
-	0x58, 0xd3, 0x3e, 0xeb, 0x9e, 0xcc, 0x88, 0x66, 0x11, 0x0e, 0x4c, 0x75, 0xa2, 0xa7, 0x03, 0x8c,
-	0x13, 0x75, 0x6f, 0x45, 0xdd, 0x27, 0x55, 0x00, 0x25, 0x28, 0xa7, 0x11, 0xdd, 0xb9, 0x67, 0x43,
-	0x2b, 0xe0, 0x37, 0x70, 0x30, 0x22, 0x39, 0x0e, 0xe3, 0x2f, 0x52, 0x7f, 0xc0, 0x79, 0xe8, 0xe3,
-	0x27, 0x39, 0x25, 0x76, 0x0c, 0x3b, 0x5a, 0x86, 0x6e, 0x42, 0xa9, 0xea, 0xd4, 0x7b, 0xf5, 0xfe,
-	0x96, 0xd8, 0xd6, 0x32, 0x1c, 0x51, 0xaa, 0xd8, 0x53, 0x68, 0x67, 0x98, 0x86, 0x5e, 0xe4, 0x4a,
-	0x1d, 0x4f, 0x30, 0xed, 0x34, 0x7a, 0xf5, 0x7e, 0x4b, 0xec, 0xd9, 0xe2, 0xb5, 0xa9, 0xf1, 0x1f,
-	0xf0, 0xc8, 0x62, 0xab, 0x4c, 0xf9, 0x80, 0x29, 0x0b, 0xe6, 0x00, 0x36, 0x49, 0xea, 0xac, 0xd3,
-	0xe8, 0x6d, 0xf4, 0x77, 0xcf, 0x4f, 0x1c, 0xdb, 0xb5, 0xb3, 0xa2, 0x33, 0x61, 0x84, 0x5c, 0x40,
-	0xeb, 0x32, 0xa2, 0xbb, 0xaf, 0xde, 0x24, 0x42, 0xc6, 0x60, 0x73, 0x09, 0x6a, 0xce, 0xec, 0x0c,
-	0xb6, 0xf2, 0xa0, 0x0b, 0xe4, 0x72, 0x74, 0x9a, 0x26, 0xae, 0x39, 0x67, 0xca, 0x53, 0x99, 0xb0,
-	0x4a, 0x2e, 0x60, 0xd7, 0x1a, 0x5e, 0xa6, 0x5e, 0x8c, 0xec, 0x3f, 0x68, 0x84, 0x81, 0x61, 0xb6,
-	0x44, 0x23, 0x0c, 0x58, 0x07, 0xb6, 0x13, 0xef, 0x3e, 0x22, 0x2f, 0x30, 0x89, 0xf7, 0x44, 0x79,
-	0xcd, 0x83, 0x91, 0x56, 0x36, 0xd8, 0x86, 0x0d, 0x46, 0x5a, 0xe5, 0xc1, 0xf8, 0xdb, 0x72, 0xbc,
-	0x23, 0xcf, 0xff, 0x89, 0xea, 0x82, 0xb4, 0x54, 0x98, 0xe6, 0x1d, 0x4b, 0x2f, 0xc6, 0x82, 0x6e,
-	0xce, 0xec, 0x10, 0xb6, 0xe6, 0x5e, 0xa4, 0xd1, 0xd0, 0x37, 0x84, 0xbd, 0xf0, 0x19, 0xec, 0x17,
-	0x00, 0x4a, 0xd5, 0x67, 0x54, 0x69, 0xe8, 0x67, 0xec, 0x04, 0x5a, 0xb9, 0x99, 0xbb, 0xc4, 0xd8,
-	0xc9, 0x0b, 0xd7, 0x39, 0xe7, 0x65, 0xde, 0x67, 0x6e, 0xb6, 0x66, 0x9c, 0x95, 0x4e, 0x44, 0xa9,
-	0xe5, 0xdf, 0xa1, 0x6d, 0x9f, 0x97, 0x26, 0x47, 0xd0, 0x0c, 0xcc, 0xd8, 0x0b, 0x87, 0xe2, 0xc6,
-	0x86, 0xb0, 0x1d, 0x5b, 0x49, 0xc1, 0x3f, 0x7e, 0xc0, 0x5f, 0x34, 0x2a, 0x4a, 0x25, 0x7f, 0x06,
-	0x87, 0x15, 0xba, 0xc0, 0x5f, 0x1a, 0x33, 0xb5, 0xea, 0xd5, 0x9d, 0xff, 0x6e, 0x40, 0xd3, 0x8a,
-	0xd9, 0x2b, 0x68, 0x8d, 0x51, 0x06, 0xf6, 0x85, 0x1c, 0x54, 0x7d, 0x4c, 0xb1, 0x7b, 0xe4, 0xd8,
-	0xf5, 0x77, 0xca, 0xf5, 0x77, 0x3e, 0xe6, 0xeb, 0xcf, 0x6b, 0xec, 0x1d, 0xb4, 0x05, 0xfa, 0x18,
-	0xce, 0xd1, 0x28, 0x33, 0xb6, 0x46, 0xda, 0x5d, 0xc5, 0xe5, 0xb5, 0x17, 0x75, 0x76, 0x01, 0xed,
-	0x2b, 0x54, 0x4b, 0x1b, 0xbc, 0x8e, 0xd0, 0xa9, 0x12, 0x16, 0xbf, 0xe0, 0x35, 0xf6, 0x06, 0xfe,
-	0xbf, 0x49, 0x02, 0x4f, 0xe1, 0x62, 0x5f, 0xf7, 0x4b, 0xf9, 0xdf, 0xd2, 0x3f, 0x62, 0xbc, 0x86,
-	0x9d, 0x2b, 0x54, 0xe3, 0x7c, 0x51, 0xd7, 0xfa, 0x3f, 0xae, 0xfa, 0x17, 0x33, 0xe6, 0xb5, 0xf7,
-	0xa7, 0xdf, 0x9e, 0xcf, 0x42, 0x75, 0xab, 0x27, 0x8e, 0x4f, 0xb1, 0xf9, 0xf7, 0xfb, 0x94, 0x06,
-	0x03, 0xab, 0x3e, 0x2d, 0x3e, 0x0a, 0x33, 0x2a, 0x0a, 0x93, 0xa6, 0xa9, 0x0c, 0xff, 0x04, 0x00,
-	0x00, 0xff, 0xff, 0x62, 0xcb, 0x74, 0xbe, 0x77, 0x04, 0x00, 0x00,
+	// 1137 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x97, 0x7f, 0x4f, 0xdb, 0x46,
+	0x18, 0xc7, 0x43, 0x28, 0x90, 0x3c, 0x21, 0xfc, 0x38, 0x18, 0x4d, 0x03, 0x6b, 0x99, 0x2b, 0x75,
+	0xa8, 0x53, 0xc3, 0x0a, 0xdb, 0x3f, 0x9b, 0xb6, 0xae, 0x10, 0x0a, 0xa8, 0x2a, 0x65, 0x86, 0x4e,
+	0xd3, 0xb4, 0xcd, 0xba, 0x38, 0xe7, 0x70, 0x9a, 0x7d, 0xe7, 0xd9, 0xe7, 0x54, 0x68, 0xda, 0x3b,
+	0x9c, 0xf6, 0x12, 0xf6, 0xc7, 0x5e, 0xc9, 0xe4, 0xbb, 0xb3, 0x63, 0x3b, 0x3f, 0xca, 0x08, 0xff,
+	0xd9, 0xcf, 0x7d, 0x9f, 0xcf, 0x73, 0xdf, 0xcb, 0x3d, 0x77, 0x0e, 0x34, 0xfb, 0xdc, 0x15, 0x57,
+	0xd8, 0xf2, 0x03, 0x2e, 0x78, 0xb8, 0xeb, 0x73, 0x16, 0x52, 0xaf, 0x25, 0xdf, 0xd0, 0xbc, 0x1a,
+	0x6b, 0x6e, 0xf6, 0x38, 0xef, 0xb9, 0x64, 0x57, 0x46, 0x3b, 0x91, 0xb3, 0x4b, 0x3c, 0x5f, 0x5c,
+	0x2b, 0x51, 0xf3, 0x51, 0x1e, 0xc0, 0x7d, 0xc2, 0x1c, 0x97, 0xbf, 0xb7, 0x9e, 0xef, 0x6b, 0x81,
+	0x91, 0x17, 0x74, 0x3a, 0x8e, 0xe5, 0xd0, 0x0e, 0x09, 0xac, 0x0e, 0x0e, 0x89, 0xd6, 0x3c, 0x1d,
+	0xa7, 0xe9, 0x11, 0xcf, 0xe7, 0x81, 0xb0, 0x3a, 0xbc, 0x9b, 0x14, 0xfc, 0x66, 0x9c, 0xd6, 0x8b,
+	0x5c, 0x41, 0x6d, 0x1c, 0x0a, 0xab, 0x4b, 0x43, 0x11, 0xd0, 0x4e, 0x24, 0x28, 0x67, 0x56, 0x48,
+	0x72, 0xe9, 0x5f, 0x7c, 0x38, 0x7d, 0x44, 0xd1, 0x9d, 0x71, 0x59, 0xc2, 0xe6, 0xec, 0x66, 0xd3,
+	0x13, 0x01, 0x76, 0x1c, 0x6a, 0x5b, 0x5d, 0x12, 0xda, 0x01, 0xf5, 0x05, 0x0f, 0x62, 0x8d, 0x43,
+	0x5d, 0x92, 0x49, 0x37, 0xde, 0xc1, 0xda, 0x39, 0x67, 0x17, 0xd4, 0x7b, 0xcb, 0xa2, 0x36, 0xe9,
+	0x53, 0x9b, 0x9c, 0x32, 0x87, 0xa3, 0x07, 0x50, 0x89, 0x18, 0xb5, 0xe2, 0x69, 0x35, 0x66, 0xb6,
+	0x67, 0x76, 0xe6, 0xcc, 0x85, 0x88, 0xd1, 0x73, 0x1e, 0x08, 0xf4, 0x18, 0xea, 0x21, 0x09, 0x28,
+	0x76, 0x2d, 0x16, 0x79, 0x1d, 0x12, 0x34, 0xca, 0xdb, 0x33, 0x3b, 0x55, 0x73, 0x51, 0x05, 0xcf,
+	0x64, 0xcc, 0xf8, 0x15, 0x56, 0x14, 0x36, 0xcf, 0x64, 0x05, 0x26, 0xd3, 0xcc, 0x5d, 0xb8, 0xc7,
+	0x59, 0x14, 0x36, 0xca, 0xdb, 0xb3, 0x3b, 0xb5, 0xbd, 0xcd, 0x96, 0xf2, 0xd4, 0x1a, 0x31, 0x33,
+	0x53, 0x0a, 0x0d, 0x13, 0xaa, 0xaf, 0x5c, 0xfe, 0xfe, 0x12, 0x77, 0x5c, 0x82, 0x10, 0xdc, 0xcb,
+	0x40, 0xe5, 0x33, 0x7a, 0x0e, 0x73, 0xf1, 0xb6, 0x18, 0x20, 0xb3, 0x1b, 0x85, 0x3b, 0xbe, 0x25,
+	0x9f, 0x43, 0x81, 0x45, 0x68, 0x2a, 0xa5, 0x61, 0x42, 0x4d, 0x15, 0x7c, 0x15, 0x60, 0x8f, 0xa0,
+	0x25, 0x28, 0xd3, 0xae, 0x64, 0x56, 0xcd, 0x32, 0xed, 0xa2, 0x06, 0x2c, 0xf8, 0xf8, 0xda, 0xe5,
+	0xb8, 0x2b, 0x1d, 0x2f, 0x9a, 0xc9, 0x6b, 0x6c, 0x8c, 0x47, 0x42, 0x19, 0x9b, 0x55, 0xc6, 0x78,
+	0x24, 0x62, 0x63, 0xc6, 0x8b, 0x64, 0x79, 0xcf, 0xb1, 0xfd, 0x1b, 0x11, 0x87, 0x3c, 0x62, 0x82,
+	0x04, 0xf1, 0x8c, 0x19, 0xf6, 0x88, 0xa6, 0xcb, 0x67, 0xb4, 0x0e, 0x73, 0x7d, 0xec, 0x46, 0x44,
+	0xd2, 0x67, 0x4d, 0xf5, 0x62, 0xf4, 0x60, 0x55, 0x03, 0x78, 0x20, 0xde, 0x10, 0x11, 0x50, 0x3b,
+	0x44, 0x9b, 0x50, 0x95, 0x1b, 0x26, 0xc3, 0xa8, 0xc4, 0x81, 0xb3, 0x98, 0xf3, 0x65, 0x3c, 0xcf,
+	0xb8, 0xd8, 0x98, 0xe5, 0xcc, 0xcd, 0xc4, 0x4c, 0xb4, 0xc6, 0xcf, 0x50, 0x57, 0xe3, 0x49, 0x91,
+	0x0d, 0x98, 0xef, 0xca, 0x65, 0xd7, 0x15, 0xf4, 0x1b, 0xda, 0x87, 0x05, 0x4f, 0x49, 0x34, 0xff,
+	0x41, 0x81, 0x3f, 0x98, 0xa8, 0x99, 0x28, 0x8d, 0xa7, 0xb0, 0x9e, 0xa3, 0x9b, 0xe4, 0xf7, 0x88,
+	0x84, 0x62, 0xd4, 0x4f, 0x67, 0xfc, 0x33, 0x03, 0xeb, 0x97, 0xf1, 0x36, 0x3f, 0x8d, 0x67, 0xe8,
+	0x60, 0x9b, 0x1c, 0x72, 0xe6, 0xd0, 0x1e, 0xfa, 0x03, 0x9e, 0x4c, 0xd8, 0xd4, 0xb6, 0x14, 0x59,
+	0x5d, 0x2c, 0xb0, 0xc4, 0xd5, 0xf6, 0x3e, 0x6d, 0xa5, 0xdd, 0xd0, 0xba, 0x54, 0x89, 0xed, 0x34,
+	0xef, 0x5c, 0xa5, 0xb5, 0xb1, 0xc0, 0xa6, 0x21, 0xc6, 0x8c, 0xaa, 0xc2, 0xb1, 0x06, 0x9d, 0x02,
+	0x92, 0xbd, 0x17, 0xe6, 0x0a, 0x95, 0x65, 0xa1, 0xcd, 0x6c, 0x21, 0x29, 0x1a, 0x24, 0x9a, 0x2b,
+	0xa2, 0x10, 0x31, 0xfe, 0xaa, 0xc0, 0x72, 0xd1, 0xdb, 0xf7, 0xb0, 0x6e, 0x5f, 0x61, 0xc6, 0x88,
+	0x6b, 0xf5, 0x02, 0x1e, 0xf9, 0xba, 0x8a, 0x76, 0xf2, 0x71, 0xa6, 0xc0, 0xa1, 0x92, 0x49, 0x95,
+	0x4a, 0x3e, 0x29, 0x99, 0x48, 0x27, 0x1f, 0x0f, 0xa2, 0xe8, 0x17, 0x68, 0x24, 0x48, 0x1f, 0x07,
+	0x82, 0xca, 0xd3, 0x49, 0x63, 0xd5, 0xbc, 0x3f, 0x19, 0xc6, 0xa6, 0xca, 0x14, 0xbd, 0xa1, 0x21,
+	0xe7, 0xf9, 0x11, 0x74, 0x06, 0x6b, 0x03, 0x3c, 0x0d, 0x12, 0xf2, 0xac, 0x24, 0x6f, 0x8d, 0x22,
+	0xd3, 0x20, 0x85, 0xae, 0xa6, 0xd0, 0x24, 0x88, 0x6c, 0x68, 0x26, 0x3c, 0x41, 0x02, 0x8f, 0x32,
+	0x9c, 0x9d, 0xf0, 0x3d, 0x89, 0x7d, 0x3c, 0x8c, 0xcd, 0x68, 0x53, 0x7a, 0xe2, 0xfb, 0xb2, 0x38,
+	0x86, 0x5e, 0xc0, 0x52, 0x7c, 0x7e, 0x62, 0x46, 0x13, 0xf0, 0x9c, 0x04, 0xdf, 0xcf, 0x80, 0xdf,
+	0x32, 0x81, 0x19, 0x4d, 0x61, 0x8b, 0x9c, 0x89, 0x97, 0xc9, 0x3b, 0x3a, 0x80, 0xe5, 0x7e, 0x81,
+	0x30, 0x2f, 0x09, 0x8d, 0x0c, 0xe1, 0x87, 0x02, 0xa2, 0xde, 0xcf, 0x31, 0xbe, 0x86, 0xc5, 0x3e,
+	0x61, 0x44, 0x24, 0x80, 0x05, 0x09, 0xd8, 0xc8, 0x02, 0x8e, 0x58, 0xdc, 0xa2, 0x3a, 0xbd, 0x26,
+	0xd5, 0x3a, 0xf9, 0xcf, 0x1b, 0x37, 0x41, 0xe5, 0x7f, 0x35, 0xc1, 0x49, 0xe9, 0x46, 0x6d, 0xf0,
+	0x7a, 0x64, 0x1b, 0x54, 0x3f, 0xd8, 0x06, 0x27, 0xa5, 0xe1, 0x46, 0x88, 0x37, 0xbd, 0xbe, 0xfb,
+	0xf2, 0x38, 0x18, 0xda, 0xf4, 0xc7, 0x5a, 0x96, 0x03, 0xa2, 0xde, 0x50, 0x14, 0x79, 0xf0, 0x70,
+	0xe8, 0x62, 0xcd, 0xc3, 0x6b, 0x12, 0xfe, 0x24, 0x03, 0x7f, 0x93, 0x24, 0x8c, 0xac, 0xb2, 0xe9,
+	0x8d, 0x1f, 0x46, 0x3e, 0x3c, 0x9a, 0xf0, 0x19, 0x20, 0xeb, 0x2d, 0x0e, 0xfd, 0x0c, 0x69, 0xbd,
+	0x76, 0x26, 0xe1, 0x82, 0x08, 0x5d, 0x70, 0xcb, 0x9b, 0x30, 0x7e, 0xb0, 0x02, 0x4b, 0x34, 0x39,
+	0x3b, 0x2c, 0x71, 0xed, 0x93, 0xbd, 0xbf, 0xcb, 0x30, 0xaf, 0x0e, 0x57, 0xf4, 0x15, 0x54, 0x2f,
+	0x08, 0xeb, 0xaa, 0x0b, 0x6c, 0x2d, 0x7f, 0x2e, 0xcb, 0x60, 0x73, 0xa3, 0xa5, 0x3e, 0xae, 0x5a,
+	0xc9, 0xc7, 0x55, 0xeb, 0x28, 0xfe, 0xb8, 0x32, 0x4a, 0xe8, 0x3b, 0xa8, 0x9b, 0xc4, 0x26, 0xb4,
+	0x4f, 0xa4, 0x32, 0x44, 0x63, 0xa4, 0xcd, 0x51, 0x5c, 0xa3, 0xf4, 0xf9, 0x0c, 0x3a, 0x84, 0xfa,
+	0x31, 0x11, 0x99, 0x1b, 0x7f, 0x1c, 0xa1, 0x91, 0x27, 0x0c, 0x32, 0x8c, 0x12, 0xfa, 0x16, 0x96,
+	0xdf, 0xf9, 0x5d, 0x2c, 0xc8, 0xe0, 0x7e, 0x5f, 0x4d, 0xe4, 0x69, 0x68, 0x82, 0x8d, 0x97, 0x50,
+	0x39, 0x26, 0xe2, 0x22, 0xbe, 0xd8, 0xd1, 0x56, 0xbe, 0x4e, 0xfe, 0xee, 0x69, 0x7e, 0x34, 0x72,
+	0xd4, 0x28, 0xed, 0xfd, 0x5b, 0x81, 0x85, 0x1f, 0xf5, 0x8a, 0xb6, 0x61, 0xf9, 0x30, 0x20, 0x58,
+	0x90, 0xf4, 0xc0, 0x46, 0xf7, 0x93, 0xbc, 0xc2, 0x19, 0x3e, 0x61, 0x52, 0xed, 0xc4, 0xd4, 0xb4,
+	0x14, 0x93, 0x78, 0xbc, 0x3f, 0x1d, 0xe5, 0x08, 0x6a, 0xca, 0x91, 0x6c, 0xd1, 0xc1, 0x1a, 0x8d,
+	0xba, 0x72, 0x27, 0x63, 0x94, 0xa5, 0xa9, 0x31, 0xca, 0xd3, 0x74, 0x98, 0x03, 0xa8, 0x2b, 0x53,
+	0xba, 0x47, 0x6f, 0xb3, 0x30, 0x07, 0x50, 0x57, 0x8e, 0xa6, 0x63, 0x28, 0x3b, 0x53, 0x30, 0x5e,
+	0xc3, 0x86, 0xf2, 0x52, 0x3c, 0x97, 0x6e, 0x09, 0x53, 0xa6, 0xee, 0x08, 0xa6, 0xdc, 0xdd, 0x05,
+	0xec, 0x02, 0x1e, 0x16, 0x6c, 0x16, 0x8e, 0xbb, 0x5b, 0x42, 0x0b, 0x76, 0xef, 0x06, 0x5a, 0xb0,
+	0x3d, 0x3d, 0xf4, 0xe0, 0xd9, 0x4f, 0x9f, 0xf5, 0xa8, 0xb8, 0x8a, 0x3a, 0x2d, 0x9b, 0x7b, 0xf2,
+	0x6f, 0xac, 0xcd, 0x83, 0xee, 0xae, 0xe2, 0x3c, 0xd3, 0xff, 0xe6, 0x7a, 0x5c, 0x07, 0x3a, 0xf3,
+	0x32, 0xb2, 0xff, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x68, 0xcd, 0xb0, 0x71, 0x40, 0x0f, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -468,7 +785,7 @@ type PonSimClient interface {
 	ReceiveFrames(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (PonSim_ReceiveFramesClient, error)
 	GetDeviceInfo(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PonSimDeviceInfo, error)
 	UpdateFlowTable(ctx context.Context, in *FlowTable, opts ...grpc.CallOption) (*empty.Empty, error)
-	GetStats(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PonSimMetrics, error)
+	GetStats(ctx context.Context, in *PonSimMetricsRequest, opts ...grpc.CallOption) (*PonSimMetrics, error)
 }
 
 type ponSimClient struct {
@@ -538,7 +855,7 @@ func (c *ponSimClient) UpdateFlowTable(ctx context.Context, in *FlowTable, opts 
 	return out, nil
 }
 
-func (c *ponSimClient) GetStats(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PonSimMetrics, error) {
+func (c *ponSimClient) GetStats(ctx context.Context, in *PonSimMetricsRequest, opts ...grpc.CallOption) (*PonSimMetrics, error) {
 	out := new(PonSimMetrics)
 	err := c.cc.Invoke(ctx, "/voltha.PonSim/GetStats", in, out, opts...)
 	if err != nil {
@@ -553,7 +870,7 @@ type PonSimServer interface {
 	ReceiveFrames(*empty.Empty, PonSim_ReceiveFramesServer) error
 	GetDeviceInfo(context.Context, *empty.Empty) (*PonSimDeviceInfo, error)
 	UpdateFlowTable(context.Context, *FlowTable) (*empty.Empty, error)
-	GetStats(context.Context, *empty.Empty) (*PonSimMetrics, error)
+	GetStats(context.Context, *PonSimMetricsRequest) (*PonSimMetrics, error)
 }
 
 func RegisterPonSimServer(s *grpc.Server, srv PonSimServer) {
@@ -636,7 +953,7 @@ func _PonSim_UpdateFlowTable_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _PonSim_GetStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+	in := new(PonSimMetricsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -648,7 +965,7 @@ func _PonSim_GetStats_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: "/voltha.PonSim/GetStats",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PonSimServer).GetStats(ctx, req.(*empty.Empty))
+		return srv.(PonSimServer).GetStats(ctx, req.(*PonSimMetricsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -681,5 +998,531 @@ var _PonSim_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
+	Metadata: "voltha_protos/ponsim.proto",
+}
+
+// XPonSimClient is the client API for XPonSim service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type XPonSimClient interface {
+	CreateInterface(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	UpdateInterface(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveInterface(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	CreateTcont(ctx context.Context, in *TcontInterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	UpdateTcont(ctx context.Context, in *TcontInterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveTcont(ctx context.Context, in *TcontInterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	CreateGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	UpdateGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	CreateMulticastGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	UpdateMulticastGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveMulticastGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	CreateMulticastDistributionSet(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	UpdateMulticastDistributionSet(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveMulticastDistributionSet(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error)
+}
+
+type xPonSimClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewXPonSimClient(cc *grpc.ClientConn) XPonSimClient {
+	return &xPonSimClient{cc}
+}
+
+func (c *xPonSimClient) CreateInterface(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/CreateInterface", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) UpdateInterface(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/UpdateInterface", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) RemoveInterface(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/RemoveInterface", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) CreateTcont(ctx context.Context, in *TcontInterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/CreateTcont", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) UpdateTcont(ctx context.Context, in *TcontInterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/UpdateTcont", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) RemoveTcont(ctx context.Context, in *TcontInterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/RemoveTcont", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) CreateGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/CreateGemport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) UpdateGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/UpdateGemport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) RemoveGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/RemoveGemport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) CreateMulticastGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/CreateMulticastGemport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) UpdateMulticastGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/UpdateMulticastGemport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) RemoveMulticastGemport(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/RemoveMulticastGemport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) CreateMulticastDistributionSet(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/CreateMulticastDistributionSet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) UpdateMulticastDistributionSet(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/UpdateMulticastDistributionSet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *xPonSimClient) RemoveMulticastDistributionSet(ctx context.Context, in *InterfaceConfig, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/voltha.XPonSim/RemoveMulticastDistributionSet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// XPonSimServer is the server API for XPonSim service.
+type XPonSimServer interface {
+	CreateInterface(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	UpdateInterface(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	RemoveInterface(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	CreateTcont(context.Context, *TcontInterfaceConfig) (*empty.Empty, error)
+	UpdateTcont(context.Context, *TcontInterfaceConfig) (*empty.Empty, error)
+	RemoveTcont(context.Context, *TcontInterfaceConfig) (*empty.Empty, error)
+	CreateGemport(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	UpdateGemport(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	RemoveGemport(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	CreateMulticastGemport(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	UpdateMulticastGemport(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	RemoveMulticastGemport(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	CreateMulticastDistributionSet(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	UpdateMulticastDistributionSet(context.Context, *InterfaceConfig) (*empty.Empty, error)
+	RemoveMulticastDistributionSet(context.Context, *InterfaceConfig) (*empty.Empty, error)
+}
+
+func RegisterXPonSimServer(s *grpc.Server, srv XPonSimServer) {
+	s.RegisterService(&_XPonSim_serviceDesc, srv)
+}
+
+func _XPonSim_CreateInterface_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).CreateInterface(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/CreateInterface",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).CreateInterface(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_UpdateInterface_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).UpdateInterface(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/UpdateInterface",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).UpdateInterface(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_RemoveInterface_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).RemoveInterface(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/RemoveInterface",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).RemoveInterface(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_CreateTcont_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TcontInterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).CreateTcont(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/CreateTcont",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).CreateTcont(ctx, req.(*TcontInterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_UpdateTcont_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TcontInterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).UpdateTcont(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/UpdateTcont",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).UpdateTcont(ctx, req.(*TcontInterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_RemoveTcont_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TcontInterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).RemoveTcont(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/RemoveTcont",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).RemoveTcont(ctx, req.(*TcontInterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_CreateGemport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).CreateGemport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/CreateGemport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).CreateGemport(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_UpdateGemport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).UpdateGemport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/UpdateGemport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).UpdateGemport(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_RemoveGemport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).RemoveGemport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/RemoveGemport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).RemoveGemport(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_CreateMulticastGemport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).CreateMulticastGemport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/CreateMulticastGemport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).CreateMulticastGemport(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_UpdateMulticastGemport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).UpdateMulticastGemport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/UpdateMulticastGemport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).UpdateMulticastGemport(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_RemoveMulticastGemport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).RemoveMulticastGemport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/RemoveMulticastGemport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).RemoveMulticastGemport(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_CreateMulticastDistributionSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).CreateMulticastDistributionSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/CreateMulticastDistributionSet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).CreateMulticastDistributionSet(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_UpdateMulticastDistributionSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).UpdateMulticastDistributionSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/UpdateMulticastDistributionSet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).UpdateMulticastDistributionSet(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _XPonSim_RemoveMulticastDistributionSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InterfaceConfig)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(XPonSimServer).RemoveMulticastDistributionSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/voltha.XPonSim/RemoveMulticastDistributionSet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(XPonSimServer).RemoveMulticastDistributionSet(ctx, req.(*InterfaceConfig))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _XPonSim_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "voltha.XPonSim",
+	HandlerType: (*XPonSimServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateInterface",
+			Handler:    _XPonSim_CreateInterface_Handler,
+		},
+		{
+			MethodName: "UpdateInterface",
+			Handler:    _XPonSim_UpdateInterface_Handler,
+		},
+		{
+			MethodName: "RemoveInterface",
+			Handler:    _XPonSim_RemoveInterface_Handler,
+		},
+		{
+			MethodName: "CreateTcont",
+			Handler:    _XPonSim_CreateTcont_Handler,
+		},
+		{
+			MethodName: "UpdateTcont",
+			Handler:    _XPonSim_UpdateTcont_Handler,
+		},
+		{
+			MethodName: "RemoveTcont",
+			Handler:    _XPonSim_RemoveTcont_Handler,
+		},
+		{
+			MethodName: "CreateGemport",
+			Handler:    _XPonSim_CreateGemport_Handler,
+		},
+		{
+			MethodName: "UpdateGemport",
+			Handler:    _XPonSim_UpdateGemport_Handler,
+		},
+		{
+			MethodName: "RemoveGemport",
+			Handler:    _XPonSim_RemoveGemport_Handler,
+		},
+		{
+			MethodName: "CreateMulticastGemport",
+			Handler:    _XPonSim_CreateMulticastGemport_Handler,
+		},
+		{
+			MethodName: "UpdateMulticastGemport",
+			Handler:    _XPonSim_UpdateMulticastGemport_Handler,
+		},
+		{
+			MethodName: "RemoveMulticastGemport",
+			Handler:    _XPonSim_RemoveMulticastGemport_Handler,
+		},
+		{
+			MethodName: "CreateMulticastDistributionSet",
+			Handler:    _XPonSim_CreateMulticastDistributionSet_Handler,
+		},
+		{
+			MethodName: "UpdateMulticastDistributionSet",
+			Handler:    _XPonSim_UpdateMulticastDistributionSet_Handler,
+		},
+		{
+			MethodName: "RemoveMulticastDistributionSet",
+			Handler:    _XPonSim_RemoveMulticastDistributionSet_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "voltha_protos/ponsim.proto",
 }
