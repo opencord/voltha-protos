@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "157abd8e_8740cccb",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-04T07:52:37Z",
+      "side": 1,
+      "message": "Remove the additional space.",
+      "revId": "dde2a741fac545f6ea76c956ee5cdc67ffec6120",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
