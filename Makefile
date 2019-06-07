@@ -32,14 +32,6 @@ PROTO_PYTHON_PB2_GRPC := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_p
 PROTO_GO_DEST_DIR := go
 PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_GO_DEST_DIR)/$(call go_package_path,$(f))/%.pb.go,$(f)))
 
-PROTOC_PREFIX := /usr/local
-PROTOC_VERSION := "3.7.0"
-PROTOC_DOWNLOAD_PREFIX := "https://github.com/google/protobuf/releases/download"
-PROTOC_DIR := protobuf-$(PROTOC_VERSION)
-PROTOC_TARBALL := protobuf-python-$(PROTOC_VERSION).tar.gz
-PROTOC_DOWNLOAD_URI := $(PROTOC_DOWNLOAD_PREFIX)/v$(PROTOC_VERSION)/$(PROTOC_TARBALL)
-PROTOC_BUILD_TMP_DIR := "/tmp/protobuf-build-$(shell uname -s | tr '[:upper:]' '[:lower:]')"
-
 # Force pb file to be regenrated every time.  Otherwise the make process assumes whats there is still ok
 .PHONY: go/voltha.pb
 
@@ -65,7 +57,7 @@ venv_protos:
 	source ./$@/bin/activate ; set -u ;\
 	pip install grpcio-tools googleapis-common-protos
 
-$(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
+$(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protoc_check_version protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
 	python -m grpc_tools.protoc \
     -I protos \
@@ -101,16 +93,6 @@ python-clean:
 # Go targets
 go-protos: protoc_check_version $(PROTO_GO_PB) go/voltha.pb
 
-protoc_check_version:
-ifeq ("", "$(shell which protoc)")
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	@echo "It looks like you don't have a version of protocol buffer tools."
-	@echo "To install the protocol buffer toolchain, you can run:"
-	@echo "    make install-protoc"
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	exit 1
-endif
-
 go_temp:
 	mkdir -p go_temp
 
@@ -129,32 +111,49 @@ go/voltha.pb: ${PROTO_FILES}
     --descriptor_set_out=$@ \
     ${PROTO_FILES}
 
-go-test:
-ifneq ("libprotoc 3.7.0", "$(shell protoc --version)")
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	@echo "It looks like you don't have protocol buffer tools ${PROTOC_VERSION} installed."
-	@echo "To install this version, you can run:"
-	@echo "    make install-protoc"
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	exit 1
-endif
+go-test: protoc_check_version
 	test/test-go-proto-consistency.sh
 
 go-clean:
 	rm -rf go_temp
 
+# Protobuf compiler helper functions
+protoc_check_version:
+ifeq ("", "$(shell which protoc)")
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	@echo "It looks like you don't have a version of protocol buffer tools."
+	@echo "To install the protocol buffer toolchain on Linux, you can run:"
+	@echo "    make install-protoc"
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	exit 1
+endif
+ifneq ("libprotoc 3.7.0", "$(shell protoc --version)")
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	@echo "You have the wrong version of protoc installed"
+	@echo "Please update to version 3.7.0"
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	exit 1
+endif
+
 install-protoc:
-	@echo "Downloading and installing protocol buffer support."
+	@echo "Downloading and installing protocol buffer support (Linux only"
+ifneq ("Linux", "$(shell uname -s)")
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	@echo "Automated installation of protoc not supported on $(shell uname -s)"
+	@echo "Please install protoc v3.7.0 from:"
+	@echo "  https://github.com/protocolbuffers/protobuf/releases"
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+endif
 	@echo "Installation will require sudo priviledges"
 	@echo "This will take a few minutes."
-	mkdir -p $(PROTOC_BUILD_TMP_DIR)
-	@echo "We ask for sudo credentials now so we can install at the end"; \
+	@echo "Asking for sudo credentials now so we can install at the end"
 	sudo echo "Thanks"; \
-    cd $(PROTOC_BUILD_TMP_DIR); \
-    wget $(PROTOC_DOWNLOAD_URI); \
-    tar xzvf $(PROTOC_TARBALL); \
-    cd $(PROTOC_DIR); \
-    ./configure --prefix=$(PROTOC_PREFIX); \
-    make; \
-    sudo make install; \
-    sudo ldconfig
+    PROTOC_VERSION="3.7.0" ;\
+    PROTOC_SHA256SUM="a1b8ed22d6dc53c5b8680a6f1760a305b33ef471bece482e92728f00ba2a2969" ;\
+    curl -L -o /tmp/protoc-$${PROTOC_VERSION}-linux-x86_64.zip https://github.com/google/protobuf/releases/download/v$${PROTOC_VERSION}/protoc-$${PROTOC_VERSION}-linux-x86_64.zip ;\
+    echo "$${PROTOC_SHA256SUM}  /tmp/protoc-$${PROTOC_VERSION}-linux-x86_64.zip" | sha256sum -c - ;\
+    unzip /tmp/protoc-$${PROTOC_VERSION}-linux-x86_64.zip -d /tmp/protoc3 ;\
+    sudo mv /tmp/protoc3/bin/* /usr/local/bin/ ;\
+    sudo mv /tmp/protoc3/include/* /usr/local/include/ ;\
+    sudo chmod -R a+rx /usr/local/bin/* ;\
+    sudo chmod -R a+rX /usr/local/include/
