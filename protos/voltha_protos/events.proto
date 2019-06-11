@@ -101,10 +101,10 @@ message KpiEvent2 {
 }
 
 /*
- * Identify to the area of the system impacted by the alarm
+ * Identify the area of the system impacted by the device event.
  */
-message AlarmEventType {
-    enum AlarmEventType {
+message DeviceEventType {
+    enum DeviceEventType {
         COMMUNICATION = 0;
         ENVIRONMENT = 1;
         EQUIPMENT = 2;
@@ -115,10 +115,10 @@ message AlarmEventType {
 }
 
 /*
- * Identify to the functional category originating the alarm
+ * Identify the functional category originating the device event
  */
-message AlarmEventCategory {
-    enum AlarmEventCategory {
+message DeviceEventCategory {
+    enum DeviceEventCategory {
         PON = 0;
         OLT = 1;
         ONT = 2;
@@ -128,68 +128,50 @@ message AlarmEventCategory {
 }
 
 /*
- * Active state of the alarm
+ * Active state of the device event
  */
-message AlarmEventState {
-    enum AlarmEventState {
+message DeviceEventState {
+    enum DeviceEventState {
         RAISED = 0;
         CLEARED = 1;
-    }
-}
-
-/*
- * Identify the overall impact of the alarm on the system
- */
-message AlarmEventSeverity {
-    enum AlarmEventSeverity {
-        INDETERMINATE = 0;
-        WARNING = 1;
-        MINOR = 2;
-        MAJOR = 3;
-        CRITICAL = 4;
+        UNKNOWN = 2;
     }
 }
 
 /*
  *
  */
-message AlarmEvent {
-    // Unique ID for this alarm.  e.g. voltha.some_olt.1234
+message DeviceEvent {
+    // Unique ID for this device event.  e.g. voltha.some_olt.1234
     string id = 1;
 
-    // Refers to the area of the system impacted by the alarm
-    AlarmEventType.AlarmEventType type = 2;
+    // Refers to the area of the system impacted by the device event
+    DeviceEventType.DeviceEventType type = 2;
 
-    // Refers to functional category of the alarm
-    AlarmEventCategory.AlarmEventCategory category = 3;
+    // Refers to functional category of the device event
+    DeviceEventCategory.DeviceEventCategory category = 3;
 
-    // Current active state of the alarm
-    AlarmEventState.AlarmEventState state = 4;
+    // Current active state of the device event
+    DeviceEventState.DeviceEventState state = 4;
 
-    // Overall impact of the alarm on the system
-    AlarmEventSeverity.AlarmEventSeverity severity = 5;
+    // Timestamp at which the device event was first raised
+    float raised_ts = 5;
 
-    // Timestamp at which the alarm was first raised
-    float raised_ts = 6;
+    // Timestamp at which the device event was reported
+    float reported_ts = 6;
 
-    // Timestamp at which the alarm was reported
-    float reported_ts = 7;
+    // Timestamp at which the device event has changed since it was raised
+    float changed_ts = 7;
 
-    // Timestamp at which the alarm has changed since it was raised
-    float changed_ts = 8;
+    // Identifier of the originating resource of the device event
+    string resource_id = 8;
 
-    // Identifier of the originating resource of the alarm
-    string resource_id = 9;
+    // Textual explanation of the device event
+    string description = 9;
 
-    // Textual explanation of the alarm
-    string description = 10;
+    // Key/Value storage for extra information that may give context to the device event
+    map<string, string> context = 10;
 
-    // Key/Value storage for extra information that may give context to the alarm
-    map<string, string> context = 11;
-
-    // logical device id
-    string logical_device_id = 12;
-
-    // alarm_type  name indicates clearly the name of the alarm
-    string alarm_type_name = 13;
+    // device_event_name indicates clearly the name of the device event
+    string device_event_name = 11;
 }
