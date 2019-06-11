@@ -82,7 +82,6 @@ message KpiEvent {
     KpiEventType.KpiEventType type = 1;
 
     // Fields used when for slice:
-
     float ts = 2; // UTC time-stamp of data in slice mode (seconds since epoc)
 
     map<string, MetricValuePairs> prefixes = 3;
@@ -101,95 +100,130 @@ message KpiEvent2 {
 }
 
 /*
- * Identify to the area of the system impacted by the alarm
+ * Describes the events specific to device
  */
-message AlarmEventType {
-    enum AlarmEventType {
+message DeviceEvent {
+    // Identifier of the originating resource of the event, for ex: device_id
+    string resource_id = 1;
+
+    // device_event_name indicates clearly the name of the device event
+    string device_event_name = 2;
+
+    // Textual explanation of the device event
+    string description = 3;
+
+    // Key/Value storage for extra information that may give context to the event
+    map<string, string> context = 4;
+
+}
+
+/*
+ * Identify the area of the system impacted by the event.
+ */
+message EventArea {
+    enum EventArea {
         COMMUNICATION = 0;
         ENVIRONMENT = 1;
         EQUIPMENT = 2;
         SERVICE = 3;
         PROCESSING = 4;
         SECURITY = 5;
+        // Add new event types here
     }
 }
 
 /*
- * Identify to the functional category originating the alarm
+ * Identify the functional category originating the event
  */
-message AlarmEventCategory {
-    enum AlarmEventCategory {
+message EventCategory {
+    enum EventCategory {
         PON = 0;
         OLT = 1;
         ONT = 2;
         ONU = 3;
         NNI = 4;
+        // Add new event categories here.
     }
 }
 
 /*
- * Active state of the alarm
+ * State of the event
  */
-message AlarmEventState {
-    enum AlarmEventState {
-        RAISED = 0;
-        CLEARED = 1;
+message EventState {
+    enum EventState {
+        UNKNOWN = 0;
+        RAISED  = 1;
+        CLEARED = 2;
     }
 }
 
 /*
- * Identify the overall impact of the alarm on the system
- */
-message AlarmEventSeverity {
-    enum AlarmEventSeverity {
-        INDETERMINATE = 0;
-        WARNING = 1;
-        MINOR = 2;
-        MAJOR = 3;
-        CRITICAL = 4;
-    }
+ * Identify the type of event
+*/
+message EventType {
+   enum EventType {
+       CONFIG_EVENT = 0;
+       KPI_EVENT    = 1;
+       KPI_EVENT2   = 2;
+       DEVICE_EVENT = 3;
+
+   }
 }
 
 /*
- *
+ * Identify the functional category originating the event
  */
-message AlarmEvent {
-    // Unique ID for this alarm.  e.g. voltha.some_olt.1234
+message EventHeader {
+    // Unique ID for this event.  e.g. voltha.some_olt.1234
     string id = 1;
 
-    // Refers to the area of the system impacted by the alarm
-    AlarmEventType.AlarmEventType type = 2;
+    // Refers to the functional are affect by the event
+    EventArea.EventArea event_area = 2;
 
-    // Refers to functional category of the alarm
-    AlarmEventCategory.AlarmEventCategory category = 3;
+    // Refers to functional category of the event
+    EventCategory.EventCategory category = 3;
 
-    // Current active state of the alarm
-    AlarmEventState.AlarmEventState state = 4;
+    // Current state of the event
+    EventState.EventState state = 4;
 
-    // Overall impact of the alarm on the system
-    AlarmEventSeverity.AlarmEventSeverity severity = 5;
+    // Refers to the type of the event
+    EventType.EventType type = 5;
 
-    // Timestamp at which the alarm was first raised
+
+    // Timestamp at which the event was first raised
     float raised_ts = 6;
 
-    // Timestamp at which the alarm was reported
+    // Timestamp at which the event was reported
     float reported_ts = 7;
 
-    // Timestamp at which the alarm has changed since it was raised
+    // Timestamp at which the event has changed since it was raised.
+    // May be applicable only if the event has a EventState.
     float changed_ts = 8;
 
-    // Identifier of the originating resource of the alarm
-    string resource_id = 9;
+}
 
-    // Textual explanation of the alarm
-    string description = 10;
+/*
+ * Event Structure
+ */
+message Event {
+    // event header
+    EventHeader header = 1;
 
-    // Key/Value storage for extra information that may give context to the alarm
-    map<string, string> context = 11;
+    // oneof event body types.
+    oneof body {
+        // Refers to ConfigEvent
+        ConfigEvent config_event = 2;
 
-    // logical device id
-    string logical_device_id = 12;
+        // Refers to KpiEvent
+        KpiEvent    kpi_event = 3;
 
-    // alarm_type  name indicates clearly the name of the alarm
-    string alarm_type_name = 13;
+        // Refers to KpiEvent2
+        KpiEvent2   kpi_event2 = 4;
+
+        // Refers to DeviceEvent
+        DeviceEvent device_event = 5;
+
+        // Add other types of events here.
+
+    }
 }
