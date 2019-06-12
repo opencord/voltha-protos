@@ -77,7 +77,7 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_pr
     $<
 
 python-build: setup.py python-protos
-	rm -r dist/
+	rm -rf dist/
 	python ./setup.py sdist
 
 python-test: tox.ini setup.py python-protos
