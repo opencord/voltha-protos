@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3852fa59_e572486e",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-13T10:10:09Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "90c0c4eb_860e6148",
+      "revId": "677d3ff0c40ffb2d72a6fa303da53168134ad048",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af445096_f845a7c8",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-06-12T13:50:35Z",
       "side": 1,
       "message": "same comment as above",
+      "revId": "677d3ff0c40ffb2d72a6fa303da53168134ad048",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "063ed716_5df97377",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-13T10:10:09Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "af445096_f845a7c8",
       "revId": "677d3ff0c40ffb2d72a6fa303da53168134ad048",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "b80b8a6c_d191b1a3",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-13T10:10:09Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "429724aa_5454d593",
+      "revId": "677d3ff0c40ffb2d72a6fa303da53168134ad048",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e04fd3e0_f8b8de3b",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2019-06-12T13:50:35Z",
       "side": 1,
       "message": "Can we have a Generic event message and anything that is specific to a category (e.g. device) create a specific event for it and use the proto oneof field to differentiate them?   The Generic event message can consist of a header that would include id, raised_ts, etc and a body that would use the oneof field.",
+      "revId": "677d3ff0c40ffb2d72a6fa303da53168134ad048",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "136a6ad4_cfef6206",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-13T10:10:09Z",
+      "side": 1,
+      "message": "OK. I have done some changes related to this in the latest patch set. Please have a look and comment.",
+      "parentUuid": "e04fd3e0_f8b8de3b",
       "revId": "677d3ff0c40ffb2d72a6fa303da53168134ad048",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
