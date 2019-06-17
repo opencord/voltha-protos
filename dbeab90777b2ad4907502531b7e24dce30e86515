@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99f49936_d24d1bc0",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-17T13:48:39Z",
+      "side": 1,
+      "message": "With some timestamps in the event header, you may want to add an example here on how this one differentiates with the other ones in the header.",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c591d08c_ecd3316c",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-17T13:48:39Z",
+      "side": 1,
+      "message": "With some timestamps in the event header, you may want to add an example here on how this one differentiates with the other ones in the header.",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ae2763e_55d6783d",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-17T13:48:39Z",
+      "side": 1,
+      "message": "Would it be clearer to call this EventCategory instead?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6af3ec4c_12bbaf7f",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-17T13:48:39Z",
+      "side": 1,
+      "message": "And call this EventSubCategory?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45af5720_dea6b062",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-17T13:48:39Z",
+      "side": 1,
+      "message": "See above comments",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4663e221_4fb72e13",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-17T13:48:39Z",
+      "side": 1,
+      "message": "You may want to provide an example for raised, reported and changed, otherwise, it may not be used correctly.",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
