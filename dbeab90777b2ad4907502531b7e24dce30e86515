@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "eb703fa2_79f02e29",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2019-06-17T14:02:45Z",
+      "side": 1,
+      "message": "As David has proposed, can we have a version (in the format of \"MAJOR.MINOR\" inside each of the events (KpiEvent, KpiEvent2, DeviceEvent, ...) using which they can evolve?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c591d08c_ecd3316c",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 8
@@ -70,6 +87,40 @@
     },
     {
       "key": {
+        "uuid": "55909361_2ed8f18a",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2019-06-17T14:02:45Z",
+      "side": 1,
+      "message": "I don\u0027t think we should have a state for an Event",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6e3f912_f714a0fc",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2019-06-17T14:02:45Z",
+      "side": 1,
+      "message": "How do we ensure that the id uniquely identifies something within an event_area, event_category and event_type. For example if a PON PORT goes down we would like an id like voltha.edgecore-\u003cSN\u003e.456 (category being PON and type being DEVICE and area being COMMUNICATION) but the same thing with some other OLT from vendor XYZ the event id should be voltha.XYZ-\u003cSN\u003e.456.\n\nIf we can ensure that this 456 always means the same within the category, type and area (PON, DEVICE and COMMUNICATION respectively) then northbound systems should be able to easily interpret and take action on these events rather than interpreting the textual descriptions for decisions.\n\nThoughts?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45af5720_dea6b062",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 8
@@ -98,6 +149,23 @@
       "writtenOn": "2019-06-17T13:48:39Z",
       "side": 1,
       "message": "You may want to provide an example for raised, reported and changed, otherwise, it may not be used correctly.",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1b3bddc_3693dc1a",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2019-06-17T14:02:45Z",
+      "side": 1,
+      "message": "If according to the earlier comment on EventState, we don\u0027t have a state for an Event, then the raised_ts and changed_ts can go away.",
       "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
