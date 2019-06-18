@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e9ef9e4_80738ec9",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "Thinking more about this, I don\u0027t think it makes sense to have this ts, since it is same as raised_ts. I will be removing this.",
+      "parentUuid": "99f49936_d24d1bc0",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb703fa2_79f02e29",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2019-06-17T14:02:45Z",
       "side": 1,
       "message": "As David has proposed, can we have a version (in the format of \"MAJOR.MINOR\" inside each of the events (KpiEvent, KpiEvent2, DeviceEvent, ...) using which they can evolve?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "945dd816_acb72044",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "Ok. I will put a field type_version in the header of the event.",
+      "parentUuid": "eb703fa2_79f02e29",
       "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4348be20_c59fe382",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "Thinking more about this, I don\u0027t think it makes sense to have this ts, since it is same as raised_ts. I will be removing this.",
+      "parentUuid": "c591d08c_ecd3316c",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ae2763e_55d6783d",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 8
@@ -64,6 +118,24 @@
       "writtenOn": "2019-06-17T13:48:39Z",
       "side": 1,
       "message": "Would it be clearer to call this EventCategory instead?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8ca4969_7cf9a48d",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "3ae2763e_55d6783d",
       "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8965c6f7_6bc83ce4",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "6af3ec4c_12bbaf7f",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55909361_2ed8f18a",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 8
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "1eb645e8_c3ba6828",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "Ok, I can remove this. But, this would mean that we will two separate events. For ex: dgi_raised and dgi_cleared, instead of just dgi with state as raised/cleared",
+      "parentUuid": "55909361_2ed8f18a",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6e3f912_f714a0fc",
         "filename": "protos/voltha_protos/events.proto",
         "patchSetId": 8
@@ -115,6 +223,24 @@
       "writtenOn": "2019-06-17T14:02:45Z",
       "side": 1,
       "message": "How do we ensure that the id uniquely identifies something within an event_area, event_category and event_type. For example if a PON PORT goes down we would like an id like voltha.edgecore-\u003cSN\u003e.456 (category being PON and type being DEVICE and area being COMMUNICATION) but the same thing with some other OLT from vendor XYZ the event id should be voltha.XYZ-\u003cSN\u003e.456.\n\nIf we can ensure that this 456 always means the same within the category, type and area (PON, DEVICE and COMMUNICATION respectively) then northbound systems should be able to easily interpret and take action on these events rather than interpreting the textual descriptions for decisions.\n\nThoughts?",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d02bdaa7_749a72c1",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "As discussed the string naming of the events is outside the purview of this work. A separate discussion needs to be initiated with the community on a standard naming convention.",
+      "parentUuid": "f6e3f912_f714a0fc",
       "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
@@ -166,6 +292,24 @@
       "writtenOn": "2019-06-17T14:02:45Z",
       "side": 1,
       "message": "If according to the earlier comment on EventState, we don\u0027t have a state for an Event, then the raised_ts and changed_ts can go away.",
+      "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6da6464b_3b0a25e1",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-06-18T15:43:01Z",
+      "side": 1,
+      "message": "Ok. I have some counter comments above. I am removing this for now.",
+      "parentUuid": "f1b3bddc_3693dc1a",
       "revId": "dbeab90777b2ad4907502531b7e24dce30e86515",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
