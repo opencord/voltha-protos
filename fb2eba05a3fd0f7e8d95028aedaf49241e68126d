@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd39b2d6_0d2ca2ba",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-06-19T11:26:50Z",
+      "side": 1,
+      "message": "typo, \"if\"",
+      "revId": "fb2eba05a3fd0f7e8d95028aedaf49241e68126d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
