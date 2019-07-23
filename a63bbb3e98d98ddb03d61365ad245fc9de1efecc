@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34718562_77c0202a",
+        "filename": "protos/voltha_protos/logical_device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-07-23T14:16:14Z",
+      "side": 1,
+      "message": "You should not modify the IDs for backward compatibility reasons. Please keep 130 as is for flow_groups, and assign 131 for meters.",
+      "revId": "a63bbb3e98d98ddb03d61365ad245fc9de1efecc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
