@@ -150,6 +150,11 @@ message Membership {
     string id = 2;
 }
 
+// Additional information required to process flow at device adapters
+message FlowMetadata {
+    repeated openflow_13.ofp_meter_config meters = 1;
+}
+
 /*
  * Voltha APIs
  *
