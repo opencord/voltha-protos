@@ -16,6 +16,24 @@
       "revId": "166cb204cb19244060c49d94511e0e0cf30ce8a1",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6a97231_7bbc4ee6",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000548
+      },
+      "writtenOn": "2019-07-29T13:38:34Z",
+      "side": 1,
+      "message": "it would be good to have it in voltha.proto because if we need to embed more information other than just openflow defined( Ex: Child device , etc related to voltha/ openflow ) ?",
+      "parentUuid": "981f172f_6424eeb5",
+      "revId": "166cb204cb19244060c49d94511e0e0cf30ce8a1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
