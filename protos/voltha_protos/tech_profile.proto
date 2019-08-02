@@ -73,7 +73,6 @@ message TrafficScheduler {
     fixed32 alloc_id = 2; // valid only if “direction == Upstream ”
     SchedulerConfig scheduler = 3;
     TrafficShapingInfo traffic_shaping_info = 4;
-    fixed32 parent_sched_id = 5; // Used with HQoS, points to interface sched if not present
 }
 
 message TrafficSchedulers {
@@ -119,8 +118,6 @@ message TrafficQueue {
     fixed32 weight = 7;
     DiscardPolicy discard_policy = 8;
     DiscardConfig discard_config = 9;
-    TrafficShapingInfo shaping_info = 10; // Not used in the current version
-    fixed32 scheduler_id = 11; // Ties the queue to a scheduler
 }
 
 message TrafficQueues {
