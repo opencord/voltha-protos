@@ -119,8 +119,6 @@ message TrafficQueue {
     fixed32 weight = 7;
     DiscardPolicy discard_policy = 8;
     DiscardConfig discard_config = 9;
-    TrafficShapingInfo shaping_info = 10; // Not used in the current version
-    fixed32 scheduler_id = 11; // Ties the queue to a scheduler
 }
 
 message TrafficQueues {
