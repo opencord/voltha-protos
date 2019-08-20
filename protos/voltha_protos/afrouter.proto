@@ -7,9 +7,11 @@ option go_package = "github.com/opencord/voltha-protos/go/afrouter";
 package afrouter;
 
 service Configuration {
-    	rpc SetConnection (Conn) returns (Result) {}
+   	rpc SetConnection (Conn) returns (Result) {}
 	rpc SetAffinity(Affinity) returns (Result) {}
 	rpc GetGoroutineCount(Empty) returns (Count) {}
+	rpc SetLogLevel(LogLevel) returns (Result) {}
+	rpc GetLogLevels(Empty) returns (LogLevels) {}
 }
 
 message Result {
@@ -42,4 +44,14 @@ message Affinity {
 	string cluster = 3;
 	string backend = 4;
 	string id = 5;
+}
+
+message LogLevel {
+	string component_name = 1;
+	string package_name = 2;
+	string level = 3;
+}
+
+message LogLevels {
+	repeated LogLevel items = 1;
 }
