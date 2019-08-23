@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f548073c_6271a28d",
+        "filename": "protos/voltha_protos/afrouter.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-08-23T17:55:19Z",
+      "side": 1,
+      "message": "The API is set/get all not per component?",
+      "revId": "93978e69eff722679078003e646a029531f36620",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5077376a_36fa969a",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-08-23T17:55:19Z",
+      "side": 1,
+      "message": "this is just on the cores, so this won;t set log level for say ofagent, adapters etc.",
+      "revId": "93978e69eff722679078003e646a029531f36620",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
