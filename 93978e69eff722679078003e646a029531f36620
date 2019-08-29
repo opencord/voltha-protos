@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "80772808_96c5022e",
+        "filename": "protos/voltha_protos/afrouter.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-08-29T00:00:56Z",
+      "side": 1,
+      "message": "common.Logging has a component_name field now, which is used by api-server to determine which container to forward the request to. Once the request arrives at its destination, the component_name field isn\u0027t important, as each container only has one component.",
+      "parentUuid": "f548073c_6271a28d",
+      "revId": "93978e69eff722679078003e646a029531f36620",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5077376a_36fa969a",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2019-08-23T17:55:19Z",
       "side": 1,
       "message": "this is just on the cores, so this won;t set log level for say ofagent, adapters etc.",
+      "revId": "93978e69eff722679078003e646a029531f36620",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "105894d3_1f29a130",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-08-29T00:00:56Z",
+      "side": 1,
+      "message": "Correct, this only works for cores. We\u0027ll have to address ofagent and adapters separately. Solution to configuring adapters could be to give them a gRPC API that can be used to configure them individually, or to proxy adapter configuration through the cores, or come up with a way to configure adapters out-of-band.",
+      "parentUuid": "5077376a_36fa969a",
       "revId": "93978e69eff722679078003e646a029531f36620",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
