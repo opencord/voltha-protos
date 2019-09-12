@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79a8a88b_556163ac",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000616
+      },
+      "writtenOn": "2019-09-12T11:10:36Z",
+      "side": 1,
+      "message": "Who is using this?",
+      "revId": "6d473e75319f06282bc6a056ef2a123a6aedca91",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
