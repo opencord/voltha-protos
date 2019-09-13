@@ -16,6 +16,24 @@
       "revId": "6d473e75319f06282bc6a056ef2a123a6aedca91",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d6d82e1_4fb54377",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000544
+      },
+      "writtenOn": "2019-09-13T07:26:37Z",
+      "side": 1,
+      "message": "It is to align the onuIndication proto with openolt-agent that has registration id.",
+      "parentUuid": "79a8a88b_556163ac",
+      "revId": "6d473e75319f06282bc6a056ef2a123a6aedca91",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
