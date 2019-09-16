@@ -139,6 +139,24 @@ type AlarmFilter = voltha.AlarmFilter
 // AlarmFilters from public import voltha_protos/voltha.proto
 type AlarmFilters = voltha.AlarmFilters
 
+// EventFilterType from public import voltha_protos/voltha.proto
+type EventFilterType = voltha.EventFilterType
+
+// DeviceEventFilter from public import voltha_protos/voltha.proto
+type DeviceEventFilter = voltha.DeviceEventFilter
+
+// KpiEventFilter from public import voltha_protos/voltha.proto
+type KpiEventFilter = voltha.KpiEventFilter
+
+// ConfigEventFilter from public import voltha_protos/voltha.proto
+type ConfigEventFilter = voltha.ConfigEventFilter
+
+// EventFilter from public import voltha_protos/voltha.proto
+type EventFilter = voltha.EventFilter
+
+// EventFilters from public import voltha_protos/voltha.proto
+type EventFilters = voltha.EventFilters
+
 // CoreInstance from public import voltha_protos/voltha.proto
 type CoreInstance = voltha.CoreInstance
 
@@ -172,6 +190,16 @@ const AlarmFilterRuleKey_severity = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha
 const AlarmFilterRuleKey_resource_id = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha.AlarmFilterRuleKey_resource_id)
 const AlarmFilterRuleKey_category = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha.AlarmFilterRuleKey_category)
 const AlarmFilterRuleKey_device_id = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha.AlarmFilterRuleKey_device_id)
+
+// EventFilterType_EventFilterType from public import voltha_protos/voltha.proto
+type EventFilterType_EventFilterType = voltha.EventFilterType_EventFilterType
+
+var EventFilterType_EventFilterType_name = voltha.EventFilterType_EventFilterType_name
+var EventFilterType_EventFilterType_value = voltha.EventFilterType_EventFilterType_value
+
+const EventFilterType_device_event = EventFilterType_EventFilterType(voltha.EventFilterType_device_event)
+const EventFilterType_kpi_event = EventFilterType_EventFilterType(voltha.EventFilterType_kpi_event)
+const EventFilterType_config_event = EventFilterType_EventFilterType(voltha.EventFilterType_config_event)
 
 // SelfTestResponse_SelfTestResult from public import voltha_protos/voltha.proto
 type SelfTestResponse_SelfTestResult = voltha.SelfTestResponse_SelfTestResult

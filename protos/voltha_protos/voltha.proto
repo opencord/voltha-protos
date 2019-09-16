@@ -70,6 +70,45 @@ message AlarmFilters {
     repeated AlarmFilter filters = 1;
 }
 
+message EventFilterType {
+     enum EventFilterType {
+          device_event = 0;
+          kpi_event = 1;
+          config_event = 2;
+     }
+}
+
+message DeviceEventFilter {
+        string resource_id = 1;
+        string event_category = 2;
+        string event_sub_category = 3;
+        string device_event_type = 4;
+}
+
+message KpiEventFilter {
+        string event_category = 1;
+        string event_sub_category = 2;
+        string kpi_event_type = 3;
+}
+
+message ConfigEventFilter {
+        string event_category = 1;
+        string event_sub_category = 2;
+        string config_event_type = 3;
+}
+
+message EventFilter {
+    string id = 1 [(access) = READ_ONLY];
+    string device_id = 2;
+    EventFilterType type = 3;
+    DeviceEventFilter device_event_filter = 4;
+    KpiEventFilter    kpi_event_filter = 5;
+    ConfigEventFilter config_event_filter = 6;
+}
+
+message EventFilters {
+    repeated EventFilter filters = 1;
+}
 // CoreInstance represents a core instance.  It is data held in memory when a core
 // is running.  This data is not persistent.
 message CoreInstance {
@@ -105,6 +144,8 @@ message Voltha {
     repeated DeviceGroup device_groups = 6 [(child_node) = {key: "id"}];
 
     repeated AlarmFilter alarm_filters = 7 [(child_node) = {key: "id"}];
+
+    repeated EventFilter event_filters = 8 [(child_node) = {key: "id"}];
 
     repeated
         omci.MibDeviceData omci_mib_database = 28
@@ -571,6 +612,38 @@ service VolthaService {
     rpc ListAlarmFilters(google.protobuf.Empty) returns(AlarmFilters) {
         option (google.api.http) = {
             get: "/api/v1/alarm_filters"
+        };
+    }
+
+    rpc CreateEventFilter(EventFilter) returns(EventFilter) {
+        option (google.api.http) = {
+            post: "/api/v1/event_filters"
+            body: "*"
+        };
+    }
+
+    rpc GetEventFilter(common.ID) returns(EventFilter) {
+        option (google.api.http) = {
+            get: "/api/v1/event_filters/{id}"
+        };
+    }
+
+    rpc UpdateEventFilter(EventFilter) returns(EventFilter) {
+        option (google.api.http) = {
+            put: "/api/v1/event_filters/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeleteEventFilter(EventFilter) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/event_filters/{id}"
+        };
+    }
+
+    rpc ListEventFilters(google.protobuf.Empty) returns(EventFilters) {
+        option (google.api.http) = {
+            get: "/api/v1/event_filters"
         };
     }
 
