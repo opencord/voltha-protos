@@ -139,6 +139,27 @@ type AlarmFilter = voltha.AlarmFilter
 // AlarmFilters from public import voltha_protos/voltha.proto
 type AlarmFilters = voltha.AlarmFilters
 
+// EventFilterRuleKey from public import voltha_protos/voltha.proto
+type EventFilterRuleKey = voltha.EventFilterRuleKey
+
+// EventFilterRule from public import voltha_protos/voltha.proto
+type EventFilterRule = voltha.EventFilterRule
+
+// DeviceEventFilter from public import voltha_protos/voltha.proto
+type DeviceEventFilter = voltha.DeviceEventFilter
+
+// KpiEventFilter from public import voltha_protos/voltha.proto
+type KpiEventFilter = voltha.KpiEventFilter
+
+// ConfigEventFilter from public import voltha_protos/voltha.proto
+type ConfigEventFilter = voltha.ConfigEventFilter
+
+// EventFilter from public import voltha_protos/voltha.proto
+type EventFilter = voltha.EventFilter
+
+// EventFilters from public import voltha_protos/voltha.proto
+type EventFilters = voltha.EventFilters
+
 // CoreInstance from public import voltha_protos/voltha.proto
 type CoreInstance = voltha.CoreInstance
 
@@ -172,6 +193,21 @@ const AlarmFilterRuleKey_severity = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha
 const AlarmFilterRuleKey_resource_id = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha.AlarmFilterRuleKey_resource_id)
 const AlarmFilterRuleKey_category = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha.AlarmFilterRuleKey_category)
 const AlarmFilterRuleKey_device_id = AlarmFilterRuleKey_AlarmFilterRuleKey(voltha.AlarmFilterRuleKey_device_id)
+
+// EventFilterRuleKey_EventFilterRuleKey from public import voltha_protos/voltha.proto
+type EventFilterRuleKey_EventFilterRuleKey = voltha.EventFilterRuleKey_EventFilterRuleKey
+
+var EventFilterRuleKey_EventFilterRuleKey_name = voltha.EventFilterRuleKey_EventFilterRuleKey_name
+var EventFilterRuleKey_EventFilterRuleKey_value = voltha.EventFilterRuleKey_EventFilterRuleKey_value
+
+const EventFilterRuleKey_id = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_id)
+const EventFilterRuleKey_device_id = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_device_id)
+const EventFilterRuleKey_filter_type = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_filter_type)
+const EventFilterRuleKey_event_category = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_event_category)
+const EventFilterRuleKey_event_sub_category = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_event_sub_category)
+const EventFilterRuleKey_device_event_type = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_device_event_type)
+const EventFilterRuleKey_kpi_event_type = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_kpi_event_type)
+const EventFilterRuleKey_config_event_type = EventFilterRuleKey_EventFilterRuleKey(voltha.EventFilterRuleKey_config_event_type)
 
 // SelfTestResponse_SelfTestResult from public import voltha_protos/voltha.proto
 type SelfTestResponse_SelfTestResult = voltha.SelfTestResponse_SelfTestResult
