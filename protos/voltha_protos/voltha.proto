@@ -70,6 +70,48 @@ message AlarmFilters {
     repeated AlarmFilter filters = 1;
 }
 
+message EventFilterRuleKey {
+    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+
+    enum EventFilterRuleKey {
+        id = 0;
+        device_id = 1;
+        filter_type = 2;
+        event_category = 3;
+        event_sub_category = 4;
+        device_event_type = 5;
+        kpi_event_type = 6;
+        config_event_type = 7;
+    }
+}
+
+message EventFilterRule {
+    EventFilterRuleKey.EventFilterRuleKey key = 1;
+    string value = 2;
+}
+
+message DeviceEventFilter {
+    repeated EventFilterRule rules = 1;
+}
+
+message KpiEventFilter {
+    repeated EventFilterRule rules = 1;
+}
+
+message ConfigEventFilter {
+    repeated EventFilterRule rules = 1;
+}
+
+message EventFilter {
+    string id = 1 [(access) = READ_ONLY];
+    DeviceEventFilter device_event_filter = 2;
+    KpiEventFilter    kpi_event_filter = 3;
+    ConfigEventFilter config_event_filter = 4;
+}
+
+message EventFilters {
+    repeated EventFilter filters = 1;
+}
 // CoreInstance represents a core instance.  It is data held in memory when a core
 // is running.  This data is not persistent.
 message CoreInstance {
@@ -105,6 +147,8 @@ message Voltha {
     repeated DeviceGroup device_groups = 6 [(child_node) = {key: "id"}];
 
     repeated AlarmFilter alarm_filters = 7 [(child_node) = {key: "id"}];
+
+    repeated EventFilter event_filters = 8 [(child_node) = {key: "id"}];
 
     repeated
         omci.MibDeviceData omci_mib_database = 28
@@ -542,35 +586,35 @@ service VolthaService {
         };
     }
 
-    rpc CreateAlarmFilter(AlarmFilter) returns(AlarmFilter) {
+    rpc CreateEventFilter(EventFilter) returns(EventFilter) {
         option (google.api.http) = {
-            post: "/api/v1/alarm_filters"
+            post: "/api/v1/event_filters"
             body: "*"
         };
     }
 
-    rpc GetAlarmFilter(common.ID) returns(AlarmFilter) {
+    rpc GetEventFilter(common.ID) returns(EventFilter) {
         option (google.api.http) = {
-            get: "/api/v1/alarm_filters/{id}"
+            get: "/api/v1/event_filters/{id}"
         };
     }
 
-    rpc UpdateAlarmFilter(AlarmFilter) returns(AlarmFilter) {
+    rpc UpdateEventFilter(EventFilter) returns(EventFilter) {
         option (google.api.http) = {
-            put: "/api/v1/alarm_filters/{id}"
+            put: "/api/v1/event_filters/{id}"
             body: "*"
         };
     }
 
-    rpc DeleteAlarmFilter(common.ID) returns(google.protobuf.Empty) {
+    rpc DeleteEventFilter(EventFilter) returns(google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/api/v1/alarm_filters/{id}"
+            delete: "/api/v1/event_filters/{id}"
         };
     }
 
-    rpc ListAlarmFilters(google.protobuf.Empty) returns(AlarmFilters) {
+    rpc ListEventFilters(google.protobuf.Empty) returns(EventFilters) {
         option (google.api.http) = {
-            get: "/api/v1/alarm_filters"
+            get: "/api/v1/event_filters"
         };
     }
 
