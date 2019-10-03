@@ -33,7 +33,7 @@ PROTO_GO_DEST_DIR := go
 PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_GO_DEST_DIR)/$(call go_package_path,$(f))/%.pb.go,$(f)))
 
 # Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
-.PHONY: go/voltha.pb protoc_check
+.PHONY: voltha.pb protoc_check
 
 print:
 	@echo "Proto files: $(PROTO_FILES)"
@@ -92,7 +92,7 @@ python-clean:
     $(PROTO_PYTHON_PB2_GRPC)
 
 # Go targets
-go-protos: protoc_check $(PROTO_GO_PB) go/voltha.pb
+go-protos: protoc_check $(PROTO_GO_PB) voltha.pb
 
 go_temp:
 	mkdir -p go_temp
@@ -105,7 +105,7 @@ $(PROTO_GO_PB): $(PROTO_FILES) go_temp
 	mkdir -p $(dir $@)
 	mv go_temp/voltha_protos/$(notdir $@) $@
 
-go/voltha.pb: ${PROTO_FILES}
+voltha.pb: ${PROTO_FILES}
 	@echo "Creating $@"
 	protoc -I protos -I protos/google/api \
     --include_imports --include_source_info \
