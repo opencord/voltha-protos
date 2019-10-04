@@ -114,6 +114,7 @@ voltha.pb: ${PROTO_FILES}
 
 go-test: protoc_check
 	test/test-go-proto-consistency.sh
+	GO111MODULE=on go mod verify
 
 go-clean:
 	rm -rf go_temp
