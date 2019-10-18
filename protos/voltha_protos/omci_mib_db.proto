@@ -15,7 +15,8 @@
 //
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/omci";
+option go_package = "github.com/opencord/voltha-protos/v3/go/omci";
+option java_package = "org.opencord.voltha.omci";
 
 package omci;
 
@@ -67,13 +68,13 @@ message MibDeviceData {
 }
 
 message OpenOmciEventType {
-    enum OpenOmciEventType {
+    enum Types {
         state_change = 0; // A state machine has transitioned to a new state
     }
 }
 
 message OpenOmciEvent {
-    OpenOmciEventType.OpenOmciEventType type = 1;
+    OpenOmciEventType.Types type = 1;
 
     string data = 2; // associated data, in json format
 }

@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
+option java_package = "org.opencord.voltha";
+option java_outer_classname = "VolthaDevice";
 
 package voltha;
 
@@ -8,7 +10,6 @@ import "google/protobuf/any.proto";
 import "voltha_protos/common.proto";
 import "voltha_protos/meta.proto";
 import "voltha_protos/openflow_13.proto";
-import "voltha_protos/yang_options.proto";
 
 // A Device Type
 message DeviceType {
@@ -100,8 +101,6 @@ message Images {
 }
 
 message ImageDownload {
-    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
-
     enum ImageDownloadState {
         DOWNLOAD_UNKNOWN = 0;
         DOWNLOAD_SUCCEEDED = 1;
@@ -176,8 +175,6 @@ message ImageDownloads {
 }
 
 message Port {
-    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
-
     enum PortType {
         UNKNOWN = 0;
         ETHERNET_NNI = 1;
@@ -194,9 +191,9 @@ message Port {
 
     PortType type = 3;  //  Type of port
 
-    common.AdminState.AdminState admin_state = 5;
+    common.AdminState.Types admin_state = 5;
 
-    common.OperStatus.OperStatus oper_status = 6;
+    common.OperStatus.Types oper_status = 6;
 
     string device_id = 7;  // Unique .id of device that owns this port
 
@@ -221,8 +218,6 @@ message Ports {
 
 // A Physical Device instance
 message Device {
-    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
-
     // Voltha's device identifier
     string id = 1 [(access) = READ_ONLY];
 
@@ -283,13 +278,13 @@ message Device {
 
     ProxyAddress proxy_address = 19;
 
-    common.AdminState.AdminState admin_state = 16;
+    common.AdminState.Types admin_state = 16;
 
-    common.OperStatus.OperStatus oper_status = 17 [(access) = READ_ONLY];
+    common.OperStatus.Types oper_status = 17 [(access) = READ_ONLY];
 
     string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
 
-    common.ConnectStatus.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
+    common.ConnectStatus.Types connect_status = 18 [(access) = READ_ONLY];
 
     // TODO additional common attribute here
 
