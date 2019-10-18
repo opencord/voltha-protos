@@ -6,7 +6,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
 
 package voltha;
 
