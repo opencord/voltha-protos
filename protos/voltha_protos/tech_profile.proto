@@ -15,6 +15,7 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/tech_profile";
+option java_package = "org.opencord.voltha.tech_profile";
 
 package tech_profile;
 import "google/api/annotations.proto";

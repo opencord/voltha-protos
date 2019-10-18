@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/voltha";
+option java_package = "org.opencord.voltha";
+option java_outer_classname = "OFLogicalDevice";
 
 package voltha;
 

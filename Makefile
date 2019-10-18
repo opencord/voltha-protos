@@ -23,6 +23,11 @@ define go_package_path
 $(shell grep go_package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
 endef
 
+# Function to extract the last path component from package line in .proto files
+define java_package_path
+$(shell grep package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
+endef
+
 # Variables
 PROTO_FILES := $(sort $(wildcard protos/voltha_protos/*.proto))
 
@@ -31,7 +36,8 @@ PROTO_PYTHON_PB2 := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos
 PROTO_PYTHON_PB2_GRPC := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_PYTHON_DEST_DIR)/%_pb2_grpc.py,$(f)))
 PROTO_GO_DEST_DIR := go
 PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_GO_DEST_DIR)/$(call go_package_path,$(f))/%.pb.go,$(f)))
-
+PROTO_JAVA_DEST_DIR := java
+PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f))) 
 # Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
 .PHONY: voltha.pb protoc_check
 
@@ -39,15 +45,16 @@ print:
 	@echo "Proto files: $(PROTO_FILES)"
 	@echo "Python PB2 files: $(PROTO_PYTHON_PB2)"
 	@echo "Go PB files: $(PROTO_GO_PB)"
+	@echo "JAVA PB files: $(PROTO_JAVA_PB)"
 
 # Generic targets
-protos: python-protos go-protos
+protos: python-protos go-protos java-protos
 
-build: protos python-build go-protos
+build: protos python-build go-protos java-protos
 
-test: python-test go-test
+test: python-test go-test java-test
 
-clean: python-clean go-clean
+clean: python-clean go-clean java-clean
 
 # Python targets
 python-protos: protoc_check $(PROTO_PYTHON_PB2)
@@ -118,6 +125,30 @@ go-test: protoc_check
 
 go-clean:
 	rm -rf go_temp
+
+# Java targets
+java-protos: protoc_check $(PROTO_JAVA_PB) move-java-protos voltha.pb
+
+java_temp:
+	mkdir -p java_temp/src/main/java
+
+$(PROTO_JAVA_PB): $(PROTO_FILES) java_temp
+	@echo "Creating $@"
+	cd protos && protoc \
+    --java_out=../java_temp/src/main/java \
+    -I . voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.java/\1.proto/p' )
+
+move-java-protos: protoc_check
+	cp -r java_temp/src/main/java/* java/
+
+java-test: java-protos
+	cp test/pom.xml java_temp
+	cd java_temp && mvn compile
+
+java-clean:
+	rm -rf java
+	rm -rf java_temp
+
 
 # Protobuf compiler helper functions
 protoc_check:

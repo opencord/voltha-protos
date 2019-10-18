@@ -3,6 +3,7 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/afrouter";
+option java_package = "org.opencord.voltha";
 
 package afrouter;
 
