@@ -6,7 +6,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
 
 package voltha;
 
@@ -23,7 +23,6 @@ import public "voltha_protos/openflow_13.proto";
 
 import "voltha_protos/omci_mib_db.proto";
 import "voltha_protos/omci_alarm_db.proto";
-import "voltha_protos/yang_options.proto";
 
 option java_package = "org.opencord.voltha";
 option java_outer_classname = "VolthaProtos";
@@ -74,7 +73,6 @@ message EventFilters {
 // CoreInstance represents a core instance.  It is data held in memory when a core
 // is running.  This data is not persistent.
 message CoreInstance {
-    option (common.yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
 
     string instance_id = 1  [(access) = READ_ONLY];
 
@@ -83,7 +81,6 @@ message CoreInstance {
 }
 
 message CoreInstances {
-    option (common.yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
     repeated CoreInstance items = 1;
 }
 
@@ -91,7 +88,6 @@ message CoreInstances {
 // the entire cluster. However, some items (e.g. adapters) will be held by all cores
 // for better performance
 message Voltha {
-    option (common.yang_message_rule) = CREATE_BOTH_GROUPING_AND_CONTAINER;
 
     string version = 1 [(access) = READ_ONLY];
 
@@ -118,7 +114,6 @@ message Voltha {
 
 // Device Self Test Response
 message SelfTestResponse {
-    option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
 	enum SelfTestResult  {
 	    SUCCESS = 0;
@@ -199,8 +194,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/instances"
         };
-        option (common.yang_xml_tag).xml_tag = 'items';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // Get details on a Voltha cluster instance
@@ -215,7 +208,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/adapters"
         };
-        option (common.yang_xml_tag).xml_tag = 'adapters';
     }
 
 
@@ -224,7 +216,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices"
         };
-        option (common.yang_xml_tag).xml_tag = 'logical_devices';
     }
 
     // Get additional information on a given logical device
@@ -239,7 +230,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/ports"
         };
-        option (common.yang_xml_tag).xml_tag = 'ports';
     }
 
     // Gets a logical device port
@@ -247,7 +237,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/ports/{port_id}"
         };
-        option (common.yang_xml_tag).xml_tag = 'port';
     }
 
     // Enables a logical device port
@@ -269,8 +258,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/flows"
         };
-        option (common.yang_xml_tag).xml_tag = 'flows';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // Update flow table for logical device
@@ -296,8 +283,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/meters"
         };
-        option (common.yang_xml_tag).xml_tag = 'meters';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // List all flow groups of a logical device
@@ -305,8 +290,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/flow_groups"
         };
-        option (common.yang_xml_tag).xml_tag = 'flow_groups';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // Update group table for device
@@ -323,7 +306,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/devices"
         };
-        option (common.yang_xml_tag).xml_tag = 'devices';
     }
 
     // List all physical devices IDs controlled by the Voltha cluster
@@ -331,8 +313,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/deviceids"
         };
-        option (common.yang_xml_tag).xml_tag = 'id';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // Request to a voltha Core to reconcile a set of devices based on their IDs
@@ -460,7 +440,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/ports"
         };
-        option (common.yang_xml_tag).xml_tag = 'ports';
     }
 
     // List pm config of a device
@@ -483,8 +462,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/flows"
         };
-        option (common.yang_xml_tag).xml_tag = 'flows';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // List all flow groups of a device
@@ -492,8 +469,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/flow_groups"
         };
-        option (common.yang_xml_tag).xml_tag = 'flow_groups';
-        option (common.yang_xml_tag).list_items_name = 'items';
     }
 
     // List device types known to Voltha
@@ -501,7 +476,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/device_types"
         };
-        option (common.yang_xml_tag).xml_tag = 'device_types';
     }
 
     // Get additional information on a device type
@@ -516,7 +490,6 @@ service VolthaService {
         option (google.api.http) = {
             get: "/api/v1/device_groups"
         };
-        option (common.yang_xml_tag).xml_tag = 'device_groups';
     }
 
     // Stream control packets to the dataplane
