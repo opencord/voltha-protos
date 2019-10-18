@@ -57,12 +57,12 @@
  */
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/openflow_13";
+option go_package = "github.com/opencord/voltha-protos/v3/go/openflow_13";
+option java_package = "org.opencord.voltha.openflow13";
 
 package openflow_13;
 
 import "google/api/annotations.proto";
-import public "voltha_protos/yang_options.proto";
 
 
 /* Version number:
@@ -1630,7 +1630,7 @@ enum ofp_meter_mod_failed_code {
     OFPMMFC_BAD_RATE      = 6;  /* Rate unsupported. */
     OFPMMFC_BAD_BURST     = 7;  /* Burst size unsupported. */
     OFPMMFC_BAD_BAND      = 8;  /* Band unsupported. */
-    OFPMMFC_BAD_BAND_VALUE = 9; /* Band value unsupported. */
+    OFPMMFC_BAD_BAND_DETAIL = 9; /* Band value unsupported. */
     OFPMMFC_OUT_OF_METERS = 10; /* No more meters available. */
     OFPMMFC_OUT_OF_BANDS  = 11; /* The maximum number of properties
                                  * for a meter has been exceeded. */
@@ -2023,8 +2023,7 @@ message ofp_group_desc {
 };
 
 message ofp_group_entry {
-    ofp_group_desc desc = 1 [(common.yang_inline_node).id = 'desc',
-                            (common.yang_inline_node).type = 'openflow_13-ofp_group_desc'];
+    ofp_group_desc desc = 1;
     ofp_group_stats stats = 2;
 };
 
@@ -2093,8 +2092,7 @@ message ofp_meter_features {
 };
 
 message ofp_meter_entry {
-    ofp_meter_config config=1 [(common.yang_inline_node).id = 'config',
-                              (common.yang_inline_node).type = 'openflow_13-ofp_meter_config'];
+    ofp_meter_config config=1;
     ofp_meter_stats stats=2;
 }
 
