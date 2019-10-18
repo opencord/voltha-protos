@@ -1,13 +1,14 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
+option java_package = "org.opencord.voltha";
 
 package voltha;
 
 import "voltha_protos/meta.proto";
 import "google/api/annotations.proto";
 
-message ConfigEventType {
+message ConfigEventTypeMessage {
     enum ConfigEventType {
         add = 0; // A new config has been added
         remove = 1; // A config has been removed
@@ -16,13 +17,13 @@ message ConfigEventType {
 }
 
 message ConfigEvent {
-    ConfigEventType.ConfigEventType type = 1;
+    ConfigEventTypeMessage.ConfigEventType type = 1;
 
     string hash = 2; // hash for this change, can be used for quick lookup
     string data = 3; // the actual new data, in json format
 }
 
-message KpiEventType {
+message KpiEventTypeMessage {
     enum KpiEventType {
         slice = 0; // slice: a set of path/metric data for same time-stamp
         ts = 1; // time-series: array of data for same metric
@@ -79,7 +80,7 @@ message MetricInformation {
  */
 message KpiEvent {
 
-    KpiEventType.KpiEventType type = 1;
+    KpiEventTypeMessage.KpiEventType type = 1;
 
     // Fields used when for slice:
 
@@ -91,7 +92,7 @@ message KpiEvent {
 
 message KpiEvent2 {
     // Type of KPI Event
-    KpiEventType.KpiEventType type = 1;
+    KpiEventTypeMessage.KpiEventType type = 1;
 
     // Fields used when for slice:
     double ts = 2;  // UTC time-stamp of data in slice mode (seconds since epoch)
@@ -105,7 +106,7 @@ message KpiEvent2 {
  * To be deprecated once python version of OpenOLT adapter
  * moves to the new event defination for device alarms
  */
-message AlarmEventType {
+message AlarmEventTypeMessage {
     enum AlarmEventType {
         COMMUNICATION = 0;
         ENVIRONMENT = 1;
@@ -122,7 +123,7 @@ message AlarmEventType {
  * as well as OpenONU adapter moves to the new event
  * defination for device alarms
  */
-message AlarmEventCategory {
+message AlarmEventCategoryMessage {
     enum AlarmEventCategory {
         PON = 0;
         OLT = 1;
@@ -138,7 +139,7 @@ message AlarmEventCategory {
  * as well as OpenONU adapter moves to the new event
  * defination for device alarms
  */
-message AlarmEventState {
+message AlarmEventStateMessage {
     enum AlarmEventState {
         RAISED = 0;
         CLEARED = 1;
@@ -151,7 +152,7 @@ message AlarmEventState {
  * as well as OpenONU adapter moves to the new event
  * defination for device alarms
  */
-message AlarmEventSeverity {
+message AlarmEventSeverityMessage {
     enum AlarmEventSeverity {
         INDETERMINATE = 0;
         WARNING = 1;
@@ -171,16 +172,16 @@ message AlarmEvent {
     string id = 1;
 
     // Refers to the area of the system impacted by the alarm
-    AlarmEventType.AlarmEventType type = 2;
+    AlarmEventTypeMessage.AlarmEventType type = 2;
 
     // Refers to functional category of the alarm
-    AlarmEventCategory.AlarmEventCategory category = 3;
+    AlarmEventCategoryMessage.AlarmEventCategory category = 3;
 
     // Current active state of the alarm
-    AlarmEventState.AlarmEventState state = 4;
+    AlarmEventStateMessage.AlarmEventState state = 4;
 
     // Overall impact of the alarm on the system
-    AlarmEventSeverity.AlarmEventSeverity severity = 5;
+    AlarmEventSeverityMessage.AlarmEventSeverity severity = 5;
 
     // Timestamp at which the alarm was first raised
     float raised_ts = 6;
@@ -227,7 +228,7 @@ message DeviceEvent {
 /*
  * Identify the area of the system impacted by the event.
  */
-message EventCategory {
+message EventCategoryMessage {
     enum EventCategory {
         COMMUNICATION = 0;
         ENVIRONMENT = 1;
@@ -242,7 +243,7 @@ message EventCategory {
 /*
  * Identify the functional category originating the event
  */
-message EventSubCategory {
+message EventSubCategoryMessage {
     enum EventSubCategory {
         PON = 0;
         OLT = 1;
@@ -256,7 +257,7 @@ message EventSubCategory {
 /*
  * Identify the type of event
 */
-message EventType {
+message EventTypeMessage {
    enum EventType {
        CONFIG_EVENT = 0;
        KPI_EVENT    = 1;
@@ -274,13 +275,13 @@ message EventHeader {
     string id = 1;
 
     // Refers to the functional area affect by the event
-    EventCategory.EventCategory category = 2;
+    EventCategoryMessage.EventCategory category = 2;
 
     // Refers to functional category of the event
-    EventSubCategory.EventSubCategory sub_category = 3;
+    EventSubCategoryMessage.EventSubCategory sub_category = 3;
 
     // Refers to the type of the event
-    EventType.EventType type = 4;
+    EventTypeMessage.EventType type = 4;
 
     // The version identifier for this event type, thus allowing each
     // event type to evolve independently. The version should be in the

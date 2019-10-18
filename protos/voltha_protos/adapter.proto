@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
+option java_package = "org.opencord.voltha";
+option java_outer_classname = "VolthaAdapter";
 
 package voltha;
 
@@ -12,7 +14,8 @@ import "voltha_protos/meta.proto";
 message AdapterConfig {
 
     // Common adapter config attributes here
-    common.LogLevel.LogLevel log_level = 1;
+    common.LogLevelMessage.LogLevel log_level = 1;
+
 
     // Custom (vendor-specific) configuration attributes
     google.protobuf.Any additional_config = 64;
