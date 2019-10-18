@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
+option java_package = "org.opencord.voltha";
 
 package voltha;
 
@@ -8,7 +9,7 @@ import "voltha_protos/meta.proto";
 import "google/api/annotations.proto";
 
 message ConfigEventType {
-    enum ConfigEventType {
+    enum Types {
         add = 0; // A new config has been added
         remove = 1; // A config has been removed
         update = 2; // A config has been updated
@@ -16,14 +17,14 @@ message ConfigEventType {
 }
 
 message ConfigEvent {
-    ConfigEventType.ConfigEventType type = 1;
+    ConfigEventType.Types type = 1;
 
     string hash = 2; // hash for this change, can be used for quick lookup
     string data = 3; // the actual new data, in json format
 }
 
 message KpiEventType {
-    enum KpiEventType {
+    enum Types {
         slice = 0; // slice: a set of path/metric data for same time-stamp
         ts = 1; // time-series: array of data for same metric
     }
@@ -79,7 +80,7 @@ message MetricInformation {
  */
 message KpiEvent {
 
-    KpiEventType.KpiEventType type = 1;
+    KpiEventType.Types type = 1;
 
     // Fields used when for slice:
 
@@ -91,7 +92,7 @@ message KpiEvent {
 
 message KpiEvent2 {
     // Type of KPI Event
-    KpiEventType.KpiEventType type = 1;
+    KpiEventType.Types type = 1;
 
     // Fields used when for slice:
     double ts = 2;  // UTC time-stamp of data in slice mode (seconds since epoch)
@@ -106,7 +107,7 @@ message KpiEvent2 {
  * moves to the new event defination for device alarms
  */
 message AlarmEventType {
-    enum AlarmEventType {
+    enum Types {
         COMMUNICATION = 0;
         ENVIRONMENT = 1;
         EQUIPMENT = 2;
@@ -123,7 +124,7 @@ message AlarmEventType {
  * defination for device alarms
  */
 message AlarmEventCategory {
-    enum AlarmEventCategory {
+    enum Types {
         PON = 0;
         OLT = 1;
         ONT = 2;
@@ -139,7 +140,7 @@ message AlarmEventCategory {
  * defination for device alarms
  */
 message AlarmEventState {
-    enum AlarmEventState {
+    enum Types {
         RAISED = 0;
         CLEARED = 1;
     }
@@ -152,7 +153,7 @@ message AlarmEventState {
  * defination for device alarms
  */
 message AlarmEventSeverity {
-    enum AlarmEventSeverity {
+    enum Types {
         INDETERMINATE = 0;
         WARNING = 1;
         MINOR = 2;
@@ -171,16 +172,16 @@ message AlarmEvent {
     string id = 1;
 
     // Refers to the area of the system impacted by the alarm
-    AlarmEventType.AlarmEventType type = 2;
+    AlarmEventType.Types type = 2;
 
     // Refers to functional category of the alarm
-    AlarmEventCategory.AlarmEventCategory category = 3;
+    AlarmEventCategory.Types category = 3;
 
     // Current active state of the alarm
-    AlarmEventState.AlarmEventState state = 4;
+    AlarmEventState.Types state = 4;
 
     // Overall impact of the alarm on the system
-    AlarmEventSeverity.AlarmEventSeverity severity = 5;
+    AlarmEventSeverity.Types severity = 5;
 
     // Timestamp at which the alarm was first raised
     float raised_ts = 6;
@@ -228,7 +229,7 @@ message DeviceEvent {
  * Identify the area of the system impacted by the event.
  */
 message EventCategory {
-    enum EventCategory {
+    enum Types {
         COMMUNICATION = 0;
         ENVIRONMENT = 1;
         EQUIPMENT = 2;
@@ -243,7 +244,7 @@ message EventCategory {
  * Identify the functional category originating the event
  */
 message EventSubCategory {
-    enum EventSubCategory {
+    enum Types {
         PON = 0;
         OLT = 1;
         ONT = 2;
@@ -257,7 +258,7 @@ message EventSubCategory {
  * Identify the type of event
 */
 message EventType {
-   enum EventType {
+   enum Types {
        CONFIG_EVENT = 0;
        KPI_EVENT    = 1;
        KPI_EVENT2   = 2;
@@ -274,13 +275,13 @@ message EventHeader {
     string id = 1;
 
     // Refers to the functional area affect by the event
-    EventCategory.EventCategory category = 2;
+    EventCategory.Types category = 2;
 
     // Refers to functional category of the event
-    EventSubCategory.EventSubCategory sub_category = 3;
+    EventSubCategory.Types sub_category = 3;
 
     // Refers to the type of the event
-    EventType.EventType type = 4;
+    EventType.Types type = 4;
 
     // The version identifier for this event type, thus allowing each
     // event type to evolve independently. The version should be in the
