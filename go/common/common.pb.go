@@ -43,18 +43,18 @@ func (TestModeKeys) EnumDescriptor() ([]byte, []int) {
 }
 
 // Logging verbosity level
-type LogLevel_LogLevel int32
+type LogLevelMessage_LogLevel int32
 
 const (
-	LogLevel_DEBUG    LogLevel_LogLevel = 0
-	LogLevel_INFO     LogLevel_LogLevel = 1
-	LogLevel_WARNING  LogLevel_LogLevel = 2
-	LogLevel_ERROR    LogLevel_LogLevel = 3
-	LogLevel_CRITICAL LogLevel_LogLevel = 4
-	LogLevel_FATAL    LogLevel_LogLevel = 5
+	LogLevelMessage_DEBUG    LogLevelMessage_LogLevel = 0
+	LogLevelMessage_INFO     LogLevelMessage_LogLevel = 1
+	LogLevelMessage_WARNING  LogLevelMessage_LogLevel = 2
+	LogLevelMessage_ERROR    LogLevelMessage_LogLevel = 3
+	LogLevelMessage_CRITICAL LogLevelMessage_LogLevel = 4
+	LogLevelMessage_FATAL    LogLevelMessage_LogLevel = 5
 )
 
-var LogLevel_LogLevel_name = map[int32]string{
+var LogLevelMessage_LogLevel_name = map[int32]string{
 	0: "DEBUG",
 	1: "INFO",
 	2: "WARNING",
@@ -63,7 +63,7 @@ var LogLevel_LogLevel_name = map[int32]string{
 	5: "FATAL",
 }
 
-var LogLevel_LogLevel_value = map[string]int32{
+var LogLevelMessage_LogLevel_value = map[string]int32{
 	"DEBUG":    0,
 	"INFO":     1,
 	"WARNING":  2,
@@ -72,34 +72,34 @@ var LogLevel_LogLevel_value = map[string]int32{
 	"FATAL":    5,
 }
 
-func (x LogLevel_LogLevel) String() string {
-	return proto.EnumName(LogLevel_LogLevel_name, int32(x))
+func (x LogLevelMessage_LogLevel) String() string {
+	return proto.EnumName(LogLevelMessage_LogLevel_name, int32(x))
 }
 
-func (LogLevel_LogLevel) EnumDescriptor() ([]byte, []int) {
+func (LogLevelMessage_LogLevel) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{2, 0}
 }
 
 // Administrative State
-type AdminState_AdminState int32
+type AdminStateMessage_AdminState int32
 
 const (
 	// The administrative state of the device is unknown
-	AdminState_UNKNOWN AdminState_AdminState = 0
+	AdminStateMessage_UNKNOWN AdminStateMessage_AdminState = 0
 	// The device is pre-provisioned into Voltha, but not contacted by it
-	AdminState_PREPROVISIONED AdminState_AdminState = 1
+	AdminStateMessage_PREPROVISIONED AdminStateMessage_AdminState = 1
 	// The device is enabled for activation and operation
-	AdminState_ENABLED AdminState_AdminState = 2
+	AdminStateMessage_ENABLED AdminStateMessage_AdminState = 2
 	// The device is disabled and shall not perform its intended forwarding
 	// functions other than being available for re-activation.
-	AdminState_DISABLED AdminState_AdminState = 3
+	AdminStateMessage_DISABLED AdminStateMessage_AdminState = 3
 	// The device is in the state of image download
-	AdminState_DOWNLOADING_IMAGE AdminState_AdminState = 4
+	AdminStateMessage_DOWNLOADING_IMAGE AdminStateMessage_AdminState = 4
 	// The device is marked to be deleted
-	AdminState_DELETED AdminState_AdminState = 5
+	AdminStateMessage_DELETED AdminStateMessage_AdminState = 5
 )
 
-var AdminState_AdminState_name = map[int32]string{
+var AdminStateMessage_AdminState_name = map[int32]string{
 	0: "UNKNOWN",
 	1: "PREPROVISIONED",
 	2: "ENABLED",
@@ -108,7 +108,7 @@ var AdminState_AdminState_name = map[int32]string{
 	5: "DELETED",
 }
 
-var AdminState_AdminState_value = map[string]int32{
+var AdminStateMessage_AdminState_value = map[string]int32{
 	"UNKNOWN":           0,
 	"PREPROVISIONED":    1,
 	"ENABLED":           2,
@@ -117,33 +117,33 @@ var AdminState_AdminState_value = map[string]int32{
 	"DELETED":           5,
 }
 
-func (x AdminState_AdminState) String() string {
-	return proto.EnumName(AdminState_AdminState_name, int32(x))
+func (x AdminStateMessage_AdminState) String() string {
+	return proto.EnumName(AdminStateMessage_AdminState_name, int32(x))
 }
 
-func (AdminState_AdminState) EnumDescriptor() ([]byte, []int) {
+func (AdminStateMessage_AdminState) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{6, 0}
 }
 
 // Operational Status
-type OperStatus_OperStatus int32
+type OperStatusMessage_OperStatus int32
 
 const (
 	// The status of the device is unknown at this point
-	OperStatus_UNKNOWN OperStatus_OperStatus = 0
+	OperStatusMessage_UNKNOWN OperStatusMessage_OperStatus = 0
 	// The device has been discovered, but not yet activated
-	OperStatus_DISCOVERED OperStatus_OperStatus = 1
+	OperStatusMessage_DISCOVERED OperStatusMessage_OperStatus = 1
 	// The device is being activated (booted, rebooted, upgraded, etc.)
-	OperStatus_ACTIVATING OperStatus_OperStatus = 2
+	OperStatusMessage_ACTIVATING OperStatusMessage_OperStatus = 2
 	// Service impacting tests are being conducted
-	OperStatus_TESTING OperStatus_OperStatus = 3
+	OperStatusMessage_TESTING OperStatusMessage_OperStatus = 3
 	// The device is up and active
-	OperStatus_ACTIVE OperStatus_OperStatus = 4
+	OperStatusMessage_ACTIVE OperStatusMessage_OperStatus = 4
 	// The device has failed and cannot fulfill its intended role
-	OperStatus_FAILED OperStatus_OperStatus = 5
+	OperStatusMessage_FAILED OperStatusMessage_OperStatus = 5
 )
 
-var OperStatus_OperStatus_name = map[int32]string{
+var OperStatusMessage_OperStatus_name = map[int32]string{
 	0: "UNKNOWN",
 	1: "DISCOVERED",
 	2: "ACTIVATING",
@@ -152,7 +152,7 @@ var OperStatus_OperStatus_name = map[int32]string{
 	5: "FAILED",
 }
 
-var OperStatus_OperStatus_value = map[string]int32{
+var OperStatusMessage_OperStatus_value = map[string]int32{
 	"UNKNOWN":    0,
 	"DISCOVERED": 1,
 	"ACTIVATING": 2,
@@ -161,43 +161,43 @@ var OperStatus_OperStatus_value = map[string]int32{
 	"FAILED":     5,
 }
 
-func (x OperStatus_OperStatus) String() string {
-	return proto.EnumName(OperStatus_OperStatus_name, int32(x))
+func (x OperStatusMessage_OperStatus) String() string {
+	return proto.EnumName(OperStatusMessage_OperStatus_name, int32(x))
 }
 
-func (OperStatus_OperStatus) EnumDescriptor() ([]byte, []int) {
+func (OperStatusMessage_OperStatus) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{7, 0}
 }
 
 // Connectivity Status
-type ConnectStatus_ConnectStatus int32
+type ConnectStatusMessage_ConnectStatus int32
 
 const (
 	// The device connectivity status is unknown
-	ConnectStatus_UNKNOWN ConnectStatus_ConnectStatus = 0
+	ConnectStatusMessage_UNKNOWN ConnectStatusMessage_ConnectStatus = 0
 	// The device cannot be reached by Voltha
-	ConnectStatus_UNREACHABLE ConnectStatus_ConnectStatus = 1
+	ConnectStatusMessage_UNREACHABLE ConnectStatusMessage_ConnectStatus = 1
 	// There is live communication between device and Voltha
-	ConnectStatus_REACHABLE ConnectStatus_ConnectStatus = 2
+	ConnectStatusMessage_REACHABLE ConnectStatusMessage_ConnectStatus = 2
 )
 
-var ConnectStatus_ConnectStatus_name = map[int32]string{
+var ConnectStatusMessage_ConnectStatus_name = map[int32]string{
 	0: "UNKNOWN",
 	1: "UNREACHABLE",
 	2: "REACHABLE",
 }
 
-var ConnectStatus_ConnectStatus_value = map[string]int32{
+var ConnectStatusMessage_ConnectStatus_value = map[string]int32{
 	"UNKNOWN":     0,
 	"UNREACHABLE": 1,
 	"REACHABLE":   2,
 }
 
-func (x ConnectStatus_ConnectStatus) String() string {
-	return proto.EnumName(ConnectStatus_ConnectStatus_name, int32(x))
+func (x ConnectStatusMessage_ConnectStatus) String() string {
+	return proto.EnumName(ConnectStatusMessage_ConnectStatus_name, int32(x))
 }
 
-func (ConnectStatus_ConnectStatus) EnumDescriptor() ([]byte, []int) {
+func (ConnectStatusMessage_ConnectStatus) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{8, 0}
 }
 
@@ -309,44 +309,44 @@ func (m *IDs) GetItems() []*ID {
 	return nil
 }
 
-type LogLevel struct {
+type LogLevelMessage struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *LogLevel) Reset()         { *m = LogLevel{} }
-func (m *LogLevel) String() string { return proto.CompactTextString(m) }
-func (*LogLevel) ProtoMessage()    {}
-func (*LogLevel) Descriptor() ([]byte, []int) {
+func (m *LogLevelMessage) Reset()         { *m = LogLevelMessage{} }
+func (m *LogLevelMessage) String() string { return proto.CompactTextString(m) }
+func (*LogLevelMessage) ProtoMessage()    {}
+func (*LogLevelMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{2}
 }
 
-func (m *LogLevel) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_LogLevel.Unmarshal(m, b)
+func (m *LogLevelMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LogLevelMessage.Unmarshal(m, b)
 }
-func (m *LogLevel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_LogLevel.Marshal(b, m, deterministic)
+func (m *LogLevelMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LogLevelMessage.Marshal(b, m, deterministic)
 }
-func (m *LogLevel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LogLevel.Merge(m, src)
+func (m *LogLevelMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LogLevelMessage.Merge(m, src)
 }
-func (m *LogLevel) XXX_Size() int {
-	return xxx_messageInfo_LogLevel.Size(m)
+func (m *LogLevelMessage) XXX_Size() int {
+	return xxx_messageInfo_LogLevelMessage.Size(m)
 }
-func (m *LogLevel) XXX_DiscardUnknown() {
-	xxx_messageInfo_LogLevel.DiscardUnknown(m)
+func (m *LogLevelMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_LogLevelMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_LogLevel proto.InternalMessageInfo
+var xxx_messageInfo_LogLevelMessage proto.InternalMessageInfo
 
 type Logging struct {
-	Level                LogLevel_LogLevel `protobuf:"varint,1,opt,name=level,proto3,enum=common.LogLevel_LogLevel" json:"level,omitempty"`
-	PackageName          string            `protobuf:"bytes,2,opt,name=package_name,json=packageName,proto3" json:"package_name,omitempty"`
-	ComponentName        string            `protobuf:"bytes,3,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	Level                LogLevelMessage_LogLevel `protobuf:"varint,1,opt,name=level,proto3,enum=common.LogLevelMessage_LogLevel" json:"level,omitempty"`
+	PackageName          string                   `protobuf:"bytes,2,opt,name=package_name,json=packageName,proto3" json:"package_name,omitempty"`
+	ComponentName        string                   `protobuf:"bytes,3,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
+	XXX_unrecognized     []byte                   `json:"-"`
+	XXX_sizecache        int32                    `json:"-"`
 }
 
 func (m *Logging) Reset()         { *m = Logging{} }
@@ -374,11 +374,11 @@ func (m *Logging) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Logging proto.InternalMessageInfo
 
-func (m *Logging) GetLevel() LogLevel_LogLevel {
+func (m *Logging) GetLevel() LogLevelMessage_LogLevel {
 	if m != nil {
 		return m.Level
 	}
-	return LogLevel_DEBUG
+	return LogLevelMessage_DEBUG
 }
 
 func (m *Logging) GetPackageName() string {
@@ -475,98 +475,98 @@ func (m *Loggings) GetItems() []*Logging {
 	return nil
 }
 
-type AdminState struct {
+type AdminStateMessage struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *AdminState) Reset()         { *m = AdminState{} }
-func (m *AdminState) String() string { return proto.CompactTextString(m) }
-func (*AdminState) ProtoMessage()    {}
-func (*AdminState) Descriptor() ([]byte, []int) {
+func (m *AdminStateMessage) Reset()         { *m = AdminStateMessage{} }
+func (m *AdminStateMessage) String() string { return proto.CompactTextString(m) }
+func (*AdminStateMessage) ProtoMessage()    {}
+func (*AdminStateMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{6}
 }
 
-func (m *AdminState) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_AdminState.Unmarshal(m, b)
+func (m *AdminStateMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminStateMessage.Unmarshal(m, b)
 }
-func (m *AdminState) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_AdminState.Marshal(b, m, deterministic)
+func (m *AdminStateMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminStateMessage.Marshal(b, m, deterministic)
 }
-func (m *AdminState) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AdminState.Merge(m, src)
+func (m *AdminStateMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminStateMessage.Merge(m, src)
 }
-func (m *AdminState) XXX_Size() int {
-	return xxx_messageInfo_AdminState.Size(m)
+func (m *AdminStateMessage) XXX_Size() int {
+	return xxx_messageInfo_AdminStateMessage.Size(m)
 }
-func (m *AdminState) XXX_DiscardUnknown() {
-	xxx_messageInfo_AdminState.DiscardUnknown(m)
+func (m *AdminStateMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminStateMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AdminState proto.InternalMessageInfo
+var xxx_messageInfo_AdminStateMessage proto.InternalMessageInfo
 
-type OperStatus struct {
+type OperStatusMessage struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *OperStatus) Reset()         { *m = OperStatus{} }
-func (m *OperStatus) String() string { return proto.CompactTextString(m) }
-func (*OperStatus) ProtoMessage()    {}
-func (*OperStatus) Descriptor() ([]byte, []int) {
+func (m *OperStatusMessage) Reset()         { *m = OperStatusMessage{} }
+func (m *OperStatusMessage) String() string { return proto.CompactTextString(m) }
+func (*OperStatusMessage) ProtoMessage()    {}
+func (*OperStatusMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{7}
 }
 
-func (m *OperStatus) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_OperStatus.Unmarshal(m, b)
+func (m *OperStatusMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OperStatusMessage.Unmarshal(m, b)
 }
-func (m *OperStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_OperStatus.Marshal(b, m, deterministic)
+func (m *OperStatusMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OperStatusMessage.Marshal(b, m, deterministic)
 }
-func (m *OperStatus) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OperStatus.Merge(m, src)
+func (m *OperStatusMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OperStatusMessage.Merge(m, src)
 }
-func (m *OperStatus) XXX_Size() int {
-	return xxx_messageInfo_OperStatus.Size(m)
+func (m *OperStatusMessage) XXX_Size() int {
+	return xxx_messageInfo_OperStatusMessage.Size(m)
 }
-func (m *OperStatus) XXX_DiscardUnknown() {
-	xxx_messageInfo_OperStatus.DiscardUnknown(m)
+func (m *OperStatusMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_OperStatusMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_OperStatus proto.InternalMessageInfo
+var xxx_messageInfo_OperStatusMessage proto.InternalMessageInfo
 
-type ConnectStatus struct {
+type ConnectStatusMessage struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ConnectStatus) Reset()         { *m = ConnectStatus{} }
-func (m *ConnectStatus) String() string { return proto.CompactTextString(m) }
-func (*ConnectStatus) ProtoMessage()    {}
-func (*ConnectStatus) Descriptor() ([]byte, []int) {
+func (m *ConnectStatusMessage) Reset()         { *m = ConnectStatusMessage{} }
+func (m *ConnectStatusMessage) String() string { return proto.CompactTextString(m) }
+func (*ConnectStatusMessage) ProtoMessage()    {}
+func (*ConnectStatusMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c2e3fd231961e826, []int{8}
 }
 
-func (m *ConnectStatus) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConnectStatus.Unmarshal(m, b)
+func (m *ConnectStatusMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConnectStatusMessage.Unmarshal(m, b)
 }
-func (m *ConnectStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConnectStatus.Marshal(b, m, deterministic)
+func (m *ConnectStatusMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConnectStatusMessage.Marshal(b, m, deterministic)
 }
-func (m *ConnectStatus) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConnectStatus.Merge(m, src)
+func (m *ConnectStatusMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConnectStatusMessage.Merge(m, src)
 }
-func (m *ConnectStatus) XXX_Size() int {
-	return xxx_messageInfo_ConnectStatus.Size(m)
+func (m *ConnectStatusMessage) XXX_Size() int {
+	return xxx_messageInfo_ConnectStatusMessage.Size(m)
 }
-func (m *ConnectStatus) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConnectStatus.DiscardUnknown(m)
+func (m *ConnectStatusMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConnectStatusMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConnectStatus proto.InternalMessageInfo
+var xxx_messageInfo_ConnectStatusMessage proto.InternalMessageInfo
 
 type OperationResp struct {
 	// Return code
@@ -619,67 +619,68 @@ func (m *OperationResp) GetAdditionalInfo() string {
 
 func init() {
 	proto.RegisterEnum("common.TestModeKeys", TestModeKeys_name, TestModeKeys_value)
-	proto.RegisterEnum("common.LogLevel_LogLevel", LogLevel_LogLevel_name, LogLevel_LogLevel_value)
-	proto.RegisterEnum("common.AdminState_AdminState", AdminState_AdminState_name, AdminState_AdminState_value)
-	proto.RegisterEnum("common.OperStatus_OperStatus", OperStatus_OperStatus_name, OperStatus_OperStatus_value)
-	proto.RegisterEnum("common.ConnectStatus_ConnectStatus", ConnectStatus_ConnectStatus_name, ConnectStatus_ConnectStatus_value)
+	proto.RegisterEnum("common.LogLevelMessage_LogLevel", LogLevelMessage_LogLevel_name, LogLevelMessage_LogLevel_value)
+	proto.RegisterEnum("common.AdminStateMessage_AdminState", AdminStateMessage_AdminState_name, AdminStateMessage_AdminState_value)
+	proto.RegisterEnum("common.OperStatusMessage_OperStatus", OperStatusMessage_OperStatus_name, OperStatusMessage_OperStatus_value)
+	proto.RegisterEnum("common.ConnectStatusMessage_ConnectStatus", ConnectStatusMessage_ConnectStatus_name, ConnectStatusMessage_ConnectStatus_value)
 	proto.RegisterEnum("common.OperationResp_OperationReturnCode", OperationResp_OperationReturnCode_name, OperationResp_OperationReturnCode_value)
 	proto.RegisterType((*ID)(nil), "common.ID")
 	proto.RegisterType((*IDs)(nil), "common.IDs")
-	proto.RegisterType((*LogLevel)(nil), "common.LogLevel")
+	proto.RegisterType((*LogLevelMessage)(nil), "common.LogLevelMessage")
 	proto.RegisterType((*Logging)(nil), "common.Logging")
 	proto.RegisterType((*LoggingComponent)(nil), "common.LoggingComponent")
 	proto.RegisterType((*Loggings)(nil), "common.Loggings")
-	proto.RegisterType((*AdminState)(nil), "common.AdminState")
-	proto.RegisterType((*OperStatus)(nil), "common.OperStatus")
-	proto.RegisterType((*ConnectStatus)(nil), "common.ConnectStatus")
+	proto.RegisterType((*AdminStateMessage)(nil), "common.AdminStateMessage")
+	proto.RegisterType((*OperStatusMessage)(nil), "common.OperStatusMessage")
+	proto.RegisterType((*ConnectStatusMessage)(nil), "common.ConnectStatusMessage")
 	proto.RegisterType((*OperationResp)(nil), "common.OperationResp")
 }
 
 func init() { proto.RegisterFile("voltha_protos/common.proto", fileDescriptor_c2e3fd231961e826) }
 
 var fileDescriptor_c2e3fd231961e826 = []byte{
-	// 661 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x54, 0x4d, 0x4f, 0xdb, 0x4a,
-	0x14, 0x8d, 0xf3, 0x05, 0xdc, 0x90, 0xe0, 0x37, 0xef, 0x21, 0x01, 0x7a, 0x95, 0x52, 0x4b, 0x08,
-	0xda, 0x0a, 0xa2, 0xd2, 0x55, 0xab, 0x76, 0x61, 0xec, 0x21, 0x1d, 0x61, 0xc6, 0xd1, 0xd8, 0x01,
-	0xa9, 0x0b, 0x22, 0x13, 0x0f, 0xc6, 0x6a, 0x32, 0x63, 0xc5, 0x06, 0x89, 0x65, 0xa5, 0xfe, 0xbd,
-	0xfe, 0x85, 0xfe, 0x86, 0xae, 0xba, 0xae, 0xc6, 0x76, 0x48, 0x52, 0xb1, 0xf3, 0x39, 0x73, 0xae,
-	0xcf, 0xbd, 0xe7, 0x8e, 0x06, 0xf6, 0x1e, 0xe4, 0x24, 0xbb, 0x0b, 0x46, 0xc9, 0x4c, 0x66, 0x32,
-	0xed, 0x8d, 0xe5, 0x74, 0x2a, 0xc5, 0x71, 0x8e, 0x50, 0xb3, 0x40, 0x7b, 0xdd, 0x55, 0xcd, 0x63,
-	0x20, 0xa2, 0x91, 0x4c, 0xb2, 0x58, 0x8a, 0xb4, 0x50, 0x1a, 0xff, 0x41, 0x95, 0xd8, 0xa8, 0x03,
-	0xd5, 0x38, 0xdc, 0xd1, 0xba, 0xda, 0xe1, 0x06, 0xab, 0xc6, 0xa1, 0x71, 0x00, 0x35, 0x62, 0xa7,
-	0xa8, 0x0b, 0x8d, 0x38, 0xe3, 0xd3, 0x74, 0x47, 0xeb, 0xd6, 0x0e, 0x5b, 0x27, 0x70, 0x5c, 0x9a,
-	0x10, 0x9b, 0x15, 0x07, 0xc6, 0x18, 0xd6, 0x1d, 0x19, 0x39, 0xfc, 0x81, 0x4f, 0x8c, 0xc1, 0xe2,
-	0x1b, 0x6d, 0x40, 0xc3, 0xc6, 0xa7, 0xc3, 0xbe, 0x5e, 0x41, 0xeb, 0x50, 0x27, 0xf4, 0xcc, 0xd5,
-	0x35, 0xd4, 0x82, 0xb5, 0x2b, 0x93, 0x51, 0x42, 0xfb, 0x7a, 0x55, 0x29, 0x30, 0x63, 0x2e, 0xd3,
-	0x6b, 0x68, 0x13, 0xd6, 0x2d, 0x46, 0x7c, 0x62, 0x99, 0x8e, 0x5e, 0x57, 0x07, 0x67, 0xa6, 0x6f,
-	0x3a, 0x7a, 0xe3, 0x43, 0xe3, 0xd7, 0xef, 0x1f, 0x2f, 0x2a, 0xc6, 0x77, 0x0d, 0xd6, 0x1c, 0x19,
-	0x45, 0xb1, 0x88, 0x50, 0x0f, 0x1a, 0x13, 0xe5, 0x90, 0x37, 0xdb, 0x39, 0xd9, 0x9d, 0xb7, 0x34,
-	0x77, 0x7e, 0xfa, 0x60, 0x85, 0x0e, 0xbd, 0x84, 0xcd, 0x24, 0x18, 0x7f, 0x0d, 0x22, 0x3e, 0x12,
-	0xc1, 0x94, 0xef, 0x54, 0xf3, 0x21, 0x5b, 0x25, 0x47, 0x83, 0x29, 0x47, 0xfb, 0xd0, 0x19, 0xcb,
-	0x69, 0x22, 0x05, 0x17, 0x59, 0x21, 0xaa, 0xe5, 0xa2, 0xf6, 0x13, 0xab, 0x64, 0xc6, 0x7b, 0xd0,
-	0xcb, 0x2e, 0xac, 0x39, 0xff, 0x4c, 0xa9, 0xf6, 0x5c, 0xe9, 0xdb, 0x3c, 0x1a, 0x55, 0x9a, 0xa2,
-	0xfd, 0xd5, 0x50, 0xb7, 0x96, 0x26, 0x50, 0x82, 0x79, 0xb2, 0xdf, 0x34, 0x00, 0x33, 0x9c, 0xc6,
-	0xc2, 0xcb, 0x82, 0x8c, 0x1b, 0x93, 0x65, 0xa4, 0x92, 0x1c, 0xd2, 0x73, 0xea, 0x5e, 0x51, 0xbd,
-	0x82, 0x10, 0x74, 0x06, 0x0c, 0x0f, 0x98, 0x7b, 0x49, 0x3c, 0xe2, 0x52, 0x6c, 0x17, 0x51, 0x63,
-	0x6a, 0x9e, 0x3a, 0xd8, 0xd6, 0xab, 0x2a, 0x5f, 0x9b, 0x78, 0x05, 0xaa, 0xa1, 0x6d, 0xf8, 0xc7,
-	0x76, 0xaf, 0xa8, 0xe3, 0x9a, 0x36, 0xa1, 0xfd, 0x11, 0xb9, 0x30, 0xfb, 0x58, 0xaf, 0xab, 0x0a,
-	0x1b, 0x3b, 0xd8, 0xc7, 0xf6, 0x22, 0xf8, 0x14, 0xc0, 0x4d, 0xf8, 0x4c, 0x79, 0xde, 0xa7, 0xc6,
-	0xf5, 0x32, 0x5a, 0x6d, 0xa1, 0x03, 0x60, 0x13, 0xcf, 0x72, 0x2f, 0x31, 0xcb, 0xed, 0x3b, 0x00,
-	0xa6, 0xe5, 0x93, 0x4b, 0xd3, 0x2f, 0x96, 0xdd, 0x82, 0x35, 0x1f, 0x7b, 0x39, 0xa8, 0x21, 0x80,
-	0x66, 0x7e, 0xa8, 0x5c, 0x01, 0x9a, 0x67, 0x26, 0x71, 0x96, 0x4d, 0x7d, 0x68, 0x5b, 0x52, 0x08,
-	0x3e, 0xce, 0x4a, 0xdf, 0x8f, 0x7f, 0x11, 0xab, 0xd6, 0x5b, 0xd0, 0x1a, 0x52, 0x86, 0x4d, 0xeb,
-	0xb3, 0x1a, 0x50, 0xd7, 0x50, 0x1b, 0x36, 0x16, 0xb0, 0x3a, 0xff, 0xeb, 0x4f, 0x0d, 0xda, 0xaa,
-	0xfb, 0x40, 0x5d, 0x7e, 0xc6, 0xd3, 0x04, 0x7d, 0x82, 0xfa, 0x58, 0x86, 0xbc, 0xbc, 0x48, 0xaf,
-	0xe6, 0x6b, 0x58, 0x11, 0x2d, 0xa3, 0xec, 0x7e, 0x26, 0x2c, 0x19, 0x72, 0x96, 0x97, 0xa1, 0x03,
-	0xd8, 0x0a, 0xc2, 0x30, 0x56, 0x67, 0xc1, 0x64, 0x14, 0x8b, 0x5b, 0x59, 0x5e, 0xad, 0xce, 0x82,
-	0x26, 0xe2, 0x56, 0x1a, 0xd7, 0xf0, 0xef, 0x33, 0x7f, 0x51, 0x6b, 0x70, 0x07, 0x98, 0x99, 0x3e,
-	0x71, 0xe9, 0xc8, 0x1b, 0x5a, 0x16, 0xf6, 0x3c, 0xbd, 0xb2, 0x4a, 0xab, 0x68, 0x86, 0x4c, 0x0d,
-	0xb5, 0x0b, 0xdb, 0x0b, 0x7a, 0x48, 0xbd, 0xe1, 0x60, 0xe0, 0x32, 0xb5, 0xab, 0xf9, 0x80, 0xaf,
-	0xff, 0x87, 0x4d, 0x9f, 0xa7, 0xd9, 0x85, 0x0c, 0xf9, 0x39, 0x7f, 0x4c, 0xd5, 0xd2, 0x83, 0x24,
-	0x1e, 0x65, 0x3c, 0xcd, 0xf4, 0xca, 0xe9, 0xd1, 0x97, 0x37, 0x51, 0x9c, 0xdd, 0xdd, 0xdf, 0xa8,
-	0x31, 0x7b, 0x32, 0xe1, 0x62, 0x2c, 0x67, 0x61, 0xaf, 0x78, 0x1e, 0x8e, 0xca, 0xe7, 0x21, 0x92,
-	0xe5, 0x2b, 0x72, 0xd3, 0xcc, 0x99, 0x77, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff, 0xa8, 0xd4, 0xbf,
-	0xf3, 0x64, 0x04, 0x00, 0x00,
+	// 687 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x54, 0xdd, 0x4e, 0xdb, 0x4c,
+	0x10, 0x8d, 0xf3, 0x07, 0x4c, 0x48, 0x62, 0x16, 0x90, 0xf8, 0xd0, 0x57, 0x29, 0x8d, 0x84, 0xa0,
+	0xad, 0x1a, 0x54, 0x2a, 0x55, 0x6a, 0xd5, 0x5e, 0x38, 0xf6, 0x92, 0xae, 0x30, 0x76, 0xb4, 0x76,
+	0x40, 0x6a, 0x25, 0x22, 0x13, 0x2f, 0xc6, 0x6d, 0xb2, 0x6b, 0xc5, 0x06, 0x89, 0x3e, 0x41, 0xa5,
+	0x3e, 0x5b, 0x5f, 0xa1, 0xcf, 0xd0, 0xab, 0x5e, 0x57, 0x6b, 0xc7, 0x04, 0x57, 0x5c, 0xce, 0x99,
+	0x33, 0x9e, 0x33, 0x67, 0xc6, 0x0b, 0xbb, 0xb7, 0x62, 0x9a, 0x5c, 0x7b, 0xe3, 0x68, 0x2e, 0x12,
+	0x11, 0x1f, 0x4e, 0xc4, 0x6c, 0x26, 0x78, 0x2f, 0x8d, 0x50, 0x3d, 0x8b, 0x76, 0x3b, 0x45, 0xce,
+	0x9d, 0xc7, 0x83, 0xb1, 0x88, 0x92, 0x50, 0xf0, 0x38, 0x63, 0x76, 0xb7, 0xa0, 0x4c, 0x0c, 0xd4,
+	0x82, 0x72, 0xe8, 0xef, 0x28, 0x1d, 0xe5, 0x60, 0x8d, 0x96, 0x43, 0xbf, 0xbb, 0x0f, 0x15, 0x62,
+	0xc4, 0xa8, 0x03, 0xb5, 0x30, 0x61, 0xb3, 0x78, 0x47, 0xe9, 0x54, 0x0e, 0x1a, 0x47, 0xd0, 0x5b,
+	0x34, 0x21, 0x06, 0xcd, 0x12, 0xdd, 0x2f, 0xd0, 0x36, 0x45, 0x60, 0xb2, 0x5b, 0x36, 0x3d, 0x65,
+	0x71, 0xec, 0x05, 0xac, 0x3b, 0x84, 0xd5, 0x1c, 0x42, 0x6b, 0x50, 0x33, 0x70, 0x7f, 0x34, 0x50,
+	0x4b, 0x68, 0x15, 0xaa, 0xc4, 0x3a, 0xb6, 0x55, 0x05, 0x35, 0x60, 0xe5, 0x5c, 0xa3, 0x16, 0xb1,
+	0x06, 0x6a, 0x59, 0x32, 0x30, 0xa5, 0x36, 0x55, 0x2b, 0x68, 0x1d, 0x56, 0x75, 0x4a, 0x5c, 0xa2,
+	0x6b, 0xa6, 0x5a, 0x95, 0x89, 0x63, 0xcd, 0xd5, 0x4c, 0xb5, 0xf6, 0xae, 0xf6, 0xfb, 0xcf, 0xcf,
+	0x27, 0xa5, 0xee, 0x0f, 0x05, 0x56, 0x4c, 0x11, 0x04, 0x21, 0x0f, 0xd0, 0x1b, 0xa8, 0x4d, 0x65,
+	0x87, 0x54, 0x73, 0xeb, 0xa8, 0x93, 0x2b, 0xfb, 0x47, 0xcc, 0x7d, 0x4c, 0x33, 0x3a, 0x7a, 0x0a,
+	0xeb, 0x91, 0x37, 0xf9, 0xea, 0x05, 0x6c, 0xcc, 0xbd, 0x19, 0xdb, 0x29, 0xa7, 0x23, 0x37, 0x16,
+	0x98, 0xe5, 0xcd, 0x18, 0xda, 0x83, 0xd6, 0x44, 0xcc, 0x22, 0xc1, 0x19, 0x4f, 0x32, 0x52, 0x25,
+	0x25, 0x35, 0xef, 0x51, 0x49, 0xeb, 0xbe, 0x05, 0x75, 0x21, 0x46, 0xcf, 0xf1, 0x47, 0x4a, 0x95,
+	0xc7, 0x4a, 0x5f, 0xa5, 0x0e, 0xc9, 0xd2, 0x18, 0xed, 0x15, 0x2d, 0x6e, 0x3f, 0x18, 0x44, 0x12,
+	0x72, 0x9f, 0xbf, 0x2b, 0xb0, 0xa1, 0xf9, 0xb3, 0x90, 0x3b, 0x89, 0x97, 0xb0, 0xdc, 0xea, 0x29,
+	0xc0, 0x12, 0x94, 0xbe, 0x8e, 0xac, 0x13, 0xcb, 0x3e, 0xb7, 0xd4, 0x12, 0x42, 0xd0, 0x1a, 0x52,
+	0x3c, 0xa4, 0xf6, 0x19, 0x71, 0x88, 0x6d, 0x61, 0x23, 0x33, 0x1e, 0x5b, 0x5a, 0xdf, 0xc4, 0x86,
+	0x5a, 0x96, 0x6e, 0x1b, 0xc4, 0xc9, 0xa2, 0x0a, 0xda, 0x86, 0x0d, 0xc3, 0x3e, 0xb7, 0x4c, 0x5b,
+	0x33, 0x88, 0x35, 0x18, 0x93, 0x53, 0x6d, 0x80, 0xd5, 0xaa, 0xac, 0x30, 0xb0, 0x89, 0x5d, 0x6c,
+	0x2c, 0xd7, 0xf0, 0x0d, 0x36, 0xec, 0x88, 0xcd, 0x65, 0xcf, 0x9b, 0x38, 0x57, 0x72, 0x01, 0xb0,
+	0x04, 0x8b, 0x4a, 0x5a, 0x00, 0x06, 0x71, 0x74, 0xfb, 0x0c, 0xd3, 0x54, 0x45, 0x0b, 0x40, 0xd3,
+	0x5d, 0x72, 0xa6, 0xb9, 0xd9, 0x05, 0x34, 0x60, 0xc5, 0xc5, 0x4e, 0x1a, 0x54, 0x10, 0x40, 0x3d,
+	0x4d, 0xca, 0xe6, 0x00, 0xf5, 0x63, 0x8d, 0x98, 0x0f, 0x7b, 0x7f, 0x86, 0x2d, 0x5d, 0x70, 0xce,
+	0x26, 0x49, 0xb1, 0xfd, 0x7b, 0x68, 0x16, 0xf0, 0xa2, 0x82, 0x36, 0x34, 0x46, 0x16, 0xc5, 0x9a,
+	0xfe, 0x51, 0x8e, 0xab, 0x2a, 0xa8, 0x09, 0x6b, 0xcb, 0xb0, 0x9c, 0x7f, 0xfc, 0x97, 0x02, 0x4d,
+	0x39, 0x84, 0x27, 0xff, 0x0f, 0xca, 0xe2, 0x08, 0x7d, 0x80, 0xea, 0x44, 0xf8, 0x6c, 0x71, 0x64,
+	0xcf, 0xf2, 0xdd, 0x14, 0x48, 0x0f, 0xa3, 0xe4, 0x66, 0xce, 0x75, 0xe1, 0x33, 0x9a, 0x96, 0xa1,
+	0x7d, 0x68, 0x7b, 0xbe, 0x1f, 0xca, 0x9c, 0x37, 0x1d, 0x87, 0xfc, 0x4a, 0x2c, 0xee, 0xad, 0xb5,
+	0x84, 0x09, 0xbf, 0x12, 0xdd, 0x0b, 0xd8, 0x7c, 0xe4, 0x2b, 0x72, 0x29, 0xf6, 0x10, 0x53, 0xcd,
+	0x25, 0xb6, 0x35, 0x76, 0x46, 0xba, 0x8e, 0x1d, 0x47, 0x2d, 0x15, 0x61, 0xe9, 0xd0, 0x88, 0xca,
+	0xa1, 0xfe, 0x83, 0xed, 0x25, 0x3c, 0xb2, 0x9c, 0xd1, 0x70, 0x68, 0x53, 0xb9, 0xb9, 0x7c, 0xc0,
+	0xe7, 0xff, 0xc3, 0xba, 0xcb, 0xe2, 0xe4, 0x54, 0xf8, 0xec, 0x84, 0xdd, 0xc5, 0xf2, 0x04, 0xbc,
+	0x28, 0x1c, 0x27, 0x2c, 0x4e, 0xd4, 0x52, 0xbf, 0x0f, 0x9b, 0x62, 0x1e, 0xf4, 0x44, 0xc4, 0xf8,
+	0x44, 0xcc, 0xfd, 0x5e, 0xf6, 0x74, 0x7c, 0x7a, 0x11, 0x84, 0xc9, 0xf5, 0xcd, 0xa5, 0x9c, 0xfd,
+	0x30, 0xcf, 0x1d, 0x66, 0xb9, 0x97, 0x8b, 0x67, 0x25, 0x10, 0x8b, 0xd7, 0xe7, 0xb2, 0x9e, 0x22,
+	0xaf, 0xff, 0x06, 0x00, 0x00, 0xff, 0xff, 0x5b, 0xc0, 0xbe, 0x79, 0x9c, 0x04, 0x00, 0x00,
 }

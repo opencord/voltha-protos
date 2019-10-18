@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/go/voltha";
+option java_package = "org.opencord.voltha";
+option java_outer_classname = "VolthaDevice";
 
 package voltha;
 
@@ -194,9 +196,9 @@ message Port {
 
     PortType type = 3;  //  Type of port
 
-    common.AdminState.AdminState admin_state = 5;
+    common.AdminStateMessage.AdminState admin_state = 5;
 
-    common.OperStatus.OperStatus oper_status = 6;
+    common.OperStatusMessage.OperStatus oper_status = 6;
 
     string device_id = 7;  // Unique .id of device that owns this port
 
@@ -283,13 +285,13 @@ message Device {
 
     ProxyAddress proxy_address = 19;
 
-    common.AdminState.AdminState admin_state = 16;
+    common.AdminStateMessage.AdminState admin_state = 16;
 
-    common.OperStatus.OperStatus oper_status = 17 [(access) = READ_ONLY];
+    common.OperStatusMessage.OperStatus oper_status = 17 [(access) = READ_ONLY];
 
     string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
 
-    common.ConnectStatus.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
+    common.ConnectStatusMessage.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
 
     // TODO additional common attribute here
 
