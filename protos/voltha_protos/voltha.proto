@@ -6,7 +6,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
 
 package voltha;
 
@@ -43,7 +43,7 @@ message DeviceGroups {
 }
 
 
-message AlarmFilterRuleKey {
+message AlarmFilterRuleKeyMessage {
     option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     enum AlarmFilterRuleKey {
@@ -57,7 +57,7 @@ message AlarmFilterRuleKey {
 }
 
 message AlarmFilterRule {
-    AlarmFilterRuleKey.AlarmFilterRuleKey key = 1;
+    AlarmFilterRuleKeyMessage.AlarmFilterRuleKey key = 1;
     string value = 2;
 }
 message AlarmFilter {
