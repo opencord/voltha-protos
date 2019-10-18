@@ -1,10 +1,11 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/common";
+option go_package = "github.com/opencord/voltha-protos/v3/go/common";
 
 package common;
 
 import "voltha_protos/yang_options.proto";
+option java_package = "org.opencord.voltha";
 
 // Convey a resource identifier
 message ID {
@@ -24,7 +25,7 @@ message LogLevel {
     option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     // Logging verbosity level
-    enum LogLevel {
+    enum Types {
         DEBUG = 0;
         INFO = 1;
         WARNING = 2;
@@ -35,7 +36,7 @@ message LogLevel {
 }
 
 message Logging {
-    common.LogLevel.LogLevel level = 1;
+    common.LogLevel.Types level = 1;
     string package_name = 2;
     string component_name = 3;
 }
@@ -54,7 +55,7 @@ message AdminState {
     option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     // Administrative State
-    enum AdminState {
+    enum Types {
 
         // The administrative state of the device is unknown
         UNKNOWN = 0;
@@ -81,7 +82,7 @@ message OperStatus {
     option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     // Operational Status
-    enum OperStatus {
+    enum Types {
 
         // The status of the device is unknown at this point
         UNKNOWN = 0;
@@ -107,7 +108,7 @@ message ConnectStatus {
     option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     // Connectivity Status
-    enum ConnectStatus {
+    enum Types {
 
         // The device connectivity status is unknown
         UNKNOWN = 0;
