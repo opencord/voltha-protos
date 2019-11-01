@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/go/openolt";
+option go_package = "github.com/opencord/voltha-protos/v2/go/openolt";
 
 package openolt;
 import "google/api/annotations.proto";
