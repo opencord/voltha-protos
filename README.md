@@ -95,9 +95,9 @@ cd $GOPATH/github.com/opencord/voltha-protos
 make build
 ````
 
-Protos are importable from `github.com/opencord/voltha-protos/go/<packagename>`
+Protos are importable from `github.com/opencord/voltha-protos/v2/go/<packagename>`
 
-To use the libraries, import protos with the root path github.com/opencord/voltha-protos/go/
+To use the libraries, import protos with the root path github.com/opencord/voltha-protos/v2/go/
 
 ## Testing
 

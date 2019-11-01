@@ -2,7 +2,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/go/afrouter";
+option go_package = "github.com/opencord/voltha-protos/v2/go/afrouter";
 
 package afrouter;
 
