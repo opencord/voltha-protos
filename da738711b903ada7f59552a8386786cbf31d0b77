@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56a22117_25a2748c",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000436
+      },
+      "writtenOn": "2019-11-01T19:41:58Z",
+      "side": 1,
+      "message": "changing the generated files seems like a bad idea.  is there no other way to deal with this?  i.e some protoc argument?",
+      "range": {
+        "startLine": 107,
+        "startChar": 51,
+        "endLine": 107,
+        "endChar": 98
+      },
+      "revId": "da738711b903ada7f59552a8386786cbf31d0b77",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
