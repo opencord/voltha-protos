@@ -7,7 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	tech_profile "github.com/opencord/voltha-protos/go/tech_profile"
+	tech_profile "github.com/opencord/voltha-protos/v2/go/tech_profile"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	math "math"

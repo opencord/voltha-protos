@@ -7,7 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	common "github.com/opencord/voltha-protos/go/common"
+	common "github.com/opencord/voltha-protos/v2/go/common"
 	grpc "google.golang.org/grpc"
 	math "math"
 )

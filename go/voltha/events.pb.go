@@ -6,7 +6,7 @@ package voltha
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/opencord/voltha-protos/go/common"
+	_ "github.com/opencord/voltha-protos/v2/go/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	math "math"
 )

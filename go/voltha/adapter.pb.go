@@ -7,7 +7,7 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	any "github.com/golang/protobuf/ptypes/any"
-	common "github.com/opencord/voltha-protos/go/common"
+	common "github.com/opencord/voltha-protos/v2/go/common"
 	math "math"
 )
 

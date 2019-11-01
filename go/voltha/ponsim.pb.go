@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	openflow_13 "github.com/opencord/voltha-protos/go/openflow_13"
+	openflow_13 "github.com/opencord/voltha-protos/v2/go/openflow_13"
 	grpc "google.golang.org/grpc"
 	math "math"
 )

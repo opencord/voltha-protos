@@ -104,6 +104,7 @@ $(PROTO_GO_PB): $(PROTO_FILES) go_temp
     -I . voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.go/\1.proto/p' )
 	mkdir -p $(dir $@)
 	mv go_temp/voltha_protos/$(notdir $@) $@
+	sed -i -E "s/github.com\/opencord\/voltha-protos\/go/github.com\/opencord\/voltha-protos\/v2\/go/" $@
 
 voltha.pb: ${PROTO_FILES}
 	@echo "Creating $@"

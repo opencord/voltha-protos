@@ -6,7 +6,7 @@ package openflow_13
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	common "github.com/opencord/voltha-protos/go/common"
+	common "github.com/opencord/voltha-protos/v2/go/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	math "math"
 )

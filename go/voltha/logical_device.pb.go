@@ -6,8 +6,8 @@ package voltha
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/opencord/voltha-protos/go/common"
-	openflow_13 "github.com/opencord/voltha-protos/go/openflow_13"
+	_ "github.com/opencord/voltha-protos/v2/go/common"
+	openflow_13 "github.com/opencord/voltha-protos/v2/go/openflow_13"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	math "math"
 )
