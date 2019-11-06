@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "31c4efa2_723675e9",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2019-11-06T18:02:49Z",
+      "side": 1,
+      "message": "Enum\u0027s name should be different than message\u0027s name for Java compatibility.",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0340b12a_b1de7259",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3
