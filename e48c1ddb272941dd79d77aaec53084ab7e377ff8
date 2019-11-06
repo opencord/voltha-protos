@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0340b12a_b1de7259",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-11-06T15:36:32Z",
+      "side": 1,
+      "message": "Would it be helpful if we start to document these protos with usage example?  For instance, examples showing the relationship between the various filter artifacts would be useful.",
+      "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
