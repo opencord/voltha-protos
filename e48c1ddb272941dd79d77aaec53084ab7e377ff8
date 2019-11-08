@@ -39,6 +39,24 @@
       "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "daee63d0_664e3961",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2019-11-08T07:51:34Z",
+      "side": 1,
+      "message": "Are you suggesting that a document is required capturing how the proto messages will be populated in different scenarios of create filter",
+      "parentUuid": "0340b12a_b1de7259",
+      "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
