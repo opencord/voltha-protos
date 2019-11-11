@@ -46,6 +46,30 @@
       "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d149465b_048dc140",
+        "filename": "protos/voltha_protos/schema.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-11-11T23:00:34Z",
+      "side": 1,
+      "message": "maybe \"protoDescriptor\" or \"compiledDescriptor\". I do think it should be some variant of descriptor, not description.",
+      "parentUuid": "d1fbeb1d_09e11dc5",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
