@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e77c407_ce041927",
+        "filename": "go.mod",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000436
+      },
+      "writtenOn": "2019-11-11T20:29:01Z",
+      "side": 1,
+      "message": "i think jenkins and protoc-gen-go still uses v1.3.1.  we probably should keep this consistent as it could cause confusion later.",
+      "range": {
+        "startLine": 6,
+        "startChar": 28,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "790708c922abd2dc877313f63708128264c5be57",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
