@@ -142,6 +142,30 @@
       "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b4f9157_b2e1ab13",
+        "filename": "protos/voltha_protos/schema.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-11-11T23:50:51Z",
+      "side": 1,
+      "message": "Not sure if gRPC reflection can provide all the information required to generate the Yang model.  For instance, the compile \"*.desc\" file of the proto is required.  In any case if operators no longer need Netconf then we can remove this file and cleanup all the Yang references.",
+      "parentUuid": "3db1f420_20d734a4",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
