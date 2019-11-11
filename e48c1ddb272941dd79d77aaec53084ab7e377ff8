@@ -75,6 +75,24 @@
       "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0da17c2d_9e957fb9",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2019-11-11T13:37:38Z",
+      "side": 1,
+      "message": "Events Filters\n-------------------------\n1. Event filter to filter out OLT LOS event\n\n    EventFilter {\n     id \u003d SampleFilterID123\n\t enable \u003d True\n     device_id \u003d SampleDeviceID123\n     event_type \u003d \"device_event\"\n     rules \u003d [filter_all: \"false\", category: \"communication\", \n\t          sub_category: \"OLT\", device_event_type: \"OLT_LOS_EVENT\"]\n    }\n\n2. Event Filter to filter out all device_event\n\n    EventFilter {\n     id \u003d SampleFilterID123\n\t enable \u003d True\n     device_id \u003d SampleDeviceID123\n     event_type \u003d \"device_event\"\n     rules \u003d [filter_all: \"true\"]\n    }\n\n3. Filter out all events which belongs to ceratain category and sub_category\n\n    EventFilter {\n     id \u003d SampleFilterID123\n\t enable \u003d True\n     device_id \u003d SampleDeviceID123\n     event_type \u003d \"any\"\n     rules \u003d [filter_all: \"false\", category: \"equipment\", sub_category: \"OLT\"]\n    }\n\t\n4. Event Filter to filter out all all events(total suppression)\n\n    EventFilter {\n     id \u003d SampleFilterID123\n\t enable \u003d True\n     device_id \u003d SampleDeviceID123\n     event_type \u003d \"any\"\n     rules \u003d [filter_all: \"true\"]\n    }",
+      "parentUuid": "901fce97_f51ddbd7",
+      "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
