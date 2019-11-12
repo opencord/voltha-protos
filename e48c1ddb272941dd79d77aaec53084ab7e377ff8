@@ -93,6 +93,24 @@
       "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3615b88_64a1b6af",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-11-12T20:49:47Z",
+      "side": 1,
+      "message": "We need to think about where to document the API. I\u0027m concerned that comments that exist solely here in the gerrit review will be quickly lost. Perhaps a `EXAMPLES.md` file in the root directory?",
+      "parentUuid": "0da17c2d_9e957fb9",
+      "revId": "e48c1ddb272941dd79d77aaec53084ab7e377ff8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
