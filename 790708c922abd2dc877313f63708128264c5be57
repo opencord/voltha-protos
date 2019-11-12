@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "117b89cf_66fea4ea",
+        "filename": "VERSION",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-11-12T20:49:47Z",
+      "side": 1,
+      "message": "Agree with Matt. Remove the -dev.",
+      "parentUuid": "402a956e_c133a079",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "790708c922abd2dc877313f63708128264c5be57",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e77c407_ce041927",
         "filename": "go.mod",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-11T20:29:01Z",
       "side": 1,
       "message": "i think jenkins and protoc-gen-go still uses v1.3.1.  we probably should keep this consistent as it could cause confusion later.",
+      "range": {
+        "startLine": 6,
+        "startChar": 28,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "790708c922abd2dc877313f63708128264c5be57",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa010e81_499196e3",
+        "filename": "go.mod",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-11-12T20:49:47Z",
+      "side": 1,
+      "message": "Agree with Matt.",
+      "parentUuid": "0e77c407_ce041927",
       "range": {
         "startLine": 6,
         "startChar": 28,
