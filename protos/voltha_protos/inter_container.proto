@@ -102,6 +102,8 @@ message InterAdapterMessageType {
         ONU_IND_REQUEST = 6;
         ONU_IND_RESPONSE = 7;
         TECH_PROFILE_DOWNLOAD_REQUEST = 8;
+        DELETE_GEM_PORT_REQUEST = 9;
+        DELETE_TCONT_REQUEST = 10;
     }
 }
 
@@ -124,6 +126,18 @@ message InterAdapterOmciMessage {
 message InterAdapterTechProfileDownloadMessage {
     uint32 uni_id = 1;
     string path = 2;
+}
+
+message InterAdapterDeleteGemPortMessage {
+    uint32 uni_id = 1;
+    string tp_path = 2;
+    uint32 gem_port_id = 3;
+}
+
+message InterAdapterDeleteTcontMessage {
+    uint32 uni_id = 1;
+    string tp_path = 2;
+    uint32 alloc_id = 3;
 }
 
 message InterAdapterResponseBody {
