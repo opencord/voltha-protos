@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v2/go/openolt";
+option go_package = "github.com/opencord/voltha-protos/go/openolt";
 
 package openolt;
 import "google/api/annotations.proto";
@@ -192,7 +192,9 @@ message AlarmIndication {
         OnuSignalsFailureIndication onu_signals_fail_ind = 8;
         OnuTransmissionInterferenceWarning onu_tiwi_ind = 9;
         OnuActivationFailureIndication onu_activation_fail_ind = 10;
-        OnuProcessingErrorIndication onu_processing_error_ind = 11;
+        OnuLossOfKeySyncIndication onu_loss_of_sync_fail_ind = 11;
+        OnuItuPONStatsIndication onu_itu_pon_stats_ind = 12;
+        OnuProcessingErrorIndication onu_processing_error_ind = 13;
     }
 }
 
@@ -430,6 +432,8 @@ message OnuAlarmIndication {
     string lob_status = 4;
     string lopc_miss_status = 5;
     string lopc_mic_error_status = 6;
+    string lofi_status = 7;
+    string loami_status = 8;
 }
 
 message OnuStartupFailureIndication {
@@ -476,6 +480,19 @@ message OnuTransmissionInterferenceWarning {
 message OnuActivationFailureIndication {
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
+    fixed32 fail_reason = 3;
+}
+
+message OnuLossOfKeySyncIndication {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    string status = 3;
+}
+
+message OnuItuPONStatsIndication{
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    fixed32 rdi_errors = 3;
 }
 
 message OnuProcessingErrorIndication {
