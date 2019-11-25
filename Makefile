@@ -55,13 +55,14 @@ python-protos: protoc_check $(PROTO_PYTHON_PB2)
 venv_protos:
 	virtualenv $@;\
 	source ./$@/bin/activate ; set -u ;\
-	pip install grpcio-tools googleapis-common-protos
+	pip install grpcio-tools googleapis-common-protos protoc-docs-plugin
 
 $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
 	python -m grpc_tools.protoc \
     -I protos \
     --python_out=python \
+    --pydocstring_out=python \
     --grpc_python_out=python \
     --descriptor_set_out=$(PROTO_PYTHON_DEST_DIR)/$(basename $(notdir $<)).desc \
     --include_imports \
