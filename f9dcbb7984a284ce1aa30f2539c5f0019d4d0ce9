@@ -190,6 +190,30 @@
       "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8fde757_09128001",
+        "filename": "protos/voltha_protos/schema.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000068
+      },
+      "writtenOn": "2019-11-26T19:20:45Z",
+      "side": 1,
+      "message": "We can drop it. There is no need for netconf in voltha. Period.\nVOLTHA is an OF abstraction for a PON.\nCut the flab",
+      "parentUuid": "6299914b_4b07e8a1",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
