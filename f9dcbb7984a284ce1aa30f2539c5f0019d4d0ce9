@@ -166,6 +166,30 @@
       "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6299914b_4b07e8a1",
+        "filename": "protos/voltha_protos/schema.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-11-26T17:02:39Z",
+      "side": 1,
+      "message": "My vote would be to drop this and support for netconf at this time. if someone wants to write a netconf adapter then they should use grpc reflection and/or simply use a handcrafted netconf interface definition.\n\nthe question is how to make a decision at this point?",
+      "parentUuid": "3b4f9157_b2e1ab13",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "f9dcbb7984a284ce1aa30f2539c5f0019d4d0ce9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
