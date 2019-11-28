@@ -16,6 +16,24 @@
       "revId": "26a15e4a3c3fdc2048a8b27215521501f5937b13",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2214995e_f668220d",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000628
+      },
+      "writtenOn": "2019-11-28T15:50:36Z",
+      "side": 1,
+      "message": "Sure, Once openolt agent changes are updated then i will update in this",
+      "parentUuid": "33434049_8ddb147b",
+      "revId": "26a15e4a3c3fdc2048a8b27215521501f5937b13",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
