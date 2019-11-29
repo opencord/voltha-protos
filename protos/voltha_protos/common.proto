@@ -55,29 +55,16 @@ message AdminState {
 
     // Administrative State
     enum AdminState {
-
-        // The administrative state of the device is unknown
-        UNKNOWN = 0;
-
-        // The device is pre-provisioned into Voltha, but not contacted by it
-        PREPROVISIONED = 1;
-
         // The device is enabled for activation and operation
-        ENABLED = 2;
+        ENABLED = 0;
 
         // The device is disabled and shall not perform its intended forwarding
         // functions other than being available for re-activation.
-        DISABLED = 3;
-
-        // The device is in the state of image download
-        DOWNLOADING_IMAGE = 4;
-
-        // The device is marked to be deleted
-        DELETED = 5;
+        DISABLED = 1;
     }
 }
 
-message OperStatus {
+message DeviceOperStatus {
     option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
     // Operational Status
@@ -86,37 +73,39 @@ message OperStatus {
         // The status of the device is unknown at this point
         UNKNOWN = 0;
 
-        // The device has been discovered, but not yet activated
-        DISCOVERED = 1;
+        // The device has been pre-provisioned, but not yet activated
+        PREPROVISIONED = 1;
 
-        // The device is being activated (booted, rebooted, upgraded, etc.)
+	// The device is being activated (booted, rebooted, upgraded, etc.)
         ACTIVATING = 2;
 
-        // Service impacting tests are being conducted
-        TESTING = 3;
+        // The device has been discovered, but not yet activated
+        DISCOVERED = 3;
 
         // The device is up and active
         ACTIVE = 4;
 
         // The device has failed and cannot fulfill its intended role
         FAILED = 5;
+
+        //the device is unreachable
+        UNREACHABLE = 6;
     }
 }
-
-message ConnectStatus {
+message PortOperStatus {
     option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
 
-    // Connectivity Status
-    enum ConnectStatus {
+    // Port Operational Status
+    enum OperStatus {
 
-        // The device connectivity status is unknown
+        // The status of device port is unknown at this point
         UNKNOWN = 0;
 
-        // The device cannot be reached by Voltha
-        UNREACHABLE = 1;
+        // The device port is up and active
+        ACTIVE = 1;
 
-        // There is live communication between device and Voltha
-        REACHABLE = 2;
+        //the device is down and inactive
+        INACTIVE = 2;
     }
 }
 
