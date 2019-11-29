@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "269b6356_c41a768c",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2019-11-29T13:55:03Z",
+      "side": 1,
+      "message": "I don\u0027t see this as a Device state in the document. Also the document has a device state called UNREACHABLE... I don\u0027t see it here.\n\nDo we use this same enum OperStatus for the operational status of the ports as well?",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7dd448_073c04a8",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2019-11-29T13:55:03Z",
+      "side": 1,
+      "message": "Just curious... what is the meaning of connect status (and now operational status) inside of an OmciMessage? Why do we need this?",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
