@@ -196,7 +196,8 @@ message Port {
 
     common.AdminState.AdminState admin_state = 5;
 
-    common.OperStatus.OperStatus oper_status = 6;
+
+    common.PortOperStatus.OperStatus oper_status = 6;
 
     string device_id = 7;  // Unique .id of device that owns this port
 
@@ -288,8 +289,6 @@ message Device {
     common.OperStatus.OperStatus oper_status = 17 [(access) = READ_ONLY];
 
     string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
-
-    common.ConnectStatus.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
 
     // TODO additional common attribute here
 
