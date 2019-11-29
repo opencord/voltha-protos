@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "f235cfa0_d3624530",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-11-29T16:07:08Z",
+      "side": 1,
+      "message": "You will also need to create a port operational state.",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "648f76d1_a39e145e",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-11-29T16:07:08Z",
+      "side": 1,
+      "message": "There are now only 2 states in Admin { enable, disable }.",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2f25d38_6648dcd7",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-11-29T16:07:08Z",
+      "side": 1,
+      "message": "These are the operational states:\n\nUNKNOWN, PREPROVISIONED, ACTIVATING, DISCOVERED, ACTIVE, FAILED, UNREACHABLE",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "269b6356_c41a768c",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 1
@@ -13,6 +64,23 @@
       "writtenOn": "2019-11-29T13:55:03Z",
       "side": 1,
       "message": "I don\u0027t see this as a Device state in the document. Also the document has a device state called UNREACHABLE... I don\u0027t see it here.\n\nDo we use this same enum OperStatus for the operational status of the ports as well?",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9fd173e_4821d322",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2019-11-29T16:07:08Z",
+      "side": 1,
+      "message": "This should refer to the new port operational status",
       "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
