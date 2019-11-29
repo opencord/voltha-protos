@@ -100,23 +100,9 @@ message OperStatus {
 
         // The device has failed and cannot fulfill its intended role
         FAILED = 5;
-    }
-}
 
-message ConnectStatus {
-    option (yang_child_rule) = MOVE_TO_PARENT_LEVEL;
-
-    // Connectivity Status
-    enum ConnectStatus {
-
-        // The device connectivity status is unknown
-        UNKNOWN = 0;
-
-        // The device cannot be reached by Voltha
-        UNREACHABLE = 1;
-
-        // There is live communication between device and Voltha
-        REACHABLE = 2;
+        //the device is down and inactive 
+        INACTIVE = 6;
     }
 }
 

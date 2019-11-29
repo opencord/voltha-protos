@@ -68,9 +68,6 @@ type AdminState = common.AdminState
 // OperStatus from public import voltha_protos/common.proto
 type OperStatus = common.OperStatus
 
-// ConnectStatus from public import voltha_protos/common.proto
-type ConnectStatus = common.ConnectStatus
-
 // OperationResp from public import voltha_protos/common.proto
 type OperationResp = common.OperationResp
 
@@ -120,16 +117,7 @@ const OperStatus_ACTIVATING = OperStatus_OperStatus(common.OperStatus_ACTIVATING
 const OperStatus_TESTING = OperStatus_OperStatus(common.OperStatus_TESTING)
 const OperStatus_ACTIVE = OperStatus_OperStatus(common.OperStatus_ACTIVE)
 const OperStatus_FAILED = OperStatus_OperStatus(common.OperStatus_FAILED)
-
-// ConnectStatus_ConnectStatus from public import voltha_protos/common.proto
-type ConnectStatus_ConnectStatus = common.ConnectStatus_ConnectStatus
-
-var ConnectStatus_ConnectStatus_name = common.ConnectStatus_ConnectStatus_name
-var ConnectStatus_ConnectStatus_value = common.ConnectStatus_ConnectStatus_value
-
-const ConnectStatus_UNKNOWN = ConnectStatus_ConnectStatus(common.ConnectStatus_UNKNOWN)
-const ConnectStatus_UNREACHABLE = ConnectStatus_ConnectStatus(common.ConnectStatus_UNREACHABLE)
-const ConnectStatus_REACHABLE = ConnectStatus_ConnectStatus(common.ConnectStatus_REACHABLE)
+const OperStatus_INACTIVE = OperStatus_OperStatus(common.OperStatus_INACTIVE)
 
 // OperationResp_OperationReturnCode from public import voltha_protos/common.proto
 type OperationResp_OperationReturnCode = common.OperationResp_OperationReturnCode
