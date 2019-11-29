@@ -117,7 +117,7 @@ message InterAdapterHeader {
 
 message InterAdapterOmciMessage {
     bytes message = 1; // OMCI_REQUEST or OMCI_RESPONSE
-    common.ConnectStatus.ConnectStatus connect_status = 2;
+    common.OperStatus.OperStatus oper_status =2 ;
     voltha.Device.ProxyAddress proxy_address = 3;
 }
 
