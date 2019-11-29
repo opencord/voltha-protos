@@ -289,8 +289,6 @@ message Device {
 
     string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
 
-    common.ConnectStatus.ConnectStatus connect_status = 18 [(access) = READ_ONLY];
-
     // TODO additional common attribute here
 
     // Device type specific attributes
