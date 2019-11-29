@@ -65,11 +65,11 @@ type Loggings = common.Loggings
 // AdminState from public import voltha_protos/common.proto
 type AdminState = common.AdminState
 
-// OperStatus from public import voltha_protos/common.proto
-type OperStatus = common.OperStatus
+// DeviceOperStatus from public import voltha_protos/common.proto
+type DeviceOperStatus = common.DeviceOperStatus
 
-// ConnectStatus from public import voltha_protos/common.proto
-type ConnectStatus = common.ConnectStatus
+// PortOperStatus from public import voltha_protos/common.proto
+type PortOperStatus = common.PortOperStatus
 
 // OperationResp from public import voltha_protos/common.proto
 type OperationResp = common.OperationResp
@@ -101,35 +101,32 @@ type AdminState_Types = common.AdminState_Types
 var AdminState_Types_name = common.AdminState_Types_name
 var AdminState_Types_value = common.AdminState_Types_value
 
-const AdminState_UNKNOWN = AdminState_Types(common.AdminState_UNKNOWN)
-const AdminState_PREPROVISIONED = AdminState_Types(common.AdminState_PREPROVISIONED)
 const AdminState_ENABLED = AdminState_Types(common.AdminState_ENABLED)
 const AdminState_DISABLED = AdminState_Types(common.AdminState_DISABLED)
-const AdminState_DOWNLOADING_IMAGE = AdminState_Types(common.AdminState_DOWNLOADING_IMAGE)
-const AdminState_DELETED = AdminState_Types(common.AdminState_DELETED)
 
-// OperStatus_Types from public import voltha_protos/common.proto
-type OperStatus_Types = common.OperStatus_Types
+// DeviceOperStatus_Types from public import voltha_protos/common.proto
+type DeviceOperStatus_Types = common.DeviceOperStatus_Types
 
-var OperStatus_Types_name = common.OperStatus_Types_name
-var OperStatus_Types_value = common.OperStatus_Types_value
+var DeviceOperStatus_Types_name = common.DeviceOperStatus_Types_name
+var DeviceOperStatus_Types_value = common.DeviceOperStatus_Types_value
 
-const OperStatus_UNKNOWN = OperStatus_Types(common.OperStatus_UNKNOWN)
-const OperStatus_DISCOVERED = OperStatus_Types(common.OperStatus_DISCOVERED)
-const OperStatus_ACTIVATING = OperStatus_Types(common.OperStatus_ACTIVATING)
-const OperStatus_TESTING = OperStatus_Types(common.OperStatus_TESTING)
-const OperStatus_ACTIVE = OperStatus_Types(common.OperStatus_ACTIVE)
-const OperStatus_FAILED = OperStatus_Types(common.OperStatus_FAILED)
+const DeviceOperStatus_UNKNOWN = DeviceOperStatus_Types(common.DeviceOperStatus_UNKNOWN)
+const DeviceOperStatus_PREPROVISIONED = DeviceOperStatus_Types(common.DeviceOperStatus_PREPROVISIONED)
+const DeviceOperStatus_ACTIVATING = DeviceOperStatus_Types(common.DeviceOperStatus_ACTIVATING)
+const DeviceOperStatus_DISCOVERED = DeviceOperStatus_Types(common.DeviceOperStatus_DISCOVERED)
+const DeviceOperStatus_ACTIVE = DeviceOperStatus_Types(common.DeviceOperStatus_ACTIVE)
+const DeviceOperStatus_FAILED = DeviceOperStatus_Types(common.DeviceOperStatus_FAILED)
+const DeviceOperStatus_UNREACHABLE = DeviceOperStatus_Types(common.DeviceOperStatus_UNREACHABLE)
 
-// ConnectStatus_Types from public import voltha_protos/common.proto
-type ConnectStatus_Types = common.ConnectStatus_Types
+// PortOperStatus_Types from public import voltha_protos/common.proto
+type PortOperStatus_Types = common.PortOperStatus_Types
 
-var ConnectStatus_Types_name = common.ConnectStatus_Types_name
-var ConnectStatus_Types_value = common.ConnectStatus_Types_value
+var PortOperStatus_Types_name = common.PortOperStatus_Types_name
+var PortOperStatus_Types_value = common.PortOperStatus_Types_value
 
-const ConnectStatus_UNKNOWN = ConnectStatus_Types(common.ConnectStatus_UNKNOWN)
-const ConnectStatus_UNREACHABLE = ConnectStatus_Types(common.ConnectStatus_UNREACHABLE)
-const ConnectStatus_REACHABLE = ConnectStatus_Types(common.ConnectStatus_REACHABLE)
+const PortOperStatus_UNKNOWN = PortOperStatus_Types(common.PortOperStatus_UNKNOWN)
+const PortOperStatus_ACTIVE = PortOperStatus_Types(common.PortOperStatus_ACTIVE)
+const PortOperStatus_INACTIVE = PortOperStatus_Types(common.PortOperStatus_INACTIVE)
 
 // OperationResp_OperationReturnCode from public import voltha_protos/common.proto
 type OperationResp_OperationReturnCode = common.OperationResp_OperationReturnCode
