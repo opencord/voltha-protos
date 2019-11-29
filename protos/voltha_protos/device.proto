@@ -174,6 +174,28 @@ message ImageDownloads {
     repeated ImageDownload items = 2;
 }
 
+enum OnuOperationalFlag{
+    DEFAULT = 0;
+    DOWNLOADING_IMAGE= 1;
+    ACTIVATING_IMAGE = 2;
+    ACTIVATING_ONU = 4;
+    REBOOTING = 8;
+    RECONCILING = 16;
+    SELF_TESTING = 32;
+    STARTING_OPENOMCI = 64;
+    STOPPING_OPENOMCI = 128;
+    RESTARTING_OPENOMCI = 256;
+    ONU_REENABLED = 512;
+    OMCI_ADMIN_LOCK =1024;
+    DISCOVERY_MIBSYNC_COMPLETE = 2048;
+    INITIAL_MIB_DOWNLOADED = 4096;
+
+   //These operational flags are defined at ONU port level
+    TECH_PROFILE_CONFIG_DOWNLOAD_SUCCESS = 8192;
+    TECH_PROFILE_CONFIG_DELETE_SUCCESS = 16384;
+    OMCI_FLOWS_PUSHED = 32768;
+};
+
 message Port {
     enum PortType {
         UNKNOWN = 0;
@@ -193,7 +215,7 @@ message Port {
 
     common.AdminState.Types admin_state = 5;
 
-    common.OperStatus.Types oper_status = 6;
+    common.PortOperStatus.Types oper_status = 6;
 
     string device_id = 7;  // Unique .id of device that owns this port
 
@@ -209,7 +231,8 @@ message Port {
     fixed64 tx_packets = 12;
     fixed64 tx_bytes = 13;
     fixed64 tx_errors = 14;
-
+    // bitset of values from the enum OnuOperationalFlag
+    uint32 Oper_flag = 15;
 }
 
 message Ports {
@@ -280,11 +303,9 @@ message Device {
 
     common.AdminState.Types admin_state = 16;
 
-    common.OperStatus.Types oper_status = 17 [(access) = READ_ONLY];
+    common.DeviceOperStatus.Types oper_status = 17 [(access) = READ_ONLY];
 
     string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
-
-    common.ConnectStatus.Types connect_status = 18 [(access) = READ_ONLY];
 
     // TODO additional common attribute here
 
@@ -299,6 +320,8 @@ message Device {
     PmConfigs pm_configs = 131 [(child_node) = {}];
 
     repeated ImageDownload image_downloads = 133 [(child_node) = {key: "name"}];
+    // bitset of values from the enum OltOperationalFlag for OLT and OnuOperationalFlag for ONU
+    uint32 Oper_flag = 25;
 }
 
 message Devices {
