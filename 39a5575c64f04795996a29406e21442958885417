@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4d8ae6a_dda7ad23",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2019-12-02T07:23:27Z",
+      "side": 1,
+      "message": "Operational Flag: int (bits toggled to indicate flag. e.g. DOWNLOADING_IMAGE. A value of 0 is the default)\n\nThe above definition  is from the device states proposal document. How are we going to define this flag? Should we put it to here?",
+      "range": {
+        "startLine": 292,
+        "startChar": 4,
+        "endLine": 292,
+        "endChar": 6
+      },
+      "revId": "39a5575c64f04795996a29406e21442958885417",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
