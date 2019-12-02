@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "afd7f276_3a242d93",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000544
+      },
+      "writtenOn": "2019-12-02T06:39:45Z",
+      "side": 1,
+      "message": "Do we need to create new  enum OperStatus for setting oper_state of the ports?  As of now we use the same enum OperStatus for setting oper_state of the ports as well as device .",
+      "parentUuid": "f235cfa0_d3624530",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "648f76d1_a39e145e",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 1
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "d3bbbfb2_914c7b2e",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000544
+      },
+      "writtenOn": "2019-12-02T06:39:45Z",
+      "side": 1,
+      "message": "As of now we use the same enum OperStatus for setting oper_state of the ports.",
+      "parentUuid": "269b6356_c41a768c",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9fd173e_4821d322",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 1
@@ -98,6 +134,24 @@
       "writtenOn": "2019-11-29T13:55:03Z",
       "side": 1,
       "message": "Just curious... what is the meaning of connect status (and now operational status) inside of an OmciMessage? Why do we need this?",
+      "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d178a43e_c29e364f",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000544
+      },
+      "writtenOn": "2019-12-02T06:39:45Z",
+      "side": 1,
+      "message": "This will be part of inter-adapter message and if the oper_state of the device is UNREACHABLE then ONU will not be reachable and OMCI message will not sent .",
+      "parentUuid": "fa7dd448_073c04a8",
       "revId": "4b467dd2066c9c5277f706e0f9abe07f916e2710",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
