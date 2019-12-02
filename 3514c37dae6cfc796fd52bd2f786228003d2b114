@@ -16,6 +16,24 @@
       "revId": "3514c37dae6cfc796fd52bd2f786228003d2b114",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da538bea_820d0867",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000628
+      },
+      "writtenOn": "2019-12-02T13:38:00Z",
+      "side": 1,
+      "message": "Sure, I will replicate these changes to agent as well.",
+      "parentUuid": "e03cd0f8_1a3fec70",
+      "revId": "3514c37dae6cfc796fd52bd2f786228003d2b114",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
