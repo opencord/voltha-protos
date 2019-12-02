@@ -51,6 +51,7 @@ message Header {
     string to_topic = 4;
     string key_topic = 5;
     int64 timestamp = 6;
+    string partition = 7;
 }
 
 message Argument {
@@ -115,6 +116,7 @@ message InterAdapterHeader {
     string to_device_id = 5;
     string proxy_device_id = 6;
     int64 timestamp = 7;
+    string partition = 8;
 }
 
 message InterAdapterOmciMessage {
