@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e03cd0f8_1a3fec70",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2019-12-02T11:17:47Z",
+      "side": 1,
+      "message": "You should not change number of the message in gRPC proto definition for backward compatibility reasons. Please retain OnuProcessingErrorIndication number as 11 and add new messages at the end.",
+      "revId": "3514c37dae6cfc796fd52bd2f786228003d2b114",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
