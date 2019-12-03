@@ -16,6 +16,24 @@
       "revId": "dc9a425de9b1dc1f5b72efc535de94119a8b03c8",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cdca24dd_16b700ef",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2019-12-03T19:03:17Z",
+      "side": 1,
+      "message": "Make sense. I can only guess why someone chooses to define Enums inside Message structures. You can not have the same name in different Enums e.g. AdminState.Unknown and OperationalState.Unknown can not be defined in this way. I believe they chose to put Enums inside Messages for this reason. This is a good explanation if you\u0027d like to read: https://stackoverflow.com/questions/27030332/solutions-to-resolve-enum-field-naming-restriction-in-google-protobuf-due-to-c",
+      "parentUuid": "a3ea4d7c_384301e2",
+      "revId": "dc9a425de9b1dc1f5b72efc535de94119a8b03c8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
