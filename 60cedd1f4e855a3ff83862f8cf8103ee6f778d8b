@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "98ad7af2_b1376662",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000544
+      },
+      "writtenOn": "2019-12-06T10:26:36Z",
+      "side": 1,
+      "message": "Agree. DeviceOperstatus makes it meaningful.",
+      "parentUuid": "35f8081e_8ba62e88",
+      "revId": "60cedd1f4e855a3ff83862f8cf8103ee6f778d8b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f67da47_2b329e9c",
         "filename": "protos/voltha_protos/inter_container.proto",
         "patchSetId": 9
@@ -30,6 +48,30 @@
       "writtenOn": "2019-12-06T09:50:52Z",
       "side": 1,
       "message": "Same question again? Why do we need the operation status inside of an OMCI message? Also whose operational status is this?",
+      "range": {
+        "startLine": 122,
+        "startChar": 13,
+        "endLine": 122,
+        "endChar": 14
+      },
+      "revId": "60cedd1f4e855a3ff83862f8cf8103ee6f778d8b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0e19e84_8df2100b",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000544
+      },
+      "writtenOn": "2019-12-06T10:26:36Z",
+      "side": 1,
+      "message": "This will be the operation status of ONU.If the oper_state of ONU device is \"UNREACHABLE\" then OMCI message wont be processed at openolt adapter.",
+      "parentUuid": "5f67da47_2b329e9c",
       "range": {
         "startLine": 122,
         "startChar": 13,
