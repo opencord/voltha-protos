@@ -165,6 +165,13 @@ service Openolt {
     }
 
     rpc EnableIndication(Empty) returns (stream Indication) {}
+
+    rpc PerformGroupOperation(Group) returns (Empty) {
+        option (google.api.http) = {
+          post: "/v1/PerformGroupOperation"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -355,6 +362,12 @@ message ActionCmd {
     bool add_outer_tag = 1;
     bool remove_outer_tag = 2;
     bool trap_to_host = 3;
+    bool remark_outer_pbits = 4;
+    bool remark_inner_pbits = 5;
+    bool add_inner_tag = 6;
+    bool remove_inner_tag = 7;
+    bool translate_inner_tag = 8;
+    bool translate_outer_tag = 9;
 }
 
 message Action {
@@ -381,6 +394,7 @@ message Flow {
     sfixed32 priority = 9;
     fixed64 cookie = 12; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
     fixed32 port_no = 13; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
+    fixed32 group_id = 14;
 }
 
 message SerialNumber {
@@ -502,4 +516,33 @@ message OnuProcessingErrorIndication {
     fixed32 onu_id = 2;
 }
 
+message GroupMember {
+    enum InterfaceType {
+        PON = 0;
+        EPON_1G_PATH = 1;
+        EPON_10G_PATH = 2;
+    }
+    uint32 interface_id = 1;
+    InterfaceType interface_type = 2;
+    uint32 gem_port_id = 3;
+    uint32 priority = 4; // Priority (and also the ID) of the default fixed queue for the multicast traffic.
+                         // This queue is attached to the default PON port scheduler.
+}
+
+message Group {
+    enum GroupMembersCommand {
+        ADD_MEMBERS = 0;
+        REMOVE_MEMBERS = 1;
+        SET_MEMBERS = 2;
+    }
+
+    uint32 group_id = 1;
+    GroupMembersCommand command = 2;
+    repeated GroupMember members = 3;
+    Action action = 4;
+}
+
+
+
 message Empty {}
+
