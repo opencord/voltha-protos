@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63d43b15_535fa967",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2019-12-11T01:42:31Z",
+      "side": 1,
+      "message": "I\u0027m wondering if this as well as SelfTestResponse belong in one of the lower-level proto files rather than the top-level voltha.proto file. Let me ask around.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 21
+      },
+      "revId": "f2c71777cd80c7424abfdf7cdc918d6d17b9d76e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
