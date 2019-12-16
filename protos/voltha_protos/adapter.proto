@@ -9,6 +9,7 @@ package voltha;
 import "google/protobuf/any.proto";
 import "voltha_protos/common.proto";
 import "voltha_protos/meta.proto";
+import "google/protobuf/timestamp.proto";
 
 
 message AdapterConfig {
@@ -39,6 +40,7 @@ message Adapter {
 
     repeated string logical_device_ids = 4;  // Logical devices "owned"
 
+    google.protobuf.Timestamp last_communication = 5;
 }
 
 message Adapters {
