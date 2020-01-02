@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b2e47c3_f5a4b081",
+        "filename": "protos/voltha_protos/adapter.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-01-02T23:28:19Z",
+      "side": 1,
+      "message": "// UTC timestamp when the core last received a message from the adapter\n\na comment something like that?",
+      "revId": "28c7d769186d085ed318a0780a30b238efa4a458",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
