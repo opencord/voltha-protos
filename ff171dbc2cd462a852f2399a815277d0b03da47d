@@ -16,6 +16,24 @@
       "revId": "ff171dbc2cd462a852f2399a815277d0b03da47d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8353077a_98985f69",
+        "filename": "protos/voltha_protos/adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-01-06T19:32:31Z",
+      "side": 1,
+      "message": "google.protobuf.Timestamp is UTC by definition\n\nSee https://developers.google.com/protocol-buffers/docs/reference/csharp/class/google/protobuf/well-known-types/timestamp.html",
+      "parentUuid": "a384eebc_28730b80",
+      "revId": "ff171dbc2cd462a852f2399a815277d0b03da47d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
