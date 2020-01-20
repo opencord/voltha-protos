@@ -18,6 +18,14 @@ default: test
 # set default shell options
 SHELL = bash -e -o pipefail
 
+# tool containers
+VOLTHA_TOOLS_VERSION ?= 1.0.2
+
+PROTOC    = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/app khagerma/voltha-tools:${VOLTHA_TOOLS_VERSION}-protoc protoc
+PROTOC_SH = docker run --rm --user 2:2 voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc sh -c
+# PROTOC_SH = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v3 --workdir=/go/src/github.com/opencord/voltha-protos/v3 voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc sh -c
+GO        = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/app -v gocache:/.cache -v gocache-${VOLTHA_TOOLS_VERSION}:/go/pkg voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-golang go
+
 # Function to extract the last path component from go_package line in .proto files
 define go_package_path
 $(shell grep go_package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
@@ -39,7 +47,7 @@ PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.pro
 PROTO_JAVA_DEST_DIR := java
 PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f))) 
 # Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
-.PHONY: voltha.pb protoc_check
+.PHONY: voltha.pb
 
 print:
 	@echo "Proto files: $(PROTO_FILES)"
@@ -54,10 +62,10 @@ build: protos python-build go-protos java-protos
 
 test: python-test go-test java-test
 
-clean: python-clean go-clean java-clean
+clean: python-clean java-clean
 
 # Python targets
-python-protos: protoc_check $(PROTO_PYTHON_PB2)
+python-protos: $(PROTO_PYTHON_PB2)
 
 venv_protos:
 	virtualenv $@;\
@@ -99,46 +107,43 @@ python-clean:
     $(PROTO_PYTHON_PB2_GRPC)
 
 # Go targets
-go-protos: protoc_check $(PROTO_GO_PB) voltha.pb
+go-protos: voltha.pb
+	@echo "Creating *.go.pb files"
+	@${PROTOC_SH} " \
+	  set -e -o pipefail; \
+	  for x in ${PROTO_FILES}; do \
+	    echo \$$x; \
+	    protoc --go_out=plugins=grpc:/go/src -I protos \$$x; \
+	  done"
 
-go_temp:
-	mkdir -p go_temp
-
-$(PROTO_GO_PB): $(PROTO_FILES) go_temp
+voltha.pb:
 	@echo "Creating $@"
-	cd protos && protoc \
-    --go_out=MAPS=Mgoogle/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor,plugins=grpc,paths=source_relative:../go_temp \
-    -I . voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.go/\1.proto/p' )
-	mkdir -p $(dir $@)
-	mv go_temp/voltha_protos/$(notdir $@) $@
+	${PROTOC_SH} "cd /usr && ls -l"
+	${PROTOC_SH} "cd /usr/local && ls -l"
+	${PROTOC_SH} "cd /usr/local/include && ls -l"
+	${PROTOC_SH} "cd /usr/local/include/google && ls -l"
+	${PROTOC_SH} "cd /usr/local/include/google/protobuf && ls -l"
+#	${PROTOC} -I protos -I protos/google/api \
+#	  --include_imports --include_source_info \
+#	  --descriptor_set_out=$@ \
+#	  ${PROTO_FILES}
 
-voltha.pb: ${PROTO_FILES}
-	@echo "Creating $@"
-	protoc -I protos -I protos/google/api \
-    --include_imports --include_source_info \
-    --descriptor_set_out=$@ \
-    ${PROTO_FILES}
-
-go-test: protoc_check
+go-test:
 	test/test-go-proto-consistency.sh
-	GO111MODULE=on go mod verify
-
-go-clean:
-	rm -rf go_temp
+	${GO} mod verify
 
 # Java targets
-java-protos: protoc_check $(PROTO_JAVA_PB) move-java-protos voltha.pb
-
-java_temp:
-	mkdir -p java_temp/src/main/java
-
-$(PROTO_JAVA_PB): $(PROTO_FILES) java_temp
-	@echo "Creating $@"
-	cd protos && protoc \
-    --java_out=../java_temp/src/main/java \
-    -I . voltha_protos/$$(echo $@ | sed -n 's/.*\/\(.*\).pb.java/\1.proto/p' )
-
-move-java-protos: protoc_check
+java-protos: voltha.pb
+	@echo "Creating java files"
+	@mkdir -p java_temp/src/main/java
+	@${PROTOC_SH} " \
+	  set -e -o pipefail; \
+	  for x in ${PROTO_FILES}; do \
+	    echo \$$x; \
+	    protoc --java_out=java_temp/src/main/java -I protos \$$x; \
+	  done"
+	#TODO: generate directly to the final location
+	@mkdir -p java
 	cp -r java_temp/src/main/java/* java/
 
 # Tests if the generated java classes are compilable
@@ -149,46 +154,3 @@ java-test: java-protos
 java-clean:
 	rm -rf java
 	rm -rf java_temp
-
-
-# Protobuf compiler helper functions
-protoc_check:
-ifeq ("", "$(shell which protoc)")
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	@echo "It looks like you don't have a version of protocol buffer tools."
-	@echo "To install the protocol buffer toolchain on Linux, you can run:"
-	@echo "    make install-protoc"
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	exit 1
-endif
-ifneq ("libprotoc 3.7.0", "$(shell protoc --version)")
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	@echo "You have the wrong version of protoc installed"
-	@echo "Please install version 3.7.0"
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	exit 1
-endif
-
-install-protoc:
-	@echo "Downloading and installing protocol buffer support (Linux amd64 only)"
-ifneq ("Linux", "$(shell uname -s)")
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	@echo "Automated installation of protoc not supported on $(shell uname -s)"
-	@echo "Please install protoc v3.7.0 from:"
-	@echo "  https://github.com/protocolbuffers/protobuf/releases"
-	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	exit 1
-endif
-	@echo "Installation will require sudo priviledges"
-	@echo "This will take a few minutes."
-	@echo "Asking for sudo credentials now so we can install at the end"
-	sudo echo "Thanks"; \
-    PROTOC_VERSION="3.7.0" ;\
-    PROTOC_SHA256SUM="a1b8ed22d6dc53c5b8680a6f1760a305b33ef471bece482e92728f00ba2a2969" ;\
-    curl -L -o /tmp/protoc-$${PROTOC_VERSION}-linux-x86_64.zip https://github.com/google/protobuf/releases/download/v$${PROTOC_VERSION}/protoc-$${PROTOC_VERSION}-linux-x86_64.zip ;\
-    echo "$${PROTOC_SHA256SUM}  /tmp/protoc-$${PROTOC_VERSION}-linux-x86_64.zip" | sha256sum -c - ;\
-    unzip /tmp/protoc-$${PROTOC_VERSION}-linux-x86_64.zip -d /tmp/protoc3 ;\
-    sudo mv /tmp/protoc3/bin/* /usr/local/bin/ ;\
-    sudo mv /tmp/protoc3/include/* /usr/local/include/ ;\
-    sudo chmod -R a+rx /usr/local/bin/* ;\
-    sudo chmod -R a+rX /usr/local/include/
