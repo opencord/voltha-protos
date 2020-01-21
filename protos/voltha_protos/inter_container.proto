@@ -31,11 +31,12 @@ message ErrorCode {
     enum codes {
         UNSUPPORTED_REQUEST = 0;
         INVALID_PARAMETERS = 1;
+        DEADLINE_EXCEDEED = 2;
     }
 }
 
 message Error {
-    ErrorCode code = 1;
+    ErrorCode.codes code = 1;
     string reason = 2;
 }
 
