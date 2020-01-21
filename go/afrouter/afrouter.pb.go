@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	common "github.com/opencord/voltha-protos/v3/go/common"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -437,6 +439,26 @@ type ConfigurationServer interface {
 	GetGoroutineCount(context.Context, *Empty) (*Count, error)
 	UpdateLogLevel(context.Context, *common.Logging) (*Empty, error)
 	GetLogLevels(context.Context, *common.LoggingComponent) (*common.Loggings, error)
+}
+
+// UnimplementedConfigurationServer can be embedded to have forward compatible implementations.
+type UnimplementedConfigurationServer struct {
+}
+
+func (*UnimplementedConfigurationServer) SetConnection(ctx context.Context, req *Conn) (*Result, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetConnection not implemented")
+}
+func (*UnimplementedConfigurationServer) SetAffinity(ctx context.Context, req *Affinity) (*Result, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetAffinity not implemented")
+}
+func (*UnimplementedConfigurationServer) GetGoroutineCount(ctx context.Context, req *Empty) (*Count, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGoroutineCount not implemented")
+}
+func (*UnimplementedConfigurationServer) UpdateLogLevel(ctx context.Context, req *common.Logging) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLogLevel not implemented")
+}
+func (*UnimplementedConfigurationServer) GetLogLevels(ctx context.Context, req *common.LoggingComponent) (*common.Loggings, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLogLevels not implemented")
 }
 
 func RegisterConfigurationServer(s *grpc.Server, srv ConfigurationServer) {
