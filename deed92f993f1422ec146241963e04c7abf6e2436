@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e45908bc_aeb16d90",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-01-23T17:05:20Z",
+      "side": 1,
+      "message": "Misspelled \"exceeded\".",
+      "revId": "deed92f993f1422ec146241963e04c7abf6e2436",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
