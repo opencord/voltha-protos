@@ -31,7 +31,7 @@ message ErrorCode {
     enum codes {
         UNSUPPORTED_REQUEST = 0;
         INVALID_PARAMETERS = 1;
-        DEADLINE_EXCEDEED = 2;
+        DEADLINE_EXCEEDED = 2;
     }
 }
 
