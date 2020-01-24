@@ -586,5 +586,18 @@ service VolthaService {
     rpc Subscribe (OfAgentSubscriber) returns (OfAgentSubscriber) {
     }
 
+    rpc EnablePort(voltha.Port) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/EnablePort"
+            body: "*"
+        };
+    }
+    rpc DisablePort(voltha.Port) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/v1/DisablePort"
+            body: "*"
+        };
+    }
+
 }
 
