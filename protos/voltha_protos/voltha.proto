@@ -84,6 +84,21 @@ message CoreInstances {
     repeated CoreInstance items = 1;
 }
 
+message OmciTestRequest {
+    string id = 1;
+    string uuid = 2;
+    }
+
+message TestResponse{
+      option (common.yang_child_rule) = MOVE_TO_PARENT_LEVEL;
+      enum TestResponseResult  {
+                    SUCCESS = 0;
+                    FAILURE = 1;
+      }
+    TestResponseResult result = 1;
+}
+
+
 // Voltha represents the Voltha cluster data.  Each Core instance will hold a subset of
 // the entire cluster. However, some items (e.g. adapters) will be held by all cores
 // for better performance
@@ -585,6 +600,22 @@ service VolthaService {
     }
     rpc Subscribe (OfAgentSubscriber) returns (OfAgentSubscriber) {
     }
+
+    // omci start and stop cli implementation
+    rpc StartOmciTestAction(OmciTestRequest) returns(TestResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/start_omci_test"
+            body: "*"
+        };
+    }
+
+    rpc OmciTest(common.ID) returns (TestResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/omci_test"
+            body: "*"
+        };
+    }
+
 
 }
 
