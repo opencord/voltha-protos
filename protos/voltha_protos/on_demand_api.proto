@@ -1,0 +1,58 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+import "google/api/annotations.proto";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.NEM-Proxy";
+option java_outer_classname = "VolthaProto";
+
+option go_package = "github.com/opencord/voltha-protos/v2/go/voltha";
+package voltha;
+
+// The greeting service definition.
+service NemService {
+  // On Demand API for Omci Test Action
+rpc OmciTest(OnuID) returns(ResponseTest) {
+    option (google.api.http) = {
+        post: "/api/v1/start_omci_test"
+        body: "*"
+    };
+}
+}
+
+
+// OnDemandTestAPi Request paramaters
+message OnuID {
+    string id = 1;
+}
+
+message ResponseTest
+{
+string result = 1;
+}
+
+// Omci Test Response message format
+message TestCode{
+      enum TestResponseResult  {
+                    SUCCESS = 0;
+                    FAILURE = 1;
+      }
+    TestResponseResult result = 1;
+}
+
+
+
+
