@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b89191a0_f4f6c38c",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-01-29T15:18:20Z",
+      "side": 1,
+      "message": "please remove any commented out code that is not necessary",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "e1e803305e176d0f87ebbc8a86903db976bd690d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07b510b3_94658487",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-01-29T15:18:20Z",
+      "side": 1,
+      "message": "If this proto is for a NEM-level service, then maybe the declarations should go into that service\u0027s repository rather than voltha-protos. It depends on whether these protos are used by voltha, or only used by the NEM service.",
+      "revId": "e1e803305e176d0f87ebbc8a86903db976bd690d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b37bf157_7c2a13f9",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-01-29T15:18:20Z",
+      "side": 1,
+      "message": "I think we\u0027ve dropped the yang support. please remove.",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 50,
+        "endChar": 63
+      },
+      "revId": "e1e803305e176d0f87ebbc8a86903db976bd690d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e081bfd_6ffab927",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-01-29T15:18:20Z",
+      "side": 1,
+      "message": "yang option can be removed",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 61
+      },
+      "revId": "e1e803305e176d0f87ebbc8a86903db976bd690d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
