@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d0d5bcd_4baa0147",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-02-07T16:38:15Z",
+      "side": 1,
+      "message": "Should fail_reason be an enum?",
+      "revId": "81b748024198f29a8f60199ba8bc2fb57339716e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
