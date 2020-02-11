@@ -34,6 +34,24 @@
       "revId": "81b748024198f29a8f60199ba8bc2fb57339716e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5753d2e9_3f87e1f5",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-11T04:51:05Z",
+      "side": 1,
+      "message": "I\u0027m fine with it being an int32 as it maintains consistency with OnuActivationFailureIndication, which also has an int32 fail_reason. Do we have documentation on the meaning of this field?",
+      "parentUuid": "88f9495a_524b4922",
+      "revId": "81b748024198f29a8f60199ba8bc2fb57339716e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
