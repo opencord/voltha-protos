@@ -7,6 +7,7 @@ package voltha;
 
 import "voltha_protos/meta.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
 message ConfigEventType {
     enum Types {
@@ -184,13 +185,15 @@ message AlarmEvent {
     AlarmEventSeverity.Types severity = 5;
 
     // Timestamp at which the alarm was first raised
-    float raised_ts = 6;
+    // TODO: Is this obsolete? Eventheader already has a raised_ts
+    google.protobuf.Timestamp raised_ts = 6;
 
     // Timestamp at which the alarm was reported
-    float reported_ts = 7;
+    // TODO: Is this obsolete? Eventheader already has a reported_ts
+    google.protobuf.Timestamp reported_ts = 7;
 
     // Timestamp at which the alarm has changed since it was raised
-    float changed_ts = 8;
+    google.protobuf.Timestamp changed_ts = 8;
 
     // Identifier of the originating resource of the alarm
     string resource_id = 9;
@@ -294,14 +297,14 @@ message EventHeader {
     // the event was first raised from the source entity.
     // If the source entity doesn't send the raised_ts, this shall be set
     // to timestamp when the event was received.
-    float raised_ts = 6;
+    google.protobuf.Timestamp raised_ts = 6;
 
     // Timestamp at which the event was reported.
     // This represents the UTC time stamp since epoch (in seconds) when the
     // the event was reported (this time stamp is >= raised_ts).
     // If the source entity that reported this event doesn't send the 
     // reported_ts, this shall be set to the same value as raised_ts.
-    float reported_ts = 7;
+    google.protobuf.Timestamp reported_ts = 7;
 
 
 }
