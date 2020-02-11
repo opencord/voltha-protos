@@ -52,6 +52,24 @@
       "revId": "81b748024198f29a8f60199ba8bc2fb57339716e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "309fcf4b_e216ebe0",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-02-11T10:26:13Z",
+      "side": 1,
+      "message": "it is defined here https://github.com/balapi/bal-api-3.2.3.2/blob/master/include/object_model/bcmolt_api_model_supporting_enums.h#L297",
+      "parentUuid": "5753d2e9_3f87e1f5",
+      "revId": "81b748024198f29a8f60199ba8bc2fb57339716e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
