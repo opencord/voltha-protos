@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f217c3ea_6c7cbca7",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-02-20T15:13:12Z",
+      "side": 1,
+      "message": "Should this be rdi_errors since it is a counter and there could be more than one rdi error.",
+      "revId": "94c43bbdced6fbfffb40093eb3771910bc8ef4e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
