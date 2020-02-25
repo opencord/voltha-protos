@@ -21,6 +21,7 @@ option java_outer_classname = "VolthaOpenOLT";
 package openolt;
 import "google/api/annotations.proto";
 import public "voltha_protos/tech_profile.proto";
+import public "voltha_protos/common.proto";
 
 service Openolt {
 
@@ -172,6 +173,14 @@ service Openolt {
           body: "*"
         };
     }
+
+    rpc GetValue(ValueParam) returns (common.ReturnValues) {
+        option (google.api.http) = {
+          post: "/v1/GetValue"
+          body: "*"
+        };
+    }
+
 }
 
 message Indication {
@@ -578,7 +587,10 @@ message Group {
     Action action = 4;
 }
 
-
+message ValueParam {
+	Onu onu = 1;
+	common.ValueType value = 2;
+}
 
 message Empty {}
 
