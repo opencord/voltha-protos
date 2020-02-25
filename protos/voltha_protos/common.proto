@@ -96,3 +96,27 @@ message OperationResp {
     // Additional Info
     string additional_info = 2;
 }
+
+message ValueSpecifier {
+        enum ValueType {
+                VAL_EMPTY = 0;
+                VAL_DISTANCE = 1;
+        }
+	ValueType value = 1;
+	ID deviceID = 2;
+}
+
+message ReturnValues {
+        uint32  Set = 1;       // Specifies what values are
+                               // set/valid in return
+
+        uint32 Unsupported = 2; // Specifies requested values not
+                                // supported by the device
+
+        uint32 Error  = 3;      // Specifies requested values not
+                                // fetched because of error
+
+        uint32 Distance = 4;    // Value of distance Set includes
+                                // VAL_DISTANCE 
+
+}
