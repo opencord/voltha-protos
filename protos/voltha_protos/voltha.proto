@@ -597,6 +597,11 @@ service VolthaService {
             body: "*"
         };
     }
+    rpc GetExtValue(common.ValueSpecifier) returns(common.ReturnValues) {
+        option (google.api.http) = {
+            get: "/api/v1/GetExtValue"
+        };
+    }
 
     // omci start and stop cli implementation
     rpc StartOmciTestAction(OmciTestRequest) returns(TestResponse) {
