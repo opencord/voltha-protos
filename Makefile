@@ -67,9 +67,9 @@ clean: python-clean java-clean
 python-protos: $(PROTO_PYTHON_PB2)
 
 venv_protos:
-	virtualenv $@;\
+	virtualenv -p python3 $@;\
 	source ./$@/bin/activate ; set -u ;\
-	pip install grpcio-tools googleapis-common-protos
+	pip install grpcio-tools googleapis-common-protos 
 
 $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
