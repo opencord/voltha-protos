@@ -146,6 +146,10 @@ message FlowMetadata {
     // Meters associated with flow-update to adapter
     repeated openflow_13.ofp_meter_config meters = 1;
 }
+//Distance is in meters
+message OnuDistance {
+        uint32 Distance = 1;
+}
 
 /*
  * Voltha APIs
@@ -596,6 +600,11 @@ service VolthaService {
         option (google.api.http) = {
             post: "/v1/DisablePort"
             body: "*"
+        };
+    }
+    rpc GetOnuDistance(common.ID) returns(OnuDistance) {
+        option (google.api.http) = {
+            get: "/api/v1/GetOnuDistance"
         };
     }
 
