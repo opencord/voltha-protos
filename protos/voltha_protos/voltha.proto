@@ -584,6 +584,11 @@ service VolthaService {
             body: "*"
         };
     }
+    rpc GetOnuDistance(common.ID) returns(common.OnuDistance) {
+        option (google.api.http) = {
+            get: "/api/v1/GetOnuDistance"
+        };
+    }
 
 }
 

@@ -67,7 +67,7 @@ clean: python-clean java-clean
 python-protos: $(PROTO_PYTHON_PB2)
 
 venv_protos:
-	virtualenv $@;\
+	virtualenv -p python3 $@;\
 	source ./$@/bin/activate ; set -u ;\
 	pip install grpcio-tools googleapis-common-protos
 

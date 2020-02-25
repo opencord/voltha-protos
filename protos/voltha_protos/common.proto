@@ -96,3 +96,8 @@ message OperationResp {
     // Additional Info
     string additional_info = 2;
 }
+
+//Distance is in meters
+message OnuDistance {
+        uint32 Distance = 1;
+}

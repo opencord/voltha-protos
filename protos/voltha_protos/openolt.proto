@@ -21,6 +21,7 @@ option java_outer_classname = "VolthaOpenOLT";
 package openolt;
 import "google/api/annotations.proto";
 import public "voltha_protos/tech_profile.proto";
+import public "voltha_protos/common.proto";
 
 service Openolt {
 
@@ -172,6 +173,14 @@ service Openolt {
           body: "*"
         };
     }
+
+    rpc GetOnuDistance(Onu) returns (common.OnuDistance) {
+        option (google.api.http) = {
+          post: "/v1/GetOnuDistance"
+          body: "*"
+        };
+    }
+
 }
 
 message Indication {
