@@ -14,8 +14,6 @@ service Configuration {
    	rpc SetConnection (Conn) returns (Result) {}
 	rpc SetAffinity(Affinity) returns (Result) {}
 	rpc GetGoroutineCount(Empty) returns (Count) {}
-	rpc UpdateLogLevel(common.Logging) returns (Empty) {}
-	rpc GetLogLevels(common.LoggingComponent) returns (common.Loggings) {}
 }
 
 message Result {
