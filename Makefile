@@ -19,7 +19,7 @@ default: test
 SHELL = bash -e -o pipefail
 
 # tool containers
-VOLTHA_TOOLS_VERSION ?= 1.0.3
+VOLTHA_TOOLS_VERSION ?= 2.0.0
 
 PROTOC    = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/app $(shell test -t 0 && echo "-it") voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc protoc
 PROTOC_SH = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v3 $(shell test -t 0 && echo "-it") --workdir=/go/src/github.com/opencord/voltha-protos/v3 voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc sh -c
