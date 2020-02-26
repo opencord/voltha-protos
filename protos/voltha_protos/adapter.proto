@@ -14,10 +14,6 @@ import "google/protobuf/timestamp.proto";
 
 message AdapterConfig {
 
-    // Common adapter config attributes here
-    common.LogLevel.Types log_level = 1;
-
-
     // Custom (vendor-specific) configuration attributes
     google.protobuf.Any additional_config = 64;
 
