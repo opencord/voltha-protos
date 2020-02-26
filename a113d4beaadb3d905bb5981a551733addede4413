@@ -16,6 +16,24 @@
       "revId": "a113d4beaadb3d905bb5981a551733addede4413",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76b07afb_bd2128d2",
+        "filename": "go.mod",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-26T17:41:27Z",
+      "side": 1,
+      "message": "Agree with Kent. If there was a reason why this change was necessary, then please discuss.",
+      "parentUuid": "92982c1e_f10ac70b",
+      "revId": "a113d4beaadb3d905bb5981a551733addede4413",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
