@@ -20,34 +20,6 @@ enum TestModeKeys {
     api_test=0;
 }
 
-message LogLevel {
-    // Logging verbosity level
-    enum Types {
-        DEBUG = 0;
-        INFO = 1;
-        WARNING = 2;
-        ERROR = 3;
-        CRITICAL = 4;
-        FATAL = 5;
-    }
-}
-
-message Logging {
-    common.LogLevel.Types level = 1;
-    string package_name = 2;
-    string component_name = 3;
-}
-
-// For GetLogLevels(), select component to query
-message LoggingComponent {
-    string component_name = 1;
-}
-
-// For returning multiple log levels
-message Loggings {
-	repeated Logging items = 1;
-}
-
 message AdminState {
     // Administrative State
     enum Types {

@@ -153,20 +153,6 @@ message FlowMetadata {
  */
 service VolthaService {
 
-    // Get more information on a given physical device
-    rpc UpdateLogLevel(common.Logging) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/v1/logs"
-            body: "*"
-        };
-    }
-
-    rpc GetLogLevels(common.LoggingComponent) returns (common.Loggings) {
-        option (google.api.http) = {
-            get: "/api/v1/logs"
-        };
-    }
-
     // Get the membership group of a Voltha Core
     rpc GetMembership(google.protobuf.Empty) returns(Membership) {
         option (google.api.http) = {
