@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3d2ef82e_e70a14ee",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-27T22:22:15Z",
+      "side": 1,
+      "message": "We\u0027ve discussed on #voltha and decided that since these protos are specific to the nem-ondemand-proxy that they do not belong in the voltha-protos repo. The protobuf will need to be moved from this repo to nem-ondemand-proxy. They will need to be compiled in the context of that repository.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "150a63c3be53ad18a3726e14316012fca11c2e1d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b189d10c_f7d9bce7",
         "filename": "protos/voltha_protos/on_demand_api.proto",
         "patchSetId": 8
