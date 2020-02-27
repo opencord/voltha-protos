@@ -52,6 +52,8 @@ message MetricMetaData {
     map<string, string> context = 6; // Name value pairs that provide additional
                                      // context information on the metrics being
                                      // reported.
+
+    string uuid = 7;               // Nem-Ondemand-Proxy match requests and replies
 }
 
 /*
