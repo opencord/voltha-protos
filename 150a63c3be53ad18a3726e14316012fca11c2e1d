@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "ef4479df_e906eca4",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-02-27T21:55:33Z",
+      "side": 1,
+      "message": "Here, the OmciTest is defined as a NewService while in the voltha.proto it\u0027s defined as a voltha service.  Are we implementing both or is this used as a reference?",
+      "revId": "150a63c3be53ad18a3726e14316012fca11c2e1d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dddbf670_dcb34681",
         "filename": "protos/voltha_protos/on_demand_api.proto",
         "patchSetId": 8
