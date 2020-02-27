@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b189d10c_f7d9bce7",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-27T21:26:48Z",
+      "side": 1,
+      "message": "Comment is from sample grpc code.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 35
+      },
+      "revId": "150a63c3be53ad18a3726e14316012fca11c2e1d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dddbf670_dcb34681",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-27T21:26:48Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "150a63c3be53ad18a3726e14316012fca11c2e1d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9686d022_3825f926",
+        "filename": "protos/voltha_protos/on_demand_api.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-27T21:26:48Z",
+      "side": 1,
+      "message": "yang rule can be fully deleted, no need to leave it commented",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 63
+      },
+      "revId": "150a63c3be53ad18a3726e14316012fca11c2e1d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "175c53da_985c00e7",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-02-27T21:26:48Z",
+      "side": 1,
+      "message": "This rpc is also defined in on_demand_api.proto. Is it necessary to have it here?",
+      "range": {
+        "startLine": 623,
+        "startChar": 4,
+        "endLine": 623,
+        "endChar": 52
+      },
+      "revId": "150a63c3be53ad18a3726e14316012fca11c2e1d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
