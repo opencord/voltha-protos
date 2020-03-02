@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5bbd8fc_0610e326",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-03-02T17:12:45Z",
+      "side": 1,
+      "message": "Is there a way we can refactor dependencies so that `openolt.proto` doesn\u0027t depend `voltha.proto` ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 43
+      },
+      "revId": "8e2d6d8e1027ed0989e2609077f2ad443ab34c4b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
