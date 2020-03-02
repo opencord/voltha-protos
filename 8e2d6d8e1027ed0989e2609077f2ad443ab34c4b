@@ -22,6 +22,53 @@
       "revId": "8e2d6d8e1027ed0989e2609077f2ad443ab34c4b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19a93261_df0ce720",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-03-02T18:56:06Z",
+      "side": 1,
+      "message": "Discussed briefly on slack in the stabilization channel. I\u0027m thinking that `OnuDistance` should be moved to common.proto, where it can be used separate by both voltha and openolt. Please look into this and see if it makes sense.",
+      "parentUuid": "f5bbd8fc_0610e326",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 43
+      },
+      "revId": "8e2d6d8e1027ed0989e2609077f2ad443ab34c4b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "daf71392_98453cd5",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-03-02T18:56:06Z",
+      "side": 1,
+      "message": "At this level, an `Onu` parameter may make more sense than an `ID`. Using the `ID` in voltha.proto is fine since it\u0027s a northbound API concept, but I\u0027m thinking here for adapter\u003c-\u003eagent communication that an `Onu` may be better. The adapter can translate between the ID and Onu structures.",
+      "range": {
+        "startLine": 177,
+        "startChar": 23,
+        "endLine": 177,
+        "endChar": 32
+      },
+      "revId": "8e2d6d8e1027ed0989e2609077f2ad443ab34c4b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
