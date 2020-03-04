@@ -90,6 +90,30 @@
     },
     {
       "key": {
+        "uuid": "4c09257f_3a27712e",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2020-03-04T18:53:50Z",
+      "side": 1,
+      "message": "moved",
+      "parentUuid": "3e02b0ee_3df1985a",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 43
+      },
+      "revId": "8e2d6d8e1027ed0989e2609077f2ad443ab34c4b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "daf71392_98453cd5",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 4
@@ -125,6 +149,30 @@
       "side": 1,
       "message": "Agree on this comment.",
       "parentUuid": "daf71392_98453cd5",
+      "range": {
+        "startLine": 177,
+        "startChar": 23,
+        "endLine": 177,
+        "endChar": 32
+      },
+      "revId": "8e2d6d8e1027ed0989e2609077f2ad443ab34c4b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "173940c5_4275162d",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2020-03-04T18:53:50Z",
+      "side": 1,
+      "message": "changed",
+      "parentUuid": "dd65b973_21d162db",
       "range": {
         "startLine": 177,
         "startChar": 23,
