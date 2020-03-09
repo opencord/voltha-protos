@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcc79a73_84778a16",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-03-09T15:32:04Z",
+      "side": 1,
+      "message": "Why not call the message name \"Distance\" so it can be re-used if situations other than onu?",
+      "revId": "02d27b53af9db939cfc37420a1562c35ecd4f6e7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "747bfbf4_41c7525c",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-03-09T15:32:04Z",
+      "side": 1,
+      "message": "Can the rpc be named \"GetDistance(...)\" and let the core/adapter figure out whether that call makes sense for a non-onu device?",
+      "revId": "02d27b53af9db939cfc37420a1562c35ecd4f6e7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
