@@ -172,6 +172,13 @@ service Openolt {
           body: "*"
         };
     }
+
+    rpc OnuItuPonAlarmSet(OnuItuPonAlarm) returns (Empty) {
+        option (google.api.http) = {
+          post: "/v1/OnuItuPonAlarmSet"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -403,6 +410,20 @@ message Flow {
     fixed32 group_id = 14;
 }
 
+message OnuItuPonAlarm {
+    fixed32 pon_ni = 1;
+    fixed32 onu_id = 2;
+    fixed32 alarm_id = 3;
+    fixed32 type = 4;
+    fixed64 rate_thresdhold_rising = 5;
+    fixed64 rate_thresdhold_falling = 6;
+    fixed64 rate_range_lower = 7;
+    fixed64 rate_range_upper = 8;
+    fixed64 threshold_limit = 9;
+    fixed32 active_soak_time = 10;
+    fixed32 clear_soak_time = 11;
+}
+
 message SerialNumber {
     bytes vendor_id = 1;
     bytes vendor_specific = 2;
@@ -514,7 +535,7 @@ message OnuLossOfKeySyncFailureIndication {
 message OnuItuPonStatsIndication{
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
-    fixed32 rdi_errors = 3;
+    fixed64 rdi_errors = 3;
 }
 
 message OnuProcessingErrorIndication {
@@ -528,10 +549,10 @@ message OnuDeactivationFailureIndication {
     fixed32 fail_reason = 3;
 }
 
-message OnuRemoteDefectIndication{
+message OnuRemoteDefectIndication {
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
-    fixed32 rdi_errors = 3;
+    fixed64 rdi_errors = 3;
 }
 
 message OnuLossOfGEMChannelDelineationIndication {
