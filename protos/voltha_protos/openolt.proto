@@ -205,10 +205,9 @@ message AlarmIndication {
         OnuLossOfKeySyncFailureIndication onu_loss_of_sync_fail_ind = 12;
         OnuItuPonStatsIndication onu_itu_pon_stats_ind = 13;
         OnuDeactivationFailureIndication onu_deactivation_failure_ind = 14;
-        OnuRemoteDefectIndication onu_remote_defect_ind = 15;
-        OnuLossOfGEMChannelDelineationIndication onu_loss_gem_delineation_ind = 16;
-        OnuPhysicalEquipmentErrorIndication onu_physical_equipment_error_ind = 17;
-        OnuLossOfAcknowledgementIndication onu_loss_of_ack_ind = 18;
+        OnuLossOfGEMChannelDelineationIndication onu_loss_gem_delineation_ind = 15;
+        OnuPhysicalEquipmentErrorIndication onu_physical_equipment_error_ind = 16;
+        OnuLossOfAcknowledgementIndication onu_loss_of_ack_ind = 17;
     }
 }
 
@@ -513,7 +512,8 @@ message OnuLossOfKeySyncFailureIndication {
 message OnuItuPonStatsIndication{
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
-    fixed32 rdi_errors = 3;
+    fixed64 rdi_errors = 3;
+    fixed64 bip_errors = 4;
 }
 
 message OnuProcessingErrorIndication {
@@ -525,12 +525,6 @@ message OnuDeactivationFailureIndication {
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
     fixed32 fail_reason = 3;
-}
-
-message OnuRemoteDefectIndication{
-    fixed32 intf_id = 1;
-    fixed32 onu_id = 2;
-    fixed32 rdi_errors = 3;
 }
 
 message OnuLossOfGEMChannelDelineationIndication {
