@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8d7d083_88686ee9",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-03-11T18:09:34Z",
+      "side": 0,
+      "message": "I prefer that we not remove this. Instead use this alarm to report RDI errors. The agent anyway detects a raise and clear event based on Threshold configuration.",
+      "revId": "829579624103228283f5bea1ec0cc11538147bde",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e3a9d85_225d44d1",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-03-11T18:09:34Z",
+      "side": 0,
+      "message": "As mentioned, I prefer this is not removed. Also, additionally have a \"status\" to indicate a RAISE and CLEAR event. See LosIndication message for example which has \"status\".",
+      "revId": "829579624103228283f5bea1ec0cc11538147bde",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}

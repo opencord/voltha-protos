@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6dc7030_021e4fee",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-03-11T18:09:34Z",
+      "side": 1,
+      "message": "Since we are trying to address only RDI alarm, can we we skip bip_errors for now? We can come back to addressing BIP errors in another Jira if needed.",
+      "revId": "17bac36b5bdb5ec0bf50d1d186245d2f3ba2f17b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
