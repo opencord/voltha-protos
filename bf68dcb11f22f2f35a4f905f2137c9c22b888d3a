@@ -34,6 +34,24 @@
       "revId": "bf68dcb11f22f2f35a4f905f2137c9c22b888d3a",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc51b515_38631724",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-17T17:57:19Z",
+      "side": 1,
+      "message": "Understood, and this is sort of a nit, but changing the description to describe it as a request ID would be better in my opinion. Else people will assume it is specific to NEM as it described now.",
+      "parentUuid": "9191f175_755b5512",
+      "revId": "bf68dcb11f22f2f35a4f905f2137c9c22b888d3a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
