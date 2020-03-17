@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1de0812_955813ab",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-17T17:44:49Z",
+      "side": 1,
+      "message": "what is a NEM only id finding its way into voltha protos?",
+      "revId": "bf68dcb11f22f2f35a4f905f2137c9c22b888d3a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
