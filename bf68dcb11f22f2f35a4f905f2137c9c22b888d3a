@@ -16,6 +16,24 @@
       "revId": "bf68dcb11f22f2f35a4f905f2137c9c22b888d3a",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9191f175_755b5512",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-03-17T17:52:18Z",
+      "side": 1,
+      "message": "The uuid is used to match kafka replies with grpc requests to start the test action. \"Used by the NEM\" might be a more appropriate comments (lots of features might be used by the NEM, but that doesn\u0027t necessarily make them parts of the NEM)",
+      "parentUuid": "b1de0812_955813ab",
+      "revId": "bf68dcb11f22f2f35a4f905f2137c9c22b888d3a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
