@@ -209,6 +209,7 @@ message AlarmIndication {
         OnuLossOfGEMChannelDelineationIndication onu_loss_gem_delineation_ind = 16;
         OnuPhysicalEquipmentErrorIndication onu_physical_equipment_error_ind = 17;
         OnuLossOfAcknowledgementIndication onu_loss_of_ack_ind = 18;
+        OnuDifferentialReachExceededIndication onu_diff_reach_exceeded_ind = 19;
     }
 }
 
@@ -550,6 +551,13 @@ message OnuLossOfAcknowledgementIndication {
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
     string status = 3;
+}
+
+message OnuDifferentialReachExceededIndication {
+        fixed32 intf_id = 1;
+        fixed32 onu_id = 2;
+        string status = 3;
+        fixed32 distance = 4;
 }
 
 message GroupMember {
