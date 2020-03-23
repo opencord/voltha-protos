@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bb86eb5_db8c6159",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-03-23T06:58:43Z",
+      "side": 1,
+      "message": "Is the numbers available/defined somewhere?.For example what should be the number for alarm_id and other fields for onu remote defect.",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 22
+      },
+      "revId": "6408c6b5e7e827310a5e2dca9cb8ab8aa3bcb2df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47b02ea5_99c20be0",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-03-23T06:58:43Z",
+      "side": 1,
+      "message": "Are we still using using this message to raise the onu remote defect alarm",
+      "range": {
+        "startLine": 551,
+        "startChar": 8,
+        "endLine": 551,
+        "endChar": 33
+      },
+      "revId": "6408c6b5e7e827310a5e2dca9cb8ab8aa3bcb2df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
