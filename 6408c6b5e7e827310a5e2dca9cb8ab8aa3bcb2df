@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a1556a07_54b2395e",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-03-24T09:17:59Z",
+      "side": 1,
+      "message": "You could refer the Gerrit review\nhttps://gerrit.opencord.org/#/c/17968/5/agent/src/core_api_handler.cc",
+      "parentUuid": "1bb86eb5_db8c6159",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 22
+      },
+      "revId": "6408c6b5e7e827310a5e2dca9cb8ab8aa3bcb2df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47b02ea5_99c20be0",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-03-23T06:58:43Z",
       "side": 1,
       "message": "Are we still using using this message to raise the onu remote defect alarm",
+      "range": {
+        "startLine": 551,
+        "startChar": 8,
+        "endLine": 551,
+        "endChar": 33
+      },
+      "revId": "6408c6b5e7e827310a5e2dca9cb8ab8aa3bcb2df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15960536_58344447",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-03-24T09:17:59Z",
+      "side": 1,
+      "message": "We probably could move the the OnuItuPonStatsIndication.",
+      "parentUuid": "47b02ea5_99c20be0",
       "range": {
         "startLine": 551,
         "startChar": 8,
