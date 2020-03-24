@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecd2bf34_dff3a382",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-03-24T17:01:03Z",
+      "side": 1,
+      "message": "I think David\u0027s proposal was that this would be an int32 bitfield, similar to the Set/Unsupported/Error fields in ReturnValues, rather than an enum.\n\nYou would then \"or\" various integer constants together to form a list of fields. Right now we only have \"DISTANCE\", but hypothetically other values would be powers of two (2, 4, 8, 16, ...) so that each one sets a separate bit in the bit field.",
+      "range": {
+        "startLine": 107,
+        "startChar": 1,
+        "endLine": 107,
+        "endChar": 21
+      },
+      "revId": "b3b4a866f210114c87c257d8f70e5bc23bacb169",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
