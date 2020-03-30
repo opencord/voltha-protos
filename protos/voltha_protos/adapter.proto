@@ -38,6 +38,10 @@ message Adapter {
 
     // timestamp when the adapter last sent a message to the core
     google.protobuf.Timestamp last_communication = 5;
+
+    int32 currentReplica = 6;
+    int32 totalReplicas = 7;
+    string endpoint = 8;
 }
 
 message Adapters {
