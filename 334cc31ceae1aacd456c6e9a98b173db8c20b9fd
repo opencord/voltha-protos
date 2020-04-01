@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8defb08a_64f7cef0",
+        "filename": "VERSION",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-04-01T15:37:33Z",
+      "side": 1,
+      "message": "Did not realize that the current version is a dev version.  We could either leave the version as is or release the previous version and create a new dev version.",
+      "revId": "334cc31ceae1aacd456c6e9a98b173db8c20b9fd",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
