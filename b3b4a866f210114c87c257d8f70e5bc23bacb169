@@ -22,6 +22,30 @@
       "revId": "b3b4a866f210114c87c257d8f70e5bc23bacb169",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "278f02b9_2c964dda",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2020-04-06T17:54:18Z",
+      "side": 1,
+      "message": "yes but .proto files dont take bit values . so used enums and we can assign values to enum like 1,2,4,,8,6 like power of tw",
+      "parentUuid": "ecd2bf34_dff3a382",
+      "range": {
+        "startLine": 107,
+        "startChar": 1,
+        "endLine": 107,
+        "endChar": 21
+      },
+      "revId": "b3b4a866f210114c87c257d8f70e5bc23bacb169",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
