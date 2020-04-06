@@ -24,7 +24,7 @@ message Adapter {
 
     // Unique name of adapter, matching the python package name under
     // voltha/adapters.
-    string id = 1 [(access) = READ_ONLY];
+    string id = 1 [(access) = READ_ONLY]; // the adapter ID has to be unique, and will be generated as Type + CurrentReplica
     string vendor = 2 [(access) = READ_ONLY];
     string version = 3 [(access) = READ_ONLY];
 
@@ -42,6 +42,7 @@ message Adapter {
     int32 currentReplica = 6;
     int32 totalReplicas = 7;
     string endpoint = 8;
+    string type = 9; // this indicates the adapter-type, it replaces ID to support multiple adapters
 }
 
 message Adapters {
