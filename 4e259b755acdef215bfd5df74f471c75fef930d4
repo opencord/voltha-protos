@@ -16,6 +16,24 @@
       "revId": "4e259b755acdef215bfd5df74f471c75fef930d4",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16f223a7_370bca45",
+        "filename": "protos/voltha_protos/adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2020-04-06T20:07:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82546936_9962c8f3",
+      "revId": "4e259b755acdef215bfd5df74f471c75fef930d4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
