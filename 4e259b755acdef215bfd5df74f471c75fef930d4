@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82546936_9962c8f3",
+        "filename": "protos/voltha_protos/adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-04-06T19:53:49Z",
+      "side": 1,
+      "message": "Instead of referring the ID, it may be useful to state that all replicas of a given adapter will have the same adapter type.",
+      "revId": "4e259b755acdef215bfd5df74f471c75fef930d4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
