@@ -52,6 +52,24 @@
       "revId": "7b640af9c9a939b5b77e0a763bdc2e4caffa926a",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91ae448a_f99f1ab1",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-04-13T19:47:28Z",
+      "side": 1,
+      "message": "Agree, we can worry about configuration as part of another task.",
+      "parentUuid": "fb0db998_9616e0b6",
+      "revId": "7b640af9c9a939b5b77e0a763bdc2e4caffa926a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
