@@ -8,6 +8,7 @@ import public "voltha_protos/voltha.proto";
 import "google/protobuf/any.proto";
 import "voltha_protos/openflow_13.proto";
 import public "voltha_protos/logical_device.proto";
+import "google/protobuf/timestamp.proto";
 
 package voltha;
 
@@ -52,7 +53,7 @@ message Header {
     string from_topic = 3;
     string to_topic = 4;
     string key_topic = 5;
-    int64 timestamp = 6;
+    google.protobuf.Timestamp timestamp = 6;
 }
 
 message Argument {
@@ -116,7 +117,7 @@ message InterAdapterHeader {
     string to_topic = 4;
     string to_device_id = 5;
     string proxy_device_id = 6;
-    int64 timestamp = 7;
+    google.protobuf.Timestamp timestamp = 7;
 }
 
 message InterAdapterOmciMessage {
