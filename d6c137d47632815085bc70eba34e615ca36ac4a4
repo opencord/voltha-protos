@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92dd1de1_6c6d8cf2",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-04-20T17:25:16Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 121,
+        "startChar": 47,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "d6c137d47632815085bc70eba34e615ca36ac4a4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
