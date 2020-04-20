@@ -416,6 +416,7 @@ message Flow {
     fixed64 cookie = 12; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
     fixed32 port_no = 13; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
     fixed32 group_id = 14;
+    fixed32 tech_profile_id = 15;
 }
 
 message OnuItuPonAlarm {

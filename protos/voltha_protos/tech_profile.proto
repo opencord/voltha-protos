@@ -74,6 +74,7 @@ message TrafficScheduler {
     fixed32 alloc_id = 2; // valid only if “direction == Upstream ”
     SchedulerConfig scheduler = 3;
     TrafficShapingInfo traffic_shaping_info = 4;
+    fixed32 tech_profile_id = 5;
 }
 
 message TrafficSchedulers {
@@ -127,4 +128,5 @@ message TrafficQueues {
     fixed32 uni_id = 4;
     fixed32 port_no = 5;
     repeated TrafficQueue traffic_queues = 6;
+    fixed32 tech_profile_id = 7;
 }
