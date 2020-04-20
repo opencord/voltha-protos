@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8360f418_5333e4af",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-04-20T15:19:41Z",
+      "side": 1,
+      "message": "soack -\u003e soak",
+      "range": {
+        "startLine": 422,
+        "startChar": 12,
+        "endLine": 422,
+        "endChar": 29
+      },
+      "revId": "67e4c39a9f58eb8342ff426b5dba73938cfd3fbc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8aea76e4_90240074",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-04-20T15:19:41Z",
+      "side": 1,
+      "message": "Do we still need this where we have a dedicated indication (namely, OnuRemoteDefectIndication) for rdi_errors? Is there a use case where we send OnuItuPonStatsIndication?",
+      "range": {
+        "startLine": 534,
+        "startChar": 8,
+        "endLine": 534,
+        "endChar": 32
+      },
+      "revId": "67e4c39a9f58eb8342ff426b5dba73938cfd3fbc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a4dcd67_7a35e1dd",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-04-20T15:19:41Z",
+      "side": 1,
+      "message": "Should this be fixed32 or fixed64? I am asking this since the type of rdi_errors has been changed to fixed64 in OnuItuPonStatsIndication.",
+      "range": {
+        "startLine": 554,
+        "startChar": 9,
+        "endLine": 554,
+        "endChar": 11
+      },
+      "revId": "67e4c39a9f58eb8342ff426b5dba73938cfd3fbc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
