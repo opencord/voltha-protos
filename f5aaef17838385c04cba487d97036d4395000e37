@@ -16,6 +16,24 @@
       "revId": "f5aaef17838385c04cba487d97036d4395000e37",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "281d5840_87cfca31",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-04-21T15:14:43Z",
+      "side": 1,
+      "message": "I think we can safely eliminate it. I\u0027ll update.",
+      "parentUuid": "a235f91f_3cb6cf59",
+      "revId": "f5aaef17838385c04cba487d97036d4395000e37",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
