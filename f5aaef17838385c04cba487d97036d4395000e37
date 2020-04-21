@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c5b45112_ca5bad04",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-04-21T18:33:59Z",
+      "side": 1,
+      "message": "It\u0027s intended to be general purpose, like an IOCTL. The proposal was written up here: https://docs.google.com/document/d/1TlP6cqqBkc5x_g5KhON5GkJJUZ-DvqJ4TZszwm3Mq_0/edit",
+      "parentUuid": "3786161b_3b818502",
+      "revId": "f5aaef17838385c04cba487d97036d4395000e37",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a235f91f_3cb6cf59",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 15
