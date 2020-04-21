@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "a75f6000_6e5c27a9",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-04-21T18:41:28Z",
+      "side": 1,
+      "message": "I just think \"value\" is _too_ general-purpose.\n\nSkimming that document, what about \"attribute\" instead of \"value\"?  This at least indicates that the information is tied to some component.\n\nCustomAttribute/OperatorAttribute/GenericAttribute/ExtendedAttribute?",
+      "parentUuid": "c5b45112_ca5bad04",
+      "revId": "f5aaef17838385c04cba487d97036d4395000e37",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a235f91f_3cb6cf59",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 15
