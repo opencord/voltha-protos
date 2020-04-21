@@ -22,6 +22,30 @@
       "revId": "3c351445ac9df22b124ec91758d8216f7943bf86",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a9b9174_96138d85",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000475
+      },
+      "writtenOn": "2020-04-21T14:51:49Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "e80e9035_ca8c8fd6",
+      "range": {
+        "startLine": 121,
+        "startChar": 47,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "3c351445ac9df22b124ec91758d8216f7943bf86",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
