@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "c7ce1616_963fe8e4",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-04-21T19:11:14Z",
+      "side": 1,
+      "message": "It\u0027s just that this is being used a the top-level API.\n\nThis GetValue() name is being used on the top-level voltha api.  It will end up, in the code, being called as \n\n`voltaClient.GetValue()`\n\nGet what value?  From where?  At least add the term \"Generic\" or \"UserDefined\" to the function call.\n\nEverything else is detailed \u0026 specific, like:\n\n`volthaClient.GetLogicalDevicePort()`\n\nThis indicates what the function does \u0026 what it relates to.\n\nAs a developer, I want to know what a function does (or at least some indication) without looking at the documentation/implementation.\n\nPerhaps \"volthaClient.GetImplemetationDefinedValue()`?\n\nThis would indicate that the usage is not well-defined by the api (which I think is the intent of this proposal to begin with.)",
+      "parentUuid": "a7578a8b_4f9ca8a1",
+      "revId": "f5aaef17838385c04cba487d97036d4395000e37",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a235f91f_3cb6cf59",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 15
