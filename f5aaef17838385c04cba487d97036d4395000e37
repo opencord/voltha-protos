@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a235f91f_3cb6cf59",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-04-21T15:09:11Z",
+      "side": 1,
+      "message": "Do we need to have the VAL prefix?",
+      "revId": "f5aaef17838385c04cba487d97036d4395000e37",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
