@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "004fe6f6_7b29f729",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-04-21T03:37:02Z",
+      "side": 1,
+      "message": "Yes, You got it.",
+      "parentUuid": "8360f418_5333e4af",
+      "range": {
+        "startLine": 422,
+        "startChar": 12,
+        "endLine": 422,
+        "endChar": 29
+      },
+      "revId": "67e4c39a9f58eb8342ff426b5dba73938cfd3fbc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8aea76e4_90240074",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "84378385_72db9bee",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-04-21T03:37:02Z",
+      "side": 1,
+      "message": "Yes, Broadcom has defined the other PON alarms. This message is offering the framework of alarm in case we want to add more alarms further.",
+      "parentUuid": "8aea76e4_90240074",
+      "range": {
+        "startLine": 534,
+        "startChar": 8,
+        "endLine": 534,
+        "endChar": 32
+      },
+      "revId": "67e4c39a9f58eb8342ff426b5dba73938cfd3fbc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a4dcd67_7a35e1dd",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2020-04-20T15:19:41Z",
       "side": 1,
       "message": "Should this be fixed32 or fixed64? I am asking this since the type of rdi_errors has been changed to fixed64 in OnuItuPonStatsIndication.",
+      "range": {
+        "startLine": 554,
+        "startChar": 9,
+        "endLine": 554,
+        "endChar": 11
+      },
+      "revId": "67e4c39a9f58eb8342ff426b5dba73938cfd3fbc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f719033_dd2917dc",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-04-21T03:37:02Z",
+      "side": 1,
+      "message": "I do not add this one in this review. Yes, It should be fixed64 type. I could modify it later.",
+      "parentUuid": "9a4dcd67_7a35e1dd",
       "range": {
         "startLine": 554,
         "startChar": 9,
