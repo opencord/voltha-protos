@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "a7578a8b_4f9ca8a1",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-04-21T18:51:48Z",
+      "side": 1,
+      "message": "Not sure that \"attribute\" is much more descriptive over \"value\", tbh. Is getting an attribute of a component that different from getting a value of a component?\n\nIOCTL (`https://linux.die.net/man/2/ioctl) seems to use the term value and again this is based heavily on IOCTL.\n\n\"value\" leaves open the possibility of the return value being a calculated value as opposed to an attribute in my mind, but again, the distinction isn\u0027t that huge imo.",
+      "parentUuid": "a75f6000_6e5c27a9",
+      "revId": "f5aaef17838385c04cba487d97036d4395000e37",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a235f91f_3cb6cf59",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 15
