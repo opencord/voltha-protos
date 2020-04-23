@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "916b6c2d_974f772d",
+        "filename": "protos/voltha_protos/tech_profile.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-04-23T19:29:37Z",
+      "side": 1,
+      "message": "Should this tech_profile_id move to parent structure, i.e., TrafficSchedulers?",
+      "revId": "ce06435fa3772edbfa6a1aa29407dc2e2be058f4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
