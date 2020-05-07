@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c589b73_2fe42d0e",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-05-07T22:02:34Z",
+      "side": 1,
+      "message": "rdi_error_ind is better in order not to confuse it with a single rdi_error",
+      "revId": "120bc68420477761981341e96ddb4ab6580d5643",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52227eef_1c640201",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-05-07T22:02:34Z",
+      "side": 1,
+      "message": "Not related to this patch but OnuDeactivationFailureIndication (DFi) is an alarm and it does not have fail_reason field. This field must be \"string status\" as in the other alarm messages.",
+      "revId": "120bc68420477761981341e96ddb4ab6580d5643",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
