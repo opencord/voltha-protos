@@ -2254,7 +2254,7 @@ message MeterModUpdate {
 }
 
 message MeterStatsReply {
-    repeated ofp_meter_stats meter_stats = 1;
+    map<uint32, ofp_meter_stats> meter_stats = 1;
 }
 
 message FlowTableUpdate {
@@ -2268,26 +2268,26 @@ message FlowGroupTableUpdate {
 }
 
 message Flows {
-    repeated ofp_flow_stats items = 1;
+    map<fixed64, ofp_flow_stats> items = 1;
 }
 
 message Meters {
-    repeated ofp_meter_entry items = 1;
+    map<uint32, ofp_meter_entry> items = 1;
 }
 
 message FlowGroups {
-    repeated ofp_group_entry items = 1;
+    map<uint32, ofp_group_entry> items = 1;
 }
 
 message FlowChanges {
-    Flows to_add = 1;
-    Flows to_remove = 2;
+    map<fixed64, ofp_flow_stats> to_add = 1;
+    map<fixed64, ofp_flow_stats> to_remove = 2;
 }
 
 message FlowGroupChanges {
-    FlowGroups to_add = 1;
-    FlowGroups to_remove = 2;
-    FlowGroups to_update = 3;
+    map<uint32, ofp_group_entry> to_add = 1;
+    map<uint32, ofp_group_entry> to_remove = 2;
+    map<uint32, ofp_group_entry> to_update = 3;
 }
 
 message PacketIn {

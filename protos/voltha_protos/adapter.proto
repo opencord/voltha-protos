@@ -7,7 +7,7 @@ option java_outer_classname = "VolthaAdapter";
 package voltha;
 
 import "google/protobuf/any.proto";
-import "voltha_protos/common.proto";
+import "google/protobuf/empty.proto";
 import "voltha_protos/meta.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -34,7 +34,7 @@ message Adapter {
     // Custom descriptors and custom configuration
     google.protobuf.Any additional_description = 64 [(access) = READ_ONLY];
 
-    repeated string logical_device_ids = 4;  // Logical devices "owned"
+    map<string, google.protobuf.Empty> logical_device_ids = 4;  // Logical devices "owned"
 
     // timestamp when the adapter last sent a message to the core
     google.protobuf.Timestamp last_communication = 5;
@@ -49,5 +49,5 @@ message Adapter {
 }
 
 message Adapters {
-    repeated Adapter items = 1;
+    map<string, Adapter> items = 1;
 }

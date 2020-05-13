@@ -7,9 +7,6 @@ option java_package = "org.opencord.voltha";
 
 package afrouter;
 
-// For logging
-import "voltha_protos/common.proto";
-
 service Configuration {
    	rpc SetConnection (Conn) returns (Result) {}
 	rpc SetAffinity(Affinity) returns (Result) {}
