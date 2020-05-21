@@ -185,11 +185,13 @@ message Port {
         VENET_ONU = 6;
     }
 
-    uint32 port_no = 1;  // Device-unique port number
+    string id = 1 ; // Voltha's globally unique port identifier
 
-    string label = 2;  // Arbitrary port label
+    uint32 port_no = 2;  // Device-unique port number
 
-    PortType type = 3;  //  Type of port
+    string label = 3;  // Arbitrary port label
+
+    PortType type = 4;  //  Type of port
 
     common.AdminState.Types admin_state = 5;
 
