@@ -184,12 +184,14 @@ message Port {
         VENET_OLT = 5;
         VENET_ONU = 6;
     }
+        
+    string id = 1 ; // Voltha's device identifier
 
-    uint32 port_no = 1;  // Device-unique port number
+    uint32 port_no = 2;  // Device-unique port number
 
-    string label = 2;  // Arbitrary port label
+    string label = 3;  // Arbitrary port label
 
-    PortType type = 3;  //  Type of port
+    PortType type = 4;  //  Type of port
 
     common.AdminState.Types admin_state = 5;
 
