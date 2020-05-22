@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "407606c8_ba874215",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2020-05-22T09:10:20Z",
+      "side": 1,
+      "message": "Can you please change the comments to something more appropriate for the port?",
+      "revId": "f624430e7b4bd8b7554c150365c610fcbbc3971a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
