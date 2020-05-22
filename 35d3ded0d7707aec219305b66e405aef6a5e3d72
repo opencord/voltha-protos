@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "120a2fd1_0e7912ec",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-05-22T15:55:04Z",
+      "side": 1,
+      "message": "What is wrong with using the port_no as the uuid?\n\nAlso: Would it make sense to use a uint type instead of a string type?  Where does this id come from?",
+      "revId": "35d3ded0d7707aec219305b66e405aef6a5e3d72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce27536d_151a7064",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-05-22T15:55:04Z",
+      "side": 1,
+      "message": "Not supposed to change field numbers, though I don\u0027t think it matters in this case.",
+      "revId": "35d3ded0d7707aec219305b66e405aef6a5e3d72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
