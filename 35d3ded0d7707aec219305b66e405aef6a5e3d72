@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "e29b3538_fde12d72",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2020-05-25T21:24:51Z",
+      "side": 1,
+      "message": "Yes the idea was to use a single id instead of a composite key and the change was proposed on the Device struct. In the logical device plane we didn\u0027t suggest any change.\n\nWe can discuss this further in the weekly TST call.",
+      "parentUuid": "9ba40223_193142c6",
+      "revId": "35d3ded0d7707aec219305b66e405aef6a5e3d72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce27536d_151a7064",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 3
