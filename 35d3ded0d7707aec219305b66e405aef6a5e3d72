@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9ba40223_193142c6",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-05-25T21:10:53Z",
+      "side": 1,
+      "message": "So, after looking at the other patchsets related to this jira:\n\nWould it not be easier to just document that the deviceid+port_no uniquely identifies a port?\n\nThe approach used in this patch \u0026 the jira adds another identifier to keep track of.\n\nIt makes sense (to me) to think of a port as a sub-resource of a device, and thus to require both deviceID (either explicitly or from context) along with portNo to uniquely identify a device.  This avoids the issue of having to do a lookup from the (new) port id to device id \u0026 portNo.\n\nI\u0027m generally opposed to this approach, as it adds another identifier to something that\u0027s already uniquely identifiable, albeit using a composite key.\n\nThis would cause more complexity rather than less when handling ports in certain places.  I have a work-in-progress LogicalDevice port-management patch that would be impacted by this.\n\n\nTL;DR:  I\u0027m opposed to these changes as-is, would like to discuss further if possible.",
+      "parentUuid": "54e6d2f8_71e8de2a",
+      "revId": "35d3ded0d7707aec219305b66e405aef6a5e3d72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce27536d_151a7064",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 3
