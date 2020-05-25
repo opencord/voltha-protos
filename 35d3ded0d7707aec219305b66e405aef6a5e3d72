@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "54e6d2f8_71e8de2a",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2020-05-25T20:52:05Z",
+      "side": 1,
+      "message": "The port_no currently is created using encodings of different things like the port type, interface id etc and so using a uuid as the value is not really feasible.\n\nCurrently the port_no is unique within a device. We thought of having something which is unique within the complete system so an UUID in the same lines as device_id.\n\nAs the JIRA VOL-2953 says, having this system wide unique id would make the life of NB systems easier.",
+      "parentUuid": "120a2fd1_0e7912ec",
+      "revId": "35d3ded0d7707aec219305b66e405aef6a5e3d72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce27536d_151a7064",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 3
