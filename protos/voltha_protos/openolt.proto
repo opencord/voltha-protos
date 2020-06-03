@@ -194,6 +194,13 @@ service Openolt {
           body: "*"
         };
     }
+
+    rpc GetOnuFiberDistance(OnuFiberDistance) returns (OnuFiberDistance) {
+        option (google.api.http) = {
+            post: "/v1/GetOnuFiberDistance"
+            body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -292,6 +299,12 @@ message Onu {
     fixed32 onu_id = 2;
     SerialNumber serial_number = 3;
     fixed32 pir = 4;   // peak information rate assigned to onu
+}
+
+message OnuFiberDistance {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    fixed32 distance = 3;
 }
 
 message OmciMsg {
