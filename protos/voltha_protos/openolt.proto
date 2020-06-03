@@ -194,6 +194,20 @@ service Openolt {
           body: "*"
         };
     }
+
+    rpc GetLogicalOnuDistanceZero(Onu) returns (OnuLogicalDistance) {
+        option (google.api.http) = {
+            post: "/v1/GetLogicalOnuDistanceZero"
+            body: "*"
+        };
+    }
+
+    rpc GetLogicalOnuDistance(Onu) returns (OnuLogicalDistance) {
+        option (google.api.http) = {
+            post: "/v1/GetLogicalOnuDistance"
+            body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -292,6 +306,13 @@ message Onu {
     fixed32 onu_id = 2;
     SerialNumber serial_number = 3;
     fixed32 pir = 4;   // peak information rate assigned to onu
+}
+
+message OnuLogicalDistance {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    fixed32 logical_onu_distance_zero = 3; //0km logical distance
+    fixed32 logical_onu_distance = 4;
 }
 
 message OmciMsg {
