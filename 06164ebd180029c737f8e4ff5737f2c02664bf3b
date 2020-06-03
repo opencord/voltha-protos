@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fc21183_a85a2016",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-06-03T18:15:47Z",
+      "side": 1,
+      "message": "Didn\u0027t we decide that we would use two RPCs.\nGetLogicalOnuDistanceZero and GetLogicalOnuDistance. See discussion on VOL-2596.\nLet openolt-agent return hardcoded values for GetLogicalOnuDistanceZero.\n@burak: You are inline with this?",
+      "revId": "06164ebd180029c737f8e4ff5737f2c02664bf3b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
