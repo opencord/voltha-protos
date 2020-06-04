@@ -39,6 +39,24 @@
       "revId": "06164ebd180029c737f8e4ff5737f2c02664bf3b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52f03bab_f8c2b099",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-06-04T05:56:03Z",
+      "side": 1,
+      "message": "We had decided to open two RPC methods and left the decision of using LD0 value to the operator (the operator may decide to get LD0 value from its inventory) This is also a request/suggestion from Scott (see VOL-2596). Therefore, we should provide two RPC functions instead of one that calculates the ultimate PD value.",
+      "parentUuid": "4fc21183_a85a2016",
+      "revId": "06164ebd180029c737f8e4ff5737f2c02664bf3b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
