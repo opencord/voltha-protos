@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee6bc606_f0fddb9f",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-06-05T17:07:29Z",
+      "side": 1,
+      "message": "The agent will not know which Onu we are requesting the distance for. Same for another RPC.\nI have shared all the changes needed in another comment.",
+      "range": {
+        "startLine": 198,
+        "startChar": 34,
+        "endLine": 198,
+        "endChar": 39
+      },
+      "revId": "17d0dce9d5ab189afb32ae9a465d356d0cd408c5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3dad615_f04deb55",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-06-05T17:07:29Z",
+      "side": 1,
+      "message": "See comment above",
+      "range": {
+        "startLine": 205,
+        "startChar": 30,
+        "endLine": 205,
+        "endChar": 35
+      },
+      "revId": "17d0dce9d5ab189afb32ae9a465d356d0cd408c5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb4a6951_05b3f72d",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-06-05T17:07:29Z",
+      "side": 1,
+      "message": "We should not be overloading this message with distance details. See my another comment with the changes needed.",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 37
+      },
+      "revId": "17d0dce9d5ab189afb32ae9a465d356d0cd408c5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
