@@ -210,6 +210,7 @@ message Port {
     fixed64 tx_bytes = 13;
     fixed64 tx_errors = 14;
 
+    openflow_13.ofp_port ofp_port = 15;
 }
 
 message Ports {
