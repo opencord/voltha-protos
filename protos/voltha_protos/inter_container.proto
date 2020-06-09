@@ -83,10 +83,6 @@ message SwitchCapability {
     openflow_13.ofp_switch_features switch_features = 2;
 }
 
-message PortCapability {
-    LogicalPort port = 1;
-}
-
 message DeviceDiscovered {
     string id = 1;
     string parent_id = 2;
