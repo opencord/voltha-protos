@@ -22,6 +22,30 @@
       "revId": "323f0d4d76d992da1942442407ffcf34dd421876",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6214999e_fad56622",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-06-10T15:46:27Z",
+      "side": 1,
+      "message": "Correct.   The ofpPortStats is not needed.  The attributes of ofpPortStats are actually represented by rx_... and tx_.. above.    Also, this field is not used today.",
+      "parentUuid": "2ed18b0e_854c18d1",
+      "range": {
+        "startLine": 216,
+        "startChar": 25,
+        "endLine": 216,
+        "endChar": 33
+      },
+      "revId": "323f0d4d76d992da1942442407ffcf34dd421876",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
