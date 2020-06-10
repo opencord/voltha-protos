@@ -70,6 +70,30 @@
       "revId": "323f0d4d76d992da1942442407ffcf34dd421876",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37793504_44b56048",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-06-10T16:46:49Z",
+      "side": 1,
+      "message": "ofpPortStats",
+      "parentUuid": "6de3eb3d_5a1c2904",
+      "range": {
+        "startLine": 216,
+        "startChar": 25,
+        "endLine": 216,
+        "endChar": 33
+      },
+      "revId": "323f0d4d76d992da1942442407ffcf34dd421876",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
