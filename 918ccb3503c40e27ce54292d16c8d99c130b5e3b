@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8736a2f_706c0e0f",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-06-10T00:36:16Z",
+      "side": 1,
+      "message": "Does it make sense to add some comments here that this is relevant for UNI and NNI ports only - considering that we are referring to openflow ports here.",
+      "revId": "918ccb3503c40e27ce54292d16c8d99c130b5e3b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    }
+  ]
+}
