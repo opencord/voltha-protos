@@ -145,6 +145,14 @@ type OmciTestRequest = voltha.OmciTestRequest
 // TestResponse from public import voltha_protos/voltha.proto
 type TestResponse = voltha.TestResponse
 
+// ValueSet from public import voltha_protos/voltha.proto
+type ValueSet = voltha.ValueSet
+type ValueSet_AlarmConfig = voltha.ValueSet_AlarmConfig
+
+// AlarmConfig from public import voltha_protos/voltha.proto
+type AlarmConfig = voltha.AlarmConfig
+type AlarmConfig_OnuItuPonAlarmConfig = voltha.AlarmConfig_OnuItuPonAlarmConfig
+
 // Voltha from public import voltha_protos/voltha.proto
 type Voltha = voltha.Voltha
 
