@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "354465e8_9dd9ab69",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-06-23T18:56:14Z",
+      "side": 1,
+      "message": "Should remove the extra whitespace here.",
+      "revId": "0073123d717ec285522c7352aec3ca1fbfd589df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
