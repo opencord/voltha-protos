@@ -23,6 +23,7 @@ import public "voltha_protos/openflow_13.proto";
 
 import "voltha_protos/omci_mib_db.proto";
 import "voltha_protos/omci_alarm_db.proto";
+import "voltha_protos/ext_config.proto";
 
 option java_package = "org.opencord.voltha";
 option java_outer_classname = "VolthaProtos";
@@ -95,6 +96,13 @@ message TestResponse{
         FAILURE = 1;
     }
     TestResponseResult result = 1;
+}
+
+message ValueSet {
+    string id = 1;
+    oneof value{
+        config.AlarmConfig alarm_config = 2;
+    }
 }
 
 // Voltha represents the Voltha cluster data.  Each Core instance will hold a subset of
@@ -600,6 +608,11 @@ service VolthaService {
     rpc GetExtValue(common.ValueSpecifier) returns(common.ReturnValues) {
         option (google.api.http) = {
             get: "/api/v1/GetExtValue"
+        };
+    }
+    rpc SetExtValue(ValueSet) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/v1/SetExtValue"
         };
     }
 
