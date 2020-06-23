@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v3/go/config";
+
+package config;
+
+option java_package = "org.opencord.voltha";
+
+message AlarmConfig {
+    oneof config {
+       OnuItuPonAlarm onu_itu_pon_alarm_config = 1;
+    }
+}
+
+message OnuItuPonAlarm {
+   enum AlarmID {
+       RDI_ERRORS = 0; // RDI errors
+   }
+
+   enum AlarmReportingCondition {
+       RATE_THRESHOLD = 0; // The alarm is triggered if the stats delta value between samples crosses the configured threshold boundary
+       RATE_RANGE = 1; // The alarm is triggered if the stats delta value between samples deviates from the configured range
+       VALUE_THRESHOLD = 2; // The alarm is raised if the stats sample value becomes greater than this level.  The alarm is cleared when the host read the stats
+   }
+
+   message SoakTime {
+       fixed32 active_soak_time = 1;
+       fixed32 clear_soak_time = 2;
+   }
+
+   message RateThresholdConfig {
+       fixed64 rate_threshold_rising = 1;
+       fixed64 rate_threshold_falling = 2;
+       SoakTime soak_time = 3;
+   }
+
+   message RateRangeConfig {
+       fixed64 rate_range_lower = 1;
+       fixed64 rate_range_upper = 2;
+       SoakTime soak_time = 3;
+   }
+
+   message ValueThresholdConfig {
+       fixed64 threshold_limit = 1;
+       SoakTime soak_time = 2;
+   }
+
+   fixed32 pon_ni = 1;
+   fixed32 onu_id = 2;
+   AlarmID alarm_id = 3;
+   AlarmReportingCondition alarm_reporting_condition = 4;
+   oneof config {
+       RateThresholdConfig rate_threshold_config = 5;
+       RateRangeConfig rate_range_config = 6;
+       ValueThresholdConfig value_threshold_config = 7;
+   }
+}
