@@ -20,6 +20,7 @@ import public "voltha_protos/logical_device.proto";
 import public "voltha_protos/device.proto";
 import public "voltha_protos/adapter.proto";
 import public "voltha_protos/openflow_13.proto";
+import public "voltha_protos/openolt.proto";
 
 import "voltha_protos/omci_mib_db.proto";
 import "voltha_protos/omci_alarm_db.proto";
@@ -97,6 +98,18 @@ message TestResponse{
     TestResponseResult result = 1;
 }
 
+message ValueSet {
+    string id = 1;
+    oneof value{
+        AlarmConfig alarm_config = 2;
+    }
+}                                                                               
+                                                                                    
+message AlarmConfig {                                                           
+    oneof config {                                                              
+        openolt.OnuItuPonAlarm onu_itu_pon_alarm_config = 1;                    
+    }                                                                           
+}    
 // Voltha represents the Voltha cluster data.  Each Core instance will hold a subset of
 // the entire cluster. However, some items (e.g. adapters) will be held by all cores
 // for better performance
@@ -600,6 +613,11 @@ service VolthaService {
     rpc GetExtValue(common.ValueSpecifier) returns(common.ReturnValues) {
         option (google.api.http) = {
             get: "/api/v1/GetExtValue"
+        };
+    }
+    rpc SetExtValue(ValueSet) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/v1/SetExtValue"
         };
     }
 
