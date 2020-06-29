@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1b8fe73_c9031977",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-06-29T17:21:21Z",
+      "side": 1,
+      "message": "How do you know if the RPC has succeeded. Is the assumption that RPC will always succeeed.",
+      "range": {
+        "startLine": 618,
+        "startChar": 38,
+        "endLine": 618,
+        "endChar": 59
+      },
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
