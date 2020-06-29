@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "79855c3d_ec2eeaa6",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-06-29T17:32:15Z",
+      "side": 1,
+      "message": "If we support an additional OLT adapter then are we stating that this OLT adapter needs to support the same alarm definition as defined in the openolt protos? Would it be better if the ITU PON alarm definition is referred directly here?",
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1b8fe73_c9031977",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3
