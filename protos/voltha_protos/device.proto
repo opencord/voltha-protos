@@ -67,6 +67,7 @@ message PmConfigs {
     bool freq_override = 4 [(access) = READ_ONLY];
     repeated PmGroupConfig groups = 5; // The groups if grouped is true
     repeated PmConfig metrics = 6; // The metrics themselves if grouped is false.
+    uint32 max_skew = 7; //Default value is to 5 seconds
 }
 
 // Describes instance of software image on the device
