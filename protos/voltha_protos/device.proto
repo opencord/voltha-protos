@@ -65,8 +65,9 @@ message PmConfigs {
     bool grouped = 3 [(access) = READ_ONLY];
     // Allows Pm to set an individual sample frequency
     bool freq_override = 4 [(access) = READ_ONLY];
-    repeated PmGroupConfig groups = 5; // The groups if grouped is true
-    repeated PmConfig metrics = 6; // The metrics themselves if grouped is false.
+    uint32 max_skew = 5;
+    repeated PmGroupConfig groups = 6; // The groups if grouped is true
+    repeated PmConfig metrics = 7; // The metrics themselves if grouped is false.
 }
 
 // Describes instance of software image on the device
