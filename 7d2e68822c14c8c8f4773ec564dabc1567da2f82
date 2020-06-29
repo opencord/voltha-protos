@@ -22,6 +22,30 @@
       "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e36a661_66663526",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-06-29T17:28:04Z",
+      "side": 1,
+      "message": "When compiled, RPCs include a context argument \u0026 an error return by default, so these don\u0027t need to be specified.",
+      "parentUuid": "d1b8fe73_c9031977",
+      "range": {
+        "startLine": 618,
+        "startChar": 38,
+        "endLine": 618,
+        "endChar": 59
+      },
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
