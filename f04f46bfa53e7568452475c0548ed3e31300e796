@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09f3e253_cc2deb74",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-06-29T14:31:54Z",
+      "side": 1,
+      "message": "I don\u0027t think it matters in this case, but it\u0027s not recommended to change the field IDs.",
+      "range": {
+        "startLine": 69,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 33
+      },
+      "revId": "f04f46bfa53e7568452475c0548ed3e31300e796",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
