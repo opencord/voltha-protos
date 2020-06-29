@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c7e2e06a_97705694",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-06-29T17:30:32Z",
+      "side": 1,
+      "message": "is importing as \"public\" necessary?  This appears to significantly increase duplicated code in the voltha.pb.go file.",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1b8fe73_c9031977",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3
