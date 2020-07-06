@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bede8697_ccfaab1e",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-07-06T07:36:43Z",
+      "side": 1,
+      "message": "Agreed, importing as public is not necessary. Thanks.",
+      "parentUuid": "c7e2e06a_97705694",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79855c3d_ec2eeaa6",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2020-06-29T17:32:15Z",
       "side": 1,
       "message": "If we support an additional OLT adapter then are we stating that this OLT adapter needs to support the same alarm definition as defined in the openolt protos? Would it be better if the ITU PON alarm definition is referred directly here?",
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55b5cf60_8eeaf7e1",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-07-06T07:36:43Z",
+      "side": 1,
+      "message": "Agreed that the ITU PON alarm settings should be moved out of openolt.proto. But if we add more configuration messages later on I think it would be better if we move these definitions which are related to alarm/events configurations somewhere else let\u0027s say events.proto. Any thoughts?",
+      "parentUuid": "79855c3d_ec2eeaa6",
       "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
