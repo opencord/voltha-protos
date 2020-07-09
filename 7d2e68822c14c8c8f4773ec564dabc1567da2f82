@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "5b597a41_9401a77a",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-09T14:54:54Z",
+      "side": 1,
+      "message": "There are two aspects to consider: 1) Is OnuItuPonAlarm relevant to openolt only or can other OLT adapters use this proto definition as well?, 2) Any definition in voltha.proto must be generic and not limited to a specific adapter definition.    \n\nA while back we decided to have voltha report events and let the above management systems determine if that event needs to be tagged as an alarm.   In this scenario, can AlarmConfig be defined as EventConfig?   It does not have to if using event brings make it more confusing for adapters. Depending on the name used you can either move it to events.proto or create an alarm.proto, especially if the adapters are using alarm instead of events.",
+      "parentUuid": "55b5cf60_8eeaf7e1",
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1b8fe73_c9031977",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3
