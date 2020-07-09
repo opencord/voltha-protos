@@ -7,7 +7,6 @@ option java_outer_classname = "VolthaAdapter";
 package voltha;
 
 import "google/protobuf/any.proto";
-import "voltha_protos/common.proto";
 import "voltha_protos/meta.proto";
 import "google/protobuf/timestamp.proto";
 
