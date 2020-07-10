@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be50bccc_dbe7cabd",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-07-10T14:44:41Z",
+      "side": 1,
+      "message": "Should skew be added at the end for compatibility reasons?",
+      "revId": "3dafc878f5a2745a2691c7d4eb830e0a2726add1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
