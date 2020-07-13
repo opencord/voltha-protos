@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3de2381b_2311afb3",
+        "filename": "VERSION",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000617
+      },
+      "writtenOn": "2020-07-13T14:49:35Z",
+      "side": 1,
+      "message": "Looks like you are going back a version number.  Girish updated this to 3.4.0-dev about 12 days ago.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "7fedfda4abdaf2e9e268b870e3c046698830e67a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
