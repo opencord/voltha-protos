@@ -141,6 +141,24 @@
       "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66400c15_012a3545",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-07-13T19:04:38Z",
+      "side": 1,
+      "message": "I do not have anything valuable to add to this discussion. Personally I would have used a mask to specify a class of ports whose status needs to be changed (I think Khen refers to this as PortFilter if I understand correctly). Using an overloaded \u0027ALL\u0027 field is also fine. But I will leave it to you and Khen to take a call here.",
+      "parentUuid": "342d19d0_f05deba1",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
