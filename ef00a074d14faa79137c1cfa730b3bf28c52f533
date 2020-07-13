@@ -87,6 +87,24 @@
       "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a19e99d4_d111af56",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-07-13T15:48:52Z",
+      "side": 1,
+      "message": "This use case does refer to the port type, another type would just be the duplicate of this one.\n\nI considered just using the existing \"UNKNOWN\", but thought that would be confusing.  PortsStateUpdate(ctx, portType.UNKNOWN, operState)\n\nThis solution doesn\u0027t remove or replace \"UNKNOWN\" as the default type, it simply allows for a more-understandable alias ALL for situations where the portType enum is used as a filter.\n\n(Note that UNKNOWN and ALL both map to the value \u00270\u0027, but UNKNWON is still the default, as you can see in the generated .pb.go file.)",
+      "parentUuid": "e8dd65dd_98e36cb1",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
