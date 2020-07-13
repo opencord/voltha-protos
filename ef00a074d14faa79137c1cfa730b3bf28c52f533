@@ -69,6 +69,24 @@
       "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8dd65dd_98e36cb1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-13T15:40:21Z",
+      "side": 1,
+      "message": "My preference is not to add ALL to the PortType enum as we are overloading the meaning of a port type. If filter is necessary then I would create a separate message (e.g. PortFilter).",
+      "parentUuid": "387d1b2b_589d1f0b",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
