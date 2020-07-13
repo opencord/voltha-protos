@@ -123,6 +123,24 @@
       "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "342d19d0_f05deba1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-07-13T16:12:21Z",
+      "side": 1,
+      "message": "Use case is here:\nhttps://gerrit.opencord.org/c/voltha-openolt-adapter/+/19623/4/internal/pkg/core/device_handler.go#1485\n\nThis was the cleanest solution I could find when talking to Girish the other day.\n\nI don\u0027t really want to send the whole list of ports back and forth here, but only PON_OLT type ports should be updated.  So the best solution we came up with was to augment portsStateUpdate with a port type filter.  The only cases currently use \"ALL\" and \"PON_OLT\".  There is currently no need to filter on \"UNKNOWN\" (and likely never will be), so I decided to reuse the old/\"default\" zero value for \"ALL\" to maintain the old functionality if the parameter isn\u0027t passed for whatever reason.\n\nThis avoids sending all ports in the original request, or having an extra round-trip to query the list of all ports.",
+      "parentUuid": "9ee02e3b_7a7433be",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
