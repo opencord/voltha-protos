@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d4833230_86e083ca",
+        "filename": "protos/voltha_protos/afrouter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-07-13T15:33:23Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "58f321b6_1bf1a8e5",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cfa0ef64_71fa394b",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2020-07-13T15:26:28Z",
       "side": 1,
       "message": "What does ALL mean as a port type?",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "387d1b2b_589d1f0b",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-07-13T15:33:23Z",
+      "side": 1,
+      "message": "It\u0027s to be used when specifying a port filter when calling portsStateUpdate().\n\nSee \nhttps://gerrit.opencord.org/c/voltha-openolt-adapter/+/19623/4/internal/pkg/core/device_handler.go#1485\nand\nhttps://gerrit.opencord.org/c/voltha-go/+/19377/3/rw_core/core/device/agent_port.go#65",
+      "parentUuid": "cfa0ef64_71fa394b",
       "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
