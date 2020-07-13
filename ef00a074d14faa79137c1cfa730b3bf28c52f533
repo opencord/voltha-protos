@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58f321b6_1bf1a8e5",
+        "filename": "protos/voltha_protos/afrouter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-13T15:26:28Z",
+      "side": 1,
+      "message": "Might as well remove this file.",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfa0ef64_71fa394b",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-13T15:26:28Z",
+      "side": 1,
+      "message": "What does ALL mean as a port type?",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
