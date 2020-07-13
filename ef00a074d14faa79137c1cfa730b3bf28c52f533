@@ -105,6 +105,24 @@
       "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ee02e3b_7a7433be",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-13T15:59:44Z",
+      "side": 1,
+      "message": "I doubt UNKNOWN is not being use.  Using a filter type won\u0027t be a duplicate since we can add different filters to it if need be, e.g. \"NONE\", \"ALL\", \"PON\", \"UNI\", \"NNI\", etc.  Separating the port type from the filter type is cleaner, imho.  \n\nIf you use both the PortStateChange() and PortsStateChange() then there is no need for filter in the current use case.",
+      "parentUuid": "a19e99d4_d111af56",
+      "revId": "ef00a074d14faa79137c1cfa730b3bf28c52f533",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
