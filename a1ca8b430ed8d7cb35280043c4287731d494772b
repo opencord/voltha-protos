@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "a74e5289_ee9f39fa",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-16T14:28:05Z",
+      "side": 1,
+      "message": "I suggest updating it.",
+      "parentUuid": "a2b84093_352c2408",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e596e11_29b765d5",
         "filename": "protos/voltha_protos/config.proto",
         "patchSetId": 8
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I mean these are not the definitions for the alarms but for the config for the alarms which are configurable. So later on if we have support to configure other alarms then we can keep the config messages here. So the intention behind this proto file is to have all the config messages in one place.",
       "parentUuid": "6e596e11_29b765d5",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f69d941_58a75a06",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-07-16T14:28:05Z",
+      "side": 1,
+      "message": "Will it define config messages for all of voltha or specific adapter or alarm config?   The name config.proto is very generic.  If it applies to all configs in voltha then its ok to keep the name.  If it holds specific config then the name should reflect that.",
+      "parentUuid": "3f072097_5c8df189",
       "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
