@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "b04c9131_30ccbe67",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-07-16T21:49:33Z",
+      "side": 1,
+      "message": "Yes, I would say its for all of voltha as the messages here will primarily be used as input to the SetExtValue API which is intended to be used as an generic API to configure different entities and not specifically for alarms.",
+      "parentUuid": "0f69d941_58a75a06",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ece8bc3_9bdf77d8",
         "filename": "protos/voltha_protos/config.proto",
         "patchSetId": 8
