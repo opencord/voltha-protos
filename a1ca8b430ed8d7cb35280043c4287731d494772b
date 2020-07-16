@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a2b84093_352c2408",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-07-16T14:01:16Z",
+      "side": 1,
+      "message": "This is to keep symmetry with other files. If this needs to be updated then we can do that.",
+      "parentUuid": "5f4ded1a_6b754131",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e596e11_29b765d5",
         "filename": "protos/voltha_protos/config.proto",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3f072097_5c8df189",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-07-16T14:01:16Z",
+      "side": 1,
+      "message": "I mean these are not the definitions for the alarms but for the config for the alarms which are configurable. So later on if we have support to configure other alarms then we can keep the config messages here. So the intention behind this proto file is to have all the config messages in one place.",
+      "parentUuid": "6e596e11_29b765d5",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ece8bc3_9bdf77d8",
         "filename": "protos/voltha_protos/config.proto",
         "patchSetId": 8
@@ -47,6 +83,24 @@
       "writtenOn": "2020-07-15T14:23:13Z",
       "side": 1,
       "message": "By having this definition outside the openOLT we are implying that other adapters will be able to return this Onu pon alarm as it is a standard ITU alarm.  Yes?",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebe332c5_dc792a43",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000564
+      },
+      "writtenOn": "2020-07-16T14:01:16Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "6ece8bc3_9bdf77d8",
       "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
