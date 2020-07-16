@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54ae46b2_9ac951c4",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2020-07-16T07:16:46Z",
+      "side": 1,
+      "message": "I cannot see the following counters in BAL 3.4.6.5. Did these come with 3.5? If so, I think we should omit them for now.\n\nfixed64 rx_broadcast_frames\u003d19;\nfixed64 rx_data_bytes \u003d 20;\nfixed64 rx_multicast_frames \u003d 21;\nfixed64 rx_unicast_frames \u003d 22;\nfixed64 rx_abort_frames \u003d 23;\nfixed64 rx_fcs_error \u003d 24;\nfixed64 rx_runt_error \u003d 25;\nfixed64 rx_crc_errors \u003d 26;\nfixed64 tx_broadcast_frames \u003d 44;\nfixed64 tx_data_bytes \u003d 45;\nfixed64 tx_multicast_frames \u003d 46;\nfixed64 tx_unicast_frames \u003d 47;\nfixed64 tx_abort_frames \u003d 48;\nfixed64 tx_fcs_error \u003d 49;",
+      "revId": "5f0a18f2386e2795dc0816a85a043ba95638c1a0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
