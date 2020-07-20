@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "fdb64829_d3171080",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-07-20T14:58:47Z",
+      "side": 1,
+      "message": "I agree with Khen, that this should be called \"alarm.proto\"\n\nThere are too many things that \"config\" could mean.\n\nEven if there is config added that doesn\u0027t apply to alarms, we\u0027ll probably want to keep that information separates.  In the worst case, this file can simply be renamed.\n\nI don\u0027t ever foresee having config for all voltha components in one place.\n\nAlternatively, if `alarm.proto` is too specific consider something like `ext_config.proto` w/ go_package \"github.com/opencord/voltha-protos/v3/go/ext/config\".",
+      "parentUuid": "b04c9131_30ccbe67",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ece8bc3_9bdf77d8",
         "filename": "protos/voltha_protos/config.proto",
         "patchSetId": 8
