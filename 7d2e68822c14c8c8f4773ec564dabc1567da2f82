@@ -120,6 +120,24 @@
     },
     {
       "key": {
+        "uuid": "9b34c824_cedf83ce",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-07-20T17:29:51Z",
+      "side": 1,
+      "message": "(Never mind my comment above -- looks like it was sitting in a stale buffer; Khen you already answered it)",
+      "parentUuid": "65a36646_432663de",
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1b8fe73_c9031977",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3
