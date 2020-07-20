@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "65a36646_432663de",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-07-20T17:27:07Z",
+      "side": 1,
+      "message": "Khen, could you elaborate on what you mean by \"referred directly\"?",
+      "parentUuid": "79855c3d_ec2eeaa6",
+      "revId": "7d2e68822c14c8c8f4773ec564dabc1567da2f82",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1b8fe73_c9031977",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 3

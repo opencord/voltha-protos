@@ -144,6 +144,24 @@
     },
     {
       "key": {
+        "uuid": "9fd56ed6_da672982",
+        "filename": "protos/voltha_protos/config.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2020-07-20T17:27:07Z",
+      "side": 1,
+      "message": "I think either `alarm.proto` or `ext_config.proto` is fine. It looks like these protos are consumed in two places -- SetExtValue() and in the openolt protos where the alarm configuration is pushed to the agent. This leads me to lean against `ext_config.proto` (since it\u0027s consumed by more places than just SetExtValue) and in favor of `alarm.proto` or even `alarm_config.proto`. If/when non-alarm values start being added to SetExtValue, then they can go into new proto files.",
+      "parentUuid": "fdb64829_d3171080",
+      "revId": "a1ca8b430ed8d7cb35280043c4287731d494772b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ece8bc3_9bdf77d8",
         "filename": "protos/voltha_protos/config.proto",
         "patchSetId": 8
