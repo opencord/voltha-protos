@@ -16,6 +16,24 @@
       "revId": "5f0a18f2386e2795dc0816a85a043ba95638c1a0",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13ef28f7_047f6893",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-07-22T07:03:13Z",
+      "side": 1,
+      "message": "I am following the SDK v3.4.3.3. I could see those counters in the bcmolt_internal_nni_enet_stats_data structure. I could remove those counters.",
+      "parentUuid": "54ae46b2_9ac951c4",
+      "revId": "5f0a18f2386e2795dc0816a85a043ba95638c1a0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
