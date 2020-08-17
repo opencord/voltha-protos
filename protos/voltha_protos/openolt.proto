@@ -435,11 +435,16 @@ message Flow {
     sfixed32 access_intf_id = 1;
     sfixed32 onu_id = 2;
     sfixed32 uni_id = 11;
-    fixed32 flow_id = 3;
-    string flow_type = 4;	// upstream, downstream, broadcast, multicast
+
+    fixed64 flow_id = 3; // voltha flow-id. 0 is not a valid flow_id
+    fixed64 symmetric_flow_id = 18; // symmetric voltha flow-id, if applicable. All data path flows generally have a symmetric flow,
+                                    // but trap-to-controller flows do not have a symmetric flow
+                                    // Broadcom BAL requires that symmetric flows use the same BAL flow-id
+
+    string flow_type = 4; // upstream, downstream, broadcast, multicast
     sfixed32 alloc_id = 10;
     sfixed32 network_intf_id = 5;
-    sfixed32 gemport_id = 6;
+    sfixed32 gemport_id = 6; // When 'replicate_flow' field is true, this field is obsolete.
     Classifier classifier = 7;
     Action action = 8;
     sfixed32 priority = 9;
@@ -447,6 +452,10 @@ message Flow {
     fixed32 port_no = 13; // must be provided for any flow with trap_to_host action. Returned in PacketIndication
     fixed32 group_id = 14;
     fixed32 tech_profile_id = 15;
+
+    bool replicate_flow = 16; // When this field is true, use pbitToGemPortID to know which p-bit needs to be classfied to which gem port.
+    map<fixed32, fixed32> pbitToGemPortID = 17; // Map of p-bit to gem port ID
+
 }
 
 message SerialNumber {
