@@ -270,6 +270,18 @@ message OnuIndication {
     string oper_state = 3;      // up, down
     string admin_state = 5;     // up, down
     SerialNumber serial_number = 4;
+    /** activation fail reason. */
+    enum ActivationFailReason
+    {
+        ONU_ACTIVATION_FAIL_REASON_NONE = 0;
+        ONU_ACTIVATION_FAIL_REASON_RANGING = 1; //Ranging Failure
+        ONU_ACTIVATION_FAIL_REASON_PASSWORD_AUTHENTICATION = 2; //Password authentication
+        ONU_ACTIVATION_FAIL_REASON_LOS = 3; //LOS
+        ONU_ACTIVATION_FAIL_ONU_ALARM = 4; // ONU Alarm
+        ONU_ACTIVATION_FAIL_SWITCH_OVER = 5; //protection switch over
+    }
+    ActivationFailReason fail_reason = 6;
+
 }
 
 message IntfOperIndication {
