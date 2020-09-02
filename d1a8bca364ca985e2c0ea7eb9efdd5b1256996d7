@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b65043c9_80b0d88c",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-09-02T14:57:03Z",
+      "side": 1,
+      "message": "iirc, enums were changed to include `_type` as part of the name, is there a reason that this isn\u0027t done in this case?",
+      "range": {
+        "startLine": 274,
+        "startChar": 9,
+        "endLine": 274,
+        "endChar": 29
+      },
+      "revId": "d1a8bca364ca985e2c0ea7eb9efdd5b1256996d7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1605419b_361b36d8",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-09-02T14:57:03Z",
+      "side": 1,
+      "message": "ONU_INDICATION_ACTIVATION?",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 276,
+        "endChar": 22
+      },
+      "revId": "d1a8bca364ca985e2c0ea7eb9efdd5b1256996d7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfe3283f_9e717868",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-09-02T14:57:03Z",
+      "side": 1,
+      "message": "missing \"_REASON_\"?",
+      "range": {
+        "startLine": 280,
+        "startChar": 27,
+        "endLine": 281,
+        "endChar": 28
+      },
+      "revId": "d1a8bca364ca985e2c0ea7eb9efdd5b1256996d7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
