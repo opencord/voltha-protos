@@ -8,6 +8,7 @@ package voltha;
 import "voltha_protos/meta.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "voltha_protos/common.proto";
 
 message ConfigEventType {
     enum Types {
@@ -122,6 +123,34 @@ message DeviceEvent {
     map<string, string> context = 4;
 
 }
+/*
+ * Describes the events specific to an RPC request
+ */
+message RPCEvent {
+    // RPC name
+    string rpc = 1;
+
+    // The operation id of that request.  Can be a log correlation ID
+    string operation_id = 2;
+
+    // Identifies the service name originating the event
+    string service = 3;
+
+    // Identifies the stack originating the event
+    string stack_id = 4;
+
+    // Identifies the resource upon which the action is taken, e.g. device_id
+    string resource_id = 5;
+
+    // Textual explanation of the event
+    string description = 6;
+
+    // Key/Value storage for extra information that may give context to the event
+    map<string, string> context = 7;
+
+    // Status of the RPC Event
+    common.OperationResp status = 8;
+}
 
 /*
  * Identify the area of the system impacted by the event.
@@ -165,6 +194,7 @@ message EventType {
    }
 }
 
+
 /*
  * Identify the functional category originating the event
  */
@@ -200,8 +230,6 @@ message EventHeader {
     // If the source entity that reported this event doesn't send the 
     // reported_ts, this shall be set to the same value as raised_ts.
     google.protobuf.Timestamp reported_ts = 7;
-
-
 }
 
 /*
@@ -224,6 +252,9 @@ message Event {
 
         // Refers to DeviceEvent
         DeviceEvent device_event = 5;
+
+        // Refers to an RPC Event
+        RPCEvent rpc_event = 6;
 
         // Add other event types here.
 
