@@ -1649,10 +1649,10 @@ enum ofp_table_features_failed_code {
 
 /* OFPT_ERROR: Error message (datapath -> controller). */
 message ofp_error_msg {
-    //ofp_header header;
-    uint32 type = 1;
-    uint32 code = 2;
-    bytes data = 3;          /* Variable-length data.  Interpreted based
+    ofp_header header = 1;
+    uint32 type = 2;
+    uint32 code = 3;
+    bytes data = 4;          /* Variable-length data.  Interpreted based
                                  on the type and code.  No padding. */
 };
 
@@ -2250,7 +2250,8 @@ message ofp_async_config {
 
 message MeterModUpdate {
     string id = 1;      // Device.id or LogicalDevice.id
-    ofp_meter_mod meter_mod = 2;
+    uint32 xid = 2;     //Transaction id associated with this request.
+    ofp_meter_mod meter_mod = 3;
 }
 
 message MeterStatsReply {
@@ -2258,13 +2259,15 @@ message MeterStatsReply {
 }
 
 message FlowTableUpdate {
-    string id = 1;  // Device.id or LogicalDevice.id
-    ofp_flow_mod flow_mod = 2;
+    string id = 1;   // Device.id or LogicalDevice.id
+    uint32 xid = 2;  //Transaction id associated with this request.
+    ofp_flow_mod flow_mod = 3;
 }
 
 message FlowGroupTableUpdate {
-    string id = 1;  // Device.id or LogicalDevice.id
-    ofp_group_mod group_mod = 2;
+    string id = 1;   // Device.id or LogicalDevice.id
+    uint32 xid = 2;  //Transaction id associated with this request.
+    ofp_group_mod group_mod = 3;
 }
 
 message Flows {
@@ -2300,9 +2303,10 @@ message PacketOut {
     ofp_packet_out packet_out = 2;
 }
 
-message ChangeEvent {
+message OFEvent {
     string id = 1; // LogicalDevice.id
     oneof event {
         ofp_port_status port_status = 2;
+        ofp_error_msg error =3;
     }
 }

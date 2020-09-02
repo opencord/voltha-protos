@@ -322,6 +322,13 @@ service VolthaService {
         };
     }
 
+    // Get the device updates of a given device using a filter
+    rpc GetDeviceUpdates(DeviceUpdateFilter) returns(DeviceUpdates) {
+        option (google.api.http) = {
+            get: "/api/v1/deviceupdates/{id}/{filter}"
+        };
+    }
+
     // Request to a voltha Core to reconcile a set of devices based on their IDs
     rpc ReconcileDevices(common.IDs) returns(google.protobuf.Empty) {
         option (google.api.http) = {
@@ -517,8 +524,8 @@ service VolthaService {
         // This does not have an HTTP representation
     }
 
-    rpc ReceiveChangeEvents(google.protobuf.Empty)
-        returns(stream openflow_13.ChangeEvent) {
+    rpc ReceiveEvents(google.protobuf.Empty)
+        returns(stream openflow_13.OFEvent) {
         // This does not have an HTTP representation
     }
 
