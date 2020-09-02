@@ -1649,7 +1649,7 @@ enum ofp_table_features_failed_code {
 
 /* OFPT_ERROR: Error message (datapath -> controller). */
 message ofp_error_msg {
-    //ofp_header header;
+//    ofp_header header;
     uint32 type = 1;
     uint32 code = 2;
     bytes data = 3;          /* Variable-length data.  Interpreted based
@@ -2251,6 +2251,7 @@ message ofp_async_config {
 message MeterModUpdate {
     string id = 1;      // Device.id or LogicalDevice.id
     ofp_meter_mod meter_mod = 2;
+    uint32 xid = 3;     //Transaction id associated with this request.
 }
 
 message MeterStatsReply {
@@ -2258,13 +2259,15 @@ message MeterStatsReply {
 }
 
 message FlowTableUpdate {
-    string id = 1;  // Device.id or LogicalDevice.id
+    string id = 1;   // Device.id or LogicalDevice.id
     ofp_flow_mod flow_mod = 2;
+    uint32 xid = 3;  //Transaction id associated with this request.
 }
 
 message FlowGroupTableUpdate {
-    string id = 1;  // Device.id or LogicalDevice.id
+    string id = 1;   // Device.id or LogicalDevice.id
     ofp_group_mod group_mod = 2;
+    uint32 xid = 3;  //Transaction id associated with this request.
 }
 
 message Flows {
@@ -2304,5 +2307,6 @@ message ChangeEvent {
     string id = 1; // LogicalDevice.id
     oneof event {
         ofp_port_status port_status = 2;
+        ofp_error_msg error =3;
     }
 }
