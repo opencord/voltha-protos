@@ -7,6 +7,7 @@ option java_outer_classname = "VolthaDevice";
 package voltha;
 
 import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
 import "voltha_protos/common.proto";
 import "voltha_protos/meta.proto";
 import "voltha_protos/openflow_13.proto";
@@ -222,6 +223,31 @@ message Ports {
     repeated Port items = 1;
 }
 
+enum OperationStatus {
+    IN_PROGRESS = 0;
+    COMPLETED = 1;
+    FAILED = 2;
+}
+
+message DeviceStatesChange {
+    common.AdminState.Types prev_admin_state = 1;
+    common.OperStatus.Types prev_oper_status = 2;
+    common.ConnectStatus.Types prev_connect_status = 3;
+    common.AdminState.Types admin_state = 4;
+    common.OperStatus.Types oper_status = 5;
+    common.ConnectStatus.Types connect_status = 6;
+}
+
+message DeviceUpdate {
+    google.protobuf.Timestamp timestamp = 1;
+    string operation = 2;
+    string operation_id = 3;
+    string requested_by = 4;
+    DeviceStatesChange state_change = 5;
+    OperationStatus status = 11;
+    string description = 12;
+}
+
 // A Physical Device instance
 message Device {
     // Voltha's device identifier
@@ -288,7 +314,7 @@ message Device {
 
     common.OperStatus.Types oper_status = 17 [(access) = READ_ONLY];
 
-    string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
+    // string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
 
     common.ConnectStatus.Types connect_status = 18 [(access) = READ_ONLY];
 
@@ -302,6 +328,8 @@ message Device {
     PmConfigs pm_configs = 131 [(child_node) = {}];
 
     repeated ImageDownload image_downloads = 133 [(child_node) = {key: "name"}];
+
+    repeated DeviceUpdate events = 134;
 }
 
 message Devices {
