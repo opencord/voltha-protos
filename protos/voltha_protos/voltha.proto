@@ -375,6 +375,12 @@ service VolthaService {
         };
     }
 
+    // Forcefully delete a device
+    rpc ForceDeleteDevice(common.ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/devices/{id}/force_delete"
+        };
+    }
     // Request an image download to the standby partition
     // of a device.
     // Note that the call is expected to be non-blocking.
