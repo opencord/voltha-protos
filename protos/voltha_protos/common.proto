@@ -42,6 +42,9 @@ message AdminState {
 
         // The device is marked to be deleted
         DELETED = 5;
+
+        // The device is marked to be in deleting state
+        DELETING = 6;
     }
 }
 
