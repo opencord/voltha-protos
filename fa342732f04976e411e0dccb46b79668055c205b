@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fa6258f_bbcacfc0",
+        "filename": "VERSION",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-10-07T14:38:43Z",
+      "side": 1,
+      "message": "Don\u0027t use -dev versions for protos.  Should be just \"3.4.6\"",
+      "revId": "fa342732f04976e411e0dccb46b79668055c205b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
