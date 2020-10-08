@@ -1,0 +1,9 @@
+Code-Review+1: Devmalya Paul <Devmalya.Paul@radisys.com>
+Code-Review+1: Kent Hagerman <khagerma@ciena.com>
+Code-Review+2: khenaidoo Nursimulu <knursimu@ciena.com>
+Verified+1: Jenkins Technical User <do-not-reply@opennetworking.org>
+Submitted-by: khenaidoo Nursimulu <knursimu@ciena.com>
+Submitted-at: Thu, 08 Oct 2020 12:55:57 +0000
+Reviewed-on: https://gerrit.opencord.org/c/voltha-protos/+/21091
+Project: voltha-protos
+Branch: refs/heads/master
