@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v3/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v4/go/voltha";
 option java_package = "org.opencord.voltha";
 option java_outer_classname = "VolthaAdapter";
 
