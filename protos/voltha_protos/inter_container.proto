@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v3/go/inter_container";
+option go_package = "github.com/opencord/voltha-protos/v4/go/inter_container";
 option java_package = "org.opencord.voltha";
 
 import public "voltha_protos/common.proto";

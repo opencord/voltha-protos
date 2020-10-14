@@ -57,7 +57,7 @@
  */
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v3/go/openflow_13";
+option go_package = "github.com/opencord/voltha-protos/v4/go/openflow_13";
 option java_package = "org.opencord.voltha.openflow13";
 
 package openflow_13;

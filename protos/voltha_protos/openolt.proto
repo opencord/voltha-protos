@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v3/go/openolt";
+option go_package = "github.com/opencord/voltha-protos/v4/go/openolt";
 option java_package = "org.opencord.voltha.openolt";
 option java_outer_classname = "VolthaOpenOLT";
 
