@@ -1,4 +1,4 @@
-module github.com/opencord/voltha-protos/v3
+module github.com/opencord/voltha-protos/v4
 
 go 1.13
 
