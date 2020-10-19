@@ -52,6 +52,9 @@ type ValueSpecifier = common.ValueSpecifier
 // ReturnValues from public import voltha_protos/common.proto
 type ReturnValues = common.ReturnValues
 
+// CoreInternalState from public import voltha_protos/common.proto
+type CoreInternalState = common.CoreInternalState
+
 // TestModeKeys from public import voltha_protos/common.proto
 type TestModeKeys = common.TestModeKeys
 
@@ -115,6 +118,17 @@ var ValueType_Type_value = common.ValueType_Type_value
 
 const ValueType_EMPTY = ValueType_Type(common.ValueType_EMPTY)
 const ValueType_DISTANCE = ValueType_Type(common.ValueType_DISTANCE)
+
+// CoreInternalState_Types from public import voltha_protos/common.proto
+type CoreInternalState_Types = common.CoreInternalState_Types
+
+var CoreInternalState_Types_name = common.CoreInternalState_Types_name
+var CoreInternalState_Types_value = common.CoreInternalState_Types_value
+
+const CoreInternalState_ANY = CoreInternalState_Types(common.CoreInternalState_ANY)
+const CoreInternalState_DELETING = CoreInternalState_Types(common.CoreInternalState_DELETING)
+const CoreInternalState_FORCEDELETED = CoreInternalState_Types(common.CoreInternalState_FORCEDELETED)
+const CoreInternalState_DELETEDACK = CoreInternalState_Types(common.CoreInternalState_DELETEDACK)
 
 // DeviceGroup from public import voltha_protos/voltha.proto
 type DeviceGroup = voltha.DeviceGroup
