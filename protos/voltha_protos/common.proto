@@ -39,12 +39,6 @@ message AdminState {
 
         // The device is in the state of image download
         DOWNLOADING_IMAGE = 4;
-
-        // The device is marked to be deleted
-        DELETED = 5;
-
-        // The device is marked to be in deleting state
-        DELETING = 6;
     }
 }
 
