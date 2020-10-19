@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ae872f8e_f28bb807",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-10-19T16:24:10Z",
+      "side": 1,
+      "message": "I personally think ANY / NONE depends on the case, the \"default\" of zero might mean either in different situations.  I would suggest having both vars defined, and both mapped to the value \u00270\u0027.  (option allow_alias \u003d true;)  https://developers.google.com/protocol-buffers/docs/proto#enum",
+      "parentUuid": "918216e5_9a60af6b",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e3606a2_c3f74e0f",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 3
@@ -65,6 +83,24 @@
       "side": 1,
       "message": "Just a DELETED would not work because say the state has been changed to DELETING and then adapter fails to delete device. We should allow force delete in such case.",
       "parentUuid": "7e3606a2_c3f74e0f",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ef0afa4_79d27d92",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000107
+      },
+      "writtenOn": "2020-10-19T16:24:10Z",
+      "side": 1,
+      "message": "Just DELETED would be enough, _if_ the state is only changed _after_ the adapter has returned.",
+      "parentUuid": "7396657e_0dd2d43f",
       "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
