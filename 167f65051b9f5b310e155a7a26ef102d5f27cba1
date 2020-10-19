@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "7396657e_0dd2d43f",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2020-10-19T15:38:25Z",
+      "side": 1,
+      "message": "Just a DELETED would not work because say the state has been changed to DELETING and then adapter fails to delete device. We should allow force delete in such case.",
+      "parentUuid": "7e3606a2_c3f74e0f",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28216de0_c6a6923c",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 3
@@ -64,6 +82,24 @@
       "writtenOn": "2020-10-19T13:40:19Z",
       "side": 1,
       "message": "Not sure you would need this.",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1f11e81_7de44a35",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2020-10-19T15:38:25Z",
+      "side": 1,
+      "message": "Need this to differentiate between force delete and normal delete.",
+      "parentUuid": "28216de0_c6a6923c",
       "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
