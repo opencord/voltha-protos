@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v4/go/voltha";
+option java_package = "org.opencord.voltha";
+
+package voltha;
+
+message DeviceTransientState {
+    // Transient State for devices
+    enum Types {
+ 	option allow_alias = true;
+	// The transient state of the device is not set
+	NONE = 0;
+	// The state of the device in core is any state, i.e DELETING, DELETED, DELETE_FAILED, NONE.
+	// This state is only used for transitions.
+	ANY = 0;
+	// The device is in DELETING state
+	DELETING = 1;
+	// The device is in DELETED state
+	DELETED = 2;
+	// The device is in DELETED_FAILED state
+	DELETED_FAILED = 3;
+    }
+}
