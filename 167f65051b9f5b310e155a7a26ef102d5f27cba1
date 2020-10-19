@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e48af293_7c6e1b44",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-19T13:40:19Z",
+      "side": 1,
+      "message": "Since this message is used only by the Core then i would create a separate core.proto file and name that message DeviceTransientState.  Once the broad device state changes are implemented (not this release) then this message could be augmented with ACTIVATING as well and any other transient state.",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918216e5_9a60af6b",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-19T13:40:19Z",
+      "side": 1,
+      "message": "In this scenario we need to indicate that there are no transient state in the default case.  Maybe, instead of using ANY it would be clearer to use NONE (may be an issue with python when compiling the file, need to try it out.)",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e3606a2_c3f74e0f",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-19T13:40:19Z",
+      "side": 1,
+      "message": "Would you need a forcedeleted state?  I think just a deleted state is sufficient.  In the scenario of normal delete the transition would be ANY -\u003e DELETING -\u003e DELETED while for force delete it would be ANY -\u003e DELETED.",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28216de0_c6a6923c",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-19T13:40:19Z",
+      "side": 1,
+      "message": "Not sure you would need this.",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
