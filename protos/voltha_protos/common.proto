@@ -124,3 +124,22 @@ message ReturnValues {
                                 // DISTANCE
 
 }
+
+message CoreInternalState {
+    // Core Internal State for devices
+    enum Types {
+
+        // The state of the device in core is ANY.
+        ANY = 0;
+
+        // The device is in DELETING state
+        DELETING = 1;
+
+        // The device is in FORCE DELETED state
+        FORCEDELETED = 2;
+
+        // The device is in DELETED Acknowledged state
+        DELETEDACK = 3;
+
+    }
+}
