@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e51fe952_4f30c98f",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2020-10-20T12:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e48af293_7c6e1b44",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "918216e5_9a60af6b",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 3
@@ -51,6 +69,24 @@
       "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79903971_0a9038e9",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2020-10-20T12:00:21Z",
+      "side": 1,
+      "message": "We can have both ANY and NONE with default 0 for different situations.",
+      "parentUuid": "ae872f8e_f28bb807",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     },
     {
       "key": {
@@ -107,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "15d2ec6d_0670c156",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2020-10-20T12:00:21Z",
+      "side": 1,
+      "message": "Yes will work that way",
+      "parentUuid": "0ef0afa4_79d27d92",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28216de0_c6a6923c",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 3
@@ -136,6 +190,24 @@
       "side": 1,
       "message": "Need this to differentiate between force delete and normal delete.",
       "parentUuid": "28216de0_c6a6923c",
+      "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2261b1cb_b502fc23",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2020-10-20T12:00:21Z",
+      "side": 1,
+      "message": "Not Required anymore.",
+      "parentUuid": "a1f11e81_7de44a35",
       "revId": "167f65051b9f5b310e155a7a26ef102d5f27cba1",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
