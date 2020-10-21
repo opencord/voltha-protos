@@ -483,13 +483,37 @@ message PortStatistics {
     fixed64 rx_mcast_packets = 5;
     fixed64 rx_bcast_packets = 6;
     fixed64 rx_error_packets = 7;
+    fixed64 rx_frames = 17;
+    fixed64 rx_frames_64 = 18;
+    fixed64 rx_frames_65_127 = 19;
+    fixed64 rx_frames_128_255 = 20;
+    fixed64 rx_frames_256_511 = 21;
+    fixed64 rx_frames_512_1023 = 22;
+    fixed64 rx_frames_1024_1518 = 23;
+    fixed64 rx_frames_1519_2047 = 24;
+    fixed64 rx_frames_2048_4095 = 25;
+    fixed64 rx_frames_4096_9216 = 26;
+    fixed64 rx_frames_9217_16383 = 27;
+    fixed64 rx_crc_errors = 14;
+
     fixed64 tx_bytes = 8;
     fixed64 tx_packets = 9;
     fixed64 tx_ucast_packets = 10;
     fixed64 tx_mcast_packets = 11;
     fixed64 tx_bcast_packets = 12;
     fixed64 tx_error_packets = 13;
-    fixed64 rx_crc_errors = 14;
+    fixed64 tx_frames = 28;
+    fixed64 tx_frames_64 = 29;
+    fixed64 tx_frames_65_127 = 30;
+    fixed64 tx_frames_128_255 = 31;
+    fixed64 tx_frames_256_511 = 32;
+    fixed64 tx_frames_512_1023 = 33;
+    fixed64 tx_frames_1024_1518 = 34;
+    fixed64 tx_frames_1519_2047 = 35;
+    fixed64 tx_frames_2048_4095 = 36;
+    fixed64 tx_frames_4096_9216 = 37;
+    fixed64 tx_frames_9217_16383 = 38;
+
     fixed64 bip_errors = 15;
     fixed32 timestamp = 16;
 }
