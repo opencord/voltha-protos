@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50058fd0_d4e7f90b",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2020-10-21T22:27:20Z",
+      "side": 1,
+      "message": "Should we add the new counters at the end (so start from 17) and not change the numbering of the existing counters?",
+      "revId": "0d1022875ea4387d4433357011581f60fb18401b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
