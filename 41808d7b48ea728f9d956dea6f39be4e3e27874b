@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "126251bf_2ac3345c",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-22T12:33:32Z",
+      "side": 1,
+      "message": "The state itself is not ANY.   It just means the transient state of the device can be in any state (NONE, DELETING, etc).  This is used to facilitate state transition.",
+      "revId": "41808d7b48ea728f9d956dea6f39be4e3e27874b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aad550ec_296f48d7",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-22T12:33:32Z",
+      "side": 1,
+      "message": "nit: I would put NONE first for readability",
+      "revId": "41808d7b48ea728f9d956dea6f39be4e3e27874b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
