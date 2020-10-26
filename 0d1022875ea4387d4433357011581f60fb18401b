@@ -16,6 +16,24 @@
       "revId": "0d1022875ea4387d4433357011581f60fb18401b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a406c061_8230006f",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000417
+      },
+      "writtenOn": "2020-10-26T10:18:06Z",
+      "side": 1,
+      "message": "I separated the “rx_” and “tx_” prefix and numbering the list. That would be easy to read the definition of data.",
+      "parentUuid": "50058fd0_d4e7f90b",
+      "revId": "0d1022875ea4387d4433357011581f60fb18401b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
