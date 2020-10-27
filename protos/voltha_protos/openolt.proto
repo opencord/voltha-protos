@@ -209,6 +209,12 @@ service Openolt {
             body: "*"
         };
     }
+    rpc OmciMultiMsgOut(OmciMultiMsg) returns (Empty) {
+        option (google.api.http) = {
+           post: "/v1/OmciMultiMsgOut"
+           body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -664,6 +670,12 @@ message Group {
 message ValueParam {
 	Onu onu = 1;
 	common.ValueType.Type value = 2;
+}
+	
+message OmciMultiMsg {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    repeated bytes pkt = 3;
 }
 
 message Empty {}

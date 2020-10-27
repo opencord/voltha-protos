@@ -103,6 +103,7 @@ message InterAdapterMessageType {
         TECH_PROFILE_DOWNLOAD_REQUEST = 8;
         DELETE_GEM_PORT_REQUEST = 9;
         DELETE_TCONT_REQUEST = 10;
+        OMCI_MULTI_REQUEST = 11;
     }
 }
 
@@ -150,4 +151,10 @@ message InterAdapterResponseBody {
 message InterAdapterMessage {
     InterAdapterHeader header = 1;
     google.protobuf.Any body = 2;
+}
+
+message InterAdapterMultiOmciMessages {
+repeated bytes message = 1; // OMCI_REQUEST or OMCI_RESPONSE
+common.ConnectStatus.Types connect_status = 2;
+voltha.Device.ProxyAddress proxy_address = 3;
 }
