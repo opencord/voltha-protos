@@ -34,6 +34,24 @@
       "revId": "0d1022875ea4387d4433357011581f60fb18401b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e11774_2508f65e",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2020-10-30T00:24:45Z",
+      "side": 1,
+      "message": "For some reason I wasn\u0027t able to submit a patch on top of this review. I created a patch here that addresses Amit\u0027s comments - https://gerrit.opencord.org/c/voltha-protos/+/21404.\nBasically Amit was asking not to change the IDs as it would break backward compatibility.",
+      "parentUuid": "a406c061_8230006f",
+      "revId": "0d1022875ea4387d4433357011581f60fb18401b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
