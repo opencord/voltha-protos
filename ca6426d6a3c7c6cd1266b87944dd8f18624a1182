@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df083009_99dadd9c",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-10-30T12:52:20Z",
+      "side": 1,
+      "message": "In this case NONE and ANY do not mean similar states.   I would rather have a different value to ANY (1) rather than using allow_alias which is confusing here.",
+      "revId": "ca6426d6a3c7c6cd1266b87944dd8f18624a1182",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
