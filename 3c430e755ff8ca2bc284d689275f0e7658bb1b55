@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fc39dfdc_c736a220",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2020-11-04T21:54:03Z",
+      "side": 1,
+      "message": "I don\u0027t know of any other requirement needed right now.",
+      "parentUuid": "a96a776d_9f105d8c",
+      "revId": "3c430e755ff8ca2bc284d689275f0e7658bb1b55",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2fce53a5_27b7f471",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2020-11-04T19:21:21Z",
       "side": 1,
       "message": "Would it be more efficient to have the ability to retrieve multiple values and get only one for the case when only one is needed? In other words have something like:\n\nmessage GetValuesRequest {\n   string targetId \u003d 1;\n   repeated GetValueRequest request \u003d 2;\n}",
+      "revId": "3c430e755ff8ca2bc284d689275f0e7658bb1b55",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b60507c5_f9c90eb3",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2020-11-04T21:54:03Z",
+      "side": 1,
+      "message": "Yes we will do the multiple fetch later on. As David also has suggested we would create new rpcs for those exactly as you also suggest above.\n\nThis could to be used to get only a single one as well. I think it is better to keep it simple for now and do only one at a time. It might become tricky with multiple, with if some succeed and some fail, implementations in adapters will be more complicated.\n\nWe can definitely do those once we have concrete use cases.",
+      "parentUuid": "2fce53a5_27b7f471",
       "revId": "3c430e755ff8ca2bc284d689275f0e7658bb1b55",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
