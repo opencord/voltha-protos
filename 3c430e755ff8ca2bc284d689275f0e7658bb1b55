@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a96a776d_9f105d8c",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-04T19:21:21Z",
+      "side": 1,
+      "message": "Are there more requests that we know today that would most likely be needed in the near future?",
+      "revId": "3c430e755ff8ca2bc284d689275f0e7658bb1b55",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fce53a5_27b7f471",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-04T19:21:21Z",
+      "side": 1,
+      "message": "Would it be more efficient to have the ability to retrieve multiple values and get only one for the case when only one is needed? In other words have something like:\n\nmessage GetValuesRequest {\n   string targetId \u003d 1;\n   repeated GetValueRequest request \u003d 2;\n}",
+      "revId": "3c430e755ff8ca2bc284d689275f0e7658bb1b55",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
