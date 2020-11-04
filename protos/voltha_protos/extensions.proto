@@ -1,0 +1,142 @@
+// Copyright (c) 2018 Open Networking Foundation
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v4/go/extension";
+option java_package = "org.opencord.voltha.extension";
+
+package extension;
+
+import public "voltha_protos/ext_config.proto";
+
+message GetDistanceRequest {
+    string onuDeviceId = 1;
+}
+
+message GetDistanceResponse {
+    uint32 distance = 1; // distance in meters
+}
+
+message GetOnuUniInfoRequest {
+    uint32 uniIndex = 1; // Index of the uni starting from 0
+}
+
+message GetOnuUniInfoResponse {
+    enum ConfigurationInd {
+        UNKOWN = 0;
+        TEN_BASE_T_FDX = 1;
+        HUNDRED_BASE_T_FDX = 2;
+        GIGABIT_ETHERNET_FDX = 3;
+        TEN_G_ETHERNET_FDX = 4;
+        TEN_BASE_T_HDX = 5;
+        HUNDRED_BASE_T_HDX = 6;
+        GIGABIT_ETHERNET_HDX = 7;
+    }
+
+    enum AdministrativeState {
+        ADMSTATE_UNDEFINED = 0;
+        LOCKED = 1;
+        UNLOCKED = 2;
+    }
+
+    enum OperationalState {
+        OPERSTATE_UNDEFINED = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    AdministrativeState admState = 1;
+    OperationalState operState = 2;
+    ConfigurationInd configInd = 3;
+}
+
+message GetValueRequest {
+    oneof request {
+        GetDistanceRequest distance = 1;
+        GetOnuUniInfoRequest uniInfo = 2;
+    }
+}
+
+message GetValueResponse {
+    enum Status {
+        STATUS_UNDEFINED = 0;
+        OK = 1;
+        ERROR = 2;
+    }
+
+    enum ErrorReason {
+        REASON_UNDEFINED = 0;
+        UNSUPPORTED = 1;
+    }
+    Status status = 1;
+    ErrorReason errReason = 2;
+
+    oneof response {
+        GetDistanceResponse distance = 3;
+        GetOnuUniInfoResponse uniInfo = 4;
+    }
+}
+
+message SetValueRequest {
+    oneof request {
+        config.AlarmConfig alarm_config = 1;
+    }
+}
+
+message SetValueResponse {
+    enum Status {
+        STATUS_UNDEFINED = 0;
+        OK = 1;
+        ERROR = 2;
+    }
+
+    enum ErrorReason {
+        REASON_UNDEFINED = 0;
+        UNSUPPORTED = 1;
+    }
+    Status status = 1;
+    ErrorReason errReason = 2;
+
+    // As of now we don't have any explicit response for the supported SetValueRequests
+    // to be used later
+    //oneof response {
+    //
+    //}
+}
+
+message SingleGetValueRequest {
+    string targetId = 1;
+    GetValueRequest request = 2;
+}
+
+message SingleGetValueResponse{
+    GetValueResponse response = 1;
+}
+
+message SingleSetValueRequest {
+    string targetId = 1;
+    SetValueRequest request = 2;
+}
+message SingleSetValueResponse {
+    SetValueResponse response = 1;
+}
+
+// Extension is a service to get and set specific attributes
+service Extension {
+    // Get a single attribute
+    rpc GetExtValue(SingleGetValueRequest) returns (SingleGetValueResponse);
+    // Set a single attribute
+    rpc SetExtValue(SingleSetValueRequest) returns (SingleSetValueResponse);
+}
