@@ -1,0 +1,10 @@
+Verified+1: Jenkins Technical User <do-not-reply@opennetworking.org>
+Code-Review+1: David Bainbridge <dbainbri@ciena.com>
+Code-Review+1: khenaidoo Nursimulu <knursimu@ciena.com>
+Code-Review+1: Mahir Gunyel <mahir.gunyel@netsia.com>
+Code-Review+2: Andrea Campanella <andrea@opennetworking.org>
+Submitted-by: Andrea Campanella <andrea@opennetworking.org>
+Submitted-at: Thu, 05 Nov 2020 21:25:57 +0000
+Reviewed-on: https://gerrit.opencord.org/c/voltha-protos/+/21451
+Project: voltha-protos
+Branch: refs/heads/master
