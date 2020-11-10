@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ae68699_aaef447f",
+        "filename": "VERSION",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-10T13:38:47Z",
+      "side": 1,
+      "message": "For protos, the version can be changed to 4.0.3, without the dev.",
+      "revId": "1c07ee9c3941be4e4dbece610aeef34c4fceacdc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
