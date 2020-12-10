@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acf8e51_0037e843",
+        "filename": "protos/voltha_protos/openflow_13.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 2269,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-12-10T13:06:09Z",
+      "side": 1,
+      "message": "missing xid",
+      "revId": "ec192caecd9669f3ae7f4d0f01faa7beecfdd0ad",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
