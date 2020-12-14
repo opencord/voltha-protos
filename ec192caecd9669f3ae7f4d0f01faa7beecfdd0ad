@@ -16,6 +16,24 @@
       "revId": "ec192caecd9669f3ae7f4d0f01faa7beecfdd0ad",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee56fba3_bd3b3a9f",
+        "filename": "protos/voltha_protos/openflow_13.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 2269,
+      "author": {
+        "id": 1000729
+      },
+      "writtenOn": "2020-12-14T03:49:39Z",
+      "side": 1,
+      "message": "I tried to kept these changes relevant to the corresponding changes of ofagent and votha-go which only include changes for Flow Table update . I thought to handle Group table update in original proto changes until changes for group update are implemented. What do you think ?",
+      "parentUuid": "1acf8e51_0037e843",
+      "revId": "ec192caecd9669f3ae7f4d0f01faa7beecfdd0ad",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
