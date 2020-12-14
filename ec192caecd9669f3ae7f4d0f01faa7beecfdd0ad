@@ -34,6 +34,24 @@
       "revId": "ec192caecd9669f3ae7f4d0f01faa7beecfdd0ad",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc4be66a_5b7b1a9c",
+        "filename": "protos/voltha_protos/openflow_13.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 2269,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-12-14T16:01:25Z",
+      "side": 1,
+      "message": "Instead of having multiple updates to the protos for the same feature it is better to update the protos with all the feature requirements. In this case the feature is adding xid between the OFAgent and Core. Too  many components rely on the protos and we do not want to have too many churns in protos.",
+      "parentUuid": "ee56fba3_bd3b3a9f",
+      "revId": "ec192caecd9669f3ae7f4d0f01faa7beecfdd0ad",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
