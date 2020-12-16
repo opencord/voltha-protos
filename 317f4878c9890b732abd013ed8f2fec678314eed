@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0287ec3_f1a45651",
+        "filename": "protos/voltha_protos/openflow_13.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-12-16T16:52:09Z",
+      "side": 1,
+      "message": "this is a renumbering of message elements and this a non-backward compatible change? is this what we want?",
+      "range": {
+        "startLine": 1652,
+        "startChar": 0,
+        "endLine": 1656,
+        "endChar": 0
+      },
+      "revId": "317f4878c9890b732abd013ed8f2fec678314eed",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
