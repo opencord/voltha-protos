@@ -70,6 +70,30 @@
       "revId": "317f4878c9890b732abd013ed8f2fec678314eed",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f32a261_786241cb",
+        "filename": "protos/voltha_protos/openflow_13.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-12-17T14:41:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7192169e_00a200fb",
+      "range": {
+        "startLine": 1652,
+        "startChar": 0,
+        "endLine": 1656,
+        "endChar": 0
+      },
+      "revId": "317f4878c9890b732abd013ed8f2fec678314eed",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
