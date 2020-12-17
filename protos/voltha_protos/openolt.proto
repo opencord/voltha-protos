@@ -138,6 +138,20 @@ service Openolt {
         };
     }
 
+    rpc GetOnuStatistics(Onu) returns (OnuStatistics) {
+        option (google.api.http) = {
+            post: "/v1/GetOnuStatistics"
+            body: "*"
+        };
+    }
+
+    rpc GetGemPortStatistics(OnuPacket) returns (GemPortStatistics) {
+        option (google.api.http) = {
+            post: "/v1/GetGemPortStatistics"
+            body: "*"
+        };
+    }
+
     rpc CreateTrafficSchedulers(tech_profile.TrafficSchedulers) returns (Empty) {
         option (google.api.http) = {
             post: "/v1/CreateTrafficSchedulers"
@@ -516,6 +530,45 @@ message PortStatistics {
 
     fixed64 bip_errors = 15;
     fixed32 timestamp = 16;
+}
+
+message OnuStatistics {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    fixed64 positive_drift = 3;
+    fixed64 negative_drift = 4;
+    fixed64 delimiter_miss_detection = 5;
+    fixed64 bip_errors = 6;
+    fixed64 bip_units = 7;
+    fixed64 fec_corrected_symbols = 8;
+    fixed64 fec_codewords_corrected = 9;
+    fixed64 fec_codewords_uncorrectable = 10;
+    fixed64 fec_codewords = 11;
+    fixed64 fec_corrected_units = 12;
+    fixed64 xgem_key_errors = 13;
+    fixed64 xgem_loss = 14;
+    fixed64 rx_ploams_error = 15;
+    fixed64 rx_ploams_non_idle = 16;
+    fixed64 rx_omci = 17;
+    fixed64 rx_omci_packets_crc_error = 18;
+    fixed64 rx_bytes = 19;
+    fixed64 rx_packets = 20;
+    fixed64 tx_bytes = 21;
+    fixed64 tx_packets = 22;
+    fixed64 ber_reported = 23;
+    fixed64 lcdg_errors = 24;
+    fixed64 rdi_errors = 25;
+    fixed32 timestamp = 26;
+}
+
+message GemPortStatistics {
+    fixed32 intf_id = 1;
+    fixed32 gemport_id = 2;
+    fixed64 rx_packets = 3;
+    fixed64 rx_bytes = 4;
+    fixed64 tx_packets = 5;
+    fixed64 tx_bytes = 6;
+    fixed32 timestamp = 26;
 }
 
 message FlowStatistics {
