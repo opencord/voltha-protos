@@ -86,6 +86,7 @@ message OperationResp {
         OPERATION_SUCCESS = 0;
         OPERATION_FAILURE = 1;
         OPERATION_UNSUPPORTED = 2;
+        OPERATION_IN_PROGRESS = 3;
     }
     // Return code
     OperationReturnCode code = 1;
