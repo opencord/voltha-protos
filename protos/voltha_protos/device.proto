@@ -7,6 +7,7 @@ option java_outer_classname = "VolthaDevice";
 package voltha;
 
 import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
 import "voltha_protos/common.proto";
 import "voltha_protos/meta.proto";
 import "voltha_protos/openflow_13.proto";
@@ -220,6 +221,74 @@ message Port {
 
 message Ports {
     repeated Port items = 1;
+}
+
+// A complete device state
+message DeviceState {
+    common.AdminState.Types admin_state = 1;
+    common.OperStatus.Types oper_status = 2;
+    common.ConnectStatus.Types connect_status = 3;
+}
+
+// A device state change
+message DeviceStatesChange {
+    DeviceState previous = 1;
+    DeviceState current = 2;
+}
+
+// A device update filter
+message DeviceUpdateFilter {
+    // Device Id
+    string device_id = 1;
+
+    // Provide update starting from this timestamp, inclusive
+    google.protobuf.Timestamp from_timestamp = 2;
+
+    // Provide update starting to this timestamp, inclusive
+    google.protobuf.Timestamp to_timestamp = 3;
+
+    // The operation that triggered the update, e.g. portCreated
+    string operation = 4;
+
+    // The ID of that operation, e.g. log correlation ID
+    string operation_id = 5;
+
+    // Component initiating the request, e.g. openolt
+    string requested_by = 6;
+
+    // Operation status
+    common.OperationResp status = 7;
+}
+
+// A device update
+message DeviceUpdate {
+    // Device Id
+    string device_id = 1;
+
+    // Timestamp of the update
+    google.protobuf.Timestamp timestamp = 2;
+
+    // The operation that triggered the update, e.g. portCreated
+    string operation = 3;
+
+    // The ID of that operation, e.g. log correlation ID
+    string operation_id = 4;
+
+    // Component initiating the request, e.g. openolt
+    string requested_by = 5;
+
+    // State change, if any, as a result of that update
+    DeviceStatesChange state_change = 6;
+
+    // Operation status
+    common.OperationResp status = 7;
+
+    // A brief description to provide more context to this update
+    string description = 8;
+}
+
+message DeviceUpdates {
+    repeated DeviceUpdate items = 1;
 }
 
 // A Physical Device instance
