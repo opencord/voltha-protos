@@ -330,6 +330,13 @@ service VolthaService {
         };
     }
 
+    // Get the device updates of a given device using a filter
+    rpc GetDeviceUpdates(DeviceUpdateFilter) returns(DeviceUpdates) {
+        option (google.api.http) = {
+            get: "/api/v1/deviceupdates/{id}/{filter}"
+        };
+    }
+
     // Get more information on a given physical device
     rpc GetDevice(common.ID) returns(Device) {
         option (google.api.http) = {
