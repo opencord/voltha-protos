@@ -19,4 +19,4 @@
  * to vendor the voltha.pb file.
  */
 
-package volthaGoProtoSet;
+package volthaGoProtoSet
