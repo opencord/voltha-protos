@@ -20,6 +20,7 @@ option java_package = "org.opencord.voltha.extension";
 package extension;
 
 import public "voltha_protos/ext_config.proto";
+import "google/protobuf/empty.proto";
 
 message GetDistanceRequest {
     string onuDeviceId = 1;
@@ -62,10 +63,99 @@ message GetOnuUniInfoResponse {
     ConfigurationInd configInd = 3;
 }
 
+message GetOltPortCounters {
+    enum PortType {
+        Port_UNKNOWN = 0;
+        Port_ETHERNET_NNI = 1;
+        Port_PON_OLT = 2;
+    }
+    uint32 portNo = 1;  // Device-unique port number
+    PortType portType = 2;
+}
+
+message GetOltPortCountersResponse {
+    uint64 txBytes = 1;
+    uint64 rxBytes = 2;
+    uint64 txPackets = 3;
+    uint64 rxPackets = 4;
+    uint64 txErrorPackets = 5;
+    uint64 rxErrorPackets = 6;
+    uint64 txBcastPackets = 7;
+    uint64 rxBcastPackets = 8;
+    uint64 txUcastPackets = 9;
+    uint64 rxUcastPackets = 10;
+    uint64 txMcastPackets = 11;
+    uint64 rxMcastPackets = 12;
+}
+
+message GetOnuPonOpticalInfo {
+    google.protobuf.Empty empty = 1;
+}
+
+// The types are from Table 11.2.10-1 in G.988
+message GetOnuPonOpticalInfoResponse{
+    int32 laserBiasCurrent = 1;
+    int32 laserBiasCurrentTypeId = 2;
+    int32 meanOpticalLaunchPower = 3;
+    int32 meanOpticalLaunchPowerTypeId = 4;
+    int32 powerFeedTypeId = 5;
+    int32 powerFeedVoltage = 6;
+    int32 receivedOpticalPower = 7;
+    int32 receivedOpticalPowerTypeId = 8;
+    int32 temperature = 9;
+    int32 temperatureTypeId = 10;
+}
+
+message GetOnuEthernetBridgePortHistory {
+    enum Direction {
+        UNDEFINED = 0;
+        UPSTREAM = 1;
+        DOWNSTREAM = 2;
+    }
+    Direction direction = 1;
+}
+
+message GetOnuEthernetBridgePortHistoryResponse {
+     uint32 dropEvents = 1;
+     uint32 octets = 2;
+     uint32 packets= 3;
+     uint32 broadcastPackets = 4;
+     uint32 multicastPackets = 5;
+     uint32 crcErroredPackets = 6;
+     uint32 undersizePackets = 7;
+     uint32 oversizePackets = 8;
+     uint32 packets64octets = 9;
+     uint32 packets65To127octets = 10;
+     uint32 packets128To255Octets = 11;
+     uint32 packets256To511octets = 12;
+     uint32 packets512To1023octets = 13;
+     uint32 packets1024To1518octets = 14;
+}
+
+message GetOnuFecHistory {
+    google.protobuf.Empty empty = 1;
+}
+
+message GetOnuFecHistoryResponse {
+    uint32 correctedBytes = 1;
+    uint32 correctedCodeWords = 2;
+    uint32 fecSeconds = 3;
+    uint32 totalCodeWords = 4;
+    uint32 uncorrectableCodeWords = 5;
+}
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
         GetOnuUniInfoRequest uniInfo = 2;
+        // Corresponds to PmMetricId.PON_PORT_COUNTERS, PmMetricId.NNI_PORT_COUNTERS 
+        GetOltPortCounters oltPortInfo = 3;
+        // Corresponds to PmMetricId.PON_OPTICAL
+        GetOnuPonOpticalInfo onuOpticalInfo = 4;
+        // Corresponds to PmMetricId.ETHERNET_BRIDGE_PORT_HISTORY
+        GetOnuEthernetBridgePortHistory ethBridgePort = 5;
+        // Corresponds to PmMetricId.FEC_HISTORY
+        GetOnuFecHistory fecHistory= 6;
     }
 }
 
@@ -79,6 +169,11 @@ message GetValueResponse {
     enum ErrorReason {
         REASON_UNDEFINED = 0;
         UNSUPPORTED = 1;
+        INVALID_DEVICE_ID = 2;
+        INVALID_PORT_TYPE = 3;
+        TIMEOUT = 4;
+        INVALID_REQ_TYPE = 5;
+	INTERNAL_ERROR = 6;
     }
     Status status = 1;
     ErrorReason errReason = 2;
@@ -86,6 +181,10 @@ message GetValueResponse {
     oneof response {
         GetDistanceResponse distance = 3;
         GetOnuUniInfoResponse uniInfo = 4;
+        GetOltPortCountersResponse portCoutners = 5;
+        GetOnuPonOpticalInfoResponse onuOpticalInfo = 6;
+        GetOnuEthernetBridgePortHistoryResponse ethBridgePortInfo = 7;
+        GetOnuFecHistoryResponse fecHistory = 8;
     }
 }
 
