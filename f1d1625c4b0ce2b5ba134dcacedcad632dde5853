@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddc09918_b831e4ef",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-01-05T08:22:58Z",
+      "side": 1,
+      "message": "Please remove the trailing white spaces. There are 4 occurrences in the file.",
+      "revId": "f1d1625c4b0ce2b5ba134dcacedcad632dde5853",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
