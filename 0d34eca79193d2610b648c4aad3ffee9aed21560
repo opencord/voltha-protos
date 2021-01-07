@@ -16,6 +16,24 @@
       "revId": "0d34eca79193d2610b648c4aad3ffee9aed21560",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "755a3f0f_8f728bd0",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000729
+      },
+      "writtenOn": "2021-01-07T10:19:50Z",
+      "side": 1,
+      "message": "Reason field will not be a part of device object and will be maintained under device updates.\nIf required can be extracted from device updates.",
+      "parentUuid": "c5d7a5b0_83cf3854",
+      "revId": "0d34eca79193d2610b648c4aad3ffee9aed21560",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
