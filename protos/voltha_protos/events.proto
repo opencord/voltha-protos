@@ -177,6 +177,7 @@ message EventSubCategory {
         ONT = 2;
         ONU = 3;
         NNI = 4;
+        NONE = 5; //Adding None for RPC Events
         // Add new event categories here.
     }
 }
