@@ -172,11 +172,12 @@ message EventCategory {
  */
 message EventSubCategory {
     enum Types {
-        PON = 0;
-        OLT = 1;
-        ONT = 2;
-        ONU = 3;
-        NNI = 4;
+        NONE = 0; //Adding None for RPC Events
+        PON = 1;
+        OLT = 2;
+        ONT = 3;
+        ONU = 4;
+        NNI = 5;
         // Add new event categories here.
     }
 }
