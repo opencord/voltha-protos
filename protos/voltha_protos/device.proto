@@ -70,13 +70,20 @@ message PmConfigs {
     uint32 max_skew = 7; //Default value is set to 5 seconds
 }
 
-// Describes instance of software image on the device
+//Object representing an image
 message Image {
+
     string name = 1;                // software patch name
-    string version = 2;             // version of software
-    string hash = 3;                // md5 hash
+
+    // Version, this version MUST be unique across ONUs and Vendors as it is the unique identifier in VOLTHA
+    // of an image
+    string version = 2;
+
+    // hash of the image to be verified against
+    uint32 hash = 3;
+
     string install_datetime = 4;    // combined date and time expressed in UTC.
-                                    // use ISO 8601 format for date and time
+    // use ISO 8601 format for date and time
 
     // The active software image is one that is currently loaded and executing
     // in the ONU or circuit pack. Under normal operation, one software image
@@ -94,14 +101,28 @@ message Image {
     // however, it should include at least a data integrity (e.g., CRC) check of
     // the entire code image.
     bool is_valid = 7;              // True if the image is valid
+
+    // URL where the image is available
+    // should include username password
+    string url = 8;
+
+    // Image file size
+    uint32 file_size = 9;
+
+    //Represents the type and adapter for devices for which this image can be used.
+    string device_type = 10;
+
+    //Represents the vendor/device mfr
+    //Needs to match the vendorId of the device the image will be installed on
+    string vendorId = 11;
+
+    //TODO do we have info of the model of the ONU?
+
+    // Image local location
+    string local_dir = 12;
+
 }
 
-// List of software on the device
-message Images {
-    repeated Image image = 1;
-}
-
-//TODO: ImageDownload is not actively used (05/19/2020).  When this is tackled, can remove extra/unnecessary fields.
 message ImageDownload {
     enum ImageDownloadState {
         DOWNLOAD_UNKNOWN = 0;
@@ -176,6 +197,72 @@ message ImageDownloads {
     repeated ImageDownload items = 2;
 }
 
+message Images {
+    repeated Image image = 1;
+}
+
+message OnuImage {
+    //image version
+    string version = 1;
+    bool isCommited = 2;
+    bool isActive = 3;
+    bool isValid = 4;
+    string productCode = 5;
+    string hash = 6;
+}
+
+message OnuImages {
+    repeated OnuImage items = 1;
+}
+
+message DeviceImageState {
+    string id = 1;
+    ImageState imageState = 2;
+}
+
+message ImageState {
+    enum ImageDownloadState {
+        DOWNLOAD_UNKNOWN = 0;
+        DOWNLOAD_SUCCEEDED = 1;
+        DOWNLOAD_REQUESTED = 2;
+        DOWNLOAD_STARTED = 3;
+        DOWNLOAD_FAILED = 4;
+        DOWNLOAD_UNSUPPORTED = 5;
+        DOWNLOAD_CANCELLED = 6;
+    }
+
+    enum ImageFailureReason {
+        NO_ERROR = 0;
+        INVALID_URL = 1;
+        DEVICE_BUSY = 2;
+        INSUFFICIENT_SPACE = 3;
+        UNKNOWN_ERROR = 4;
+        CANCELLED = 5;
+    }
+
+    enum ImageActivationState {
+        IMAGE_UNKNOWN = 0;
+        IMAGE_INACTIVE = 1;
+        IMAGE_ACTIVATING = 2;
+        IMAGE_ACTIVE = 3;
+        IMAGE_REVERTING = 4;
+        IMAGE_REVERTED = 5;
+    }
+
+    // image version
+    string version = 1;
+
+    // Download state
+    ImageDownloadState download_state = 2;
+
+    // Image Operation Failure reason (use for both Download and Activate)
+    ImageFailureReason reason= 3;
+
+    // Image activation state
+    ImageActivationState image_state = 4;
+
+}
+
 message Port {
     enum PortType {
         UNKNOWN = 0;
@@ -246,10 +333,15 @@ message Device {
     string firmware_version = 8 [(access) = READ_ONLY];
     // List of software on the device
     Images images = 9 [(access) = READ_ONLY];
+    //Software on the device
+    //For the Active image the image has to be downloaded, active and with no error
+    //Initially needs to be populated with information coming from OMCI
+    OnuImage active_image = 25;
+    OnuImage standby_image = 26;
     string serial_number = 10 [(access) = READ_ONLY];
     string vendor_id = 24 [(access) = READ_ONLY];
 
-    // Addapter that takes care of device
+    // Adapter that takes care of device
     string adapter = 11 [(access) = READ_ONLY];
 
     // Device contact on vlan (if 0, no vlan)
@@ -302,6 +394,7 @@ message Device {
     PmConfigs pm_configs = 131 [(child_node) = {}];
 
     repeated ImageDownload image_downloads = 133 [(child_node) = {key: "name"}];
+
 }
 
 message Devices {
