@@ -161,6 +161,12 @@ type OfAgentSubscriber = voltha.OfAgentSubscriber
 // Membership from public import voltha_protos/voltha.proto
 type Membership = voltha.Membership
 
+// DeviceImageRequest from public import voltha_protos/voltha.proto
+type DeviceImageRequest = voltha.DeviceImageRequest
+
+// DeviceImageResponse from public import voltha_protos/voltha.proto
+type DeviceImageResponse = voltha.DeviceImageResponse
+
 // FlowMetadata from public import voltha_protos/voltha.proto
 type FlowMetadata = voltha.FlowMetadata
 
