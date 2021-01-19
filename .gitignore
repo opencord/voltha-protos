@@ -23,3 +23,5 @@ java
 *coverage.xml
 *results.xml
 
+#editors
+.idea/
