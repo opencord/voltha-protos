@@ -162,6 +162,45 @@ message Membership {
     string id = 2;
 }
 
+message DeviceImageDownloadRequest {
+
+    // Device Id
+    // allows for operations on multiple devices.
+    repeated common.ID device_id = 1;
+
+    // Image Version, this is the sole identifier of the image. it's the vendor specified OMCI version
+    // must be known at the time of initiating a download, activate, commit image on an onu.
+    string version = 2;
+
+    Image image = 3;
+
+    //Activate the image if the download to the device is successful
+    bool activateOnSuccess = 4;
+
+    //Automatically commit the image if the activation on the device is successful
+    bool commitOnSuccess = 5;
+}
+
+message DeviceImageRequest {
+
+    //Device Id
+    //allows for operations on multiple adapters.
+    repeated common.ID device_id = 1;
+
+    // Image Version, this is the sole identifier of the image. it's the vendor specified OMCI version
+    // must be known at the time of initiating a download, activate, commit image on an onu.
+    string version = 2;
+
+    //Automatically commit the image if the activation on the device is successful
+    bool commitOnSuccess = 3;
+}
+
+message DeviceImageResponse {
+
+    //Image state for the different devices
+    repeated DeviceImageState device_image_states = 1;
+}
+
 // Additional information required to process flow at device adapters
 message FlowMetadata {
     // Meters associated with flow-update to adapter
@@ -369,18 +408,19 @@ service VolthaService {
     }
 
     // Delete a device
-    rpc DeleteDevice(common.ID) returns(google.protobuf.Empty) {
+    rpc DeleteDevice (common.ID) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/v1/devices/{id}/delete"
         };
     }
 
     // Forcefully delete a device
-    rpc ForceDeleteDevice(common.ID) returns(google.protobuf.Empty) {
+    rpc ForceDeleteDevice (common.ID) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/v1/devices/{id}/force_delete"
         };
     }
+
     // Request an image download to the standby partition
     // of a device.
     // Note that the call is expected to be non-blocking.
@@ -448,15 +488,72 @@ service VolthaService {
         };
     }
 
+    // Downloads a certain image to the standby partition of the devices
+    // Note that the call is expected to be non-blocking.
+    rpc ImageDownloadToDevice (DeviceImageDownloadRequest) returns (DeviceImageResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/devices/images/download_images"
+        };
+    }
+
+    // Get image status on a number of devices devices
+    // Polled from northbound systems to get state of download/activate/commit
+    rpc GetImageStatus (DeviceImageRequest) returns (DeviceImageResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/devices/images/images_status"
+        };
+    }
+
+    // Aborts the download of an image to a device
+    rpc AbortImageDownloadToDevice (DeviceImageRequest) returns (DeviceImageResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/devices/images/abort_download_images"
+        };
+    }
+
+    // Get Both Active and Standby image for a given device
+    rpc GetOnuImages (common.ID) returns (OnuImages) {
+        option (google.api.http) = {
+            get: "/api/v1/devices/{id}/onu_images"
+        };
+    }
+
+    // Activate the specified image from a standby partition
+    // to active partition.
+    // Depending on the device implementation, this call
+    // may or may not cause device reboot.
+    // If no reboot, then a reboot is required to make the
+    // activated image running on device
+    // Note that the call is expected to be non-blocking.
+    rpc ActivateImage (DeviceImageRequest) returns (DeviceImageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/devices/images/activate_images"
+            body: "*"
+        };
+    }
+
+    // Commit the specified image to be default.
+    // Depending on the device implementation, this call
+    // may or may not cause device reboot.
+    // If no reboot, then a reboot is required to make the
+    // activated image running on device upon next reboot
+    // Note that the call is expected to be non-blocking.
+    rpc CommitImage (DeviceImageRequest) returns (DeviceImageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/devices/images/commit_images"
+            body: "*"
+        };
+    }
+
     // List ports of a device
-    rpc ListDevicePorts(common.ID) returns(Ports) {
+    rpc ListDevicePorts (common.ID) returns (Ports) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/ports"
         };
     }
 
     // List pm config of a device
-    rpc ListDevicePmConfigs(common.ID) returns(PmConfigs) {
+    rpc ListDevicePmConfigs (common.ID) returns (PmConfigs) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/pm_configs"
         };
