@@ -70,38 +70,64 @@ message PmConfigs {
     uint32 max_skew = 7; //Default value is set to 5 seconds
 }
 
-// Describes instance of software image on the device
+//Object representing an image
 message Image {
+
     string name = 1;                // software patch name
-    string version = 2;             // version of software
-    string hash = 3;                // md5 hash
+
+    // Version, this is the sole identifier of the image. it's the vendor specified OMCI version
+    // must be known at the time of initiating a download, activate, commit image on an onu.
+    string version = 2;
+
+    // hash of the image to be verified against
+    // Deprecated in voltha 2.8, will be removed
+    uint32 hash = 3;
+
+    // Deprecated in voltha 2.8, will be removed
     string install_datetime = 4;    // combined date and time expressed in UTC.
-                                    // use ISO 8601 format for date and time
+    // use ISO 8601 format for date and time
 
     // The active software image is one that is currently loaded and executing
     // in the ONU or circuit pack. Under normal operation, one software image
     // is always active while the other is inactive. Under no circumstances are
     // both software images allowed to be active at the same time
+    // Deprecated in voltha 2.8, will be removed
     bool is_active = 5;             // True if the image is active
 
     // The committed software image is loaded and executed upon reboot of the
     // ONU and/or circuit pack. During normal operation, one software image is
     // always committed, while the other is uncommitted.
+    // Deprecated in voltha 2.8, will be removed
     bool is_committed = 6;          // True if the image is committed
 
     // A software image is valid if it has been verified to be an executable
     // code image. The verification mechanism is not subject to standardization;
     // however, it should include at least a data integrity (e.g., CRC) check of
     // the entire code image.
+    // Deprecated in voltha 2.8, will be removed
     bool is_valid = 7;              // True if the image is valid
+
+    // URL where the image is available
+    // URL MUST be fully qualified,
+    // including filename, username and password
+    string url = 8;
+
+    //Represents the vendor/device mfr
+    //Needs to match the vendor of the device the image will be installed on
+    //optional, if not matched no check will be performed
+    string vendor = 9;
+
+    //Represents the ONU Image CRC value.
+    //If present is used to verify the image retrieved from outside before sending it to the ONU.
+    //Calculation of this needs to be done according to ITU-T I.363.5 as per OMCI spec (section A.2.27)
+    string crc32 = 10;
+
+    //TODO augment with RecommendedWindowsSize, Timeout and other valuable attributes.
+
 }
 
-// List of software on the device
-message Images {
-    repeated Image image = 1;
-}
-
-//TODO: ImageDownload is not actively used (05/19/2020).  When this is tackled, can remove extra/unnecessary fields.
+// Older version of the API please see DeviceImageDownloadRequest
+// Deprecated in voltha 2.8, will be removed
 message ImageDownload {
     enum ImageDownloadState {
         DOWNLOAD_UNKNOWN = 0;
@@ -172,8 +198,89 @@ message ImageDownload {
     uint32 file_size = 13;
 }
 
+// Deprecated in voltha 2.8, will be removed
 message ImageDownloads {
     repeated ImageDownload items = 2;
+}
+
+message Images {
+    repeated Image image = 1;
+}
+
+// OnuImage represents the OMCI information as per OMCI spec
+// the information will be populates exactly as extracted from the device.
+message OnuImage {
+    //image version
+    string version = 1;
+    bool isCommited = 2;
+    bool isActive = 3;
+    bool isValid = 4;
+    string productCode = 5;
+    // Hash is computed by the ONU and is optional as per OMCI spec (paragraph 9.1.4)
+    // No assumption should be made on the existence of this attribute at any time.
+    string hash = 6;
+}
+
+message OnuImages {
+    repeated OnuImage items = 1;
+}
+
+message DeviceImageState {
+    string device_id = 1;
+    ImageState imageState = 2;
+}
+
+message ImageState {
+    enum ImageDownloadState {
+        DOWNLOAD_UNKNOWN = 0;
+        DOWNLOAD_SUCCEEDED = 1;
+        DOWNLOAD_REQUESTED = 2;
+        DOWNLOAD_STARTED = 3;
+        DOWNLOAD_FAILED = 4;
+        DOWNLOAD_UNSUPPORTED = 5;
+        DOWNLOAD_CANCELLING = 6;
+        DOWNLOAD_CANCELLED = 7;
+    }
+
+    enum ImageFailureReason {
+        NO_ERROR = 0;
+        INVALID_URL = 1;
+        DEVICE_BUSY = 2;
+        INSUFFICIENT_SPACE = 3; // VOLTHA ONU ADAPTER has no more space to store images
+        UNKNOWN_ERROR = 4; // Used also for Checksum failure on ONU
+        CANCELLED_ON_REQUEST = 5;
+        CANCELLED_ON_ONU_STATE = 6;
+        VENDOR_DEVICE_MISMATCH = 7;
+        OMCI_TRANSFER_ERROR = 8;
+        IMAGE_REFUSED_BY_ONU = 9;
+    }
+
+    enum ImageActivationState {
+        IMAGE_UNKNOWN = 0;
+        IMAGE_INACTIVE = 1;
+        IMAGE_ACTIVATING = 2; // Happens during Reboot of the ONU after activate call.
+        IMAGE_ACTIVE = 3;
+        IMAGE_COMMITTING = 4;
+        IMAGE_COMMITTED = 5;
+        IMAGE_ACTIVATION_ABORTING = 6;
+        IMAGE_ACTIVATION_ABORTED = 7;
+        IMAGE_COMMIT_ABORTING = 8;
+        IMAGE_COMMIT_ABORTED = 9;
+        IMAGE_DOWNLOADING = 10;
+    }
+
+    // image version
+    string version = 1;
+
+    // Download state
+    ImageDownloadState download_state = 2;
+
+    // Image Operation Failure reason (use for both Download and Activate)
+    ImageFailureReason reason= 3;
+
+    // Image activation state
+    ImageActivationState image_state = 4;
+
 }
 
 message Port {
@@ -249,7 +356,7 @@ message Device {
     string serial_number = 10 [(access) = READ_ONLY];
     string vendor_id = 24 [(access) = READ_ONLY];
 
-    // Addapter that takes care of device
+    // Adapter that takes care of device
     string adapter = 11 [(access) = READ_ONLY];
 
     // Device contact on vlan (if 0, no vlan)
@@ -302,6 +409,7 @@ message Device {
     PmConfigs pm_configs = 131 [(child_node) = {}];
 
     repeated ImageDownload image_downloads = 133 [(child_node) = {key: "name"}];
+
 }
 
 message Devices {
