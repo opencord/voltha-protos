@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b94c6bcf_442ceaa9",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-01-21T15:32:04Z",
+      "side": 1,
+      "message": "This breaks proto backward compatibility (not sure if any system is using this data). As a good practice it\u0027s better to assign it a new number (e.g. 10, to leave room for other subcategories if needed). \n\nThinking a little bit more about the RPC subcategory, given that the category field is quite generic, would it be helpful to add subcategories that could actually be relevant to RPC events?  I am thinking about using \"FLOWS\", \"PORTS\", \"DEVICE\", \"DB\" as subcategories.  This way if something want to know how many database errors we are seeing then a quick filter on \"DB\" subcategory would be helpful.   Thoughts?",
+      "revId": "1864c12bd4589ac2243c459f8713c7e18e9e5344",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
