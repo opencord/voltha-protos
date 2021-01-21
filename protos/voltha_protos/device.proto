@@ -222,6 +222,24 @@ message Ports {
     repeated Port items = 1;
 }
 
+// A device reason
+
+message DeviceReason {
+    // Device Id
+    string device_id = 1;
+
+    // UNI Id
+    string uni_id = 2;
+
+    // A latest device reason for corresponding device and UNI id
+    string reason = 3;
+}
+
+
+message DeviceReasons {
+    repeated DeviceReason items = 1;
+}
+
 // A Physical Device instance
 message Device {
     // Voltha's device identifier
@@ -287,8 +305,6 @@ message Device {
     common.AdminState.Types admin_state = 16;
 
     common.OperStatus.Types oper_status = 17 [(access) = READ_ONLY];
-
-    string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
 
     common.ConnectStatus.Types connect_status = 18 [(access) = READ_ONLY];
 

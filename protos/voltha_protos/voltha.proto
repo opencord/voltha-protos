@@ -330,6 +330,12 @@ service VolthaService {
         };
     }
 
+    rpc GetDeviceReasons(common.ID) returns(DeviceReasons) {
+        option (google.api.http) = {
+            get: "/api/v1/devicereasons/{id}"
+        };
+    }
+
     // Get more information on a given physical device
     rpc GetDevice(common.ID) returns(Device) {
         option (google.api.http) = {
