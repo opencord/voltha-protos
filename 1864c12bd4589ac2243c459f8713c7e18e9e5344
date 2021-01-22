@@ -16,6 +16,24 @@
       "revId": "1864c12bd4589ac2243c459f8713c7e18e9e5344",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36597284_3b86b60c",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-01-22T06:31:00Z",
+      "side": 1,
+      "message": "For having Subcategory as DB or PORTS or Device, we will have to track the error from all functions and change the subcategory accordingly, specifically for DB case. Since rpc events will only be send on those failures which are silent and not known to the user so I guess we can have none field as the subcategory because one will be more interested in failures for a particular rpc. What do you suggest",
+      "parentUuid": "b94c6bcf_442ceaa9",
+      "revId": "1864c12bd4589ac2243c459f8713c7e18e9e5344",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
