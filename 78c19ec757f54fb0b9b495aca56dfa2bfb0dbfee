@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97a87970_a9356913",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-03T18:06:40Z",
+      "side": 1,
+      "message": "Can you create a separate Jira to introduce sub-categories like DB?",
+      "revId": "78c19ec757f54fb0b9b495aca56dfa2bfb0dbfee",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
