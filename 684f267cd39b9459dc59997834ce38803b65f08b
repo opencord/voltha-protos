@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93fee7ae_31e7c610",
+        "filename": "protos/voltha_protos/openflow_13.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-02-16T15:23:57Z",
+      "side": 1,
+      "message": "Are these white space changes purposefully done or something which has crept in because of some editor settings?",
+      "revId": "684f267cd39b9459dc59997834ce38803b65f08b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
