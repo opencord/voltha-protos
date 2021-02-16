@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "935caf27_47b9cb2d",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-02-16T13:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e0a6761_34f268cb",
+      "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49d1212e_6b1581dd",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "942f1e24_48224b56",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-02-16T13:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d1212e_6b1581dd",
+      "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "598dfe84_9fefb830",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-02-16T13:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4cf5808_0459d27a",
+      "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a9ec47b_c477682c",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2021-02-15T18:35:31Z",
       "side": 1,
       "message": "What would be the difference compared to GetOnuImages or even GetActiveImage, maybe this one is obsolete?",
+      "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7f63952_0fe9daa0",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-02-16T13:06:34Z",
+      "side": 1,
+      "message": "it might be that the activation is in progress, or there is no such case ?",
+      "parentUuid": "9a9ec47b_c477682c",
       "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -98,6 +170,24 @@
       "writtenOn": "2021-02-15T18:35:31Z",
       "side": 1,
       "message": "I don\u0027t think commit should be some operator activity. Whether or not to commit some image should be part of OnuAdapter internal logic. Of course it would also be an option to delegate that decision to the operator, but I think that\u0027s not usual.",
+      "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cabf72d8_398ab598",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-02-16T13:06:34Z",
+      "side": 1,
+      "message": "here I was trying to mimic as much as possibile the OMCI spec, in the DMI brigade we have gone with the way you specify, just having download and activate, and now we are looking at adding the commit to allow different workflows. just want to be president here. we can discuss with the rest of the team",
+      "parentUuid": "fa497271_065bd9c9",
       "revId": "e38f5449dd5bb025e642843cbc88ece12c8d7fef",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
