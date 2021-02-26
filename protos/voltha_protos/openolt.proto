@@ -481,7 +481,7 @@ message Flow {
 
     bool replicate_flow = 16; // When this field is true, use pbitToGemPortID to know which p-bit needs to be classfied to which gem port.
     map<fixed32, fixed32> pbit_to_gemport = 17; // Map of p-bit to gem port ID
-
+    map<fixed32, bool> gemport_to_aes = 19; // Map of gem port ID to aes encryption
 }
 
 message SerialNumber {
