@@ -369,6 +369,7 @@ message DeviceInfo {
     string firmware_version = 4;
     string device_id = 16;
     string device_serial_number = 17;
+    bool previously_connected = 19; // used to indicate agent reconcile status
 
     // Total number of pon intf ports on the device
     fixed32 pon_ports = 12;
