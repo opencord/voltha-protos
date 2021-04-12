@@ -393,6 +393,23 @@
     },
     {
       "key": {
+        "uuid": "c05378e5_21147abc",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-12T16:08:38Z",
+      "side": 1,
+      "message": "Should we also introduce another bool commitOnSuccess?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "981d6f9e_4c9a7180",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
@@ -404,6 +421,23 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "Does this abort some ongoing DownloadToDevice?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03e6de36_26e313ed",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-12T16:08:38Z",
+      "side": 1,
+      "message": "The more I am thinking about these 3 RPCs at voltha for managing the image within voltha itself, I think we can avoid this. This might open up quite a bit of work with these images, we might have to volume mount the onu adapter so that we don\u0027t lose the image on an container restart, if in the future we have multiple instances of the adapter then how do we handle it etc etc.\n\nCan we just say that the ONU adapter would optimize the process by caching the image, but the users can\u0027t make any such assumptions. From an ONU adapter implementation we could put in a caching policy like remove if not used in the last 2 days or whatever and on container restart we lose it but then download it again on getting a new download request.",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -427,6 +461,23 @@
     },
     {
       "key": {
+        "uuid": "68cab280_f8d22c03",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-12T16:08:38Z",
+      "side": 1,
+      "message": "For both the DownloadToDevice and Activate RPCs, as they are non-blocking should we think if we should return a stream, but that might become tricky with kafka in between the core and adapters. With the current approach the users of this API should choose some suitable frequency to poll and find the status, but I guess it should be ok.\n\nWe could also create a new message DownloadToDeviceRequest",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2165965_262b23a2",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
@@ -438,6 +489,23 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "one to much: devices",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a067327_bb9365d9",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-12T16:08:38Z",
+      "side": 1,
+      "message": "Should the input param to this one and the abort download be just common.ID?",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -489,6 +557,23 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "I would regard it as obsolete",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adcbf123_c8f18fa9",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-12T16:08:38Z",
+      "side": 1,
+      "message": "Don\u0027t have a problem with the GetActiveImage and GetStandbyImage RPCs but we could leave these out if that reduces work, the GetOnuImages would anyway return both and I think most use cases would want to query.",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
