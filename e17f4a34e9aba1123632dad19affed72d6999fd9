@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "e937de1c_888ed938",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "present before these additions, given I want to have this as an incremental change I\u0027m not removing it.",
+      "parentUuid": "b6bbda92_0b1679c7",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f40504b_57a1aa4a",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -47,6 +65,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "Compare OnuImage below, I think here these (3) parameters are not needed.",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15edf43f_773999fa",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "present before these additions, given I want to have this as an incremental change I\u0027m not removing it.",
+      "parentUuid": "6f40504b_57a1aa4a",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "058557bc_17c265e2",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "I would say no, but up for debate.",
+      "parentUuid": "c84810b9_08577566",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7b5c32c9_5d9bc1ef",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -81,6 +135,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "used somewhere?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46fee08c_f21d12a7",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "this can be set when the image is stored, I\u0027m ok removing",
+      "parentUuid": "7b5c32c9_5d9bc1ef",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "802853a8_e4191f54",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "can be a family of devices e.g. all Adtran ones, I\u0027m ok removing.",
+      "parentUuid": "88dd27a2_4228486a",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8b63dad_833642fc",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -115,6 +205,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "//used for what?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f4d3869_6f1d626d",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "it would allow matching ONU and Image, just a further check, I\u0027m ok removing.",
+      "parentUuid": "f8b63dad_833642fc",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "d5408c33_3d9bec82",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "yes, this can actually be removed in favour of an internal implementation of this",
+      "parentUuid": "1906e219_23af59f5",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13d52c9b_89b74a48",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -149,6 +275,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "will probably never be used (probably only \u0027started\u0027)",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3a4a55a_ca4400ec",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "yes, the idea is not to use this in the new APIS and implementation",
+      "parentUuid": "13d52c9b_89b74a48",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "e9dad4a3_a472581c",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "present before these additions, given I want to have this as an incremental change I\u0027m not removing it.",
+      "parentUuid": "68bd478e_faea427a",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b156ee97_a2cfc3d5",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -183,6 +345,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "The number is just a place holder - 1 allowing multiple entities? Compare above line 197: 2 allowing and requiring exactly 2?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15793a9a_4d258a8a",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "no, the 1 is the order in the protos, no connection to the side of images, these can be as many as desired. Need to be `images`",
+      "parentUuid": "b156ee97_a2cfc3d5",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -206,6 +386,24 @@
     },
     {
       "key": {
+        "uuid": "c29b06c1_efa1ad39",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "checking by the ONU if desired, these elements were copied from the OMCI spec.",
+      "parentUuid": "b6d1a7ac_0e008879",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72b8002a_e04c5e2f",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -217,6 +415,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "Used for what?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afd4694e_aa3d1c12",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "the hash needs to be used for checking by the ONU if desired, these elements were copied from the OMCI spec.",
+      "parentUuid": "72b8002a_e04c5e2f",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -240,6 +456,24 @@
     },
     {
       "key": {
+        "uuid": "1ad426d2_15d44aee",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "c1c1dea8_d76a973b",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35575bd8_81192fc1",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -251,6 +485,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "Is this the device_id?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88bcc8f9_e5c2473f",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "35575bd8_81192fc1",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -274,6 +526,24 @@
     },
     {
       "key": {
+        "uuid": "70f6f6f5_2a99c3f5",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "ACK, that makes sense",
+      "parentUuid": "19e95e04_d8954860",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a6b7c8b_87a19014",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -291,6 +561,24 @@
     },
     {
       "key": {
+        "uuid": "88281b07_7b1db735",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "I can add a specific FILE_NOT_FOUND one",
+      "parentUuid": "6a6b7c8b_87a19014",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8fedae5_a5b59d88",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -302,6 +590,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "Used in case of rwCore timeout?",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce5c672b_da250054",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "actually this should be SYSTEM_BUSY",
+      "parentUuid": "d8fedae5_a5b59d88",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -359,6 +665,24 @@
     },
     {
       "key": {
+        "uuid": "82b7e8fe_90f3d453",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "ACK, needs to be added.",
+      "parentUuid": "f995bb25_54bcbea8",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71f65721_5b2c4a93",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
@@ -370,6 +694,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "Don\u0027t know, for me it looks more like the download image handlingm so I would expect image name here.",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a68af1e_82ff4800",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "name and version ?",
+      "parentUuid": "71f65721_5b2c4a93",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -410,6 +752,24 @@
     },
     {
       "key": {
+        "uuid": "9fbfea2f_392c3658",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "ACK, yes, this is a good idea",
+      "parentUuid": "c05378e5_21147abc",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "981d6f9e_4c9a7180",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
@@ -438,6 +798,24 @@
       "writtenOn": "2021-04-12T16:08:38Z",
       "side": 1,
       "message": "The more I am thinking about these 3 RPCs at voltha for managing the image within voltha itself, I think we can avoid this. This might open up quite a bit of work with these images, we might have to volume mount the onu adapter so that we don\u0027t lose the image on an container restart, if in the future we have multiple instances of the adapter then how do we handle it etc etc.\n\nCan we just say that the ONU adapter would optimize the process by caching the image, but the users can\u0027t make any such assumptions. From an ONU adapter implementation we could put in a caching policy like remove if not used in the last 2 days or whatever and on container restart we lose it but then download it again on getting a new download request.",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "604b35c0_47a7a937",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "agreed, so you\u0027d just have CreateImage ?",
+      "parentUuid": "03e6de36_26e313ed",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -509,6 +887,24 @@
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e819a523_3a2e5c8c",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T11:34:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a067327_bb9365d9",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     },
     {
       "key": {
