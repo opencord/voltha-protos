@@ -718,6 +718,23 @@
     },
     {
       "key": {
+        "uuid": "e2b06965_b8dd6340",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "add a Name here, where this name is the filename, wether instead the VERSION can only be discovered by OMCI after the image is on the ONU. the Version can be read from the listDeviceImage. Name can be used in download only, then OMCI version for activation/commit or Name",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a3874347_9f4f8ea8",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
@@ -729,6 +746,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "I\u0027m not sure this is what you really want to have here. As this shall be used for the ImageDownloadToDevice I think you have to specify the image name as downloaded before. Not that the SW image name used on OMCI might be different from specified (logical) file name.",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16e33793_e5386934",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "this Can\u0027t be removed from the request, is only specific to OMCI, will be returned as per user information in the list images",
+      "parentUuid": "a3874347_9f4f8ea8",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -764,6 +799,24 @@
       "side": 1,
       "message": "ACK, yes, this is a good idea",
       "parentUuid": "c05378e5_21147abc",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39df483c_6429e481",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "remove entirely these APIs",
+      "parentUuid": "9fbfea2f_392c3658",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -816,6 +869,24 @@
       "side": 1,
       "message": "agreed, so you\u0027d just have CreateImage ?",
       "parentUuid": "03e6de36_26e313ed",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "628fe934_25440c47",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "remove entirely these APIs",
+      "parentUuid": "604b35c0_47a7a937",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -908,6 +979,24 @@
     },
     {
       "key": {
+        "uuid": "475f92eb_ab3126b8",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "put common.ID and Version here as parameter",
+      "parentUuid": "e819a523_3a2e5c8c",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22861fb2_f53c2687",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
@@ -919,6 +1008,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "maybe should return also only common.OperationResp",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68b2e7bf_e7d1493f",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "put common.ID and Image Name and Version here as parameter",
+      "parentUuid": "22861fb2_f53c2687",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -1004,6 +1111,24 @@
       "writtenOn": "2021-04-12T15:41:53Z",
       "side": 1,
       "message": "maybe should return also only common.OperationResp",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0df9ac6e_820e311d",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-13T16:37:36Z",
+      "side": 1,
+      "message": "put common.ID and Image Version here as parameter. where version is the OMCI name and also the unique ID of the image within VOLTHA.",
+      "parentUuid": "9d62bfc4_98f08e33",
       "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
