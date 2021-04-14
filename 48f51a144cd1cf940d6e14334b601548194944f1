@@ -1,0 +1,446 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ba05288_b0ad63aa",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove the name from all other new calls. OMCI version must be know a priori by the operator/user. no operation can be initiated if the version is not known.",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf26e75c_4e029e74",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "URL MUST be fully qualified, including the filename.",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b731d582_14a7afac",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2375946c_4f6edde4",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e914714_9a6225c1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "call vendor and comment on it that it\u0027s optional",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c170eb91_b110ea97",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b60aed1b_ac9468e3",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "common.ID and is the device Id",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97d148c9_a557c08f",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "put a comment here that the space is related to VOLTHA",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6b41165_251bd19d",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "could be used if checksum failed on ONU",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41d3cc8d_ea3c19dc",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "this state happens during reboot, insert comment",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e799c5a_9088c5ec",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove REVERTING and REVERTED but add IMAGE_COMMITTED",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "926340d7_85743944",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "add committing enum",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2422d81_8a79eec4",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "248d642a_8b78e956",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "not needed",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a04009f0_26f0e9e1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove these",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61996740_f217a00d",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "DeviceImageDowloadRequest that include the full Image object",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784eb244_833e7c42",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "needs to be documented. \nName \u003d always the same, needs to be the same from the download.\nVersion \u003d the OMCI version, can be optional if name is specified. but best",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f93cdb5_cd0c9b86",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "not here",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b964dc9f_e7fee3ef",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "needs to be moved to download",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60037462_55c97e65",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "should be placed in the download as well",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a689ac2_2329e921",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "use DeviceImageDowloadRequest instead",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "903209cc_69bafa6f",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "this will be polled from northbound systems to get state of download/activate/commit",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88153085_614f527d",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "rework the rest APIs",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82daf7b1_6a6abfc1",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "remove this line",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "920b3001_4a5bccd7",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "combine this with GetImageDownloadToDeviceStatus into GetImageStatus and remove the separate ones",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d0df9c4_e00cb59f",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "DeviceImageResponse as return here",
+      "revId": "48f51a144cd1cf940d6e14334b601548194944f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}

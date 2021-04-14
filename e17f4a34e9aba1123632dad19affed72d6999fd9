@@ -579,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "88788c58_837d8b35",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-14T10:31:23Z",
+      "side": 1,
+      "message": "not needed anymore",
+      "parentUuid": "88281b07_7b1db735",
+      "revId": "e17f4a34e9aba1123632dad19affed72d6999fd9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8fedae5_a5b59d88",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 4
