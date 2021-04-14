@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e7aacb7_0934c56a",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-14T12:44:57Z",
+      "side": 1,
+      "message": "Cosmetic, instead of ImageActivate should we call it ActivateImage?",
+      "revId": "7cdf083232f61148e088f2fe17f4f048a6682793",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
