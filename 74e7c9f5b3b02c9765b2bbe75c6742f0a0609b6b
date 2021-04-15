@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "604a0e19_344bcd51",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T13:18:22Z",
+      "side": 1,
+      "message": "See below hash discussion, in my point of view we should not support it here in the new implementation - for whatever reason and how it might have been used so far.",
+      "parentUuid": "430a733c_f49fb770",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c4ee76e_e49c819f",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -231,6 +249,24 @@
     },
     {
       "key": {
+        "uuid": "25290265_5011bf54",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T13:18:22Z",
+      "side": 1,
+      "message": "Here - within the OnuImage structure, this will be the (MD5) hash of the images as delivered by the ONU. This in my point of view is supplementary information (if delivered by the ONU at all) and could in theory still be used by the operator for trying to make \u0027really-really\u0027 sure, that it was the imaged as delivered for download.\nBut: Concerning the OMCI processing there is no request at all to verify that on the OMCI processing entities. Validity of the image is based on CRC check only (and length and if it runs correctly afterwards). So: if at all, the hash here is only transported to the operator (and the question is really if that is some useful information there).\nI\u0027m not sure about the intention of the hash attribute in the Image message. Initially thought it could have been used as an efficient way of storing image related (data base) information. But maybe the original intention really was to have that configured from operator to enable an hash comparison between the configured hash and the ONU delivered hash (note they are still different instances - can\u0027t be copied from DownloadRequest). But as stated, there is no requirement for checking the coincidence of these values on the OMCI termination points (acc. to G988) - so I would not want to support such in the ONU Adapter.",
+      "parentUuid": "b445d3e9_0f7e0cc1",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09cf5d2_badf36ed",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -366,6 +402,24 @@
       "side": 1,
       "message": "sure, I\u0027ll add that, but in voltctl we will put it to empty",
       "parentUuid": "661d62b8_571afee9",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5581f52d_340fd0e9",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T13:18:22Z",
+      "side": 1,
+      "message": "You mean IMAGE_DOWNLOADING -\u003e \"EMPTY\" or \"\", that is acceptable to me as well. But I would like to have something differnt for \"IMAGE_UNKNOWN\", which should indicate, that the wanted image is really not available for activation/commitment.",
+      "parentUuid": "a1d49fbc_1263d89f",
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true

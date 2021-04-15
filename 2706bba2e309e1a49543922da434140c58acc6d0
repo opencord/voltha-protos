@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9e35997_03849627",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T13:18:22Z",
+      "side": 1,
+      "message": "This is wrong. See hash discussion.",
+      "revId": "2706bba2e309e1a49543922da434140c58acc6d0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
