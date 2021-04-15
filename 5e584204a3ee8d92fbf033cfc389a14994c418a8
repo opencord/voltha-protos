@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9e256cb_a101f243",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T15:01:23Z",
+      "side": 1,
+      "message": "Sorry Andrea, did not see that in the Telco: Should be uint32. O for \u0027not specified\u0027.",
+      "revId": "5e584204a3ee8d92fbf033cfc389a14994c418a8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
