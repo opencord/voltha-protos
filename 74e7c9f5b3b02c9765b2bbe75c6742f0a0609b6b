@@ -480,6 +480,24 @@
     },
     {
       "key": {
+        "uuid": "903654ce_9a619993",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T14:16:49Z",
+      "side": 1,
+      "message": "I added the IMAGE_DOWLOADING state. In the implementation of the download nor the core nor the adapter should care about the ImageActivationState. if the get want to put DOWLOADING in there when queried I\u0027m ok, but I\u0027m ok also leaving empty",
+      "parentUuid": "5581f52d_340fd0e9",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98171f76_27419742",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 7
