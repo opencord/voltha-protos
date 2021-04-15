@@ -267,6 +267,24 @@
     },
     {
       "key": {
+        "uuid": "bf562881_b2c2a6c1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-04-15T13:36:40Z",
+      "side": 1,
+      "message": "@Micheal As I understand the \"hash\" attribute in the Image (line 83 above) is needed, as we need to send the crc in the EndDownload based on which the ONU will figure out if indeed the image that has been downloaded is correct or not.\n\nMaybe am missing something here.",
+      "parentUuid": "25290265_5011bf54",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09cf5d2_badf36ed",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
