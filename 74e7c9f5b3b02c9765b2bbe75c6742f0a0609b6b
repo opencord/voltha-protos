@@ -303,6 +303,24 @@
     },
     {
       "key": {
+        "uuid": "8a453c45_eb9255e1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T13:51:27Z",
+      "side": 1,
+      "message": "Discussed with Andreas in Slack: Hash is something else as (the) CRC (used here).\nCRC is computed from the adapter itself, we agreed on not having this as a configuration paramter.",
+      "parentUuid": "bf562881_b2c2a6c1",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09cf5d2_badf36ed",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
