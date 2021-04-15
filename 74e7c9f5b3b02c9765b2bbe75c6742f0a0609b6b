@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90bca145_d3629f52",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "To my understanding following attributes are or may have been used only in legacy implementation, but not within DeviceImageDownloadRequest - do you want to add some according comment for that?:\nhash, install_datetime, is_active, is_committed, is_valid",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c4ee76e_e49c819f",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "What would \u0027optional\u0027 mean for the rpc: vendor\u003dnil?",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a058da0_6600b5ec",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "In future we could as well consider to include more attributes for giving a way of tuning the download for a vendor type ONU (or even individual ONU) or image, e.g by setting the download timeout or RecommendedWindowSize .. \nBut I would not go that far by now ...",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f6ab5fc_d9a2eca0",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "Question is, if we really want to or have to support this. I don\u0027t have the impression that it is really required from DT (and not yet available for TT anyway). Problem is that the effort of getting this is a bit higher compared to the other attributes (due to size). \nPerhaps these attributes are meant as kind of optional - perhaps also giving us the chance to support that later? But I don\u0027t know how that \u0027option\u0027 whould look like in the rpc ...\nSo - yes, it is possible to support and I would not exclude it from being feasible for 2.8, but I\u0027m not sure if it s really required (there is not really that much useful information for the operator).",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a11ad1c9_47dfe40a",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "same comment as for product code",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f09cf5d2_badf36ed",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "I\u0027d prefer some additional errors:\nVENDOR_DEVICE_MISMATCH\nCANCELLED_ON_REQUEST\nCANCELLED_ON_ONU_STATE\nOMCI_TRANSFER_ERROR\nIMAGE_REFUSED_BY_ONU\n(UNKNOWN_ERROR for all that we do not specify that clearly so far)",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a41fc6da_ee43d96f",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62f7968f_84c3103c",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "As this state must be given also already at download and at that time it is not really defined (as \u0027activationStateOnONU\u0027) I would recommend to insert also this state here:\nIMAGE_DOWNLOADING",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98171f76_27419742",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "The included \u0027Image image\u0027 already includes the version, is this really needed as extra parameter here?",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a1f42c_be30ca3b",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-04-15T08:26:23Z",
+      "side": 1,
+      "message": "Perhaps more generally: AbortSoftwareUpgradeToDevice (or similar) - which would give more flexibility to also include the cancellation of activation or committment (in case some problems should be detected at that processing).",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
