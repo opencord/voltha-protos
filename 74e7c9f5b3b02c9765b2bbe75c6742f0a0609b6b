@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "430a733c_f49fb770",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "the hash can still be used. I\u0027ll add comments for the others.",
+      "parentUuid": "90bca145_d3629f52",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c4ee76e_e49c819f",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6003275c_61f32b4b",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "it will be empty in the proto because it will not be specified in the gRPC call (e.g not specified in VOLTCTL)",
+      "parentUuid": "2c4ee76e_e49c819f",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a058da0_6600b5ec",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2021-04-15T08:26:23Z",
       "side": 1,
       "message": "In future we could as well consider to include more attributes for giving a way of tuning the download for a vendor type ONU (or even individual ONU) or image, e.g by setting the download timeout or RecommendedWindowSize .. \nBut I would not go that far by now ...",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21c480ac_a348dada",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "ACK, let me add a comment.",
+      "parentUuid": "6a058da0_6600b5ec",
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "f26191d2_afde6d07",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "this can be copied from the DowloadRequest, also I\u0027m fine leaving in for now and not implementing.",
+      "parentUuid": "a11ad1c9_47dfe40a",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09cf5d2_badf36ed",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -101,6 +173,24 @@
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "161cad69_fcd4450c",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f09cf5d2_badf36ed",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "af537ef1_d9f01e4e",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a41fc6da_ee43d96f",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62f7968f_84c3103c",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -132,6 +240,24 @@
       "writtenOn": "2021-04-15T08:26:23Z",
       "side": 1,
       "message": "As this state must be given also already at download and at that time it is not really defined (as \u0027activationStateOnONU\u0027) I would recommend to insert also this state here:\nIMAGE_DOWNLOADING",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9deb9415_8922afd4",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "no, this can be left empty and if not used in the processing of the Download request no problem will arise, no need to specify it.",
+      "parentUuid": "62f7968f_84c3103c",
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "db9174e1_9c90e620",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98171f76_27419742",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4a1f42c_be30ca3b",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 7
@@ -169,6 +313,24 @@
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0739581_6f8a8b90",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T09:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4a1f42c_be30ca3b",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
