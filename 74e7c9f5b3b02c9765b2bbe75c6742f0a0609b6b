@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "fc45cc62_52c2aed3",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T11:18:40Z",
+      "side": 1,
+      "message": "correct, you will get it empty",
+      "parentUuid": "3a02e643_1e925992",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a058da0_6600b5ec",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 7
@@ -189,6 +207,24 @@
       "side": 1,
       "message": "No, this is the hash as delivered by the ONU, the DownloadRequest hash seems to be something else - I don\u0027t know what (see comment there).\nSo I understand you want to leave these attributes here and leave it to the implementation to deliver something here or not. If so - ok.",
       "parentUuid": "f26191d2_afde6d07",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b445d3e9_0f7e0cc1",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T11:18:40Z",
+      "side": 1,
+      "message": "I\u0027m not getting the point, these two ashes should be the same, no ? how can it otherwise be checked ?",
+      "parentUuid": "46471787_47ef10a1",
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
@@ -312,6 +348,24 @@
       "side": 1,
       "message": "What shall do voltctl with this then? When still downloading and the application delivers an empty string, then voltctl can only convert that to \u0027unknown\u0027. I would like to avoid that and prefer \u0027imageDownloading\u0027 here.",
       "parentUuid": "9deb9415_8922afd4",
+      "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d49fbc_1263d89f",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T11:18:40Z",
+      "side": 1,
+      "message": "sure, I\u0027ll add that, but in voltctl we will put it to empty",
+      "parentUuid": "661d62b8_571afee9",
       "revId": "74e7c9f5b3b02c9765b2bbe75c6742f0a0609b6b",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true

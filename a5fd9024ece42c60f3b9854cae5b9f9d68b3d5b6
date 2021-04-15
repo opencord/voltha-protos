@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a08f8c27_82fb2e57",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T11:18:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08acb85e_7ea211ca",
+      "revId": "a5fd9024ece42c60f3b9854cae5b9f9d68b3d5b6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86e7d177_3284cfbc",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2021-04-15T10:42:05Z",
       "side": 1,
       "message": "Deprecated? Will be removed [after 2.8?]? \nThat may be an interesting point. Is your understanding that we may remove (not implement) the existing (R2.7) rpc\u0027s in the OnuAdapter?",
+      "revId": "a5fd9024ece42c60f3b9854cae5b9f9d68b3d5b6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7e1aaa0_29612ad5",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-04-15T11:18:40Z",
+      "side": 1,
+      "message": "yes, I think that eventually (after 2.8) we will remove the existing 2.7 APIs",
+      "parentUuid": "86e7d177_3284cfbc",
       "revId": "a5fd9024ece42c60f3b9854cae5b9f9d68b3d5b6",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
