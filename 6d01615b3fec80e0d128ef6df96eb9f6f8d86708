@@ -22,6 +22,30 @@
       "revId": "6d01615b3fec80e0d128ef6df96eb9f6f8d86708",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7082e99_b3bf0c25",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000729
+      },
+      "writtenOn": "2021-04-19T20:18:08Z",
+      "side": 1,
+      "message": "No, had a discussion with Khen will be removing it , just waiting to have a word with Girish to make sure it won\u0027t be required.",
+      "parentUuid": "94df1ee1_d260da85",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "6d01615b3fec80e0d128ef6df96eb9f6f8d86708",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
