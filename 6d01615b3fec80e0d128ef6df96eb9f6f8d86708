@@ -46,6 +46,30 @@
       "revId": "6d01615b3fec80e0d128ef6df96eb9f6f8d86708",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9af85bb_2fa79803",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-04-20T00:03:05Z",
+      "side": 1,
+      "message": "What state would the device move to if the reconciliation fails?",
+      "parentUuid": "b7082e99_b3bf0c25",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "6d01615b3fec80e0d128ef6df96eb9f6f8d86708",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
