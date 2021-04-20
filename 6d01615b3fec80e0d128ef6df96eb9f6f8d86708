@@ -94,6 +94,30 @@
       "revId": "6d01615b3fec80e0d128ef6df96eb9f6f8d86708",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8c3c1f7_8dd1f875",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000729
+      },
+      "writtenOn": "2021-04-20T13:49:21Z",
+      "side": 1,
+      "message": "Operation state RECONCILE_FAILED as error returned will be handled in separate go routine and trigger next exponential backoff , while transient state RECONCILE_IN_PROGRESS is used over rw_core side to monitor whether device is in reconcile and avoid other operations on that device.",
+      "parentUuid": "154438ba_c2c2f4be",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "6d01615b3fec80e0d128ef6df96eb9f6f8d86708",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
