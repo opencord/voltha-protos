@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be4c3932_e6abedab",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-01T22:54:37Z",
+      "side": 0,
+      "message": "There is no relevance of the \u0027typeId` values in the results. Hence removed them.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "604e89563fd60ee98fd1fd2e5da1153326da3743",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
