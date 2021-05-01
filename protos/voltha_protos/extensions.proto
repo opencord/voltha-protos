@@ -92,18 +92,14 @@ message GetOnuPonOpticalInfo {
     google.protobuf.Empty empty = 1;
 }
 
-// The types are from Table 11.2.10-1 in G.988
+// These values correspond to the Optical Line Supervision Test results
+// described in section A3.39.5 of ITU-T G.988 (11/2017) specification.
 message GetOnuPonOpticalInfoResponse{
-    int32 laserBiasCurrent = 1;
-    int32 laserBiasCurrentTypeId = 2;
-    int32 meanOpticalLaunchPower = 3;
-    int32 meanOpticalLaunchPowerTypeId = 4;
-    int32 powerFeedTypeId = 5;
-    int32 powerFeedVoltage = 6;
-    int32 receivedOpticalPower = 7;
-    int32 receivedOpticalPowerTypeId = 8;
-    int32 temperature = 9;
-    int32 temperatureTypeId = 10;
+    float powerFeedVoltage = 1; // unit of value is voltage
+    float receivedOpticalPower = 2; // unit of value is dBm
+    float meanOpticalLaunchPower = 3; // unit of value is dBm
+    float laserBiasCurrent = 4; // unit of value is amphere
+    float temperature = 5; // unit of value is degree celsius
 }
 
 message GetOnuEthernetBridgePortHistory {
