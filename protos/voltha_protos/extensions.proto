@@ -98,7 +98,7 @@ message GetOnuPonOpticalInfoResponse{
     float powerFeedVoltage = 1; // unit of value is voltage
     float receivedOpticalPower = 2; // unit of value is dBm
     float meanOpticalLaunchPower = 3; // unit of value is dBm
-    float laserBiasCurrent = 4; // unit of value is amphere
+    float laserBiasCurrent = 4; // unit of value is milli-amphere (mA)
     float temperature = 5; // unit of value is degree celsius
 }
 
