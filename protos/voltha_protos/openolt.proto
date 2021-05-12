@@ -223,6 +223,13 @@ service Openolt {
             body: "*"
         };
     }
+
+    rpc GetPonRxPower(Onu) returns (PonRxPowerData) {
+        option (google.api.http) = {
+          post: "/v1/GetPonRxPower"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -744,5 +751,18 @@ message ValueParam {
 	common.ValueType.Type value = 2;
 }
 
-message Empty {}
+message PonRxPowerData {
+    enum RssiMeasurementFailReason {
+        FAIL_REASON_NONE = 0;
+        FAIL_REASON_NO_DELIMITER = 1;
+        FAIL_REASON_NO_ACCESS = 2;
+    }
 
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    string status = 3;
+    RssiMeasurementFailReason fail_reason = 4;
+    double rx_power_mean_dbm = 5;
+}
+
+message Empty {}
