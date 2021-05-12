@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c539cf4_6d594d49",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-12T17:13:51Z",
+      "side": 1,
+      "message": "How is this status to be interpreted? I believe the usual convention that 0 is success and anything else is failure? Might be useful to document that?",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4117fb58_793260a5",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-12T17:13:51Z",
+      "side": 1,
+      "message": "How is fail_reason to be interpreted? Do we need to enumerize this?",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
