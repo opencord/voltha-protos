@@ -104,6 +104,24 @@
       "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63534c11_f8dd4747",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1000613
+      },
+      "writtenOn": "2021-05-12T21:34:54Z",
+      "side": 1,
+      "message": "To be clear, (if I remember correctly) the corresponding set method will be set_dbm() not set_dBm().",
+      "parentUuid": "700859d3_b25023f6",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
