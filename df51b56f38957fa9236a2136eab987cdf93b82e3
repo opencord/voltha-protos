@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b67f6bc8_f82c6f0b",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1000613
+      },
+      "writtenOn": "2021-05-12T19:45:50Z",
+      "side": 1,
+      "message": "Yes, and a string status would solve this issue.",
+      "parentUuid": "1c539cf4_6d594d49",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4117fb58_793260a5",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4624b1c6_3c2f6d6e",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1000613
+      },
+      "writtenOn": "2021-05-12T19:45:50Z",
+      "side": 1,
+      "message": "OK, an enum would be useful here.\nPer API there are three choises:\n    /** RSSI measurement fail reason. */\n    typedef enum\n    {\n        BCMOLT_RSSI_MEASUREMENT_FAIL_REASON__BEGIN \u003d 0,\n        BCMOLT_RSSI_MEASUREMENT_FAIL_REASON_NONE \u003d 0, /**\u003c None. */\n        BCMOLT_RSSI_MEASUREMENT_FAIL_REASON_NO_DELIMITER \u003d 1, /**\u003c No delimiter. */\n        BCMOLT_RSSI_MEASUREMENT_FAIL_REASON_NO_ACCESS \u003d 2, /**\u003c No access. */\n        BCMOLT_RSSI_MEASUREMENT_FAIL_REASON__NUM_OF, /**\u003c Constant to use for sizing arrays - note that enum may have holes. */\n    } bcmolt_rssi_measurement_fail_reason;",
+      "parentUuid": "4117fb58_793260a5",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e178eabb_26ce2837",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2021-05-12T17:16:09Z",
       "side": 1,
       "message": "I believe this is the mean value and not instantaneous value - correct? In that case, do we want to rename this as rx_power_mean_dBm.",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "700859d3_b25023f6",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1000613
+      },
+      "writtenOn": "2021-05-12T19:45:50Z",
+      "side": 1,
+      "message": "My understanding is that this is the mean value of repeated measurements of a known pattern.\nThen, \"rx_power_mean_dbm\" is more descriptive. \nPproto is case-insensitive, so \"dBm\" is problematic with automatic lowercase conversion.",
+      "parentUuid": "e178eabb_26ce2837",
       "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
