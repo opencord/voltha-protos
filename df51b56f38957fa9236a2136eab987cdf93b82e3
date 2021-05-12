@@ -33,6 +33,23 @@
       "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e178eabb_26ce2837",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-12T17:16:09Z",
+      "side": 1,
+      "message": "I believe this is the mean value and not instantaneous value - correct? In that case, do we want to rename this as rx_power_mean_dBm.",
+      "revId": "df51b56f38957fa9236a2136eab987cdf93b82e3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
