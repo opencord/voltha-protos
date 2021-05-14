@@ -320,6 +320,8 @@ message OmciIndication {
 message PacketIndication {
     string intf_type = 5;		// nni, pon, unknown
     fixed32 intf_id = 1;
+    fixed32 onu_id = 8;
+    fixed32 uni_id = 9;
     fixed32 gemport_id = 2;
     fixed32 flow_id = 3;
     fixed32 port_no = 6;
