@@ -140,6 +140,41 @@ message GetOnuFecHistoryResponse {
     uint32 uncorrectableCodeWords = 5;
 }
 
+message GetOnuiPonCountersRequest {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+}
+
+message GetOnuiPonCountersResponse {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    fixed64 positive_drift = 3;
+    fixed64 negative_drift = 4;
+    fixed64 delimiter_miss_detection = 5;
+    fixed64 bip_errors = 6;
+    fixed64 bip_units = 7;
+    fixed64 fec_corrected_symbols = 8;
+    fixed64 fec_codewords_corrected = 9;
+    fixed64 fec_codewords_uncorrectable = 10;
+    fixed64 fec_codewords = 11;
+    fixed64 fec_corrected_units = 12;
+    fixed64 xgem_key_errors = 13;
+    fixed64 xgem_loss = 14;
+    fixed64 rx_ploams_error = 15;
+    fixed64 rx_ploams_non_idle = 16;
+    fixed64 rx_omci = 17;
+    fixed64 rx_omci_packets_crc_error = 18;
+    fixed64 rx_bytes = 19;
+    fixed64 rx_packets = 20;
+    fixed64 tx_bytes = 21;
+    fixed64 tx_packets = 22;
+    fixed64 ber_reported = 23;
+    fixed64 lcdg_errors = 24;
+    fixed64 rdi_errors = 25;
+    // reported timestamp in seconds since epoch
+    fixed32 timestamp = 26;
+}
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
@@ -152,6 +187,7 @@ message GetValueRequest {
         GetOnuEthernetBridgePortHistory ethBridgePort = 5;
         // Corresponds to PmMetricId.FEC_HISTORY
         GetOnuFecHistory fecHistory= 6;
+        GetOnuiPonCountersRequest onuiPonInfo= 7;
     }
 }
 
@@ -169,7 +205,8 @@ message GetValueResponse {
         INVALID_PORT_TYPE = 3;
         TIMEOUT = 4;
         INVALID_REQ_TYPE = 5;
-	INTERNAL_ERROR = 6;
+        INTERNAL_ERROR = 6;
+        INVALID_DEVICE = 7;
     }
     Status status = 1;
     ErrorReason errReason = 2;
@@ -181,6 +218,8 @@ message GetValueResponse {
         GetOnuPonOpticalInfoResponse onuOpticalInfo = 6;
         GetOnuEthernetBridgePortHistoryResponse ethBridgePortInfo = 7;
         GetOnuFecHistoryResponse fecHistory = 8;
+        GetOnuiPonCountersResponse onuiPonCounters= 9;
+
     }
 }
 
