@@ -140,6 +140,145 @@ message GetOnuFecHistoryResponse {
     uint32 uncorrectableCodeWords = 5;
 }
 
+message GetOnuCountersRequest {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+}
+
+message GetOnuOMCICountersRequest {
+    string onuDeviceId = 1;
+}
+
+message GetOnuCountersResponse {
+    oneof is_intf_id {
+        fixed32 intf_id = 1;
+    }
+    oneof is_onu_id {
+        fixed32 onu_id = 2;
+    }
+    oneof is_positive_drift {
+        fixed64 positive_drift = 3;
+    }
+    oneof is_negative_drift {
+        fixed64 negative_drift = 4;
+    }
+    oneof is_delimiter_miss_detection {
+        fixed64 delimiter_miss_detection = 5;
+    }
+    oneof is_bip_errors {
+        fixed64 bip_errors = 6;
+    }
+    oneof is_bip_units {
+        fixed64 bip_units = 7;
+    }
+    oneof is_fec_corrected_symbols {
+        fixed64 fec_corrected_symbols = 8;
+    }
+    oneof is_fec_codewords_corrected {
+        fixed64 fec_codewords_corrected = 9;
+    }
+    oneof is_fec_codewords_uncorrectable {
+        fixed64 fec_codewords_uncorrectable = 10;
+    }
+    oneof is_fec_codewords {
+        fixed64 fec_codewords = 11;
+    }
+    oneof is_fec_corrected_units {
+        fixed64 fec_corrected_units = 12;
+    }
+    oneof is_xgem_key_errors {
+        fixed64 xgem_key_errors = 13;
+    }
+    oneof is_xgem_loss {
+        fixed64 xgem_loss = 14;
+    }
+    oneof is_rx_ploams_error {
+        fixed64 rx_ploams_error = 15;
+    }
+    oneof is_rx_ploams_non_idle {
+        fixed64 rx_ploams_non_idle = 16;
+    }
+    oneof is_rx_omci {
+        fixed64 rx_omci = 17;
+    }
+    oneof is_tx_omci {
+        fixed64 tx_omci = 18;
+    }
+    oneof is_rx_omci_packets_crc_error {
+        fixed64 rx_omci_packets_crc_error = 19;
+    }
+    oneof is_rx_bytes {
+        fixed64 rx_bytes = 20;
+    }
+    oneof is_rx_packets {
+        fixed64 rx_packets = 21;
+    }
+    oneof is_tx_bytes {
+        fixed64 tx_bytes = 22;
+    }
+    oneof is_tx_packets {
+        fixed64 tx_packets = 23;
+    }
+    oneof is_ber_reported {
+        fixed64 ber_reported = 24;
+    }
+    oneof is_lcdg_errors {
+        fixed64 lcdg_errors = 25;
+    }
+    oneof is_rdi_errors {
+        fixed64 rdi_errors = 26;
+    }
+    oneof is_timestamp {
+        // reported timestamp in seconds since epoch
+        fixed32 timestamp = 27;
+    }
+}
+
+message GetOnuOMCICountersResponse {
+    oneof is_drop_events {
+        fixed64 drop_events = 1;
+    }
+    oneof is_octets {
+        fixed64 octets = 2;
+    }
+    oneof is_frames {
+        fixed64 frames = 3;
+    }
+    oneof is_broadcast_frames {
+        fixed64 broadcast_frames = 4;
+    }
+    oneof is_multicast_frames {
+        fixed64 multicast_frames = 5;
+    }
+    oneof is_crc_errored_frames {
+        fixed64 crc_errored_frames = 6;
+    }
+    oneof is_undersize_frames {
+        fixed64 undersize_frames = 7;
+    }
+    oneof is_oversize_frames {
+        fixed64 oversize_frames = 8;
+    }
+    oneof is_frames_64_octets {
+        fixed64 frames_64_octets = 9;
+    }
+    oneof is_frames_65_to_127_octets {
+        fixed64 frames_65_to_127_octets = 10;
+    }
+    oneof is_frames_128_to_255_octets {
+        fixed64 frames_128_to_255_octets = 11;
+    }
+    oneof is_frames_256_to_511_octets {
+        fixed64 frames_256_to_511_octets = 12;
+    }
+    oneof is_frames_512_to_1023_octets {
+        fixed64 frames_512_to_1023_octets = 13;
+    }
+    oneof is_frames_1024_to_1518_octets {
+        fixed64 frames_1024_to_1518_octets = 14;
+    }
+}
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
@@ -152,6 +291,8 @@ message GetValueRequest {
         GetOnuEthernetBridgePortHistory ethBridgePort = 5;
         // Corresponds to PmMetricId.FEC_HISTORY
         GetOnuFecHistory fecHistory= 6;
+        GetOnuCountersRequest onuPonInfo= 7;
+        GetOnuOMCICountersRequest onuInfo=8;
     }
 }
 
@@ -169,7 +310,8 @@ message GetValueResponse {
         INVALID_PORT_TYPE = 3;
         TIMEOUT = 4;
         INVALID_REQ_TYPE = 5;
-	INTERNAL_ERROR = 6;
+        INTERNAL_ERROR = 6;
+        INVALID_DEVICE = 7;
     }
     Status status = 1;
     ErrorReason errReason = 2;
@@ -181,6 +323,9 @@ message GetValueResponse {
         GetOnuPonOpticalInfoResponse onuOpticalInfo = 6;
         GetOnuEthernetBridgePortHistoryResponse ethBridgePortInfo = 7;
         GetOnuFecHistoryResponse fecHistory = 8;
+        GetOnuCountersResponse onuPonCounters= 9;
+        GetOnuOMCICountersResponse onuOMCICounters= 10;
+
     }
 }
 
