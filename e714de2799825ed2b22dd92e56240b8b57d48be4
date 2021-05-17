@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25308d33_6c989300",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-17T17:31:30Z",
+      "side": 1,
+      "message": "seconds since epoch? Would be useful to clarify that in comments.",
+      "revId": "e714de2799825ed2b22dd92e56240b8b57d48be4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
