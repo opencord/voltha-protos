@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25875421_87cdb817",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-18T18:50:14Z",
+      "side": 1,
+      "message": "As expressed in a separate mail, we will have to define a new Req/Resp message for fetching the EthernetFrameExtendedPm counters from the ONU. This format is good enough to fetch from the OLT but ONU OMCI format is largely deviant from this format.",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
