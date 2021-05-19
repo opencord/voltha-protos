@@ -16,6 +16,24 @@
       "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f51f3ce_50cbee43",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-05-19T07:46:20Z",
+      "side": 1,
+      "message": "Himani, can you do that in this patch ? this way we have only one proto change. seems to be fairly straightforward",
+      "parentUuid": "25875421_87cdb817",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
