@@ -34,6 +34,24 @@
       "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5145ec53_55c86301",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-05-20T08:12:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f51f3ce_50cbee43",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
