@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "19e3066e_5e56b7e3",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-05-20T10:12:37Z",
+      "side": 1,
+      "message": "I would prefer OnuIf then, but perhaps no argument to change that now ...",
+      "parentUuid": "d2ef0a46_7e0b4056",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25875421_87cdb817",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
@@ -154,6 +172,24 @@
       "side": 1,
       "message": "the onu stats from olt is giving only rxOmci",
       "parentUuid": "98325ad2_b7f52084",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7eaf824_8c1208dc",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-05-20T10:12:37Z",
+      "side": 1,
+      "message": "Then why you don\u0027t include rxOmciOnuAdapter + txOmciOnuAdapter (apart from that we don\u0027t call them yet)? But maybe such counters are already defined somewhere else?",
+      "parentUuid": "dc51ffaf_266a8f5a",
       "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false

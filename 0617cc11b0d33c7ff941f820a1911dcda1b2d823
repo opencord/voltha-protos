@@ -16,6 +16,24 @@
       "revId": "0617cc11b0d33c7ff941f820a1911dcda1b2d823",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfd8322d_cd10070b",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-05-20T10:12:37Z",
+      "side": 1,
+      "message": "I see. I suppose the counters relate to the AniSide MacBridgeportConfigData entity (what the naming does not really reflect - but ok). The question or hint is: in this case potentially the data-path and multicast bridge port would have to be added here, which might be quite confusing.",
+      "parentUuid": "2056e3a3_2a1fe91d",
+      "revId": "0617cc11b0d33c7ff941f820a1911dcda1b2d823",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
