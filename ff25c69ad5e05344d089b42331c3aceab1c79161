@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d2ef0a46_7e0b4056",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-05-20T09:52:27Z",
+      "side": 1,
+      "message": "I meant interface, @girish is it okay to define the name this way or there is any other suggestion",
+      "parentUuid": "d3188083_10e644d3",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25875421_87cdb817",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
@@ -89,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "c10a4452_b41221b9",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-05-20T09:52:27Z",
+      "side": 1,
+      "message": "This one is taken from OLT",
+      "parentUuid": "5ba1ce10_15502482",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98325ad2_b7f52084",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
@@ -103,6 +139,24 @@
       "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc51ffaf_266a8f5a",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-05-20T09:52:27Z",
+      "side": 1,
+      "message": "the onu stats from olt is giving only rxOmci",
+      "parentUuid": "98325ad2_b7f52084",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
     }
   ]
 }
