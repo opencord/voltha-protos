@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d3188083_10e644d3",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-05-20T09:07:01Z",
+      "side": 1,
+      "message": "What do you mean by Onui (the i)? Also used below ..",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25875421_87cdb817",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
@@ -52,6 +69,40 @@
       "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ba1ce10_15502482",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-05-20T09:07:01Z",
+      "side": 1,
+      "message": "Interesting counter set. I would not know how you want to fetch that from some ONU (or is it only \u0027ONU-related\u0027 and taken (mostly) from OLT?",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98325ad2_b7f52084",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000666
+      },
+      "writtenOn": "2021-05-20T09:07:01Z",
+      "side": 1,
+      "message": "rxOmci alone? no txOmci?",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
     }
   ]
 }
