@@ -179,6 +179,24 @@
     },
     {
       "key": {
+        "uuid": "d9d37351_f8af961d",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-05-21T05:18:12Z",
+      "side": 1,
+      "message": "I guess even if we add boolean flags or enum flags here, there won\u0027t be much advantage since it is from the southbound we are not getting certain fields and if we don\u0027t get it, we would be unsetting the boolean flag(example) for that field and not showing it. But say when we start getting it we will have to make changes again to take that value from the southbound. It is the southbound struct which should be generic. Need input from @michael @andrea",
+      "parentUuid": "a1dd75d5_e5009dba",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98325ad2_b7f52084",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
