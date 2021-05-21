@@ -197,6 +197,24 @@
     },
     {
       "key": {
+        "uuid": "416e5cae_450ff3e2",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-21T16:15:14Z",
+      "side": 1,
+      "message": "I think we are not on the same page with our understanding. I was trying to say that the adapters which ultimately populate the structure have to indicate if a counter value is valid. By default, there are default values for protobuf data types and in the case of fixedxx type, it is 0. But 0 is valid counter value and we should not give a wrong notion to the user about a certain counter by displaying its default value just because the adapter has not populated it. With respect to counters that have a 1:1 mapping with the OMCI, we may still be fine as the devices are supposed to populate all the values. But this particular counter set is very generic.\nAnyway, I may be asking too much here. Currently only openolt/openonu adapters seem to consume these messages (at least that we know of) and the devices that it works with support fetching these counters, so we are good. But when more devices continue to be integrated, we may need to re-work this a bit.",
+      "parentUuid": "d9d37351_f8af961d",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98325ad2_b7f52084",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
