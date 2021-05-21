@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "3fe8d7a3_10848271",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-21T04:54:19Z",
+      "side": 1,
+      "message": "I OnuiPon.. naming came from DT \"requirements\" sheet. The normal meaning of this is i-th ONU on the PON. But I guess we can drop that and change this to GetOnuCountersRequest (and GetOnuCountersResponse). @michael: Thoughts?",
+      "parentUuid": "19e3066e_5e56b7e3",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25875421_87cdb817",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
@@ -143,6 +161,24 @@
     },
     {
       "key": {
+        "uuid": "a1dd75d5_e5009dba",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-21T04:54:19Z",
+      "side": 1,
+      "message": "@michael @andrea: These counters set was \"inspired\" by this https://github.com/opencord/voltha-protos/blob/master/protos/voltha_protos/openolt.proto#L545 . Since we might want to keep this counter set generic, and also allow for future extensibility with some devices supporting some counters and not others - we might want to have a presence field. Thoughts?\nI am not 100% sure how best to do this in protobuf, but would having a boolean flag one-to-one mapping with each counter do? Below is an example of what I am trying to convey.\n\nmessage ActionCmd {\n    bool add_outer_tag \u003d 1;\n    bool remove_outer_tag \u003d 2;\n    bool trap_to_host \u003d 3;\n    bool remark_outer_pbits \u003d 4;\n    bool remark_inner_pbits \u003d 5;\n    bool add_inner_tag \u003d 6;\n    bool remove_inner_tag \u003d 7;\n    bool translate_inner_tag \u003d 8;\n    bool translate_outer_tag \u003d 9;\n}\n\nmessage Action {\n    ActionCmd cmd \u003d 1;\n    fixed32 o_vid \u003d 2;\n    fixed32 o_pbits \u003d 3;\n    fixed32 o_tpid \u003d 4;\n    fixed32 i_vid \u003d 5;\n    fixed32 i_pbits \u003d 6;\n    fixed32 i_tpid \u003d 7;\n}",
+      "parentUuid": "c10a4452_b41221b9",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98325ad2_b7f52084",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 4
@@ -190,6 +226,24 @@
       "side": 1,
       "message": "Then why you don\u0027t include rxOmciOnuAdapter + txOmciOnuAdapter (apart from that we don\u0027t call them yet)? But maybe such counters are already defined somewhere else?",
       "parentUuid": "dc51ffaf_266a8f5a",
+      "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6085d438_2edf9482",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-05-21T04:54:19Z",
+      "side": 1,
+      "message": "@michael, @himani: Perhaps in this case we also put the definition for tx_omci (fixed64 tx_omci) and then have boolean presence field indicating whether that counter is available. See my comment above? I am pretty sure the Edgecore OLT boxes we have in the lab does not provide the tx_omci counter per ONU (it is however available on the per PON stats).",
+      "parentUuid": "e7eaf824_8c1208dc",
       "revId": "ff25c69ad5e05344d089b42331c3aceab1c79161",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
       "unresolved": false
