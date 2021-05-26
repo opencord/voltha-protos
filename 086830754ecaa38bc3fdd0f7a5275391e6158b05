@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1da9937_b3a42070",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-05-26T14:55:15Z",
+      "side": 1,
+      "message": "I would change this parameter to onu_num not to confuse it with the logical device Id of the ONU.",
+      "revId": "086830754ecaa38bc3fdd0f7a5275391e6158b05",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4c9c944_5ef3bf84",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-05-26T14:55:15Z",
+      "side": 1,
+      "message": "same",
+      "revId": "086830754ecaa38bc3fdd0f7a5275391e6158b05",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
