@@ -149,6 +149,11 @@ message GetOnuOMCICountersRequest {
     string onuDeviceId = 1;
 }
 
+message GetRxPowerRequest {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+}
+
 message GetOnuCountersResponse {
     oneof is_intf_id {
         fixed32 intf_id = 1;
@@ -279,6 +284,14 @@ message GetOnuOMCICountersResponse {
     }
 }
 
+message GetRxPowerResponse {
+    fixed32 intf_id= 1;
+    fixed32 onu_id = 2;
+    string status = 3;
+    string fail_reason = 4;
+    double rx_power = 5;
+}
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
@@ -290,9 +303,10 @@ message GetValueRequest {
         // Corresponds to PmMetricId.ETHERNET_BRIDGE_PORT_HISTORY
         GetOnuEthernetBridgePortHistory ethBridgePort = 5;
         // Corresponds to PmMetricId.FEC_HISTORY
-        GetOnuFecHistory fecHistory= 6;
-        GetOnuCountersRequest onuPonInfo= 7;
-        GetOnuOMCICountersRequest onuInfo=8;
+        GetOnuFecHistory fecHistory = 6;
+        GetOnuCountersRequest onuPonInfo = 7;
+        GetOnuOMCICountersRequest onuInfo = 8;
+        GetRxPowerRequest rxPower = 9;
     }
 }
 
@@ -323,9 +337,9 @@ message GetValueResponse {
         GetOnuPonOpticalInfoResponse onuOpticalInfo = 6;
         GetOnuEthernetBridgePortHistoryResponse ethBridgePortInfo = 7;
         GetOnuFecHistoryResponse fecHistory = 8;
-        GetOnuCountersResponse onuPonCounters= 9;
-        GetOnuOMCICountersResponse onuOMCICounters= 10;
-
+        GetOnuCountersResponse onuPonCounters = 9;
+        GetOnuOMCICountersResponse onuOMCICounters = 10;
+        GetRxPowerResponse rxPower = 11;
     }
 }
 
