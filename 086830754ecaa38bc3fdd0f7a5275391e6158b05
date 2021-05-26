@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5eec3a62_4c13ff56",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2021-05-26T17:14:55Z",
+      "side": 1,
+      "message": "onu_id is a common used name of it Andrea. You can see in the other messages too.",
+      "parentUuid": "a1da9937_b3a42070",
+      "revId": "086830754ecaa38bc3fdd0f7a5275391e6158b05",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4c9c944_5ef3bf84",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
