@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1f89ce7_3e657c66",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-05-28T15:52:47Z",
+      "side": 1,
+      "message": "just for my understanding, you removed the oneof because it could be multiple of these in the same message ?",
+      "revId": "9a49739da9f10f7d08ef4539dd7d5663c8744662",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
