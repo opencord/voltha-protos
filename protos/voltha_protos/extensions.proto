@@ -145,7 +145,7 @@ message GetOnuCountersRequest {
     fixed32 onu_id = 2;
 }
 
-message GetOnuOMCICountersRequest {
+message GetOmciEthernetFrameExtendedPmRequest {
     string onuDeviceId = 1;
 }
 
@@ -239,49 +239,26 @@ message GetOnuCountersResponse {
     }
 }
 
-message GetOnuOMCICountersResponse {
-    oneof is_drop_events {
+message OmciEthernetFrameExtendedPm {
         fixed64 drop_events = 1;
-    }
-    oneof is_octets {
         fixed64 octets = 2;
-    }
-    oneof is_frames {
         fixed64 frames = 3;
-    }
-    oneof is_broadcast_frames {
         fixed64 broadcast_frames = 4;
-    }
-    oneof is_multicast_frames {
         fixed64 multicast_frames = 5;
-    }
-    oneof is_crc_errored_frames {
         fixed64 crc_errored_frames = 6;
-    }
-    oneof is_undersize_frames {
         fixed64 undersize_frames = 7;
-    }
-    oneof is_oversize_frames {
         fixed64 oversize_frames = 8;
-    }
-    oneof is_frames_64_octets {
         fixed64 frames_64_octets = 9;
-    }
-    oneof is_frames_65_to_127_octets {
         fixed64 frames_65_to_127_octets = 10;
-    }
-    oneof is_frames_128_to_255_octets {
         fixed64 frames_128_to_255_octets = 11;
-    }
-    oneof is_frames_256_to_511_octets {
         fixed64 frames_256_to_511_octets = 12;
-    }
-    oneof is_frames_512_to_1023_octets {
         fixed64 frames_512_to_1023_octets = 13;
-    }
-    oneof is_frames_1024_to_1518_octets {
         fixed64 frames_1024_to_1518_octets = 14;
-    }
+}
+
+message GetOmciEthernetFrameExtendedPmResponse {
+    OmciEthernetFrameExtendedPm upstream = 1;
+    OmciEthernetFrameExtendedPm downstream = 2;
 }
 
 message GetRxPowerResponse {
@@ -305,7 +282,7 @@ message GetValueRequest {
         // Corresponds to PmMetricId.FEC_HISTORY
         GetOnuFecHistory fecHistory = 6;
         GetOnuCountersRequest onuPonInfo = 7;
-        GetOnuOMCICountersRequest onuInfo = 8;
+        GetOmciEthernetFrameExtendedPmRequest onuInfo = 8;
         GetRxPowerRequest rxPower = 9;
     }
 }
@@ -338,7 +315,7 @@ message GetValueResponse {
         GetOnuEthernetBridgePortHistoryResponse ethBridgePortInfo = 7;
         GetOnuFecHistoryResponse fecHistory = 8;
         GetOnuCountersResponse onuPonCounters = 9;
-        GetOnuOMCICountersResponse onuOMCICounters = 10;
+        GetOmciEthernetFrameExtendedPmResponse onuCounters = 10;
         GetRxPowerResponse rxPower = 11;
     }
 }
