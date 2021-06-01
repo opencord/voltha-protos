@@ -9,6 +9,8 @@ import "google/protobuf/any.proto";
 import "voltha_protos/openflow_13.proto";
 import public "voltha_protos/logical_device.proto";
 import "google/protobuf/timestamp.proto";
+import "voltha_protos/tech_profile.proto";
+
 
 package voltha;
 
@@ -122,20 +124,32 @@ message InterAdapterOmciMessage {
     voltha.Device.ProxyAddress proxy_address = 3;
 }
 
+message InterAdapterTechProfileInstanceRequestMessage {
+    string tp_instance_path = 1; // technology profile instance path
+    string parent_device_id = 2;
+    uint32 parent_pon_port = 3;
+    uint32 onu_id = 4;
+    uint32 uni_id = 5;
+}
+
 message InterAdapterTechProfileDownloadMessage {
     uint32 uni_id = 1;
-    string path = 2;
+    string tp_instance_path = 2;
+    oneof tech_tp_instance {
+        tech_profile.TechProfileInstance tp_instance = 3; // relevant for GPON, XGPON and XGS-PON technologies
+        tech_profile.EponTechProfileInstance epon_tp_instance = 4; // relevant for EPON technology
+    }
 }
 
 message InterAdapterDeleteGemPortMessage {
     uint32 uni_id = 1;
-    string tp_path = 2;
+    string tp_instance_path = 2;
     uint32 gem_port_id = 3;
 }
 
 message InterAdapterDeleteTcontMessage {
     uint32 uni_id = 1;
-    string tp_path = 2;
+    string tp_instance_path = 2;
     uint32 alloc_id = 3;
 }
 
