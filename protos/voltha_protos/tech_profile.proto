@@ -130,3 +130,127 @@ message TrafficQueues {
     repeated TrafficQueue traffic_queues = 6;
     fixed32 tech_profile_id = 7;
 }
+
+message InstanceControl {
+    string onu = 1;
+    string uni = 2;
+    string max_gem_payload_size = 3;
+}
+
+message QThresholds {
+   uint32 q_threshold1 = 1;
+   uint32 q_threshold2 = 2;
+   uint32 q_threshold3 = 3;
+   uint32 q_threshold4 = 4;
+   uint32 q_threshold5 = 5;
+   uint32 q_threshold6 = 6;
+   uint32 q_threshold7 = 7;
+}
+
+message GemPortAttributes {
+    fixed32 gemport_id = 1; // valid only when referenced in the tech profile instance
+    string max_q_size = 2;
+    string pbit_map = 3;
+    string aes_encryption = 4;
+    SchedulingPolicy scheduling_policy = 5; // This can be SP or WRR
+    fixed32 priority_q = 6;
+    fixed32 weight = 7;
+    DiscardPolicy discard_policy = 8;
+    RedDiscardConfig discard_config = 9; // used with version 1 of tech profile
+    DiscardConfig discard_config_v2 = 14; // used with version 2 of tech profile
+    string is_multicast = 10;
+    fixed32 multicast_gem_id = 11;
+    string dynamic_access_control_list = 12;
+    string static_access_control_list = 13;
+}
+
+message SchedulerAttributes {
+    Direction direction = 1;
+    uint32 alloc_id = 2; //  Valid on for “direction == Upstream” and when referenced in the tech profile instance
+    AdditionalBW additional_bw = 3; // Valid on for “direction == Upstream”.
+    fixed32 priority = 4;
+    fixed32 weight = 5;
+    SchedulingPolicy q_sched_policy = 6;
+}
+
+message EPONQueueAttributes {
+    string max_q_size = 1;
+    string pbit_map = 2;
+    uint32 gemport_id = 3;
+    string aes_encryption = 4;
+    string traffic_type = 5;
+    uint32 unsolicited_grant_size = 6;
+    uint32 nominal_interval = 7;
+    uint32 tolerated_poll_jitter = 8;
+    uint32 request_transmission_policy = 9;
+    uint32 num_q_sets = 10;
+    QThresholds q_thresholds = 11;
+    SchedulingPolicy scheduling_policy = 12;
+    uint32 priority_q = 13;
+    uint32 weight = 14;
+    DiscardPolicy discard_policy = 15;
+    RedDiscardConfig discard_config = 16; // used with version 1 of tech profile
+    DiscardConfig discard_config_v2 = 17; // used with version 2 of tech profile
+}
+
+// TechProfile definition (relevant for GPON, XGPON and XGS-PON technologies)
+message TechProfile {
+    string name = 1;
+    uint32 version = 2;
+    string profile_type = 3;
+    uint32 num_gem_ports = 4;
+    InstanceControl instance_control = 5;
+    SchedulerAttributes us_scheduler = 6;
+    SchedulerAttributes ds_scheduler = 7;
+    repeated GemPortAttributes upstream_gem_port_attribute_list = 8;
+    repeated GemPortAttributes downstream_gem_port_attribute_list = 9;
+}
+
+// EPON TechProfile definition
+message EponTechProfile {
+    string name = 1;
+    uint32 version = 2;
+    string profile_type = 3;
+    uint32 num_gem_ports = 4;
+    InstanceControl instance_control = 5;
+    string package_type = 6;
+    repeated EPONQueueAttributes upstream_queue_attribute_list= 7;
+    repeated EPONQueueAttributes downstream_queue_attribute_list = 8;
+}
+
+// TechProfile Instance definition (relevant for GPON, XGPON and XGS-PON technologies)
+message TechProfileInstance {
+    string name = 1;
+    uint32 version = 2;
+    string subscriber_identifier = 3;
+    string profile_type = 4;
+    uint32 num_gem_ports = 5;
+    InstanceControl instance_control = 6;
+    SchedulerAttributes us_scheduler = 7;
+    SchedulerAttributes ds_scheduler = 8;
+    repeated GemPortAttributes upstream_gem_port_attribute_list = 9;
+    repeated GemPortAttributes downstream_gem_port_attribute_list = 10;
+}
+
+// EPON TechProfile Instance definition.
+message EponTechProfileInstance {
+    string name = 1;
+    uint32 version = 2;
+    string subscriber_identifier = 3;
+    string profile_type = 4;
+    uint32 num_gem_ports = 5;
+    uint32 alloc_id = 6;
+    InstanceControl instance_control = 7;
+    string package_type = 8;
+    repeated EPONQueueAttributes upstream_queue_attribute_list= 9;
+    repeated EPONQueueAttributes downstream_queue_attribute_list = 10;
+}
+
+// Resource Instance definition
+message ResourceInstance {
+    uint32 tp_id = 1;
+    string profile_type = 2;
+    string subscriber_identifier = 3;
+    uint32 alloc_id = 4;
+    repeated uint32 gemport_ids = 5;
+}
