@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e673489_071f33e2",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2021-06-01T22:35:04Z",
+      "side": 1,
+      "message": "is tp_path the technology profile ID?",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 18
+      },
+      "revId": "72cfcf4a58dc21fc83b35ee0d67378b2985c1323",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
