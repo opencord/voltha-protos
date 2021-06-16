@@ -66,6 +66,9 @@ message OperStatus {
 
         // The device is reconciling
         RECONCILING = 6;
+
+        // The device is in reconciling failed
+        RECONCILING_FAILED = 7;
     }
 }
 
