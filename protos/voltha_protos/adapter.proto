@@ -6,10 +6,9 @@ option java_outer_classname = "VolthaAdapter";
 
 package voltha;
 
-import "google/protobuf/any.proto";
-import "voltha_protos/meta.proto";
-import "google/protobuf/timestamp.proto";
 
+import "voltha_protos/meta.proto";
+import "google/protobuf/any.proto";
 
 message AdapterConfig {
 
@@ -36,7 +35,7 @@ message Adapter {
     repeated string logical_device_ids = 4;  // Logical devices "owned"
 
     // timestamp when the adapter last sent a message to the core
-    google.protobuf.Timestamp last_communication = 5;
+    int64 last_communication = 5;
 
     int32 currentReplica = 6;
     int32 totalReplicas = 7;

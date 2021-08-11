@@ -64,7 +64,6 @@ package openflow_13;
 
 import "google/api/annotations.proto";
 
-
 /* Version number:
  * OpenFlow versions released: 0x01 = 1.0 ; 0x02 = 1.1 ; 0x03 = 1.2
  *     0x04 = 1.3

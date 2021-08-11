@@ -61,7 +61,7 @@ build: protos python-build go-protos java-protos
 
 test: python-test go-test java-test
 
-clean: python-clean java-clean
+clean: python-clean java-clean go-clean
 
 # Python targets
 python-protos: $(PROTO_PYTHON_PB2)
@@ -104,6 +104,9 @@ python-clean:
     $(PROTO_PYTHON_DEST_DIR)/*.desc \
     $(PROTO_PYTHON_PB2) \
     $(PROTO_PYTHON_PB2_GRPC)
+
+go-clean:
+	rm -rf go/*
 
 # Go targets
 go-protos: voltha.pb

@@ -3,81 +3,104 @@ syntax = "proto3";
 option go_package = "github.com/opencord/voltha-protos/v4/go/inter_container";
 option java_package = "org.opencord.voltha";
 
-import public "voltha_protos/common.proto";
-import public "voltha_protos/voltha.proto";
-import "google/protobuf/any.proto";
+import "voltha_protos/common.proto";
+import "voltha_protos/voltha.proto";
 import "voltha_protos/openflow_13.proto";
-import public "voltha_protos/logical_device.proto";
-import "google/protobuf/timestamp.proto";
+import "voltha_protos/logical_device.proto";
 import "voltha_protos/tech_profile.proto";
-
+import "voltha_protos/openolt.proto";
+import "voltha_protos/adapter.proto";
+import "voltha_protos/device.proto";
 
 package voltha;
 
-message StrType {
-    string val = 1;
+//
+// Core-Adapter messages
+// ****
+// ****
+// ****
+message AdapterRegistration {
+    Adapter adapter  = 1;
+    DeviceTypes dTypes = 2;
 }
 
-message IntType {
-    int64 val = 1;
+message ChildDeviceFilter {
+    string parent_id = 1;
+    string serial_number = 2;
+    uint32 onu_id = 3;
+    uint32 parent_port_no = 4;
 }
 
-message BoolType {
-    bool val = 1;
+message PortFilter {
+    string device_id = 1;
+    uint32 port = 2;
+    Port.PortType port_type = 3;
 }
 
-message Packet {
-    bytes payload = 1;
+message DeviceDiscovery {
+    string parent_id = 1;
+    uint32 parent_port_no = 2;
+    string child_device_type = 3;
+    uint32 channel_id = 4;
+    string vendor_id = 5;
+    string serial_number = 6;
+    uint32 onu_id = 7;
 }
 
-message ErrorCode {
-    enum codes {
-        UNSUPPORTED_REQUEST = 0;
-        INVALID_PARAMETERS = 1;
-        DEADLINE_EXCEEDED = 2;
-    }
+message DeviceStateFilter {
+    string device_id = 1;
+    string parent_device_id = 2;
+    common.OperStatus.Types oper_status = 3;
+    common.ConnectStatus.Types conn_status = 4;
 }
 
-message Error {
-    ErrorCode.codes code = 1;
+message PortState {
+    string device_id = 1;
+    Port.PortType port_type = 2;
+    uint32 port_no = 3;
+    common.OperStatus.Types oper_status = 4;
+}
+
+message PortStateFilter {
+    string device_id = 1;
+    uint32 port_type_filter = 2;
+    common.OperStatus.Types oper_status = 4;
+}
+
+message PacketIn {
+    string device_id = 1;
+    uint32 port = 2;
+    bytes packet = 3;
+}
+
+message PacketOut {
+    string device_id = 1;
+    uint32 egress_port_no = 2;
+    openflow_13.ofp_packet_out packet = 3;
+}
+
+message DeviceReason {
+    string device_id = 1;
     string reason = 2;
 }
 
-enum MessageType {
-    REQUEST = 0;
-    RESPONSE = 1;
-    DEVICE_DISCOVERED=2;
+message BulkFlows {
+    Device device = 1;
+    openflow_13.Flows flows = 2;
+    openflow_13.FlowGroups groups = 3;
+    voltha.FlowMetadata flow_metadata = 4;
 }
 
-message Header {
-    string id = 1;
-    MessageType type = 2;
-    string from_topic = 3;
-    string to_topic = 4;
-    string key_topic = 5;
-    google.protobuf.Timestamp timestamp = 6;
+message IncrementalFlows {
+    Device device = 1;
+    openflow_13.FlowChanges flows = 2;
+    openflow_13.FlowGroupChanges groups = 3;
+    voltha.FlowMetadata flow_metadata = 4;
 }
 
-message Argument {
-    string key = 1;
-    google.protobuf.Any value = 2;
-}
-
-message InterContainerMessage {
-    Header header = 1;
-    google.protobuf.Any body = 2;
-}
-
-message InterContainerRequestBody {
-    string rpc = 2;
-    repeated Argument args = 3;
-    bool response_required = 4;
-    string reply_to_topic = 5;
-}
-
-message InterContainerResponseBody {
-    bool success = 1;
-    google.protobuf.Any result = 3;
+message PmConfigsInfo {
+    string device_id = 1;
+    PmConfigs pm_configs = 2;
 }
 
 message SwitchCapability {
@@ -85,83 +108,80 @@ message SwitchCapability {
     openflow_13.ofp_switch_features switch_features = 2;
 }
 
-message DeviceDiscovered {
-    string id = 1;
-    string parent_id = 2;
-    string device_type = 3;
-    string publisher = 4;
+message ImageDownloadMessage {
+    Device device = 1;
+    ImageDownload image = 2;
 }
 
-message InterAdapterMessageType {
-    enum Types {
-        FLOW_REQUEST = 0;
-        FLOW_RESPONSE = 1;
-        OMCI_REQUEST = 2;
-        OMCI_RESPONSE = 3;
-        METRICS_REQUEST = 4;
-        METRICS_RESPONSE = 5;
-        ONU_IND_REQUEST = 6;
-        ONU_IND_RESPONSE = 7;
-        TECH_PROFILE_DOWNLOAD_REQUEST = 8;
-        DELETE_GEM_PORT_REQUEST = 9;
-        DELETE_TCONT_REQUEST = 10;
-    }
+message OMCITest {
+    Device device = 1;
+    OmciTestRequest request = 2;
 }
 
-message InterAdapterHeader {
-    string id = 1;
-    InterAdapterMessageType.Types type = 2;
-    string from_topic = 3;
-    string to_topic = 4;
-    string to_device_id = 5;
-    string proxy_device_id = 6;
-    google.protobuf.Timestamp timestamp = 7;
+message SimulateAlarmMessage {
+    Device device = 1;
+    SimulateAlarmRequest request = 2;
 }
 
-message InterAdapterOmciMessage {
-    bytes message = 1; // OMCI_REQUEST or OMCI_RESPONSE
+message GetExtValueMessage {
+    Device parent_device = 1;
+    Device child_device = 2;
+    common.ValueType.Type value_type=3;
+}
+
+message SetExtValueMessage {
+    Device device = 1;
+    ValueSet value=3;
+}
+
+//
+// Inter-Adapter messages
+// ****
+// ****
+// ****
+
+message OmciMessage {
+    bytes message = 1;
     common.ConnectStatus.Types connect_status = 2;
     voltha.Device.ProxyAddress proxy_address = 3;
+    string parent_device_id = 4;
+    string child_device_id = 5;
 }
 
-message InterAdapterTechProfileInstanceRequestMessage {
-    string tp_instance_path = 1; // technology profile instance path
-    string parent_device_id = 2;
-    uint32 parent_pon_port = 3;
-    uint32 onu_id = 4;
-    uint32 uni_id = 5;
-}
-
-message InterAdapterTechProfileDownloadMessage {
-    uint32 uni_id = 1;
-    string tp_instance_path = 2;
+message TechProfileDownloadMessage {
+    string device_id = 1;
+    uint32 uni_id = 2;
+    string tp_instance_path = 3;
     oneof tech_tp_instance {
-        tech_profile.TechProfileInstance tp_instance = 3; // relevant for GPON, XGPON and XGS-PON technologies
-        tech_profile.EponTechProfileInstance epon_tp_instance = 4; // relevant for EPON technology
+        tech_profile.TechProfileInstance tp_instance = 4; // relevant for GPON, XGPON and XGS-PON technologies
+        tech_profile.EponTechProfileInstance epon_tp_instance = 5; // relevant for EPON technology
     }
 }
 
-message InterAdapterDeleteGemPortMessage {
-    uint32 uni_id = 1;
-    string tp_instance_path = 2;
-    uint32 gem_port_id = 3;
+message DeleteGemPortMessage {
+    string device_id = 1;
+    uint32 uni_id = 2;
+    string tp_instance_path = 3;
+    uint32 gem_port_id = 4;
 }
 
-message InterAdapterDeleteTcontMessage {
-    uint32 uni_id = 1;
-    string tp_instance_path = 2;
-    uint32 alloc_id = 3;
+message DeleteTcontMessage {
+    string device_id = 1;
+    uint32 uni_id = 2;
+    string tp_instance_path = 3;
+    uint32 alloc_id = 4;
 }
 
-message InterAdapterResponseBody {
-    bool status = 1;
-    oneof payload {
-        google.protobuf.Any body = 2;
-        InterAdapterOmciMessage omci = 3; // OMCI_REQUEST or OMCI_RESPONSE
-    }
+message OnuIndicationMessage {
+    string device_id = 1;
+    openolt.OnuIndication onu_indication = 2;
 }
 
-message InterAdapterMessage {
-    InterAdapterHeader header = 1;
-    google.protobuf.Any body = 2;
+message TechProfileInstanceRequestMessage {
+    string device_id = 1;
+    string tp_instance_path = 2; // technology profile instance path
+    string parent_device_id = 3;
+    uint32 parent_pon_port = 4;
+    uint32 onu_id = 5;
+    uint32 uni_id = 6;
 }
