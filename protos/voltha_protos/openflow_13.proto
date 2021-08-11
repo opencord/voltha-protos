@@ -57,13 +57,12 @@
  */
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v4/go/openflow_13";
+option go_package = "github.com/opencord/voltha-protos/v5/go/openflow_13";
 option java_package = "org.opencord.voltha.openflow13";
 
 package openflow_13;
 
 import "google/api/annotations.proto";
-
 
 /* Version number:
  * OpenFlow versions released: 0x01 = 1.0 ; 0x02 = 1.1 ; 0x03 = 1.2

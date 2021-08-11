@@ -22,7 +22,7 @@ SHELL = bash -e -o pipefail
 VOLTHA_TOOLS_VERSION ?= 2.4.0
 
 PROTOC    = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/app $(shell test -t 0 && echo "-it") voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc protoc
-PROTOC_SH = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v4 $(shell test -t 0 && echo "-it") --workdir=/go/src/github.com/opencord/voltha-protos/v4 voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc sh -c
+PROTOC_SH = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v5 $(shell test -t 0 && echo "-it") --workdir=/go/src/github.com/opencord/voltha-protos/v5 voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-protoc sh -c
 GO        = docker run --rm --user $$(id -u):$$(id -g) -v ${CURDIR}:/app $(shell test -t 0 && echo "-it") -v gocache:/.cache -v gocache-${VOLTHA_TOOLS_VERSION}:/go/pkg voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}-golang go
 
 # Function to extract the last path component from go_package line in .proto files
@@ -61,7 +61,7 @@ build: protos python-build go-protos java-protos
 
 test: python-test go-test java-test
 
-clean: python-clean java-clean
+clean: python-clean java-clean go-clean
 
 # Python targets
 python-protos: $(PROTO_PYTHON_PB2)
@@ -69,7 +69,7 @@ python-protos: $(PROTO_PYTHON_PB2)
 venv_protos:
 	virtualenv -p python3 $@;\
 	source ./$@/bin/activate ; set -u ;\
-	pip install grpcio-tools googleapis-common-protos
+	pip install grpcio==1.39.0 protobuf==3.17.3 grpcio-tools==1.39.0 googleapis-common-protos==1.52.0
 
 $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
@@ -104,6 +104,9 @@ python-clean:
     $(PROTO_PYTHON_DEST_DIR)/*.desc \
     $(PROTO_PYTHON_PB2) \
     $(PROTO_PYTHON_PB2_GRPC)
+
+go-clean:
+	rm -rf go/*
 
 # Go targets
 go-protos: voltha.pb

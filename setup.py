@@ -32,7 +32,6 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -41,7 +40,10 @@ setup(
     packages = find_packages(where="python"),
     package_dir = {"": "python"},
     install_requires = [
-        "googleapis-common-protos~=1.5.6"
+        "grpcio==1.39.0",
+        "protobuf==3.17.3",
+        "grpcio-tools==1.39.0",
+        "googleapis-common-protos==1.52.0"
     ],
     include_package_data=True,
 )
