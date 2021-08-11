@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/adapter_services";
+option java_package = "org.opencord.adapter_services";
+option java_outer_classname = "VolthaAdapterServices";
+
+package voltha;
+
+import "google/protobuf/empty.proto";
+import  "voltha_protos/common.proto";
+import  "voltha_protos/inter_container.proto";
+import "voltha_protos/device.proto";
+import "voltha_protos/extensions.proto";
+import "voltha_protos/openolt.proto";
+import "voltha_protos/health.proto";
+import "voltha_protos/voltha.proto";
+
+// Service waiting for Core requests
+service AdapterService {
+    // GetHealthStatus is used by an AdapterService client to verify connectivity
+    // to the gRPC server hosting the AdapterService service
+    rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
+
+    // Device
+    rpc AdoptDevice(Device) returns(google.protobuf.Empty);
+    rpc ReconcileDevice(Device) returns(google.protobuf.Empty);
+    rpc DeleteDevice(Device) returns(google.protobuf.Empty);
+    rpc DisableDevice(Device) returns(google.protobuf.Empty);
+    rpc ReEnableDevice(Device) returns(google.protobuf.Empty);
+    rpc RebootDevice(Device) returns(google.protobuf.Empty);
+    rpc SelfTestDevice(Device) returns(google.protobuf.Empty);
+    rpc GetOfpDeviceInfo(Device) returns(SwitchCapability);
+    rpc ChildDeviceLost(Device) returns(google.protobuf.Empty);
+
+    // Ports
+    rpc EnablePort(Port) returns(google.protobuf.Empty);
+    rpc DisablePort(Port) returns(google.protobuf.Empty);
+
+    // Flows
+    rpc UpdateFlowsBulk(BulkFlows) returns(google.protobuf.Empty);
+    rpc UpdateFlowsIncrementally(IncrementalFlows) returns(google.protobuf.Empty);
+
+    //Packets
+    rpc SendPacketOut(PacketOut) returns(google.protobuf.Empty);
+
+    // PM
+    rpc UpdatePmConfig(PmConfigsInfo) returns(google.protobuf.Empty);
+
+    // Image
+    rpc DownloadOnuImage(DeviceImageDownloadRequest) returns (DeviceImageResponse);
+    rpc GetOnuImageStatus(DeviceImageRequest) returns (DeviceImageResponse);
+    rpc AbortOnuImageUpgrade(DeviceImageRequest) returns (DeviceImageResponse);
+    rpc GetOnuImages(common.ID) returns (OnuImages);
+    rpc ActivateOnuImage(DeviceImageRequest) returns (DeviceImageResponse);
+    rpc CommitOnuImage(DeviceImageRequest) returns (DeviceImageResponse);
+
+    // Deprecated Image APIs
+    rpc DownloadImage(ImageDownloadMessage) returns (ImageDownload);
+    rpc GetImageDownloadStatus(ImageDownloadMessage) returns (ImageDownload);
+    rpc CancelImageDownload(ImageDownloadMessage) returns (ImageDownload);
+    rpc ActivateImageUpdate(ImageDownloadMessage) returns (ImageDownload);
+    rpc RevertImageUpdate(ImageDownloadMessage) returns (ImageDownload);
+
+    // Tests
+    rpc StartOmciTest(OMCITest) returns(TestResponse);
+    rpc SimulateAlarm(SimulateAlarmMessage) returns (common.OperationResp);
+
+    // Events
+    rpc SuppressEvent(EventFilter) returns(google.protobuf.Empty);
+    rpc UnSuppressEvent(EventFilter) returns(google.protobuf.Empty);
+
+    // Get/Set
+    rpc GetExtValue(GetExtValueMessage) returns (common.ReturnValues);
+    rpc SetExtValue(SetExtValueMessage) returns (google.protobuf.Empty);
+    rpc GetSingleValue(extension.SingleGetValueRequest) returns (extension.SingleGetValueResponse);
+    rpc SetSingleValue(extension.SingleSetValueRequest) returns (extension.SingleSetValueResponse);
+}
+
+
+service OnuInterAdapterService {
+    // GetHealthStatus is used by an OnuInterAdapterService client to verify connectivity
+    // to the gRPC server hosting the OnuInterAdapterService service
+    rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
+
+    rpc OnuIndication(OnuIndicationMessage) returns (google.protobuf.Empty);
+    rpc OmciIndication(OmciMessage) returns (google.protobuf.Empty);
+    rpc DownloadTechProfile(TechProfileDownloadMessage) returns (google.protobuf.Empty);
+    rpc DeleteGemPort(DeleteGemPortMessage) returns (google.protobuf.Empty);
+    rpc DeleteTCont(DeleteTcontMessage) returns (google.protobuf.Empty);
+}
+
+service OltInterAdapterService {
+    // GetHealthStatus is used by an OltInterAdapterService client to verify connectivity
+    // to the gRPC server hosting the OltInterAdapterService service
+    rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
+
+    rpc ProxyOmciRequest(OmciMessage) returns (google.protobuf.Empty);
+    rpc GetTechProfileInstance(TechProfileInstanceRequestMessage) returns (TechProfileDownloadMessage);
+}

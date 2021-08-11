@@ -1,12 +1,13 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v4/go/voltha";
+option go_package = "github.com/opencord/voltha-protos/v5/go/voltha";
 option java_package = "org.opencord.voltha";
 option java_outer_classname = "VolthaDevice";
 
 package voltha;
 
 import "google/protobuf/any.proto";
+
 import "voltha_protos/common.proto";
 import "voltha_protos/meta.proto";
 import "voltha_protos/openflow_13.proto";
@@ -24,12 +25,16 @@ message DeviceType {
     repeated string vendor_ids = 6;
 
     // Name of the adapter that handles device type
+    // Deprecated and replaced by adapterType
     string adapter = 2;
 
     // Capabilities
     bool accepts_bulk_flow_update = 3;
     bool accepts_add_remove_flow_updates = 4;
     bool accepts_direct_logical_flows_update = 7;
+
+    // Type of adapter that can handle this device type
+    string adapter_type = 8;
 
 }
 
@@ -358,7 +363,11 @@ message Device {
     string vendor_id = 24 [(access) = READ_ONLY];
 
     // Adapter that takes care of device
+    // Deprecated and replaced by adapter_endpoint
     string adapter = 11 [(access) = READ_ONLY];
+
+    // Indicates how to reach the adapter instance that manages this device
+    string adapter_endpoint = 25;
 
     // Device contact on vlan (if 0, no vlan)
     uint32 vlan = 12;
@@ -371,6 +380,7 @@ message Device {
         string channel_termination = 5; // Channel Termination name
         uint32 onu_id = 6; // onu identifier; optional
         uint32 onu_session_id = 7; // session identifier for the ONU; optional
+        string adapter_endpoint = 8; // endpoint of the adapter that handles the proxy device
     };
 
     // Device contact MAC address (format: "xx:xx:xx:xx:xx:xx")
