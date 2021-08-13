@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8068b6b_a5e0a067",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-08-13T06:37:12Z",
+      "side": 1,
+      "message": "can we move the contents of this file to adapter.proto since we do not have a separate file for coreservice as well.",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3a3bbb8_e3939b59",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-08-13T06:37:12Z",
+      "side": 1,
+      "message": "can we have the same metadata here access \u003d READ_ONLY",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
+      "unresolved": true
+    }
+  ]
+}
