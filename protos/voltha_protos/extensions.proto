@@ -257,8 +257,13 @@ message OmciEthernetFrameExtendedPm {
 }
 
 message GetOmciEthernetFrameExtendedPmResponse {
+    enum Format {
+        THIRTY_TWO_BIT = 0;
+        SIXTY_FOUR_BIT = 1;
+    }
     OmciEthernetFrameExtendedPm upstream = 1;
     OmciEthernetFrameExtendedPm downstream = 2;
+    Format omci_ethernet_frame_extended_pm_format= 3;
 }
 
 message GetRxPowerResponse {
