@@ -147,6 +147,10 @@ message GetOnuCountersRequest {
 
 message GetOmciEthernetFrameExtendedPmRequest {
     string onuDeviceId = 1;
+    oneof is_uni_index {
+        uint32 uniIndex = 2; // Index of the uni starting from 0
+    }
+    bool reset = 3; 
 }
 
 message GetRxPowerRequest {
