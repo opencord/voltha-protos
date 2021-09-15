@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "c6e18d0f_b8db5013",
         "filename": "protos/voltha_protos/extensions.proto",
@@ -14,8 +15,25 @@
       "side": 1,
       "message": "Can you add additional comments, like - \" This parameter can optionally be specified to request counters of a specific uni port on the ONU\"",
       "revId": "fd256cdd2b43d8cd406e8919389b57565be71944",
-      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388",
-      "unresolved": true
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99471881_a94ab772",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-09-15T05:57:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c6e18d0f_b8db5013",
+      "revId": "fd256cdd2b43d8cd406e8919389b57565be71944",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
