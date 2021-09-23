@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49fbd7cc_42951c49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "looks mostly good, some minor comments",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fb051e1_a808774f",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "some better documentation here would be nice around the definition of `Health`",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd1fd7e_feedb8e8",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "same",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b63818_3760621a",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "same",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77765f98_ecbf2cb5",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "to be consistent with the adapters I think we can move this to a separate file, if it entails a huge work can be done in separate patch.",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f720a20_ffaab6b0",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "is it worth removing altogether or is it needed for backwards compatibility ?",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57f4fe3f_a4b13d15",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-23T09:17:35Z",
+      "side": 1,
+      "message": "maybe adapter_endpoint ?",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
