@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d3d88b9_1d324b94",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "There are a number of proto rework I did in a prior version but had to revert because of the resulting package dependencies, especially if we want to keep backward compatibility.    If we should not care about backward compatibility with Voltha 2.8 then I will move things around.  Otherwise, it\u0027s something that can be done in small patch sets after this merge.",
+      "parentUuid": "7afcd20e_671e3bc1",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3a3bbb8_e3939b59",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "why should it be read only ? I think this double and possibly will be modified at runtime.",
       "parentUuid": "d3a3bbb8_e3939b59",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33dc50c6_3b61f057",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "All the metadata in the protos (e.g. READ_ONLY)are not used anymore by the core components.   I left them there to limit the number of changes but I would be happy to remove them if there no components outside of voltha using them.",
+      "parentUuid": "3642a80f_ab1a20a3",
       "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

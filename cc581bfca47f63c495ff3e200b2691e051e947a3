@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f1522b7_ec862501",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0fb051e1_a808774f",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcd1fd7e_feedb8e8",
         "filename": "protos/voltha_protos/adapter_services.proto",
         "patchSetId": 2
@@ -65,6 +83,24 @@
       "writtenOn": "2021-09-23T09:17:35Z",
       "side": 1,
       "message": "same",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "377e0763_c5bad01a",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dcd1fd7e_feedb8e8",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -88,6 +124,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42affd97_b80e88a4",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51b63818_3760621a",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77765f98_ecbf2cb5",
         "filename": "protos/voltha_protos/core.proto",
         "patchSetId": 2
@@ -99,6 +153,24 @@
       "writtenOn": "2021-09-23T09:17:35Z",
       "side": 1,
       "message": "to be consistent with the adapters I think we can move this to a separate file, if it entails a huge work can be done in separate patch.",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50678c51_15884665",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "I prefer do this in a separate patch set if we want to keep backward compatibility with voltha 2.8.",
+      "parentUuid": "77765f98_ecbf2cb5",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -122,6 +194,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "150a3506_23221d8e",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "I kept it for backward compatibility in case an existing component (other than core and adapters) are using it.   If no one is using it then I will remove it.",
+      "parentUuid": "1f720a20_ffaab6b0",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57f4fe3f_a4b13d15",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 2
@@ -133,6 +223,24 @@
       "writtenOn": "2021-09-23T09:17:35Z",
       "side": 1,
       "message": "maybe adapter_endpoint ?",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21f742a7_31a98463",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-24T19:06:04Z",
+      "side": 1,
+      "message": "Yes, will change.",
+      "parentUuid": "57f4fe3f_a4b13d15",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
