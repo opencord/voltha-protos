@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59f4ac3b_c6426175",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-27T07:33:41Z",
+      "side": 1,
+      "message": "I think with the move to gRPC the backwards compatibility goes out of the window, so I\u0027m ok with moving.",
+      "parentUuid": "5d3d88b9_1d324b94",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3a3bbb8_e3939b59",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 1
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "All the metadata in the protos (e.g. READ_ONLY)are not used anymore by the core components.   I left them there to limit the number of changes but I would be happy to remove them if there no components outside of voltha using them.",
       "parentUuid": "3642a80f_ab1a20a3",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac9cadd_e2ab9f6a",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-09-27T07:33:41Z",
+      "side": 1,
+      "message": "if the helm charts drop it I\u0027d be ok dropping it as well.",
+      "parentUuid": "33dc50c6_3b61f057",
       "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
