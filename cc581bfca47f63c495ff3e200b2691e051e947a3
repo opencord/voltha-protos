@@ -248,6 +248,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee309528_58429fe2",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2021-09-27T21:02:20Z",
+      "side": 1,
+      "message": "Looks like no one is using it, I think it can be removed",
+      "parentUuid": "917f889a_913f6b31",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57f4fe3f_a4b13d15",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 2
@@ -277,6 +295,24 @@
       "side": 1,
       "message": "Yes, will change.",
       "parentUuid": "57f4fe3f_a4b13d15",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebe3519_ee34154a",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2021-09-27T21:02:20Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the endpoint be managed by the EndpointManager? or is populated by that for caching?",
+      "parentUuid": "21f742a7_31a98463",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

@@ -141,6 +141,24 @@
       "parentUuid": "33dc50c6_3b61f057",
       "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "100f53c0_c090b2db",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2021-09-27T21:02:20Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be managed by https://github.com/opencord/voltha-lib-go/blob/4c60c67a923dd82f338f6d717ded1058e152c746/pkg/mocks/kafka/endpoint_manager.go#L24 ?",
+      "parentUuid": "7ac9cadd_e2ab9f6a",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
