@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0dabd08d_0ff0bf2f",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T16:21:33Z",
+      "side": 1,
+      "message": "Will do these in a separate Jira after merging.  Don\u0027t want to have too many moving parts at this time.",
+      "parentUuid": "59f4ac3b_c6426175",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3a3bbb8_e3939b59",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 1
@@ -157,6 +175,24 @@
       "side": 1,
       "message": "Shouldn\u0027t this be managed by https://github.com/opencord/voltha-lib-go/blob/4c60c67a923dd82f338f6d717ded1058e152c746/pkg/mocks/kafka/endpoint_manager.go#L24 ?",
       "parentUuid": "7ac9cadd_e2ab9f6a",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60580ad6_cf0b65aa",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T16:21:33Z",
+      "side": 1,
+      "message": "The adapter endpoint is managed by the endpoint manager in the Core.  It is set to a given adapter instance managing that device for horizontal scaling.",
+      "parentUuid": "100f53c0_c090b2db",
       "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

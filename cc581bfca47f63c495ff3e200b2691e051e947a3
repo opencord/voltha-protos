@@ -35,6 +35,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1d823a_4c5aa6a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T16:21:33Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "72ede3a8_0675a5f4",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fb051e1_a808774f",
@@ -195,6 +213,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "819fe3e0_eea2a2a0",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T16:21:33Z",
+      "side": 1,
+      "message": "Will do these in a separate Jira after merging.  Don\u0027t want to have too many moving parts at this time.",
+      "parentUuid": "553a7713_bf54c716",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f720a20_ffaab6b0",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 2
@@ -266,6 +302,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e458da3d_670383e7",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T16:21:33Z",
+      "side": 1,
+      "message": "Will remove it in a separate jira, don\u0027t won\u0027t to see surprises.",
+      "parentUuid": "ee309528_58429fe2",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57f4fe3f_a4b13d15",
         "filename": "protos/voltha_protos/device.proto",
         "patchSetId": 2
@@ -313,6 +367,24 @@
       "side": 1,
       "message": "Shouldn\u0027t the endpoint be managed by the EndpointManager? or is populated by that for caching?",
       "parentUuid": "21f742a7_31a98463",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c51d742_3105fbed",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T16:21:33Z",
+      "side": 1,
+      "message": "It is managed by the endpoint manager in the core and set in the device object.  This way, an adapter knows which parent/child adapter instance it needs to send a request.  Once it\u0027s set it will always be associated with that adapter service.   The main advantages of this approach (compare to the previous dynamic implementation in the voltha-lib-go) are: 1) an adapter does not need to be implemented in go or have the exact hash mechanism (if implemented in a different language) to work and 2) the end result is the same but much simpler.  In both approaches, once a device was assigned to an adapter it remains there as we do not have device re-balancing after an adapter goes down.",
+      "parentUuid": "4ebe3519_ee34154a",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
