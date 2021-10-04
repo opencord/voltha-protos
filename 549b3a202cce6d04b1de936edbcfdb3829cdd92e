@@ -90,6 +90,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c734ea7_f3e7177a",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-04T17:00:35Z",
+      "side": 1,
+      "message": "https://jira.opencord.org/browse/VOL-4371",
+      "parentUuid": "0dabd08d_0ff0bf2f",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3a3bbb8_e3939b59",
