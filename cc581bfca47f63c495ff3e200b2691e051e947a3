@@ -88,6 +88,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b92f0d25_18518205",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-04T17:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f1522b7_ec862501",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcd1fd7e_feedb8e8",
@@ -123,6 +141,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c18f522_a94640bf",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-04T17:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "377e0763_c5bad01a",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51b63818_3760621a",
@@ -154,6 +190,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "51b63818_3760621a",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "571e43b4_d2ed88fa",
+        "filename": "protos/voltha_protos/adapter_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-04T17:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42affd97_b80e88a4",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -421,6 +475,24 @@
       "side": 1,
       "message": "It is managed by the endpoint manager in the core and set in the device object.  This way, an adapter knows which parent/child adapter instance it needs to send a request.  Once it\u0027s set it will always be associated with that adapter service.   The main advantages of this approach (compare to the previous dynamic implementation in the voltha-lib-go) are: 1) an adapter does not need to be implemented in go or have the exact hash mechanism (if implemented in a different language) to work and 2) the end result is the same but much simpler.  In both approaches, once a device was assigned to an adapter it remains there as we do not have device re-balancing after an adapter goes down.",
       "parentUuid": "4ebe3519_ee34154a",
+      "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab3cd7aa_84af1d85",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-04T17:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c51d742_3105fbed",
       "revId": "cc581bfca47f63c495ff3e200b2691e051e947a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

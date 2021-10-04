@@ -213,6 +213,24 @@
       "parentUuid": "100f53c0_c090b2db",
       "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93ebb899_d373c2a9",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-04T17:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60580ad6_cf0b65aa",
+      "revId": "549b3a202cce6d04b1de936edbcfdb3829cdd92e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
