@@ -16,6 +16,24 @@
       "message": "do we need to release it or do we foresee more changes coming in the near future?",
       "revId": "adbb88824f1d4f4cd3915363b2e1e0e804ceb7c4",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3a1d21_47d91f6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000726
+      },
+      "writtenOn": "2021-10-08T05:53:33Z",
+      "side": 1,
+      "message": "there is a one more patch on pm counters but its a separate one, so we should release this one.",
+      "parentUuid": "af46f809_558a6518",
+      "revId": "adbb88824f1d4f4cd3915363b2e1e0e804ceb7c4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
