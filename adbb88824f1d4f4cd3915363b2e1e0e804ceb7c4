@@ -34,6 +34,23 @@
       "parentUuid": "af46f809_558a6518",
       "revId": "adbb88824f1d4f4cd3915363b2e1e0e804ceb7c4",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48f665ad_a56ad046",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-08T13:07:25Z",
+      "side": 1,
+      "message": "nit:  should constants be capitalized?",
+      "revId": "adbb88824f1d4f4cd3915363b2e1e0e804ceb7c4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
