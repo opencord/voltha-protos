@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/omci";
+
+package omci;
+
+option java_package = "org.opencord.voltha.omci";
+
+message OmciTestRequest {
+    string id = 1;
+    string uuid = 2;
+}
+
+message TestResponse{
+    enum TestResponseResult  {
+        SUCCESS = 0;
+        FAILURE = 1;
+    }
+    TestResponseResult result = 1;
+}
+

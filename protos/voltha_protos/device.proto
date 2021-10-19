@@ -1,15 +1,14 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/v5/go/voltha";
-option java_package = "org.opencord.voltha";
+option java_package = "org.opencord.voltha.device";
 option java_outer_classname = "VolthaDevice";
 
-package voltha;
+package device;
 
 import "google/protobuf/any.proto";
 
 import "voltha_protos/common.proto";
-import "voltha_protos/meta.proto";
 import "voltha_protos/openflow_13.proto";
 
 // A Device Type
@@ -67,9 +66,9 @@ message PmConfigs {
     string id = 1; // To work around a chameleon POST bug
     uint32 default_freq = 2; // Default sample rate
     // Forces group names and group semantics
-    bool grouped = 3 [(access) = READ_ONLY];
+    bool grouped = 3;
     // Allows Pm to set an individual sample frequency
-    bool freq_override = 4 [(access) = READ_ONLY];
+    bool freq_override = 4;
     repeated PmGroupConfig groups = 5; // The groups if grouped is true
     repeated PmConfig metrics = 6; // The metrics themselves if grouped is false.
     uint32 max_skew = 7; //Default value is set to 5 seconds
@@ -338,33 +337,33 @@ message Ports {
 // A Physical Device instance
 message Device {
     // Voltha's device identifier
-    string id = 1 [(access) = READ_ONLY];
+    string id = 1 ;
 
     // Device type, refers to one of the registered device types
-    string type = 2 [(access) = READ_ONLY];
+    string type = 2 ;
 
     // Is this device a root device. Each logical switch has one root
     // device that is associated with the logical flow switch.
-    bool root = 3 [(access) = READ_ONLY];
+    bool root = 3 ;
 
     // Parent device id, in the device tree (for a root device, the parent_id
     // is the logical_device.id)
-    string parent_id = 4 [(access) = READ_ONLY];
-    uint32 parent_port_no = 20 [(access) = READ_ONLY];
+    string parent_id = 4;
+    uint32 parent_port_no = 20;
 
     // Vendor, version, serial number, etc.
-    string vendor = 5 [(access) = READ_ONLY];
-    string model = 6 [(access) = READ_ONLY];
-    string hardware_version = 7 [(access) = READ_ONLY];
-    string firmware_version = 8 [(access) = READ_ONLY];
+    string vendor = 5;
+    string model = 6;
+    string hardware_version = 7;
+    string firmware_version = 8;
     // List of software on the device
-    Images images = 9 [(access) = READ_ONLY];
-    string serial_number = 10 [(access) = READ_ONLY];
-    string vendor_id = 24 [(access) = READ_ONLY];
+    Images images = 9;
+    string serial_number = 10;
+    string vendor_id = 24;
 
-    // Adapter that takes care of device
-    // Deprecated and replaced by adapter_endpoint
-    string adapter = 11 [(access) = READ_ONLY];
+    // adapter is deprecated and replaced by adapter_endpoint
+    reserved 11;
+    //string adapter = 11;
 
     // Indicates how to reach the adapter instance that manages this device
     string adapter_endpoint = 25;
@@ -404,23 +403,70 @@ message Device {
 
     common.AdminState.Types admin_state = 16;
 
-    common.OperStatus.Types oper_status = 17 [(access) = READ_ONLY];
+    common.OperStatus.Types oper_status = 17 ;
 
-    string reason = 22 [(access) = READ_ONLY];  //  Used in FAILED state
+    string reason = 22 ;  //  Used in FAILED state
 
-    common.ConnectStatus.Types connect_status = 18 [(access) = READ_ONLY];
+    common.ConnectStatus.Types connect_status = 18 ;
 
     // TODO additional common attribute here
 
     // Device type specific attributes
     google.protobuf.Any custom = 64;
 
-    // PmConfigs will eventually converted to a child node of the
-    // device to falicitata callbacks and to simplify manipulation.
-    PmConfigs pm_configs = 131 [(child_node) = {}];
+    // PmConfigs type
+    PmConfigs pm_configs = 131 ;
 
-    repeated ImageDownload image_downloads = 133 [(child_node) = {key: "name"}];
+    repeated ImageDownload image_downloads = 133;
 
+}
+
+message DeviceImageDownloadRequest {
+
+    // Device Id
+    // allows for operations on multiple devices.
+    repeated common.ID device_id = 1;
+
+    //The image for the device containing all the information
+    Image image = 2;
+
+    //Activate the image if the download to the device is successful
+    bool activateOnSuccess = 3;
+
+    //Automatically commit the image if the activation on the device is successful
+    bool commitOnSuccess = 4;
+}
+
+message DeviceImageRequest {
+
+    //Device Id
+    //allows for operations on multiple adapters.
+    repeated common.ID device_id = 1;
+
+    // Image Version, this is the sole identifier of the image. it's the vendor specified OMCI version
+    // must be known at the time of initiating a download, activate, commit image on an onu.
+    string version = 2;
+
+    //Automatically commit the image if the activation on the device is successful
+    bool commitOnSuccess = 3;
+}
+
+message DeviceImageResponse {
+
+    //Image state for the different devices
+    repeated DeviceImageState device_image_states = 1;
+}
+
+// Device Self Test Response
+message SelfTestResponse {
+
+	enum SelfTestResult  {
+	    SUCCESS = 0;
+	    FAILURE = 1;
+	    NOT_SUPPORTED = 2;
+	    UNKNOWN_ERROR = 3;
+    }
+    SelfTestResult result = 1;
 }
 
 message Devices {

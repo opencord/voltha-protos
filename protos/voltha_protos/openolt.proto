@@ -20,9 +20,9 @@ option java_outer_classname = "VolthaOpenOLT";
 
 package openolt;
 import "google/api/annotations.proto";
-import public "voltha_protos/tech_profile.proto";
-import public "voltha_protos/common.proto";
+import "voltha_protos/tech_profile.proto";
 import "voltha_protos/ext_config.proto";
+import "voltha_protos/extensions.proto";
 
 service Openolt {
 
@@ -196,7 +196,7 @@ service Openolt {
         };
     }
 
-    rpc GetExtValue(ValueParam) returns (common.ReturnValues) {
+    rpc GetExtValue(ValueParam) returns (extension.ReturnValues) {
         option (google.api.http) = {
           post: "/v1/GetExtValue"
           body: "*"
@@ -750,7 +750,7 @@ message Group {
 
 message ValueParam {
 	Onu onu = 1;
-	common.ValueType.Type value = 2;
+	extension.ValueType.Type value = 2;
 }
 
 message PonRxPowerData {

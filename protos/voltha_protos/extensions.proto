@@ -19,8 +19,42 @@ option java_package = "org.opencord.voltha.extension";
 
 package extension;
 
-import public "voltha_protos/ext_config.proto";
+import "voltha_protos/ext_config.proto";
 import "google/protobuf/empty.proto";
+
+message ValueSet {
+    string id = 1;
+    oneof value{
+        config.AlarmConfig alarm_config = 2;
+    }
+}
+
+message ValueType {
+    enum Type {
+            EMPTY = 0;
+            DISTANCE = 1;
+    }
+}
+
+message ValueSpecifier {
+    string id = 1;
+    ValueType.Type value = 2;
+}
+
+message ReturnValues {
+    uint32  Set = 1;       // Specifies what values are
+                           // set/valid in return
+
+    uint32 Unsupported = 2; // Specifies requested values not
+                            // supported by the device
+
+    uint32 Error  = 3;      // Specifies requested values not
+                            // fetched because of error
+
+    uint32 Distance = 4;    // Value of distance Set includes
+                            // DISTANCE
+
+}
 
 message GetDistanceRequest {
     string onuDeviceId = 1;

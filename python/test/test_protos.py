@@ -15,11 +15,7 @@
 from __future__ import absolute_import, print_function
 import unittest
 
-from google.api import annotations_pb2
-from voltha_protos import voltha_pb2
-
-print("imported api annotations properly")
-
+from voltha_protos import device_pb2
 
 class TestProtos(unittest.TestCase):
 
@@ -30,7 +26,7 @@ class TestProtos(unittest.TestCase):
     def test_proto_call(self):
         """ initialization """
 
-        image_downloader = voltha_pb2.ImageDownload()
+        image_downloader = device_pb2.ImageDownload()
 
         self.assertIsNotNone(image_downloader)
 
