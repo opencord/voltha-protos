@@ -1,14 +1,42 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/v5/go/voltha";
-option java_package = "org.opencord.voltha";
+option java_package = "org.opencord.voltha.events";
 
-package voltha;
+package event;
 
-import "voltha_protos/meta.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "voltha_protos/common.proto";
+
+
+message EventFilterRuleKey {
+
+    enum EventFilterRuleType {
+        filter_all = 0;
+        category = 1;
+        sub_category = 2;
+        kpi_event_type = 3;
+        config_event_type = 4;
+        device_event_type = 5;
+    }
+}
+
+message EventFilterRule {
+    EventFilterRuleKey.EventFilterRuleType key = 1;
+    string value = 2;
+}
+message EventFilter {
+    string id = 1 ;
+    bool enable = 2;
+    string device_id = 3;
+    string event_type = 4;
+    repeated EventFilterRule rules = 5;
+}
+
+message EventFilters {
+    repeated EventFilter filters = 1;
+}
 
 message ConfigEventType {
     enum Types {

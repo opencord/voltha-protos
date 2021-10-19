@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/v5/go/ietf";
-option java_package = "org.opencord.voltha";
+option java_package = "org.opencord.voltha.ietf";
 
 package ietf;
 
