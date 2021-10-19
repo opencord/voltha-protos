@@ -20,49 +20,44 @@ option java_package = "org.opencord.voltha.omci";
 
 package omci;
 
-import "voltha_protos/meta.proto";
-
 
 message AlarmAttributeData {
-    string name        = 1 [(voltha.access) = READ_ONLY];
+    string name        = 1;
     string value       = 2;
 }
 
 message AlarmInstanceData {
-    uint32 instance_id      = 1 [(voltha.access) = READ_ONLY];
+    uint32 instance_id      = 1;
     string created          = 2;
     string modified         = 3;
 
-    repeated AlarmAttributeData attributes = 4
-    [(voltha.child_node) = {key: "name"}];
+    repeated AlarmAttributeData attributes = 4;
 }
 
 message AlarmClassData {
-    uint32 class_id         = 1 [(voltha.access) = READ_ONLY];
+    uint32 class_id         = 1;
 
-    repeated AlarmInstanceData instances= 2
-    [(voltha.child_node) = {key: "instance_id"}];
+    repeated AlarmInstanceData instances= 2;
 }
 
 message AlarmManagedEntity {
-    uint32 class_id  = 1 [(voltha.access) = READ_ONLY];
-    string name      = 2 [(voltha.access) = READ_ONLY];
+    uint32 class_id  = 1;
+    string name      = 2;
 }
 
 message AlarmMessageType {
-    uint32 message_type = 1 [(voltha.access) = READ_ONLY];
+    uint32 message_type = 1;
 }
 
 message AlarmDeviceData {
-    string device_id             = 1 [(voltha.access) = READ_ONLY];
+    string device_id             = 1;
     string created               = 2;
     uint32 last_alarm_sequence   = 3;
     string last_sync_time        = 4;
     uint32 version               = 5;
 
 
-    repeated AlarmClassData classes = 6
-    [(voltha.child_node) = {key: "class_id"}];
+    repeated AlarmClassData classes = 6;
 
     repeated AlarmManagedEntity managed_entities = 7;
     repeated AlarmMessageType message_types = 8;

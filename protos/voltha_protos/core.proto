@@ -3,13 +3,7 @@ syntax = "proto3";
 option go_package = "github.com/opencord/voltha-protos/v5/go/core";
 option java_package = "org.opencord.voltha.core";
 
-import "google/protobuf/empty.proto";
-import "voltha_protos/inter_container.proto";
-import "voltha_protos/common.proto";
-import "voltha_protos/device.proto";
-import "voltha_protos/health.proto";
-
-package voltha;
+package core;
 
 message DeviceTransientState {
     // Transient State for devices
@@ -27,38 +21,8 @@ message DeviceTransientState {
 	DELETING_POST_ADAPTER_RESPONSE = 4;
 	// State to represent that the device deletion is failed
 	DELETE_FAILED = 5;
-        // State to represent that reconcile is in progress
-        RECONCILE_IN_PROGRESS = 6;
+    // State to represent that reconcile is in progress
+    RECONCILE_IN_PROGRESS = 6;
     }
     Types transient_state = 1;
-}
-
-service CoreService {
-	//	 in coreProxy interface
-	rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
-	rpc RegisterAdapter (AdapterRegistration) returns (google.protobuf.Empty);
-	rpc DeviceUpdate (Device) returns (google.protobuf.Empty);
-	rpc PortCreated (Port) returns (google.protobuf.Empty);
-	rpc PortsStateUpdate (PortStateFilter) returns (google.protobuf.Empty);
-	rpc DeleteAllPorts (common.ID) returns (google.protobuf.Empty);
-	rpc GetDevicePort (PortFilter) returns (Port);
-	rpc ListDevicePorts (common.ID) returns (Ports);
-	rpc DeviceStateUpdate (DeviceStateFilter) returns (google.protobuf.Empty);
-	rpc DevicePMConfigUpdate (PmConfigs) returns (google.protobuf.Empty);
-	rpc ChildDeviceDetected (DeviceDiscovery) returns (Device);
-	rpc ChildDevicesLost (common.ID) returns (google.protobuf.Empty);
-	rpc ChildDevicesDetected (common.ID) returns (google.protobuf.Empty);
-	rpc GetDevice (common.ID) returns (Device);
-	rpc GetChildDevice (ChildDeviceFilter) returns (Device);
-	rpc GetChildDevices (common.ID) returns (Devices);
-	rpc SendPacketIn (PacketIn) returns (google.protobuf.Empty);
-	rpc DeviceReasonUpdate (DeviceReason) returns (google.protobuf.Empty);
-	rpc PortStateUpdate (PortState) returns (google.protobuf.Empty);
-
-	// Additional API found in the Core - unused?
-	rpc ReconcileChildDevices (common.ID) returns (google.protobuf.Empty);
-	rpc GetChildDeviceWithProxyAddress (Device.ProxyAddress) returns (Device);
-	rpc GetPorts (PortFilter) returns (Ports);
-	rpc ChildrenStateUpdate (DeviceStateFilter) returns (google.protobuf.Empty);
-	rpc UpdateImageDownload (ImageDownload) returns (google.protobuf.Empty);
 }
