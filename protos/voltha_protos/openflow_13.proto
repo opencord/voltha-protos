@@ -2309,3 +2309,9 @@ message ChangeEvent {
         ofp_error_msg error = 3;
     }
 }
+
+// Additional information required to process flow at device adapters
+message FlowMetadata {
+    // Meters associated with flow-update to adapter
+    repeated openflow_13.ofp_meter_config meters = 1;
+}
