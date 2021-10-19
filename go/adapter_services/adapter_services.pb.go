@@ -11,7 +11,7 @@ import (
 	common "github.com/opencord/voltha-protos/v5/go/common"
 	extension "github.com/opencord/voltha-protos/v5/go/extension"
 	inter_container "github.com/opencord/voltha-protos/v5/go/inter_container"
-	_ "github.com/opencord/voltha-protos/v5/go/openolt"
+	omci "github.com/opencord/voltha-protos/v5/go/omci"
 	voltha "github.com/opencord/voltha-protos/v5/go/voltha"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -35,68 +35,70 @@ func init() {
 }
 
 var fileDescriptor_5826bd5d7bb77df1 = []byte{
-	// 965 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x97, 0x4b, 0x6f, 0xe3, 0x36,
-	0x10, 0xc7, 0x81, 0x16, 0xd8, 0xc3, 0x24, 0x76, 0x12, 0xe5, 0x81, 0x85, 0xb2, 0x2d, 0xfa, 0xba,
-	0xf4, 0xb0, 0x0a, 0x90, 0xc5, 0x3e, 0x5a, 0xa4, 0x0d, 0x1c, 0xdb, 0xeb, 0x75, 0x9b, 0xc0, 0xa9,
-	0x95, 0xec, 0xa1, 0x97, 0x05, 0x2d, 0x8d, 0x65, 0x62, 0x29, 0x52, 0x15, 0x47, 0x79, 0x9c, 0xfb,
-	0x75, 0xfa, 0x11, 0xfa, 0xe1, 0x0a, 0xea, 0x65, 0x29, 0xb1, 0xd7, 0xb1, 0xd3, 0x3d, 0xf2, 0x3f,
-	0x33, 0x3f, 0x52, 0x33, 0x43, 0x8a, 0x84, 0x1f, 0xae, 0x94, 0xa0, 0x09, 0xfb, 0x10, 0xc5, 0x8a,
-	0x94, 0x3e, 0x60, 0x3e, 0x8b, 0x08, 0xe3, 0x0f, 0x1a, 0xe3, 0x2b, 0xee, 0xa1, 0x76, 0x52, 0xdd,
-	0x7a, 0x92, 0x79, 0xd9, 0xfb, 0x81, 0x52, 0x81, 0xc0, 0x83, 0x54, 0x1d, 0x25, 0xe3, 0x03, 0x0c,
-	0x23, 0xba, 0xcd, 0x9c, 0x6c, 0xbb, 0x8e, 0xf2, 0x54, 0x18, 0x2a, 0x99, 0xdb, 0xbe, 0xaf, 0xdb,
-	0xb8, 0x34, 0x93, 0x78, 0x4a, 0x12, 0xe3, 0x12, 0xe3, 0xd9, 0x00, 0x1f, 0xcd, 0x12, 0x72, 0xdb,
-	0xd7, 0x75, 0x1b, 0xde, 0x10, 0x4a, 0xcd, 0x95, 0xcc, 0x57, 0x68, 0xef, 0xd7, 0xed, 0x2a, 0x42,
-	0xa9, 0x04, 0xcd, 0x06, 0x4f, 0x90, 0x09, 0x9a, 0xcc, 0xb6, 0x65, 0xa3, 0xcc, 0x76, 0xf8, 0x8f,
-	0x05, 0xcd, 0x56, 0x96, 0x11, 0x37, 0x4b, 0x88, 0x75, 0x0c, 0x1b, 0x3d, 0xa4, 0x77, 0x29, 0xc1,
-	0x25, 0x46, 0x89, 0xb6, 0xf6, 0x9c, 0x2c, 0x2b, 0x4e, 0x91, 0x15, 0xa7, 0x6b, 0xb2, 0x62, 0xef,
-	0x38, 0x39, 0xac, 0xe6, 0xfd, 0x12, 0xd6, 0x5a, 0xbe, 0x8a, 0xa8, 0x93, 0x7e, 0x9d, 0xd5, 0x2c,
-	0x9c, 0xb2, 0xb1, 0x3d, 0x07, 0x66, 0xfd, 0x04, 0x1b, 0x43, 0xf4, 0x94, 0xf4, 0xb8, 0xc0, 0x25,
-	0x43, 0x5f, 0xc1, 0x7a, 0x07, 0x05, 0xd2, 0xb2, 0x71, 0xaf, 0xa1, 0xd1, 0xe1, 0x9a, 0x8d, 0x96,
-	0x9e, 0xf0, 0x0d, 0x34, 0x87, 0xd8, 0x95, 0x2b, 0x44, 0xbe, 0x82, 0xf5, 0x21, 0x8e, 0x94, 0xa2,
-	0xe5, 0x67, 0x74, 0x51, 0x8c, 0x2f, 0x50, 0x2f, 0x1b, 0x79, 0x04, 0x9b, 0x3d, 0xa4, 0xc1, 0x38,
-	0xca, 0xfc, 0xfa, 0x72, 0xac, 0xee, 0xc5, 0x3e, 0x2d, 0xc6, 0xee, 0x35, 0x27, 0x6f, 0xd2, 0x66,
-	0x11, 0x1b, 0x71, 0xc1, 0xb3, 0xaa, 0xb4, 0x27, 0x5c, 0xf8, 0x99, 0xe3, 0xa9, 0xd2, 0xf4, 0xe0,
-	0x89, 0x0f, 0x01, 0xb2, 0x14, 0x9d, 0xab, 0x98, 0xac, 0xf5, 0x22, 0xca, 0x8c, 0xe6, 0xc6, 0xbc,
-	0x80, 0xb5, 0xbc, 0x22, 0x4b, 0x04, 0x1d, 0xc1, 0xc6, 0x65, 0xe4, 0x33, 0xc2, 0xb7, 0x42, 0x5d,
-	0xeb, 0x93, 0x44, 0x7c, 0xb4, 0xb6, 0x8a, 0x40, 0x33, 0x4a, 0xe5, 0xb9, 0xd1, 0xa7, 0xf0, 0xb4,
-	0x12, 0xdd, 0x97, 0x5e, 0x8c, 0x21, 0x4a, 0x62, 0x42, 0xdc, 0x5a, 0x65, 0x5e, 0x2a, 0xf2, 0xa7,
-	0x69, 0x3f, 0x43, 0xc3, 0x45, 0xe9, 0x9f, 0x33, 0xef, 0x23, 0xd2, 0x20, 0xa1, 0xe9, 0x4a, 0x4a,
-	0x69, 0x6e, 0xec, 0x31, 0x34, 0xb3, 0x95, 0x9c, 0x87, 0x6d, 0x25, 0xc7, 0x3c, 0xb0, 0x76, 0xcb,
-	0xe0, 0x5c, 0xd1, 0xa6, 0x7c, 0x73, 0x01, 0x2e, 0x6c, 0x76, 0xd4, 0xb5, 0x14, 0x8a, 0xf9, 0x03,
-	0x99, 0xf4, 0x43, 0x16, 0xa0, 0xf5, 0x5d, 0xbd, 0x5a, 0xa9, 0x58, 0x38, 0x0d, 0xf1, 0xaf, 0x04,
-	0x35, 0xd9, 0xfb, 0x33, 0x7c, 0x86, 0xa8, 0x23, 0x25, 0x35, 0x5a, 0xa7, 0xb0, 0x65, 0xfa, 0x27,
-	0xe7, 0xe5, 0x7b, 0xdc, 0x9e, 0x19, 0xf1, 0x00, 0xda, 0x00, 0x76, 0x5a, 0x23, 0x15, 0x97, 0xbc,
-	0xcb, 0x28, 0x88, 0x99, 0x8f, 0xab, 0x03, 0x9f, 0xc3, 0x7a, 0x65, 0x79, 0xda, 0x02, 0x27, 0x3f,
-	0x96, 0xfb, 0x1d, 0xbb, 0xcc, 0xfd, 0xd4, 0xfc, 0x3b, 0x6c, 0xb6, 0x3c, 0xe2, 0x57, 0x8c, 0xb0,
-	0x4c, 0xd1, 0xca, 0x73, 0xf7, 0xa1, 0xd9, 0x56, 0x61, 0xc8, 0xe9, 0xf1, 0xa8, 0x0e, 0x34, 0x8a,
-	0xaa, 0x64, 0xa4, 0x67, 0x65, 0xeb, 0x55, 0x2b, 0x76, 0x86, 0x5a, 0xb3, 0x00, 0xed, 0xdd, 0x99,
-	0x56, 0xeb, 0x0c, 0xf6, 0x7a, 0x48, 0x35, 0x2d, 0x2f, 0xd8, 0x4a, 0xb8, 0xdf, 0x60, 0xbb, 0xcd,
-	0xa4, 0x87, 0xa2, 0x2e, 0xaf, 0xca, 0x2a, 0x12, 0x9f, 0x17, 0xde, 0x74, 0xfa, 0x6a, 0xac, 0x77,
-	0xb0, 0x35, 0xc4, 0x2b, 0x8c, 0xe9, 0xd1, 0xa4, 0xd7, 0xd0, 0x70, 0x89, 0xc5, 0x34, 0x08, 0x3d,
-	0x6e, 0xce, 0x56, 0x6b, 0xb3, 0x6c, 0x99, 0xb3, 0x76, 0xdf, 0x28, 0xd3, 0x9f, 0x9c, 0x19, 0x55,
-	0xeb, 0xe5, 0xf2, 0x30, 0x11, 0x8c, 0xb0, 0x25, 0x58, 0x1c, 0x4e, 0xa7, 0xaf, 0xc9, 0xd3, 0xe9,
-	0xf3, 0xae, 0x1c, 0x44, 0x18, 0x33, 0xe2, 0x4a, 0x1a, 0x92, 0x75, 0x04, 0x0d, 0x37, 0x89, 0xa2,
-	0x18, 0xb5, 0xee, 0x5e, 0xa1, 0x24, 0x6b, 0xbb, 0xa0, 0xa4, 0xc3, 0xb7, 0x5c, 0x10, 0xc6, 0x73,
-	0xb7, 0xfb, 0xaf, 0xb0, 0x71, 0x29, 0x1f, 0x11, 0x7f, 0x0c, 0x6b, 0x3d, 0xa4, 0xee, 0x0d, 0xbd,
-	0x67, 0x22, 0xa9, 0xf4, 0x6e, 0x45, 0x2c, 0xd6, 0xbf, 0x53, 0xac, 0x7f, 0x88, 0x94, 0xc4, 0x32,
-	0xb5, 0x69, 0xab, 0x05, 0x6b, 0xee, 0x2c, 0x80, 0x7b, 0x1f, 0x30, 0x6f, 0x0d, 0x97, 0xd0, 0xec,
-	0x21, 0xb9, 0x5c, 0x06, 0x02, 0x33, 0xca, 0x37, 0x4e, 0x79, 0xf5, 0x71, 0x32, 0xbd, 0x87, 0x19,
-	0xab, 0xd8, 0x48, 0xdf, 0x7e, 0xc2, 0x23, 0x2f, 0xcf, 0xa5, 0xf9, 0x5d, 0x2e, 0xc0, 0xba, 0x0b,
-	0xb1, 0xee, 0x1d, 0xec, 0xe1, 0xbf, 0x5f, 0xc2, 0x9e, 0xd9, 0xeb, 0xe6, 0x72, 0xf7, 0x7f, 0x5f,
-	0x9b, 0xba, 0xd0, 0x48, 0xd1, 0x3e, 0xf7, 0xd2, 0x06, 0x99, 0x76, 0x54, 0x4d, 0x5e, 0x94, 0xd0,
-	0x5f, 0xa0, 0x69, 0x9a, 0xb9, 0xc2, 0x29, 0x7b, 0xc2, 0xe8, 0x8b, 0xc2, 0xff, 0x80, 0xed, 0x62,
-	0x73, 0x5c, 0xa0, 0x37, 0x39, 0x8f, 0xd5, 0x98, 0x8b, 0xca, 0x5f, 0xa4, 0x22, 0xde, 0xdd, 0x62,
-	0xf3, 0x90, 0x5d, 0x68, 0x64, 0xb7, 0xb3, 0x1e, 0x86, 0xe9, 0x5f, 0xfd, 0xd9, 0xf4, 0x20, 0xac,
-	0xc8, 0x8b, 0x30, 0x2d, 0x58, 0xcb, 0xfc, 0x2f, 0xda, 0x4a, 0x52, 0xf5, 0xa4, 0x4d, 0x45, 0x73,
-	0xd5, 0x5e, 0x80, 0x38, 0xfc, 0xfb, 0x0b, 0xd8, 0x1b, 0x08, 0xfa, 0x2c, 0xe5, 0x3b, 0x86, 0xcd,
-	0xf3, 0x58, 0xdd, 0xdc, 0x9a, 0x24, 0xe7, 0x1d, 0xb5, 0x5c, 0xe6, 0x83, 0xf4, 0xec, 0xae, 0xe4,
-	0xb7, 0x2f, 0x35, 0x99, 0xd3, 0xd7, 0xfa, 0x71, 0x46, 0xf2, 0x0b, 0x63, 0x3e, 0x55, 0x01, 0x7f,
-	0x40, 0x9d, 0x4e, 0x22, 0xf8, 0x4a, 0xc5, 0x81, 0x63, 0x1e, 0x10, 0x9e, 0x8a, 0x7d, 0xe7, 0xee,
-	0x8b, 0xe8, 0x64, 0xf7, 0x7d, 0xca, 0xa8, 0x67, 0x48, 0xff, 0xf9, 0x26, 0xe0, 0x34, 0x49, 0x46,
-	0xe6, 0x24, 0x38, 0x28, 0x82, 0xf3, 0xd7, 0xc4, 0xf3, 0xe2, 0x6d, 0xf1, 0xf2, 0x20, 0x50, 0xf7,
-	0x9e, 0x58, 0xa3, 0x27, 0xa9, 0xf9, 0xc5, 0x7f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x62, 0xe3, 0x4e,
-	0xd4, 0x8b, 0x0d, 0x00, 0x00,
+	// 1003 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x97, 0xdd, 0x6e, 0xdb, 0x36,
+	0x14, 0xc7, 0xb1, 0x16, 0xd8, 0xc5, 0x49, 0xec, 0x24, 0x4c, 0x9b, 0x6d, 0xea, 0x56, 0xac, 0x1f,
+	0xbb, 0x1a, 0xaa, 0x00, 0x29, 0xda, 0x75, 0x18, 0xb6, 0x21, 0x71, 0x1c, 0xc7, 0x6d, 0x53, 0x07,
+	0x56, 0x12, 0x0c, 0xdd, 0x45, 0x40, 0xcb, 0xc7, 0x36, 0x51, 0x8a, 0xd4, 0xc4, 0xa3, 0x7c, 0xbc,
+	0xc1, 0x9e, 0x62, 0x0f, 0xb3, 0xb7, 0xd9, 0x5b, 0x0c, 0x94, 0xa8, 0xd4, 0x8a, 0xec, 0xb8, 0xce,
+	0xbc, 0x3b, 0x89, 0x7f, 0x9e, 0xdf, 0x21, 0xcf, 0x39, 0xfc, 0x82, 0xa7, 0x67, 0x5a, 0xd2, 0x88,
+	0x9f, 0xc6, 0x89, 0x26, 0x6d, 0x36, 0x79, 0x9f, 0xc7, 0x84, 0xc9, 0xa9, 0xc1, 0xe4, 0x4c, 0x84,
+	0x68, 0xfc, 0xac, 0x9d, 0xad, 0x5e, 0x6f, 0xf7, 0x1e, 0x0c, 0xb5, 0x1e, 0x4a, 0xdc, 0xcc, 0xf4,
+	0x5e, 0x3a, 0xd8, 0xc4, 0x28, 0xa6, 0xcb, 0xbc, 0xbb, 0xe7, 0x95, 0xa1, 0xa1, 0x8e, 0x22, 0xad,
+	0x9c, 0xf6, 0xa4, 0xac, 0x09, 0x65, 0xb1, 0xa1, 0x56, 0xc4, 0x85, 0xc2, 0x64, 0x32, 0xa0, 0x8f,
+	0xd6, 0xa9, 0xd3, 0x1e, 0x96, 0x35, 0xbc, 0x20, 0x54, 0x46, 0x68, 0x65, 0x26, 0xdb, 0x8e, 0x90,
+	0x4b, 0x1a, 0x4d, 0xd6, 0xf2, 0x3f, 0xa7, 0x7d, 0x53, 0xd6, 0x74, 0x14, 0x8a, 0x53, 0x42, 0x43,
+	0x93, 0x4d, 0xf1, 0x0c, 0x15, 0x39, 0x97, 0x5b, 0x7f, 0xaf, 0x43, 0x7d, 0x3b, 0x8f, 0x50, 0x90,
+	0x07, 0x88, 0xfd, 0x0a, 0x2b, 0x2d, 0xa4, 0xfd, 0xcc, 0x79, 0x40, 0x9c, 0x52, 0xc3, 0x36, 0xfc,
+	0x3c, 0x66, 0x7e, 0x11, 0x33, 0xbf, 0x69, 0x63, 0xe6, 0xdd, 0xf3, 0xdd, 0x18, 0x4b, 0xbd, 0x5f,
+	0xc0, 0xd2, 0x76, 0x5f, 0xc7, 0xb4, 0x9b, 0xcd, 0x9d, 0xd5, 0x7d, 0x17, 0x84, 0xfc, 0xdf, 0x9b,
+	0x02, 0x63, 0x3f, 0xc2, 0x4a, 0x17, 0x43, 0xad, 0x42, 0x21, 0x71, 0x4e, 0xd3, 0x97, 0xb0, 0xbc,
+	0x8b, 0x12, 0x69, 0x5e, 0xbb, 0x1f, 0xa0, 0xb6, 0x2b, 0x0c, 0xef, 0xcd, 0xed, 0xf0, 0x15, 0xd4,
+	0xbb, 0xd8, 0x54, 0xb7, 0xb0, 0x7c, 0x09, 0xcb, 0x5d, 0xec, 0x69, 0x4d, 0xf3, 0x7b, 0x0c, 0x50,
+	0x0e, 0x8e, 0xd0, 0xcc, 0x6b, 0xd9, 0x84, 0xd5, 0x16, 0x52, 0x67, 0x10, 0xe7, 0xfd, 0xda, 0x6a,
+	0xa0, 0x2b, 0xb6, 0x8f, 0xfc, 0xeb, 0xd5, 0x1c, 0x9c, 0x0b, 0x0a, 0x47, 0x0d, 0x1e, 0xf3, 0x9e,
+	0x90, 0x22, 0x4f, 0x4f, 0x63, 0x24, 0x64, 0x3f, 0xb7, 0x78, 0xab, 0x0d, 0x7d, 0xf2, 0x08, 0xb6,
+	0x00, 0xf2, 0x58, 0x1d, 0xea, 0x84, 0xd8, 0x72, 0x61, 0x65, 0xff, 0xa6, 0xda, 0x3c, 0x87, 0x25,
+	0x97, 0x9a, 0x39, 0x8c, 0x9a, 0xb0, 0x72, 0x1c, 0xf7, 0x39, 0xe1, 0x9e, 0xd4, 0xe7, 0x66, 0x27,
+	0x95, 0x1f, 0x98, 0x57, 0x99, 0x99, 0x6d, 0xce, 0xf4, 0xa9, 0x98, 0x63, 0xf8, 0x72, 0x0c, 0xd3,
+	0x56, 0x61, 0x82, 0x11, 0x2a, 0xe2, 0x52, 0x5e, 0xb2, 0x6a, 0xa4, 0xc6, 0xf4, 0x9b, 0xb1, 0x0d,
+	0xa8, 0x05, 0xa8, 0xfa, 0x87, 0x3c, 0xfc, 0x80, 0xd4, 0x49, 0x69, 0xc2, 0xd8, 0xae, 0xb4, 0xa9,
+	0x90, 0x7d, 0xa8, 0xe7, 0x63, 0x3b, 0x8c, 0x1a, 0x5a, 0x0d, 0xc4, 0x90, 0x3d, 0xac, 0x52, 0x9c,
+	0x64, 0x6c, 0xae, 0xa7, 0x92, 0x02, 0x58, 0xdd, 0xd5, 0xe7, 0x4a, 0x6a, 0xde, 0xef, 0xa8, 0xb4,
+	0x1d, 0xf1, 0x21, 0xb2, 0xc7, 0xe5, 0x8c, 0x66, 0x8d, 0x45, 0xa7, 0x2e, 0xfe, 0x91, 0xa2, 0x21,
+	0xef, 0xc1, 0x84, 0x3e, 0x5d, 0x34, 0xb1, 0x56, 0x06, 0xd9, 0x5b, 0x58, 0xb3, 0xc5, 0xe6, 0x78,
+	0x6e, 0x43, 0xf0, 0x26, 0x5a, 0x7c, 0x02, 0xad, 0x03, 0xf7, 0xb6, 0x7b, 0x3a, 0xb9, 0xe2, 0x1d,
+	0xc7, 0xc3, 0x84, 0xf7, 0xf1, 0xf6, 0xc0, 0x67, 0xb0, 0x3c, 0x36, 0x3c, 0xc3, 0xc0, 0x77, 0x3b,
+	0x7c, 0x7b, 0xd7, 0x5b, 0x2b, 0x0c, 0x3f, 0xca, 0x6f, 0x60, 0x75, 0x3b, 0x24, 0x71, 0xc6, 0x09,
+	0xaf, 0x42, 0x74, 0x6b, 0xdf, 0x6d, 0xa8, 0x37, 0x74, 0x14, 0x09, 0xfa, 0xef, 0xa8, 0x2e, 0xd4,
+	0x8a, 0xac, 0xe4, 0xa4, 0xef, 0xaa, 0x55, 0x39, 0x9e, 0xba, 0x03, 0x34, 0x86, 0x0f, 0xd1, 0xbb,
+	0x5f, 0x40, 0x4b, 0xea, 0xe3, 0xbb, 0x7f, 0xde, 0xf9, 0x8c, 0xfd, 0x0e, 0x1b, 0x2d, 0xa4, 0x92,
+	0xe0, 0xd2, 0xb7, 0x00, 0xf8, 0x6f, 0xb0, 0xde, 0xe0, 0x2a, 0x44, 0x59, 0xd2, 0x16, 0x44, 0x2e,
+	0x52, 0xe4, 0x4a, 0xc4, 0x2e, 0x8e, 0x45, 0x90, 0x4f, 0x60, 0xad, 0x8b, 0x67, 0x98, 0xd0, 0x82,
+	0xb9, 0xbf, 0x40, 0x2d, 0x20, 0x9e, 0x50, 0x27, 0x0a, 0x85, 0xdd, 0xce, 0xd9, 0x57, 0x15, 0x66,
+	0xe7, 0xa0, 0xd1, 0xb6, 0x92, 0xc7, 0x7c, 0x7b, 0x98, 0xfb, 0xf6, 0xfb, 0x2a, 0xf9, 0x07, 0x50,
+	0x0b, 0x44, 0x94, 0x4a, 0x4e, 0xb8, 0x2d, 0x79, 0x12, 0x4d, 0x18, 0x53, 0x49, 0xff, 0x38, 0x26,
+	0x57, 0xeb, 0x9d, 0x18, 0x13, 0x4e, 0x42, 0x2b, 0x8b, 0x64, 0x3f, 0x41, 0x2d, 0x48, 0xe3, 0x38,
+	0x41, 0x63, 0x9a, 0xf6, 0x66, 0xc0, 0x98, 0x9f, 0xdd, 0x10, 0xfc, 0xec, 0x6f, 0x4f, 0x48, 0xc2,
+	0x64, 0xea, 0x1e, 0xf2, 0x33, 0xac, 0x1c, 0xab, 0xdb, 0x9b, 0xbf, 0x81, 0xa5, 0x16, 0x52, 0xf3,
+	0x82, 0x4e, 0xb8, 0x4c, 0x91, 0x3d, 0xa9, 0x4c, 0x64, 0x4c, 0x2d, 0xa6, 0xf1, 0x85, 0x7f, 0x75,
+	0x6f, 0xf2, 0xbb, 0x48, 0x69, 0xa2, 0x32, 0xd9, 0xb0, 0xd7, 0xb0, 0x14, 0xdc, 0x08, 0x0b, 0xaa,
+	0xb0, 0xe9, 0x27, 0x40, 0xbd, 0x85, 0x14, 0x08, 0x35, 0x94, 0x98, 0xe3, 0xbe, 0x1d, 0x73, 0x9b,
+	0xb7, 0xb7, 0x30, 0x67, 0x15, 0x2b, 0xf6, 0xd1, 0x0d, 0x3d, 0x5c, 0xea, 0x8e, 0xed, 0x21, 0x3e,
+	0x03, 0x1b, 0xcc, 0xc4, 0x06, 0xd7, 0xb0, 0x5b, 0xff, 0xdc, 0x85, 0x0d, 0xbb, 0xa9, 0xd8, 0xf9,
+	0x2e, 0xfa, 0x32, 0xf7, 0x0e, 0x6a, 0x19, 0xba, 0x2f, 0xc2, 0xac, 0x66, 0x26, 0x54, 0x5b, 0x49,
+	0x9f, 0x15, 0xd9, 0x3d, 0xa8, 0xdb, 0xc2, 0x1f, 0x03, 0x7e, 0x5d, 0x05, 0x46, 0xa1, 0x98, 0xc5,
+	0x79, 0x0f, 0xeb, 0xc5, 0xb2, 0x3a, 0xc2, 0x70, 0x74, 0x98, 0xe8, 0x81, 0x90, 0xc8, 0xbe, 0xaf,
+	0xc0, 0xc6, 0xd4, 0xeb, 0xab, 0x74, 0x1a, 0xfb, 0x1d, 0xd4, 0xf2, 0xeb, 0x64, 0x0b, 0xa3, 0xec,
+	0xf6, 0x51, 0x9d, 0x73, 0x49, 0x9f, 0xc5, 0x7b, 0x0d, 0x4b, 0x79, 0xff, 0xa3, 0x86, 0x56, 0x34,
+	0xa1, 0x32, 0x9d, 0x6a, 0x1b, 0x66, 0xb0, 0xb6, 0xfe, 0xba, 0x03, 0x1b, 0x1d, 0x49, 0xff, 0x4b,
+	0xae, 0xf7, 0x61, 0xf5, 0x30, 0xd1, 0x17, 0x97, 0x36, 0xfe, 0xae, 0xfc, 0x6e, 0x99, 0x9d, 0xcb,
+	0xec, 0x30, 0x19, 0x0b, 0x7d, 0x5b, 0x19, 0xb2, 0x07, 0x00, 0xdb, 0xba, 0x29, 0x41, 0x45, 0x2f,
+	0xe7, 0xbc, 0xf0, 0x32, 0x4f, 0x52, 0x77, 0xce, 0xe1, 0xa9, 0x4e, 0x86, 0xbe, 0x8e, 0x51, 0x85,
+	0x3a, 0xe9, 0xfb, 0xee, 0xa5, 0x74, 0xfd, 0x19, 0xb8, 0x73, 0xff, 0x24, 0x13, 0xca, 0x31, 0x34,
+	0xef, 0x5f, 0x0d, 0x05, 0x8d, 0xd2, 0x9e, 0xdd, 0x2b, 0x37, 0x0b, 0x86, 0x7b, 0x6d, 0x3d, 0x2b,
+	0xde, 0x5e, 0x2f, 0x36, 0x87, 0xba, 0xf2, 0xde, 0xec, 0x7d, 0x9e, 0xc9, 0xcf, 0xff, 0x0d, 0x00,
+	0x00, 0xff, 0xff, 0x99, 0x61, 0x9e, 0xe1, 0x98, 0x0e, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -148,13 +150,13 @@ type AdapterServiceClient interface {
 	ActivateImageUpdate(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error)
 	RevertImageUpdate(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error)
 	// Tests
-	StartOmciTest(ctx context.Context, in *inter_container.OMCITest, opts ...grpc.CallOption) (*voltha.TestResponse, error)
+	StartOmciTest(ctx context.Context, in *inter_container.OMCITest, opts ...grpc.CallOption) (*omci.TestResponse, error)
 	SimulateAlarm(ctx context.Context, in *inter_container.SimulateAlarmMessage, opts ...grpc.CallOption) (*common.OperationResp, error)
 	// Events
 	SuppressEvent(ctx context.Context, in *voltha.EventFilter, opts ...grpc.CallOption) (*empty.Empty, error)
 	UnSuppressEvent(ctx context.Context, in *voltha.EventFilter, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get/Set
-	GetExtValue(ctx context.Context, in *inter_container.GetExtValueMessage, opts ...grpc.CallOption) (*common.ReturnValues, error)
+	GetExtValue(ctx context.Context, in *inter_container.GetExtValueMessage, opts ...grpc.CallOption) (*extension.ReturnValues, error)
 	SetExtValue(ctx context.Context, in *inter_container.SetExtValueMessage, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetSingleValue(ctx context.Context, in *extension.SingleGetValueRequest, opts ...grpc.CallOption) (*extension.SingleGetValueResponse, error)
 	SetSingleValue(ctx context.Context, in *extension.SingleSetValueRequest, opts ...grpc.CallOption) (*extension.SingleSetValueResponse, error)
@@ -170,7 +172,7 @@ func NewAdapterServiceClient(cc *grpc.ClientConn) AdapterServiceClient {
 
 func (c *adapterServiceClient) GetHealthStatus(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*voltha.HealthStatus, error) {
 	out := new(voltha.HealthStatus)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetHealthStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetHealthStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -179,7 +181,7 @@ func (c *adapterServiceClient) GetHealthStatus(ctx context.Context, in *empty.Em
 
 func (c *adapterServiceClient) AdoptDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/AdoptDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/AdoptDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -188,7 +190,7 @@ func (c *adapterServiceClient) AdoptDevice(ctx context.Context, in *voltha.Devic
 
 func (c *adapterServiceClient) ReconcileDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/ReconcileDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/ReconcileDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -197,7 +199,7 @@ func (c *adapterServiceClient) ReconcileDevice(ctx context.Context, in *voltha.D
 
 func (c *adapterServiceClient) DeleteDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/DeleteDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/DeleteDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -206,7 +208,7 @@ func (c *adapterServiceClient) DeleteDevice(ctx context.Context, in *voltha.Devi
 
 func (c *adapterServiceClient) DisableDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/DisableDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/DisableDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -215,7 +217,7 @@ func (c *adapterServiceClient) DisableDevice(ctx context.Context, in *voltha.Dev
 
 func (c *adapterServiceClient) ReEnableDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/ReEnableDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/ReEnableDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -224,7 +226,7 @@ func (c *adapterServiceClient) ReEnableDevice(ctx context.Context, in *voltha.De
 
 func (c *adapterServiceClient) RebootDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/RebootDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/RebootDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -233,7 +235,7 @@ func (c *adapterServiceClient) RebootDevice(ctx context.Context, in *voltha.Devi
 
 func (c *adapterServiceClient) SelfTestDevice(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/SelfTestDevice", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/SelfTestDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -242,7 +244,7 @@ func (c *adapterServiceClient) SelfTestDevice(ctx context.Context, in *voltha.De
 
 func (c *adapterServiceClient) GetOfpDeviceInfo(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*inter_container.SwitchCapability, error) {
 	out := new(inter_container.SwitchCapability)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetOfpDeviceInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetOfpDeviceInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -251,7 +253,7 @@ func (c *adapterServiceClient) GetOfpDeviceInfo(ctx context.Context, in *voltha.
 
 func (c *adapterServiceClient) ChildDeviceLost(ctx context.Context, in *voltha.Device, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/ChildDeviceLost", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/ChildDeviceLost", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -260,7 +262,7 @@ func (c *adapterServiceClient) ChildDeviceLost(ctx context.Context, in *voltha.D
 
 func (c *adapterServiceClient) EnablePort(ctx context.Context, in *voltha.Port, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/EnablePort", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/EnablePort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -269,7 +271,7 @@ func (c *adapterServiceClient) EnablePort(ctx context.Context, in *voltha.Port, 
 
 func (c *adapterServiceClient) DisablePort(ctx context.Context, in *voltha.Port, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/DisablePort", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/DisablePort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -278,7 +280,7 @@ func (c *adapterServiceClient) DisablePort(ctx context.Context, in *voltha.Port,
 
 func (c *adapterServiceClient) UpdateFlowsBulk(ctx context.Context, in *inter_container.BulkFlows, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/UpdateFlowsBulk", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/UpdateFlowsBulk", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -287,7 +289,7 @@ func (c *adapterServiceClient) UpdateFlowsBulk(ctx context.Context, in *inter_co
 
 func (c *adapterServiceClient) UpdateFlowsIncrementally(ctx context.Context, in *inter_container.IncrementalFlows, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/UpdateFlowsIncrementally", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/UpdateFlowsIncrementally", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +298,7 @@ func (c *adapterServiceClient) UpdateFlowsIncrementally(ctx context.Context, in 
 
 func (c *adapterServiceClient) SendPacketOut(ctx context.Context, in *inter_container.PacketOut, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/SendPacketOut", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/SendPacketOut", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -305,7 +307,7 @@ func (c *adapterServiceClient) SendPacketOut(ctx context.Context, in *inter_cont
 
 func (c *adapterServiceClient) UpdatePmConfig(ctx context.Context, in *inter_container.PmConfigsInfo, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/UpdatePmConfig", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/UpdatePmConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -314,7 +316,7 @@ func (c *adapterServiceClient) UpdatePmConfig(ctx context.Context, in *inter_con
 
 func (c *adapterServiceClient) DownloadOnuImage(ctx context.Context, in *voltha.DeviceImageDownloadRequest, opts ...grpc.CallOption) (*voltha.DeviceImageResponse, error) {
 	out := new(voltha.DeviceImageResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/DownloadOnuImage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/DownloadOnuImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -323,7 +325,7 @@ func (c *adapterServiceClient) DownloadOnuImage(ctx context.Context, in *voltha.
 
 func (c *adapterServiceClient) GetOnuImageStatus(ctx context.Context, in *voltha.DeviceImageRequest, opts ...grpc.CallOption) (*voltha.DeviceImageResponse, error) {
 	out := new(voltha.DeviceImageResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetOnuImageStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetOnuImageStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -332,7 +334,7 @@ func (c *adapterServiceClient) GetOnuImageStatus(ctx context.Context, in *voltha
 
 func (c *adapterServiceClient) AbortOnuImageUpgrade(ctx context.Context, in *voltha.DeviceImageRequest, opts ...grpc.CallOption) (*voltha.DeviceImageResponse, error) {
 	out := new(voltha.DeviceImageResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/AbortOnuImageUpgrade", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/AbortOnuImageUpgrade", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -341,7 +343,7 @@ func (c *adapterServiceClient) AbortOnuImageUpgrade(ctx context.Context, in *vol
 
 func (c *adapterServiceClient) GetOnuImages(ctx context.Context, in *common.ID, opts ...grpc.CallOption) (*voltha.OnuImages, error) {
 	out := new(voltha.OnuImages)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetOnuImages", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetOnuImages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -350,7 +352,7 @@ func (c *adapterServiceClient) GetOnuImages(ctx context.Context, in *common.ID, 
 
 func (c *adapterServiceClient) ActivateOnuImage(ctx context.Context, in *voltha.DeviceImageRequest, opts ...grpc.CallOption) (*voltha.DeviceImageResponse, error) {
 	out := new(voltha.DeviceImageResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/ActivateOnuImage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/ActivateOnuImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -359,61 +361,66 @@ func (c *adapterServiceClient) ActivateOnuImage(ctx context.Context, in *voltha.
 
 func (c *adapterServiceClient) CommitOnuImage(ctx context.Context, in *voltha.DeviceImageRequest, opts ...grpc.CallOption) (*voltha.DeviceImageResponse, error) {
 	out := new(voltha.DeviceImageResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/CommitOnuImage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/CommitOnuImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *adapterServiceClient) DownloadImage(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error) {
 	out := new(voltha.ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/DownloadImage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/DownloadImage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *adapterServiceClient) GetImageDownloadStatus(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error) {
 	out := new(voltha.ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetImageDownloadStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetImageDownloadStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *adapterServiceClient) CancelImageDownload(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error) {
 	out := new(voltha.ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/CancelImageDownload", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/CancelImageDownload", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *adapterServiceClient) ActivateImageUpdate(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error) {
 	out := new(voltha.ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/ActivateImageUpdate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/ActivateImageUpdate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *adapterServiceClient) RevertImageUpdate(ctx context.Context, in *inter_container.ImageDownloadMessage, opts ...grpc.CallOption) (*voltha.ImageDownload, error) {
 	out := new(voltha.ImageDownload)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/RevertImageUpdate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/RevertImageUpdate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *adapterServiceClient) StartOmciTest(ctx context.Context, in *inter_container.OMCITest, opts ...grpc.CallOption) (*voltha.TestResponse, error) {
-	out := new(voltha.TestResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/StartOmciTest", in, out, opts...)
+func (c *adapterServiceClient) StartOmciTest(ctx context.Context, in *inter_container.OMCITest, opts ...grpc.CallOption) (*omci.TestResponse, error) {
+	out := new(omci.TestResponse)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/StartOmciTest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -422,7 +429,7 @@ func (c *adapterServiceClient) StartOmciTest(ctx context.Context, in *inter_cont
 
 func (c *adapterServiceClient) SimulateAlarm(ctx context.Context, in *inter_container.SimulateAlarmMessage, opts ...grpc.CallOption) (*common.OperationResp, error) {
 	out := new(common.OperationResp)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/SimulateAlarm", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/SimulateAlarm", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -431,7 +438,7 @@ func (c *adapterServiceClient) SimulateAlarm(ctx context.Context, in *inter_cont
 
 func (c *adapterServiceClient) SuppressEvent(ctx context.Context, in *voltha.EventFilter, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/SuppressEvent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/SuppressEvent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -440,16 +447,16 @@ func (c *adapterServiceClient) SuppressEvent(ctx context.Context, in *voltha.Eve
 
 func (c *adapterServiceClient) UnSuppressEvent(ctx context.Context, in *voltha.EventFilter, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/UnSuppressEvent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/UnSuppressEvent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *adapterServiceClient) GetExtValue(ctx context.Context, in *inter_container.GetExtValueMessage, opts ...grpc.CallOption) (*common.ReturnValues, error) {
-	out := new(common.ReturnValues)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetExtValue", in, out, opts...)
+func (c *adapterServiceClient) GetExtValue(ctx context.Context, in *inter_container.GetExtValueMessage, opts ...grpc.CallOption) (*extension.ReturnValues, error) {
+	out := new(extension.ReturnValues)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetExtValue", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -458,7 +465,7 @@ func (c *adapterServiceClient) GetExtValue(ctx context.Context, in *inter_contai
 
 func (c *adapterServiceClient) SetExtValue(ctx context.Context, in *inter_container.SetExtValueMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/SetExtValue", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/SetExtValue", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -467,7 +474,7 @@ func (c *adapterServiceClient) SetExtValue(ctx context.Context, in *inter_contai
 
 func (c *adapterServiceClient) GetSingleValue(ctx context.Context, in *extension.SingleGetValueRequest, opts ...grpc.CallOption) (*extension.SingleGetValueResponse, error) {
 	out := new(extension.SingleGetValueResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/GetSingleValue", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/GetSingleValue", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -476,7 +483,7 @@ func (c *adapterServiceClient) GetSingleValue(ctx context.Context, in *extension
 
 func (c *adapterServiceClient) SetSingleValue(ctx context.Context, in *extension.SingleSetValueRequest, opts ...grpc.CallOption) (*extension.SingleSetValueResponse, error) {
 	out := new(extension.SingleSetValueResponse)
-	err := c.cc.Invoke(ctx, "/voltha.AdapterService/SetSingleValue", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.AdapterService/SetSingleValue", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -522,13 +529,13 @@ type AdapterServiceServer interface {
 	ActivateImageUpdate(context.Context, *inter_container.ImageDownloadMessage) (*voltha.ImageDownload, error)
 	RevertImageUpdate(context.Context, *inter_container.ImageDownloadMessage) (*voltha.ImageDownload, error)
 	// Tests
-	StartOmciTest(context.Context, *inter_container.OMCITest) (*voltha.TestResponse, error)
+	StartOmciTest(context.Context, *inter_container.OMCITest) (*omci.TestResponse, error)
 	SimulateAlarm(context.Context, *inter_container.SimulateAlarmMessage) (*common.OperationResp, error)
 	// Events
 	SuppressEvent(context.Context, *voltha.EventFilter) (*empty.Empty, error)
 	UnSuppressEvent(context.Context, *voltha.EventFilter) (*empty.Empty, error)
 	// Get/Set
-	GetExtValue(context.Context, *inter_container.GetExtValueMessage) (*common.ReturnValues, error)
+	GetExtValue(context.Context, *inter_container.GetExtValueMessage) (*extension.ReturnValues, error)
 	SetExtValue(context.Context, *inter_container.SetExtValueMessage) (*empty.Empty, error)
 	GetSingleValue(context.Context, *extension.SingleGetValueRequest) (*extension.SingleGetValueResponse, error)
 	SetSingleValue(context.Context, *extension.SingleSetValueRequest) (*extension.SingleSetValueResponse, error)
@@ -619,7 +626,7 @@ func (*UnimplementedAdapterServiceServer) ActivateImageUpdate(ctx context.Contex
 func (*UnimplementedAdapterServiceServer) RevertImageUpdate(ctx context.Context, req *inter_container.ImageDownloadMessage) (*voltha.ImageDownload, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RevertImageUpdate not implemented")
 }
-func (*UnimplementedAdapterServiceServer) StartOmciTest(ctx context.Context, req *inter_container.OMCITest) (*voltha.TestResponse, error) {
+func (*UnimplementedAdapterServiceServer) StartOmciTest(ctx context.Context, req *inter_container.OMCITest) (*omci.TestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartOmciTest not implemented")
 }
 func (*UnimplementedAdapterServiceServer) SimulateAlarm(ctx context.Context, req *inter_container.SimulateAlarmMessage) (*common.OperationResp, error) {
@@ -631,7 +638,7 @@ func (*UnimplementedAdapterServiceServer) SuppressEvent(ctx context.Context, req
 func (*UnimplementedAdapterServiceServer) UnSuppressEvent(ctx context.Context, req *voltha.EventFilter) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnSuppressEvent not implemented")
 }
-func (*UnimplementedAdapterServiceServer) GetExtValue(ctx context.Context, req *inter_container.GetExtValueMessage) (*common.ReturnValues, error) {
+func (*UnimplementedAdapterServiceServer) GetExtValue(ctx context.Context, req *inter_container.GetExtValueMessage) (*extension.ReturnValues, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetExtValue not implemented")
 }
 func (*UnimplementedAdapterServiceServer) SetExtValue(ctx context.Context, req *inter_container.SetExtValueMessage) (*empty.Empty, error) {
@@ -658,7 +665,7 @@ func _AdapterService_GetHealthStatus_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetHealthStatus",
+		FullMethod: "/adapter_services.AdapterService/GetHealthStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetHealthStatus(ctx, req.(*empty.Empty))
@@ -676,7 +683,7 @@ func _AdapterService_AdoptDevice_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/AdoptDevice",
+		FullMethod: "/adapter_services.AdapterService/AdoptDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).AdoptDevice(ctx, req.(*voltha.Device))
@@ -694,7 +701,7 @@ func _AdapterService_ReconcileDevice_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/ReconcileDevice",
+		FullMethod: "/adapter_services.AdapterService/ReconcileDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).ReconcileDevice(ctx, req.(*voltha.Device))
@@ -712,7 +719,7 @@ func _AdapterService_DeleteDevice_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/DeleteDevice",
+		FullMethod: "/adapter_services.AdapterService/DeleteDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).DeleteDevice(ctx, req.(*voltha.Device))
@@ -730,7 +737,7 @@ func _AdapterService_DisableDevice_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/DisableDevice",
+		FullMethod: "/adapter_services.AdapterService/DisableDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).DisableDevice(ctx, req.(*voltha.Device))
@@ -748,7 +755,7 @@ func _AdapterService_ReEnableDevice_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/ReEnableDevice",
+		FullMethod: "/adapter_services.AdapterService/ReEnableDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).ReEnableDevice(ctx, req.(*voltha.Device))
@@ -766,7 +773,7 @@ func _AdapterService_RebootDevice_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/RebootDevice",
+		FullMethod: "/adapter_services.AdapterService/RebootDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).RebootDevice(ctx, req.(*voltha.Device))
@@ -784,7 +791,7 @@ func _AdapterService_SelfTestDevice_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/SelfTestDevice",
+		FullMethod: "/adapter_services.AdapterService/SelfTestDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).SelfTestDevice(ctx, req.(*voltha.Device))
@@ -802,7 +809,7 @@ func _AdapterService_GetOfpDeviceInfo_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetOfpDeviceInfo",
+		FullMethod: "/adapter_services.AdapterService/GetOfpDeviceInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetOfpDeviceInfo(ctx, req.(*voltha.Device))
@@ -820,7 +827,7 @@ func _AdapterService_ChildDeviceLost_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/ChildDeviceLost",
+		FullMethod: "/adapter_services.AdapterService/ChildDeviceLost",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).ChildDeviceLost(ctx, req.(*voltha.Device))
@@ -838,7 +845,7 @@ func _AdapterService_EnablePort_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/EnablePort",
+		FullMethod: "/adapter_services.AdapterService/EnablePort",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).EnablePort(ctx, req.(*voltha.Port))
@@ -856,7 +863,7 @@ func _AdapterService_DisablePort_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/DisablePort",
+		FullMethod: "/adapter_services.AdapterService/DisablePort",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).DisablePort(ctx, req.(*voltha.Port))
@@ -874,7 +881,7 @@ func _AdapterService_UpdateFlowsBulk_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/UpdateFlowsBulk",
+		FullMethod: "/adapter_services.AdapterService/UpdateFlowsBulk",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).UpdateFlowsBulk(ctx, req.(*inter_container.BulkFlows))
@@ -892,7 +899,7 @@ func _AdapterService_UpdateFlowsIncrementally_Handler(srv interface{}, ctx conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/UpdateFlowsIncrementally",
+		FullMethod: "/adapter_services.AdapterService/UpdateFlowsIncrementally",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).UpdateFlowsIncrementally(ctx, req.(*inter_container.IncrementalFlows))
@@ -910,7 +917,7 @@ func _AdapterService_SendPacketOut_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/SendPacketOut",
+		FullMethod: "/adapter_services.AdapterService/SendPacketOut",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).SendPacketOut(ctx, req.(*inter_container.PacketOut))
@@ -928,7 +935,7 @@ func _AdapterService_UpdatePmConfig_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/UpdatePmConfig",
+		FullMethod: "/adapter_services.AdapterService/UpdatePmConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).UpdatePmConfig(ctx, req.(*inter_container.PmConfigsInfo))
@@ -946,7 +953,7 @@ func _AdapterService_DownloadOnuImage_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/DownloadOnuImage",
+		FullMethod: "/adapter_services.AdapterService/DownloadOnuImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).DownloadOnuImage(ctx, req.(*voltha.DeviceImageDownloadRequest))
@@ -964,7 +971,7 @@ func _AdapterService_GetOnuImageStatus_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetOnuImageStatus",
+		FullMethod: "/adapter_services.AdapterService/GetOnuImageStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetOnuImageStatus(ctx, req.(*voltha.DeviceImageRequest))
@@ -982,7 +989,7 @@ func _AdapterService_AbortOnuImageUpgrade_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/AbortOnuImageUpgrade",
+		FullMethod: "/adapter_services.AdapterService/AbortOnuImageUpgrade",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).AbortOnuImageUpgrade(ctx, req.(*voltha.DeviceImageRequest))
@@ -1000,7 +1007,7 @@ func _AdapterService_GetOnuImages_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetOnuImages",
+		FullMethod: "/adapter_services.AdapterService/GetOnuImages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetOnuImages(ctx, req.(*common.ID))
@@ -1018,7 +1025,7 @@ func _AdapterService_ActivateOnuImage_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/ActivateOnuImage",
+		FullMethod: "/adapter_services.AdapterService/ActivateOnuImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).ActivateOnuImage(ctx, req.(*voltha.DeviceImageRequest))
@@ -1036,7 +1043,7 @@ func _AdapterService_CommitOnuImage_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/CommitOnuImage",
+		FullMethod: "/adapter_services.AdapterService/CommitOnuImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).CommitOnuImage(ctx, req.(*voltha.DeviceImageRequest))
@@ -1054,7 +1061,7 @@ func _AdapterService_DownloadImage_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/DownloadImage",
+		FullMethod: "/adapter_services.AdapterService/DownloadImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).DownloadImage(ctx, req.(*inter_container.ImageDownloadMessage))
@@ -1072,7 +1079,7 @@ func _AdapterService_GetImageDownloadStatus_Handler(srv interface{}, ctx context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetImageDownloadStatus",
+		FullMethod: "/adapter_services.AdapterService/GetImageDownloadStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetImageDownloadStatus(ctx, req.(*inter_container.ImageDownloadMessage))
@@ -1090,7 +1097,7 @@ func _AdapterService_CancelImageDownload_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/CancelImageDownload",
+		FullMethod: "/adapter_services.AdapterService/CancelImageDownload",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).CancelImageDownload(ctx, req.(*inter_container.ImageDownloadMessage))
@@ -1108,7 +1115,7 @@ func _AdapterService_ActivateImageUpdate_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/ActivateImageUpdate",
+		FullMethod: "/adapter_services.AdapterService/ActivateImageUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).ActivateImageUpdate(ctx, req.(*inter_container.ImageDownloadMessage))
@@ -1126,7 +1133,7 @@ func _AdapterService_RevertImageUpdate_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/RevertImageUpdate",
+		FullMethod: "/adapter_services.AdapterService/RevertImageUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).RevertImageUpdate(ctx, req.(*inter_container.ImageDownloadMessage))
@@ -1144,7 +1151,7 @@ func _AdapterService_StartOmciTest_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/StartOmciTest",
+		FullMethod: "/adapter_services.AdapterService/StartOmciTest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).StartOmciTest(ctx, req.(*inter_container.OMCITest))
@@ -1162,7 +1169,7 @@ func _AdapterService_SimulateAlarm_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/SimulateAlarm",
+		FullMethod: "/adapter_services.AdapterService/SimulateAlarm",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).SimulateAlarm(ctx, req.(*inter_container.SimulateAlarmMessage))
@@ -1180,7 +1187,7 @@ func _AdapterService_SuppressEvent_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/SuppressEvent",
+		FullMethod: "/adapter_services.AdapterService/SuppressEvent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).SuppressEvent(ctx, req.(*voltha.EventFilter))
@@ -1198,7 +1205,7 @@ func _AdapterService_UnSuppressEvent_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/UnSuppressEvent",
+		FullMethod: "/adapter_services.AdapterService/UnSuppressEvent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).UnSuppressEvent(ctx, req.(*voltha.EventFilter))
@@ -1216,7 +1223,7 @@ func _AdapterService_GetExtValue_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetExtValue",
+		FullMethod: "/adapter_services.AdapterService/GetExtValue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetExtValue(ctx, req.(*inter_container.GetExtValueMessage))
@@ -1234,7 +1241,7 @@ func _AdapterService_SetExtValue_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/SetExtValue",
+		FullMethod: "/adapter_services.AdapterService/SetExtValue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).SetExtValue(ctx, req.(*inter_container.SetExtValueMessage))
@@ -1252,7 +1259,7 @@ func _AdapterService_GetSingleValue_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/GetSingleValue",
+		FullMethod: "/adapter_services.AdapterService/GetSingleValue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).GetSingleValue(ctx, req.(*extension.SingleGetValueRequest))
@@ -1270,7 +1277,7 @@ func _AdapterService_SetSingleValue_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.AdapterService/SetSingleValue",
+		FullMethod: "/adapter_services.AdapterService/SetSingleValue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdapterServiceServer).SetSingleValue(ctx, req.(*extension.SingleSetValueRequest))
@@ -1279,7 +1286,7 @@ func _AdapterService_SetSingleValue_Handler(srv interface{}, ctx context.Context
 }
 
 var _AdapterService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "voltha.AdapterService",
+	ServiceName: "adapter_services.AdapterService",
 	HandlerType: (*AdapterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1451,7 +1458,7 @@ func NewOnuInterAdapterServiceClient(cc *grpc.ClientConn) OnuInterAdapterService
 
 func (c *onuInterAdapterServiceClient) GetHealthStatus(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*voltha.HealthStatus, error) {
 	out := new(voltha.HealthStatus)
-	err := c.cc.Invoke(ctx, "/voltha.OnuInterAdapterService/GetHealthStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OnuInterAdapterService/GetHealthStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1460,7 +1467,7 @@ func (c *onuInterAdapterServiceClient) GetHealthStatus(ctx context.Context, in *
 
 func (c *onuInterAdapterServiceClient) OnuIndication(ctx context.Context, in *inter_container.OnuIndicationMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.OnuInterAdapterService/OnuIndication", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OnuInterAdapterService/OnuIndication", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1469,7 +1476,7 @@ func (c *onuInterAdapterServiceClient) OnuIndication(ctx context.Context, in *in
 
 func (c *onuInterAdapterServiceClient) OmciIndication(ctx context.Context, in *inter_container.OmciMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.OnuInterAdapterService/OmciIndication", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OnuInterAdapterService/OmciIndication", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1478,7 +1485,7 @@ func (c *onuInterAdapterServiceClient) OmciIndication(ctx context.Context, in *i
 
 func (c *onuInterAdapterServiceClient) DownloadTechProfile(ctx context.Context, in *inter_container.TechProfileDownloadMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.OnuInterAdapterService/DownloadTechProfile", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OnuInterAdapterService/DownloadTechProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1487,7 +1494,7 @@ func (c *onuInterAdapterServiceClient) DownloadTechProfile(ctx context.Context, 
 
 func (c *onuInterAdapterServiceClient) DeleteGemPort(ctx context.Context, in *inter_container.DeleteGemPortMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.OnuInterAdapterService/DeleteGemPort", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OnuInterAdapterService/DeleteGemPort", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1496,7 +1503,7 @@ func (c *onuInterAdapterServiceClient) DeleteGemPort(ctx context.Context, in *in
 
 func (c *onuInterAdapterServiceClient) DeleteTCont(ctx context.Context, in *inter_container.DeleteTcontMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.OnuInterAdapterService/DeleteTCont", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OnuInterAdapterService/DeleteTCont", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1552,7 +1559,7 @@ func _OnuInterAdapterService_GetHealthStatus_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OnuInterAdapterService/GetHealthStatus",
+		FullMethod: "/adapter_services.OnuInterAdapterService/GetHealthStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OnuInterAdapterServiceServer).GetHealthStatus(ctx, req.(*empty.Empty))
@@ -1570,7 +1577,7 @@ func _OnuInterAdapterService_OnuIndication_Handler(srv interface{}, ctx context.
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OnuInterAdapterService/OnuIndication",
+		FullMethod: "/adapter_services.OnuInterAdapterService/OnuIndication",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OnuInterAdapterServiceServer).OnuIndication(ctx, req.(*inter_container.OnuIndicationMessage))
@@ -1588,7 +1595,7 @@ func _OnuInterAdapterService_OmciIndication_Handler(srv interface{}, ctx context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OnuInterAdapterService/OmciIndication",
+		FullMethod: "/adapter_services.OnuInterAdapterService/OmciIndication",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OnuInterAdapterServiceServer).OmciIndication(ctx, req.(*inter_container.OmciMessage))
@@ -1606,7 +1613,7 @@ func _OnuInterAdapterService_DownloadTechProfile_Handler(srv interface{}, ctx co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OnuInterAdapterService/DownloadTechProfile",
+		FullMethod: "/adapter_services.OnuInterAdapterService/DownloadTechProfile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OnuInterAdapterServiceServer).DownloadTechProfile(ctx, req.(*inter_container.TechProfileDownloadMessage))
@@ -1624,7 +1631,7 @@ func _OnuInterAdapterService_DeleteGemPort_Handler(srv interface{}, ctx context.
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OnuInterAdapterService/DeleteGemPort",
+		FullMethod: "/adapter_services.OnuInterAdapterService/DeleteGemPort",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OnuInterAdapterServiceServer).DeleteGemPort(ctx, req.(*inter_container.DeleteGemPortMessage))
@@ -1642,7 +1649,7 @@ func _OnuInterAdapterService_DeleteTCont_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OnuInterAdapterService/DeleteTCont",
+		FullMethod: "/adapter_services.OnuInterAdapterService/DeleteTCont",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OnuInterAdapterServiceServer).DeleteTCont(ctx, req.(*inter_container.DeleteTcontMessage))
@@ -1651,7 +1658,7 @@ func _OnuInterAdapterService_DeleteTCont_Handler(srv interface{}, ctx context.Co
 }
 
 var _OnuInterAdapterService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "voltha.OnuInterAdapterService",
+	ServiceName: "adapter_services.OnuInterAdapterService",
 	HandlerType: (*OnuInterAdapterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1704,7 +1711,7 @@ func NewOltInterAdapterServiceClient(cc *grpc.ClientConn) OltInterAdapterService
 
 func (c *oltInterAdapterServiceClient) GetHealthStatus(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*voltha.HealthStatus, error) {
 	out := new(voltha.HealthStatus)
-	err := c.cc.Invoke(ctx, "/voltha.OltInterAdapterService/GetHealthStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OltInterAdapterService/GetHealthStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1713,7 +1720,7 @@ func (c *oltInterAdapterServiceClient) GetHealthStatus(ctx context.Context, in *
 
 func (c *oltInterAdapterServiceClient) ProxyOmciRequest(ctx context.Context, in *inter_container.OmciMessage, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/voltha.OltInterAdapterService/ProxyOmciRequest", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OltInterAdapterService/ProxyOmciRequest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1722,7 +1729,7 @@ func (c *oltInterAdapterServiceClient) ProxyOmciRequest(ctx context.Context, in 
 
 func (c *oltInterAdapterServiceClient) GetTechProfileInstance(ctx context.Context, in *inter_container.TechProfileInstanceRequestMessage, opts ...grpc.CallOption) (*inter_container.TechProfileDownloadMessage, error) {
 	out := new(inter_container.TechProfileDownloadMessage)
-	err := c.cc.Invoke(ctx, "/voltha.OltInterAdapterService/GetTechProfileInstance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/adapter_services.OltInterAdapterService/GetTechProfileInstance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1766,7 +1773,7 @@ func _OltInterAdapterService_GetHealthStatus_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OltInterAdapterService/GetHealthStatus",
+		FullMethod: "/adapter_services.OltInterAdapterService/GetHealthStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OltInterAdapterServiceServer).GetHealthStatus(ctx, req.(*empty.Empty))
@@ -1784,7 +1791,7 @@ func _OltInterAdapterService_ProxyOmciRequest_Handler(srv interface{}, ctx conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OltInterAdapterService/ProxyOmciRequest",
+		FullMethod: "/adapter_services.OltInterAdapterService/ProxyOmciRequest",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OltInterAdapterServiceServer).ProxyOmciRequest(ctx, req.(*inter_container.OmciMessage))
@@ -1802,7 +1809,7 @@ func _OltInterAdapterService_GetTechProfileInstance_Handler(srv interface{}, ctx
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/voltha.OltInterAdapterService/GetTechProfileInstance",
+		FullMethod: "/adapter_services.OltInterAdapterService/GetTechProfileInstance",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OltInterAdapterServiceServer).GetTechProfileInstance(ctx, req.(*inter_container.TechProfileInstanceRequestMessage))
@@ -1811,7 +1818,7 @@ func _OltInterAdapterService_GetTechProfileInstance_Handler(srv interface{}, ctx
 }
 
 var _OltInterAdapterService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "voltha.OltInterAdapterService",
+	ServiceName: "adapter_services.OltInterAdapterService",
 	HandlerType: (*OltInterAdapterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

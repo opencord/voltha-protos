@@ -13,71 +13,30 @@ package voltha;
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
-import public "voltha_protos/meta.proto";
 import public "voltha_protos/common.proto";
-import public "voltha_protos/health.proto";
-import public "voltha_protos/logical_device.proto";
-import public "voltha_protos/device.proto";
-import public "voltha_protos/adapter.proto";
-import public "voltha_protos/openflow_13.proto";
+import "voltha_protos/health.proto";
+import "voltha_protos/logical_device.proto";
+import "voltha_protos/device.proto";
+import "voltha_protos/adapter.proto";
+import "voltha_protos/openflow_13.proto";
+import "voltha_protos/events.proto";
+import "voltha_protos/extensions.proto";
 
 import "voltha_protos/omci_mib_db.proto";
 import "voltha_protos/omci_alarm_db.proto";
-import "voltha_protos/ext_config.proto";
+import "voltha_protos/omci_test.proto";
 
 option java_package = "org.opencord.voltha";
 option java_outer_classname = "VolthaProtos";
 option csharp_namespace = "Opencord.Voltha.Voltha";
 
-message DeviceGroup {
-
-    string id = 1 [(access) = READ_ONLY];
-
-    repeated LogicalDevice logical_devices = 2 [(child_node) = {key: "id"}];
-
-    repeated Device devices = 3 [(child_node) = {key: "id"}];
-}
-
-message DeviceGroups {
-    repeated DeviceGroup items = 1;
-}
-
-
-message EventFilterRuleKey {
-
-    enum EventFilterRuleType {
-        filter_all = 0;
-        category = 1;
-        sub_category = 2;
-        kpi_event_type = 3;
-        config_event_type = 4;
-        device_event_type = 5;
-    }
-}
-
-message EventFilterRule {
-    EventFilterRuleKey.EventFilterRuleType key = 1;
-    string value = 2;
-}
-message EventFilter {
-    string id = 1 [(access) = READ_ONLY];
-    bool enable = 2;
-    string device_id = 3;
-    string event_type = 4;
-    repeated EventFilterRule rules = 5;
-}
-
-message EventFilters {
-    repeated EventFilter filters = 1;
-}
-
 // CoreInstance represents a core instance.  It is data held in memory when a core
 // is running.  This data is not persistent.
 message CoreInstance {
 
-    string instance_id = 1  [(access) = READ_ONLY];
+    string instance_id = 1;
 
-    HealthStatus health = 2 [(child_node) = {}];
+    health.HealthStatus health = 2;
 
 }
 
@@ -85,123 +44,33 @@ message CoreInstances {
     repeated CoreInstance items = 1;
 }
 
-message OmciTestRequest {
-    string id = 1;
-    string uuid = 2;
-}
-
-message TestResponse{
-    enum TestResponseResult  {
-        SUCCESS = 0;
-        FAILURE = 1;
-    }
-    TestResponseResult result = 1;
-}
-
-message ValueSet {
-    string id = 1;
-    oneof value{
-        config.AlarmConfig alarm_config = 2;
-    }
-}
 
 // Voltha represents the Voltha cluster data.  Each Core instance will hold a subset of
 // the entire cluster. However, some items (e.g. adapters) will be held by all cores
 // for better performance
 message Voltha {
 
-    string version = 1 [(access) = READ_ONLY];
+    string version = 1 ;
 
-    repeated Adapter adapters = 2 [(child_node) = {key: "id"}];
+    repeated adapter.Adapter adapters = 2;
 
-    repeated LogicalDevice logical_devices = 3 [(child_node) = {key: "id"}];
+    repeated logical_device.LogicalDevice logical_devices = 3;
 
-    repeated Device devices = 4 [(child_node) = {key: "id"}];
+    repeated device.Device devices = 4;
 
-    repeated DeviceType device_types = 5 [(child_node) = {key: "id"}];
+    repeated device.DeviceType device_types = 5;
 
-    repeated DeviceGroup device_groups = 6 [(child_node) = {key: "id"}];
+    reserved 6;
+    // device_groups is not used
+    // repeated DeviceGroup device_groups = 6;
 
-    repeated EventFilter event_filters = 7 [(child_node) = {key: "id"}];
-
-    repeated
-        omci.MibDeviceData omci_mib_database = 28
-        [(child_node) = {key: "device_id"}];
+    repeated event.EventFilter event_filters = 7;
 
     repeated
-        omci.AlarmDeviceData omci_alarm_database = 29
-        [(child_node) = {key: "device_id"}];
-}
+        omci.MibDeviceData omci_mib_database = 28;
 
-// Device Self Test Response
-message SelfTestResponse {
-
-	enum SelfTestResult  {
-	    SUCCESS = 0;
-	    FAILURE = 1;
-	    NOT_SUPPORTED = 2;
-	    UNKNOWN_ERROR = 3;
-    }
-    SelfTestResult result = 1;
-}
-
-message OfAgentSubscriber {
-    // ID of ofagent instance
-    string ofagent_id = 1;
-
-    // ID of voltha instance to which the ofagent is subscribed
-    string voltha_id = 2;
-}
-
-// Identifies a membership group a Core belongs to
-message Membership {
-    //  Group name
-    string group_name = 1;
-
-    // Unique ID of a container within that group
-    string id = 2;
-}
-
-message DeviceImageDownloadRequest {
-
-    // Device Id
-    // allows for operations on multiple devices.
-    repeated common.ID device_id = 1;
-
-    //The image for the device containing all the information
-    Image image = 2;
-
-    //Activate the image if the download to the device is successful
-    bool activateOnSuccess = 3;
-
-    //Automatically commit the image if the activation on the device is successful
-    bool commitOnSuccess = 4;
-}
-
-message DeviceImageRequest {
-
-    //Device Id
-    //allows for operations on multiple adapters.
-    repeated common.ID device_id = 1;
-
-    // Image Version, this is the sole identifier of the image. it's the vendor specified OMCI version
-    // must be known at the time of initiating a download, activate, commit image on an onu.
-    string version = 2;
-
-    //Automatically commit the image if the activation on the device is successful
-    bool commitOnSuccess = 3;
-}
-
-message DeviceImageResponse {
-
-    //Image state for the different devices
-    repeated DeviceImageState device_image_states = 1;
-}
-
-// Additional information required to process flow at device adapters
-message FlowMetadata {
-    // Meters associated with flow-update to adapter
-    repeated openflow_13.ofp_meter_config meters = 1;
+    repeated
+        omci.AlarmDeviceData omci_alarm_database = 29;
 }
 
 /*
@@ -209,22 +78,6 @@ message FlowMetadata {
  *
  */
 service VolthaService {
-
-    // Get the membership group of a Voltha Core
-    rpc GetMembership(google.protobuf.Empty) returns(Membership) {
-        option (google.api.http) = {
-            get: "/api/v1/membership"
-        };
-    }
-
-    // Set the membership group of a Voltha Core
-    rpc UpdateMembership(Membership) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/api/v1/membership"
-            body: "*"
-        };
-    }
-
     // Get high level information on the Voltha cluster
     rpc GetVoltha(google.protobuf.Empty) returns(Voltha) {
         option (google.api.http) = {
@@ -247,7 +100,7 @@ service VolthaService {
     }
 
     // List all active adapters (plugins) in the Voltha cluster
-    rpc ListAdapters(google.protobuf.Empty) returns(Adapters) {
+    rpc ListAdapters(google.protobuf.Empty) returns(adapter.Adapters) {
         option (google.api.http) = {
             get: "/api/v1/adapters"
         };
@@ -255,42 +108,42 @@ service VolthaService {
 
 
     // List all logical devices managed by the Voltha cluster
-    rpc ListLogicalDevices(google.protobuf.Empty) returns(LogicalDevices) {
+    rpc ListLogicalDevices(google.protobuf.Empty) returns(logical_device.LogicalDevices) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices"
         };
     }
 
     // Get additional information on a given logical device
-    rpc GetLogicalDevice(common.ID) returns(LogicalDevice) {
+    rpc GetLogicalDevice(common.ID) returns(logical_device.LogicalDevice) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}"
         };
     }
 
     // List ports of a logical device
-    rpc ListLogicalDevicePorts(common.ID) returns(LogicalPorts) {
+    rpc ListLogicalDevicePorts(common.ID) returns(logical_device.LogicalPorts) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/ports"
         };
     }
 
     // Gets a logical device port
-    rpc GetLogicalDevicePort(LogicalPortId) returns(LogicalPort) {
+    rpc GetLogicalDevicePort(logical_device.LogicalPortId) returns(logical_device.LogicalPort) {
         option (google.api.http) = {
             get: "/api/v1/logical_devices/{id}/ports/{port_id}"
         };
     }
 
     // Enables a logical device port
-    rpc EnableLogicalDevicePort(LogicalPortId) returns(google.protobuf.Empty) {
+    rpc EnableLogicalDevicePort(logical_device.LogicalPortId) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/logical_devices/{id}/ports/{port_id}/enable"
         };
     }
 
     // Disables a logical device port
-    rpc DisableLogicalDevicePort(LogicalPortId) returns(google.protobuf.Empty) {
+    rpc DisableLogicalDevicePort(logical_device.LogicalPortId) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/logical_devices/{id}/ports/{port_id}/disable"
         };
@@ -345,7 +198,7 @@ service VolthaService {
     }
 
     // List all physical devices controlled by the Voltha cluster
-    rpc ListDevices(google.protobuf.Empty) returns(Devices) {
+    rpc ListDevices(google.protobuf.Empty) returns(device.Devices) {
         option (google.api.http) = {
             get: "/api/v1/devices"
         };
@@ -367,14 +220,14 @@ service VolthaService {
     }
 
     // Get more information on a given physical device
-    rpc GetDevice(common.ID) returns(Device) {
+    rpc GetDevice(common.ID) returns(device.Device) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}"
         };
     }
 
     // Pre-provision a new physical device
-    rpc CreateDevice(Device) returns(Device) {
+    rpc CreateDevice(device.Device) returns(device.Device) {
         option (google.api.http) = {
             post: "/api/v1/devices"
             body: "*"
@@ -421,7 +274,8 @@ service VolthaService {
     // Request an image download to the standby partition
     // of a device.
     // Note that the call is expected to be non-blocking.
-    rpc DownloadImage(ImageDownload) returns(common.OperationResp) {
+    rpc DownloadImage(device.ImageDownload) returns(common.OperationResp) {
+        option deprecated = true;
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/image_downloads/{name}"
             body: "*"
@@ -431,7 +285,8 @@ service VolthaService {
     // Get image download status on a device
     // The request retrieves progress on device and updates db record
     // Deprecated in voltha 2.8, will be removed
-    rpc GetImageDownloadStatus(ImageDownload) returns(ImageDownload) {
+    rpc GetImageDownloadStatus(device.ImageDownload) returns(device.ImageDownload) {
+        option deprecated = true;
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/image_downloads/{name}/status"
         };
@@ -439,7 +294,7 @@ service VolthaService {
 
     // Get image download db record
     // Deprecated in voltha 2.8, will be removed
-    rpc GetImageDownload(ImageDownload) returns(ImageDownload) {
+    rpc GetImageDownload(device.ImageDownload) returns(device.ImageDownload) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/image_downloads/{name}"
         };
@@ -447,7 +302,7 @@ service VolthaService {
 
     // List image download db records for a given device
     // Deprecated in voltha 2.8, will be removed
-    rpc ListImageDownloads(common.ID) returns(ImageDownloads) {
+    rpc ListImageDownloads(common.ID) returns(device.ImageDownloads) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/image_downloads"
         };
@@ -455,7 +310,8 @@ service VolthaService {
 
     // Cancel an existing image download process on a device
     // Deprecated in voltha 2.8, will be removed
-    rpc CancelImageDownload(ImageDownload) returns(common.OperationResp) {
+    rpc CancelImageDownload(device.ImageDownload) returns(common.OperationResp) {
+        option deprecated = true;
         option (google.api.http) = {
             delete: "/api/v1/devices/{id}/image_downloads/{name}"
         };
@@ -469,7 +325,8 @@ service VolthaService {
     // activated image running on device
     // Note that the call is expected to be non-blocking.
     // Deprecated in voltha 2.8, will be removed
-    rpc ActivateImageUpdate(ImageDownload) returns(common.OperationResp) {
+    rpc ActivateImageUpdate(device.ImageDownload) returns(common.OperationResp) {
+        option deprecated = true;
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/image_downloads/{name}/image_update"
             body: "*"
@@ -484,7 +341,8 @@ service VolthaService {
     // previous image running on device
     // Note that the call is expected to be non-blocking.
     // Deprecated in voltha 2.8, will be removed
-    rpc RevertImageUpdate(ImageDownload) returns(common.OperationResp) {
+    rpc RevertImageUpdate(device.ImageDownload) returns(common.OperationResp) {
+        option deprecated = true;
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/image_downloads/{name}/image_revert"
             body: "*"
@@ -493,7 +351,7 @@ service VolthaService {
 
     // Downloads a certain image to the standby partition of the devices
     // Note that the call is expected to be non-blocking.
-    rpc DownloadImageToDevice (DeviceImageDownloadRequest) returns (DeviceImageResponse) {
+    rpc DownloadImageToDevice (device.DeviceImageDownloadRequest) returns (device.DeviceImageResponse) {
         option (google.api.http) = {
             get: "/api/v1/devices/images/download_images"
         };
@@ -501,7 +359,7 @@ service VolthaService {
 
     // Get image status on a number of devices devices
     // Polled from northbound systems to get state of download/activate/commit
-    rpc GetImageStatus (DeviceImageRequest) returns (DeviceImageResponse) {
+    rpc GetImageStatus (device.DeviceImageRequest) returns (device.DeviceImageResponse) {
         option (google.api.http) = {
             get: "/api/v1/devices/images/images_status"
         };
@@ -511,14 +369,14 @@ service VolthaService {
     // To be used carefully, stops any further operations for the Image on the given devices
     // Might also stop if possible existing work, but no guarantees are given,
     // depends on implementation and procedure status.
-    rpc AbortImageUpgradeToDevice (DeviceImageRequest) returns (DeviceImageResponse) {
+    rpc AbortImageUpgradeToDevice (device.DeviceImageRequest) returns (device.DeviceImageResponse) {
         option (google.api.http) = {
             get: "/api/v1/devices/images/abort_upgrade_images"
         };
     }
 
     // Get Both Active and Standby image for a given device
-    rpc GetOnuImages (common.ID) returns (OnuImages) {
+    rpc GetOnuImages (common.ID) returns (device.OnuImages) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/onu_images"
         };
@@ -531,7 +389,7 @@ service VolthaService {
     // If no reboot, then a reboot is required to make the
     // activated image running on device
     // Note that the call is expected to be non-blocking.
-    rpc ActivateImage (DeviceImageRequest) returns (DeviceImageResponse) {
+    rpc ActivateImage (device.DeviceImageRequest) returns (device.DeviceImageResponse) {
         option (google.api.http) = {
             post: "/api/v1/devices/images/activate_images"
             body: "*"
@@ -544,7 +402,7 @@ service VolthaService {
     // If no reboot, then a reboot is required to make the
     // activated image running on device upon next reboot
     // Note that the call is expected to be non-blocking.
-    rpc CommitImage (DeviceImageRequest) returns (DeviceImageResponse) {
+    rpc CommitImage (device.DeviceImageRequest) returns (device.DeviceImageResponse) {
         option (google.api.http) = {
             post: "/api/v1/devices/images/commit_images"
             body: "*"
@@ -552,21 +410,21 @@ service VolthaService {
     }
 
     // List ports of a device
-    rpc ListDevicePorts (common.ID) returns (Ports) {
+    rpc ListDevicePorts (common.ID) returns (device.Ports) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/ports"
         };
     }
 
     // List pm config of a device
-    rpc ListDevicePmConfigs (common.ID) returns (PmConfigs) {
+    rpc ListDevicePmConfigs (common.ID) returns (device.PmConfigs) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/pm_configs"
         };
     }
 
     // Update the pm config of a device
-    rpc UpdateDevicePmConfigs(voltha.PmConfigs) returns(google.protobuf.Empty) {
+    rpc UpdateDevicePmConfigs(device.PmConfigs) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/pm_configs"
             body: "*"
@@ -588,23 +446,16 @@ service VolthaService {
     }
 
     // List device types known to Voltha
-    rpc ListDeviceTypes(google.protobuf.Empty) returns(DeviceTypes) {
+    rpc ListDeviceTypes(google.protobuf.Empty) returns(device.DeviceTypes) {
         option (google.api.http) = {
             get: "/api/v1/device_types"
         };
     }
 
     // Get additional information on a device type
-    rpc GetDeviceType(common.ID) returns(DeviceType) {
+    rpc GetDeviceType(common.ID) returns(device.DeviceType) {
         option (google.api.http) = {
             get: "/api/v1/device_types/{id}"
-        };
-    }
-
-    // List all device sharding groups
-    rpc ListDeviceGroups(google.protobuf.Empty) returns(DeviceGroups) {
-        option (google.api.http) = {
-            get: "/api/v1/device_groups"
         };
     }
 
@@ -625,14 +476,7 @@ service VolthaService {
         // This does not have an HTTP representation
     }
 
-    // Get additional information on a device group
-    rpc GetDeviceGroup(common.ID) returns(DeviceGroup) {
-        option (google.api.http) = {
-            get: "/api/v1/device_groups/{id}"
-        };
-    }
-
-    rpc CreateEventFilter(EventFilter) returns(EventFilter) {
+    rpc CreateEventFilter(event.EventFilter) returns(event.EventFilter) {
         option (google.api.http) = {
             post: "/api/v1/event_filters"
             body: "*"
@@ -640,39 +484,39 @@ service VolthaService {
     }
 
     // Get all filters present for a device
-    rpc GetEventFilter(common.ID) returns(EventFilters) {
+    rpc GetEventFilter(common.ID) returns(event.EventFilters) {
         option (google.api.http) = {
             get: "/api/v1/event_filters/{id}"
         };
     }
 
-    rpc UpdateEventFilter(EventFilter) returns(EventFilter) {
+    rpc UpdateEventFilter(event.EventFilter) returns(event.EventFilter) {
         option (google.api.http) = {
             put: "/api/v1/event_filters/{id}"
             body: "*"
         };
     }
 
-    rpc DeleteEventFilter(EventFilter) returns(google.protobuf.Empty) {
+    rpc DeleteEventFilter(event.EventFilter) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             delete: "/api/v1/event_filters/{id}"
         };
     }
 
     // Get all the filters present
-    rpc ListEventFilters(google.protobuf.Empty) returns(EventFilters) {
+    rpc ListEventFilters(google.protobuf.Empty) returns(event.EventFilters) {
         option (google.api.http) = {
             get: "/api/v1/event_filters"
         };
     }
 
-    rpc GetImages(common.ID) returns(Images) {
+    rpc GetImages(common.ID) returns(device.Images) {
         option (google.api.http) = {
             get: "/api/v1/devices/{id}/images"
         };
     }
 
-    rpc SelfTest(common.ID) returns(SelfTestResponse) {
+    rpc SelfTest(common.ID) returns(device.SelfTestResponse) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/self_test"
         };
@@ -693,40 +537,38 @@ service VolthaService {
     }
 
     // Simulate an Alarm
-    rpc SimulateAlarm(SimulateAlarmRequest) returns(common.OperationResp) {
+    rpc SimulateAlarm(device.SimulateAlarmRequest) returns(common.OperationResp) {
         option (google.api.http) = {
             post: "/api/v1/devices/{id}/simulate_larm"
             body: "*"
         };
     }
-    rpc Subscribe (OfAgentSubscriber) returns (OfAgentSubscriber) {
-    }
 
-    rpc EnablePort(voltha.Port) returns(google.protobuf.Empty) {
+    rpc EnablePort(device.Port) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/v1/EnablePort"
             body: "*"
         };
     }
-    rpc DisablePort(voltha.Port) returns(google.protobuf.Empty) {
+    rpc DisablePort(device.Port) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/v1/DisablePort"
             body: "*"
         };
     }
-    rpc GetExtValue(common.ValueSpecifier) returns(common.ReturnValues) {
+    rpc GetExtValue(extension.ValueSpecifier) returns(extension.ReturnValues) {
         option (google.api.http) = {
             get: "/api/v1/GetExtValue"
         };
     }
-    rpc SetExtValue(ValueSet) returns(google.protobuf.Empty) {
+    rpc SetExtValue(extension.ValueSet) returns(google.protobuf.Empty) {
         option (google.api.http) = {
             get: "/api/v1/SetExtValue"
         };
     }
 
     // omci start and stop cli implementation
-    rpc StartOmciTestAction(OmciTestRequest) returns(TestResponse) {
+    rpc StartOmciTestAction(omci.OmciTestRequest) returns(omci.TestResponse) {
         option (google.api.http) = {
             post: "/api/v1/start_omci_test"
             body: "*"
