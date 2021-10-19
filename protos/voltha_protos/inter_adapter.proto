@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/inter_adapter";
+option java_package = "org.opencord.voltha.inter_adapter";
+
+import "voltha_protos/common.proto";
+import "voltha_protos/voltha.proto";
+import "voltha_protos/tech_profile.proto";
+import "voltha_protos/openolt.proto";
+import "voltha_protos/device.proto";
+
+package inter_adapter;
+
+
+// Inter-Adapter messages
+
+message OmciMessage {
+    bytes message = 1;
+    common.ConnectStatus.Types connect_status = 2;
+    device.Device.ProxyAddress proxy_address = 3;
+    string parent_device_id = 4;
+    string child_device_id = 5;
+}
+
+message TechProfileDownloadMessage {
+    string device_id = 1;
+    uint32 uni_id = 2;
+    string tp_instance_path = 3;
+    oneof tech_tp_instance {
+        tech_profile.TechProfileInstance tp_instance = 4; // relevant for GPON, XGPON and XGS-PON technologies
+        tech_profile.EponTechProfileInstance epon_tp_instance = 5; // relevant for EPON technology
+    }
+}
+
+message DeleteGemPortMessage {
+    string device_id = 1;
+    uint32 uni_id = 2;
+    string tp_instance_path = 3;
+    uint32 gem_port_id = 4;
+}
+
+message DeleteTcontMessage {
+    string device_id = 1;
+    uint32 uni_id = 2;
+    string tp_instance_path = 3;
+    uint32 alloc_id = 4;
+}
+
+message OnuIndicationMessage {
+    string device_id = 1;
+    openolt.OnuIndication onu_indication = 2;
+}
+
+message TechProfileInstanceRequestMessage {
+    string device_id = 1;
+    string tp_instance_path = 2; // technology profile instance path
+    string parent_device_id = 3;
+    uint32 parent_pon_port = 4;
+    uint32 onu_id = 5;
+    uint32 uni_id = 6;
+}

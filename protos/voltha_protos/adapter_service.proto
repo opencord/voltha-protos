@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/adapter_service";
+option java_package = "org.opencord.voltha.adapter_service";
+option java_outer_classname = "VolthaAdapterService";
+
+package adapter_service;
+
+import "google/protobuf/empty.proto";
+import "voltha_protos/common.proto";
+import "voltha_protos/core_adapter.proto";
+import "voltha_protos/device.proto";
+import "voltha_protos/extensions.proto";
+import "voltha_protos/health.proto";
+import "voltha_protos/voltha.proto";
+import "voltha_protos/omci_test.proto";
+import "voltha_protos/events.proto";
+
+// AdapterService is a gRPC service to serve requests from Voltha RW_Core.
+service AdapterService {
+    // GetHealthStatus is used by an AdapterService client to verify connectivity
+    // to the gRPC server hosting the AdapterService service
+    rpc GetHealthStatus(google.protobuf.Empty) returns (health.HealthStatus);
+
+    // Device
+    rpc AdoptDevice(device.Device) returns(google.protobuf.Empty);
+    rpc ReconcileDevice(device.Device) returns(google.protobuf.Empty);
+    rpc DeleteDevice(device.Device) returns(google.protobuf.Empty);
+    rpc DisableDevice(device.Device) returns(google.protobuf.Empty);
+    rpc ReEnableDevice(device.Device) returns(google.protobuf.Empty);
+    rpc RebootDevice(device.Device) returns(google.protobuf.Empty);
+    rpc SelfTestDevice(device.Device) returns(google.protobuf.Empty);
+    rpc GetOfpDeviceInfo(device.Device) returns(core_adapter.SwitchCapability);
+    rpc ChildDeviceLost(device.Device) returns(google.protobuf.Empty);
+
+    // Ports
+    rpc EnablePort(device.Port) returns(google.protobuf.Empty);
+    rpc DisablePort(device.Port) returns(google.protobuf.Empty);
+
+    // Flows
+    rpc UpdateFlowsBulk(core_adapter.BulkFlows) returns(google.protobuf.Empty);
+    rpc UpdateFlowsIncrementally(core_adapter.IncrementalFlows) returns(google.protobuf.Empty);
+
+    //Packets
+    rpc SendPacketOut(core_adapter.PacketOut) returns(google.protobuf.Empty);
+
+    // PM
+    rpc UpdatePmConfig(core_adapter.PmConfigsInfo) returns(google.protobuf.Empty);
+
+    // Image
+    rpc DownloadOnuImage(device.DeviceImageDownloadRequest) returns (device.DeviceImageResponse);
+    rpc GetOnuImageStatus(device.DeviceImageRequest) returns (device.DeviceImageResponse);
+    rpc AbortOnuImageUpgrade(device.DeviceImageRequest) returns (device.DeviceImageResponse);
+    rpc GetOnuImages(common.ID) returns (device.OnuImages);
+    rpc ActivateOnuImage(device.DeviceImageRequest) returns (device.DeviceImageResponse);
+    rpc CommitOnuImage(device.DeviceImageRequest) returns (device.DeviceImageResponse);
+
+    // Deprecated Image APIs
+    rpc DownloadImage(core_adapter.ImageDownloadMessage) returns (device.ImageDownload) {
+        option deprecated = true;
+    };
+    rpc GetImageDownloadStatus(core_adapter.ImageDownloadMessage) returns (device.ImageDownload) {
+        option deprecated = true;
+    };
+    rpc CancelImageDownload(core_adapter.ImageDownloadMessage) returns (device.ImageDownload) {
+        option deprecated = true;
+    };
+    rpc ActivateImageUpdate(core_adapter.ImageDownloadMessage) returns (device.ImageDownload) {
+        option deprecated = true;
+    };
+    rpc RevertImageUpdate(core_adapter.ImageDownloadMessage) returns (device.ImageDownload) {
+        option deprecated = true;
+    };
+
+    // Tests
+    rpc StartOmciTest(core_adapter.OMCITest) returns(omci.TestResponse);
+    rpc SimulateAlarm(core_adapter.SimulateAlarmMessage) returns (common.OperationResp);
+
+    // Events
+    rpc SuppressEvent(event.EventFilter) returns(google.protobuf.Empty);
+    rpc UnSuppressEvent(event.EventFilter) returns(google.protobuf.Empty);
+
+    // Get/Set
+    rpc GetExtValue(core_adapter.GetExtValueMessage) returns (extension.ReturnValues);
+    rpc SetExtValue(core_adapter.SetExtValueMessage) returns (google.protobuf.Empty);
+    rpc GetSingleValue(extension.SingleGetValueRequest) returns (extension.SingleGetValueResponse);
+    rpc SetSingleValue(extension.SingleSetValueRequest) returns (extension.SingleSetValueResponse);
+}

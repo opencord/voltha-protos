@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/onu_inter_adapter_service";
+option java_package = "org.opencord.voltha.onu_inter_adapter_service";
+option java_outer_classname = "VolthaOnuInterAdapterService";
+
+package onu_inter_adapter_service;
+
+import "google/protobuf/empty.proto";
+import "voltha_protos/inter_adapter.proto";
+import "voltha_protos/health.proto";
+
+service OnuInterAdapterService {
+    // GetHealthStatus is used by an OnuInterAdapterService client to verify connectivity
+    // to the gRPC server hosting the OnuInterAdapterService service
+    rpc GetHealthStatus(google.protobuf.Empty) returns (health.HealthStatus);
+
+    rpc OnuIndication(inter_adapter.OnuIndicationMessage) returns (google.protobuf.Empty);
+    rpc OmciIndication(inter_adapter.OmciMessage) returns (google.protobuf.Empty);
+    rpc DownloadTechProfile(inter_adapter.TechProfileDownloadMessage) returns (google.protobuf.Empty);
+    rpc DeleteGemPort(inter_adapter.DeleteGemPortMessage) returns (google.protobuf.Empty);
+    rpc DeleteTCont(inter_adapter.DeleteTcontMessage) returns (google.protobuf.Empty);
+}

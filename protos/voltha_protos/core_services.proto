@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/core_service";
+option java_package = "org.opencord.voltha.core_service";
+option java_outer_classname = "VolthaCoreService";
+
+package core_service;
+
+import "google/protobuf/empty.proto";
+import "voltha_protos/core_adapter.proto";
+import "voltha_protos/common.proto";
+import "voltha_protos/device.proto";
+import "voltha_protos/health.proto";
+
+// The CoreService is a gRPC service implemented by the Voltha RW-Core for the
+// sole purpose of serving requests/updates from the Voltha adapters. 
+service CoreService {
+	//	 in coreProxy interface
+	rpc GetHealthStatus(google.protobuf.Empty) returns (health.HealthStatus);
+	rpc RegisterAdapter (core_adapter.AdapterRegistration) returns (google.protobuf.Empty);
+	rpc DeviceUpdate (device.Device) returns (google.protobuf.Empty);
+	rpc PortCreated (device.Port) returns (google.protobuf.Empty);
+	rpc PortsStateUpdate (core_adapter.PortStateFilter) returns (google.protobuf.Empty);
+	rpc DeleteAllPorts (common.ID) returns (google.protobuf.Empty);
+	rpc GetDevicePort (core_adapter.PortFilter) returns (device.Port);
+	rpc ListDevicePorts (common.ID) returns (device.Ports);
+	rpc DeviceStateUpdate (core_adapter.DeviceStateFilter) returns (google.protobuf.Empty);
+	rpc DevicePMConfigUpdate (device.PmConfigs) returns (google.protobuf.Empty);
+	rpc ChildDeviceDetected (core_adapter.DeviceDiscovery) returns (device.Device);
+	rpc ChildDevicesLost (common.ID) returns (google.protobuf.Empty);
+	rpc ChildDevicesDetected (common.ID) returns (google.protobuf.Empty);
+	rpc GetDevice (common.ID) returns (device.Device);
+	rpc GetChildDevice (core_adapter.ChildDeviceFilter) returns (device.Device);
+	rpc GetChildDevices (common.ID) returns (device.Devices);
+	rpc SendPacketIn (core_adapter.PacketIn) returns (google.protobuf.Empty);
+	rpc DeviceReasonUpdate (core_adapter.DeviceReason) returns (google.protobuf.Empty);
+	rpc PortStateUpdate (core_adapter.PortState) returns (google.protobuf.Empty);
+
+	// Additional API found in the Core - unused?
+	rpc ReconcileChildDevices (common.ID) returns (google.protobuf.Empty);
+	rpc GetChildDeviceWithProxyAddress (device.Device.ProxyAddress) returns (device.Device);
+	rpc GetPorts (core_adapter.PortFilter) returns (device.Ports);
+	rpc ChildrenStateUpdate (core_adapter.DeviceStateFilter) returns (google.protobuf.Empty);
+	rpc UpdateImageDownload (device.ImageDownload) returns (google.protobuf.Empty);
+}

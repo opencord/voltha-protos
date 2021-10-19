@@ -1,13 +1,12 @@
 syntax = "proto3";
 
-option go_package = "github.com/opencord/voltha-protos/v5/go/voltha";
-option java_package = "org.opencord.voltha";
+option go_package = "github.com/opencord/voltha-protos/v5/go/health";
+option java_package = "org.opencord.voltha.health";
 
-package voltha;
+package health;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "voltha_protos/meta.proto";
 
 // Encode health status of a Voltha instance
 message HealthStatus {
@@ -20,7 +19,7 @@ message HealthStatus {
     }
 
     // Current state of health of this Voltha instance
-    HealthState state = 1 [(access) = READ_ONLY];
+    HealthState state = 1 ;
 }
 
 // Health related services

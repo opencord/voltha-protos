@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/olt_inter_adapter_service";
+option java_package = "org.opencord.voltha.olt_inter_adapter_service";
+option java_outer_classname = "VolthaOltInterAdapterService";
+
+package olt_inter_adapter_service;
+
+import "google/protobuf/empty.proto";
+import "voltha_protos/inter_adapter.proto";
+import "voltha_protos/health.proto";
+
+service OltInterAdapterService {
+    // GetHealthStatus is used by an OltInterAdapterService client to verify connectivity
+    // to the gRPC server hosting the OltInterAdapterService service
+    rpc GetHealthStatus(google.protobuf.Empty) returns (health.HealthStatus);
+
+    rpc ProxyOmciRequest(inter_adapter.OmciMessage) returns (google.protobuf.Empty);
+    rpc GetTechProfileInstance(inter_adapter.TechProfileInstanceRequestMessage) returns (inter_adapter.TechProfileDownloadMessage);
+}

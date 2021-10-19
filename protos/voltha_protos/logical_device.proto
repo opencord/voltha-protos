@@ -1,13 +1,12 @@
 syntax = "proto3";
 
 option go_package = "github.com/opencord/voltha-protos/v5/go/voltha";
-option java_package = "org.opencord.voltha";
+option java_package = "org.opencord.voltha.logical_device";
 option java_outer_classname = "OFLogicalDevice";
 
-package voltha;
+package logical_device;
 
 import "google/api/annotations.proto";
-import "voltha_protos/meta.proto";
 import "voltha_protos/openflow_13.proto";
 
 message LogicalPortId {
