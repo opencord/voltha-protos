@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23c3bab_455f0597",
+        "filename": "protos/voltha_protos/adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-10-20T09:41:06Z",
+      "side": 0,
+      "message": "why was this removed ?",
+      "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
