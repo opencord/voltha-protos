@@ -16,6 +16,24 @@
       "message": "why was this removed ?",
       "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b1ed356_057c7c04",
+        "filename": "protos/voltha_protos/adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-10-20T15:30:34Z",
+      "side": 0,
+      "message": "You mean the [(access) \u003d READ_ONLY]?   This was used in the core in Voltha release 1 to validate the sanity of the data that gets written in the KV store.   It was a great feature to have but the code was highly coupled with the proto definitions and these annotations.  It made the data model logic in the Core highly complex as well.  In Voltha 2.x the data model logic in the Core is simplified (better consistency and improved performance).  Hence, these annotations are no longer used.  In the future we also want to decouple the proto definitions from the storage model as well.",
+      "parentUuid": "f23c3bab_455f0597",
+      "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
