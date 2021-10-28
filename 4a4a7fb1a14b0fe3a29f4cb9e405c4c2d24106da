@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fee1a4c1_a9ea3723",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-10-28T10:19:35Z",
+      "side": 1,
+      "message": "there also constructs in the device.proto that can be deprecated, see: https://github.com/opencord/voltha-protos/blob/master/protos/voltha_protos/device.proto#L137",
+      "revId": "4a4a7fb1a14b0fe3a29f4cb9e405c4c2d24106da",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ed3c5e_0c67e71e",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-10-28T10:19:35Z",
+      "side": 1,
+      "message": "please add  option deprecated \u003d true; to here as well",
+      "revId": "4a4a7fb1a14b0fe3a29f4cb9e405c4c2d24106da",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
