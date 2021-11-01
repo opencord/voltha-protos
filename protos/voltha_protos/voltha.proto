@@ -21,6 +21,8 @@ import "voltha_protos/adapter.proto";
 import "voltha_protos/openflow_13.proto";
 import "voltha_protos/events.proto";
 import "voltha_protos/extensions.proto";
+import "voltha_protos/voip_system_profile.proto";
+import "voltha_protos/voip_user_profile.proto";
 
 import "voltha_protos/omci_mib_db.proto";
 import "voltha_protos/omci_alarm_db.proto";
@@ -574,6 +576,36 @@ service VolthaService {
         option (google.api.http) = {
             post: "/api/v1/start_omci_test"
             body: "*"
+        };
+    }
+
+    // Saves or updates system wide configuration into voltha KV
+    rpc PutVoipSystemProfile(voip_system_profile.VoipSystemProfileRequest) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/voip_system_profile"
+            body: "*"
+        };
+    }
+
+    // Deletes the given profile from voltha KV
+    rpc DeleteVoipSystemProfile(common.Key) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/voip_system_profile/{key}/delete"
+        };
+    }
+
+    // Saves or updates a profile (VOIP) into voltha KV
+    rpc PutVoipUserProfile(voip_user_profile.VoipUserProfileRequest) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/voip_user_profile"
+            body: "*"
+        };
+    }
+
+    // Deletes the given profile from voltha KV
+    rpc DeleteVoipUserProfile(common.Key) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/voip_user_profile/{key}/delete"
         };
     }
 }
