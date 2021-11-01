@@ -6,6 +6,11 @@ package common;
 
 option java_package = "org.opencord.voltha";
 
+// Full path for KV store
+message Key {
+    string key = 1;
+}
+
 // Convey a resource identifier
 message ID {
     string id = 1;
