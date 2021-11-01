@@ -1,0 +1,100 @@
+// Copyright (c) 2018 Open Networking Foundation
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/sip_profile";
+option java_package = "org.opencord.voltha.sip_profile";
+
+package sip_profile;
+import "google/api/annotations.proto";
+
+message SipUserData {
+    string userPartAor = 1;
+    string sipDisplayName = 2;
+    UsernameAndPassword usernameAndPassword = 3;
+    string voicemailServerSipUri = 4;
+    int32 voicemailSubscriptionExpirationTime = 5;
+    int32 releaseTimer = 6;
+    int32 rohTimer = 7;
+}
+
+message UsernameAndPassword {
+    int32 validationScheme = 1;
+    string username = 2;
+    string password = 3;
+    string realm = 4;
+}
+
+message SipAgentConfig {
+    string proxyServerAddress = 1;
+    string outboundProxyAddress = 2;
+    string primarySipDns = 3;
+    string secondarySipDns = 4;
+    int32 sipRegExpTime = 5;
+    int32 sipReregHeadStartTime = 6;
+    string hostPartUri = 7;
+    string SipRegistrar = 8;
+    string softSwitch = 9;
+    SipResponseTable sipResponseTable = 10;
+    bool sipOptionTransmitControl = 11;
+    string sipUriFormat = 12;
+    string redundantSipAgentPointer = 13;
+}
+
+message SipResponseTable {
+    string sipResponseCode = 1;
+    string tone = 2;
+    string textMessage = 3;
+}
+
+message NetworkDialPlan {
+    uint32 criticalDialTimeout = 1;
+    uint32 partialDialTimeout = 2;
+    uint32 dialPlanFormat = 3;
+    DialPlanTable dialPlanTable = 4;
+}
+
+message DialPlanTable {
+    uint32 dialPlanId = 1;
+    uint32 action = 2;
+    string dialPlanToken = 3;
+}
+
+message VoipFeatureAccessCodes {
+    string cancelCallWaiting = 1;
+    string callHold = 2;
+    string callPark = 3;
+    string callerIdActivate = 4;
+    string callerIdDeactivate = 5;
+    string doNotDisturbActivation = 6;
+    string doNotDisturbDeactivation = 7;
+    string doNotDisturbPinChange = 8;
+    string emergencyServiceNumber = 9;
+    string intercomService = 10;
+    string unattendedCallTransfer = 11;
+    string attendedCallTransfer = 12;
+}
+
+message VoipApplicationServiceProfile {
+    uint32 cidFeatures = 1;
+    uint32 callWaitingFeatures = 2;
+    uint32 callProgressOrTransferFeatures = 3;
+    uint32 callPresentationFeatures = 4;
+    uint32 directConnectFeature = 5;
+    string directConnectUriPointer = 6;
+    string bridgedLineAgentUriPointer = 7;
+    string conferenceFactoryUriPointer = 8;
+    uint32 dialToneDelayTimer = 9;
+}

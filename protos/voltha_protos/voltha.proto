@@ -20,6 +20,8 @@ import public "voltha_protos/logical_device.proto";
 import public "voltha_protos/device.proto";
 import public "voltha_protos/adapter.proto";
 import public "voltha_protos/openflow_13.proto";
+import public "voltha_protos/tech_profile.proto";
+import public "voltha_protos/voip_profile.proto";
 
 import "voltha_protos/omci_mib_db.proto";
 import "voltha_protos/omci_alarm_db.proto";
@@ -202,6 +204,21 @@ message DeviceImageResponse {
 message FlowMetadata {
     // Meters associated with flow-update to adapter
     repeated openflow_13.ofp_meter_config meters = 1;
+}
+
+// A generic profile message that is designed to be used in voltha API in order to save profiles into voltha KV
+message ServiceProfile {
+    string key = 1;
+    ServiceProfileData serviceProfileData = 2;
+}
+
+message ServiceProfileData {
+    oneof data {
+        voip_profile.VoipProfile voipProfile = 2;
+        voip_profile.VoipProfileInstance voipProfileInstance = 3;
+        tech_profile.TechProfile techProfile = 4;
+        tech_profile.EponTechProfile eponTechProfile = 5;
+    }
 }
 
 /*
@@ -730,6 +747,21 @@ service VolthaService {
         option (google.api.http) = {
             post: "/api/v1/start_omci_test"
             body: "*"
+        };
+    }
+
+    // Saves or updates a profile (VOIP, TECH) into voltha KV
+    rpc SaveOrUpdateProfile(ServiceProfile) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/service_profile"
+            body: "*"
+        };
+    }
+
+    // Deletes the given profile from voltha KV
+    rpc DeleteProfile(common.ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/api/v1/service_profile/{key}/delete"
         };
     }
 }
