@@ -18,6 +18,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a4ac888_8431a4cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-01T19:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fee1a4c1_a9ea3723",
+      "revId": "4a4a7fb1a14b0fe3a29f4cb9e405c4c2d24106da",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94ed3c5e_0c67e71e",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-10-28T10:19:35Z",
       "side": 1,
       "message": "please add  option deprecated \u003d true; to here as well",
+      "revId": "4a4a7fb1a14b0fe3a29f4cb9e405c4c2d24106da",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d01f0e_7f489552",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-01T19:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94ed3c5e_0c67e71e",
       "revId": "4a4a7fb1a14b0fe3a29f4cb9e405c4c2d24106da",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
