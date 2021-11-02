@@ -16,6 +16,24 @@
       "message": "Thanks Yasin for the patch. \nI have some general questions before we proceed far ahead in the feature development. I had a look at the design note here https://docs.google.com/document/d/19QL0OPQ5vG12DAunGWPCkuXuMvAbQ9MGrXPlCCcVMVI/edit?pli\u003d1#. It touches upon a lot of aspects but some aspects are still not clear - which is perfectly alright as we gain more insights as we start developing the feature.\n1. The proto definition here seems to be completely based on OMCI specification. How are these proto definitions going to be populated? \n2. Are there going to be NB APIs that are going to set some of these values for user specific values? 3. What part of the definitions here is common and what part is unique per subscriber per session. Can the common part be templated and re-used across all ONUs - the template could be stored at a common key location on the db? or we may also extend the TP definition to support VoIP attributes but I am less inclined to that as that focuses on PON technology aspects and less so on features like VoIP or other ..\n\nI will let you know if I have further questions as I get more insights. ",
       "revId": "fa9a88fa52a9d8e772afc7d99d39c00340e2425a",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7c26ee4_f63f70b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-11-02T09:55:43Z",
+      "side": 1,
+      "message": "I agree with Girish here, before assessing how to proceed I\u0027d like to see how these structures are used in APIs and how the setup is kickstarted/initiated. We could possibly also create a VoipTP structure or something like that to achieve the same benefits of the TP but keep the VOIP separate. if you can upload the API patch that woudl be a good start for the discussion.",
+      "parentUuid": "bbf86e67_b555fa49",
+      "revId": "fa9a88fa52a9d8e772afc7d99d39c00340e2425a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
