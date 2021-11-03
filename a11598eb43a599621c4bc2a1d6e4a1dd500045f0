@@ -68,6 +68,29 @@
       },
       "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385cebfe_07137d63",
+        "filename": "protos/voltha_protos/inter_container.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-03T13:00:14Z",
+      "side": 1,
+      "message": "don\u0027t really like this name as it doesn\u0027t really help identify what this interface is all about? any container may use this API to any other container?",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
