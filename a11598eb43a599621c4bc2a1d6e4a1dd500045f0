@@ -162,6 +162,30 @@
       },
       "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336c30ff_430c2e4b",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-03T15:54:38Z",
+      "side": 1,
+      "message": "Ideally yes.  But that would mean a larger change - maybe after this release.",
+      "parentUuid": "bf7c145d_14edd6f3",
+      "range": {
+        "startLine": 17,
+        "startChar": 61,
+        "endLine": 17,
+        "endChar": 68
+      },
+      "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }

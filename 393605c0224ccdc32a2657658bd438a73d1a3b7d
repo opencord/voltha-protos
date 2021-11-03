@@ -57,6 +57,30 @@
       },
       "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8892536c_6426e5da",
+        "filename": "protos/voltha_protos/omci_alarm_db.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-03T15:54:38Z",
+      "side": 0,
+      "message": ":) FB may change their name especially since \"meta\" means \"dead\" in hebrew.",
+      "parentUuid": "c107fa9b_b8c3a4e7",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
