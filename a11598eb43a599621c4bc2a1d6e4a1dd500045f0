@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "502a5914_97d670d3",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-03T12:58:58Z",
+      "side": 1,
+      "message": "format?",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 30
+      },
+      "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2df5a57_723c5236",
+        "filename": "protos/voltha_protos/core_services.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-03T12:58:58Z",
+      "side": 1,
+      "message": "Should we have more descriptive documentation in the code here (comments) as to the purpose of the proto and who is using it (calling) and who is server it (provider)?",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7571cb8_6e513d2a",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-03T12:58:58Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 465,
+        "startChar": 1,
+        "endLine": 470,
+        "endChar": 5
+      },
+      "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
