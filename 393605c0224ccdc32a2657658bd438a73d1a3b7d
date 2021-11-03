@@ -34,6 +34,29 @@
       "parentUuid": "f23c3bab_455f0597",
       "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c107fa9b_b8c3a4e7",
+        "filename": "protos/voltha_protos/omci_alarm_db.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-03T15:32:14Z",
+      "side": 0,
+      "message": "did we run into a copyright issue with FB 😊",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "393605c0224ccdc32a2657658bd438a73d1a3b7d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }

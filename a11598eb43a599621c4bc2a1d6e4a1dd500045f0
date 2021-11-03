@@ -139,6 +139,29 @@
       },
       "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7c145d_14edd6f3",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-03T15:32:14Z",
+      "side": 1,
+      "message": "Does this belong in the voltha protos project or should there be a separate project for openolt protos? similar question for openonu. both the openolt and openonu are implementations of adapters and thus not \"core\" to voltha.",
+      "range": {
+        "startLine": 17,
+        "startChar": 61,
+        "endLine": 17,
+        "endChar": 68
+      },
+      "revId": "a11598eb43a599621c4bc2a1d6e4a1dd500045f0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
