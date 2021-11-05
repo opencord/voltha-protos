@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4866192b_34fb619a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-05T21:17:33Z",
+      "side": 1,
+      "message": "Do you have jira? Can you add that to commit message. Thanks.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3584c579_6e4e4783",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-05T21:17:33Z",
+      "side": 1,
+      "message": "I would like to see reference to any specifications that inspired this proto definitions (for ex: OMCI specs, any particular sections etc.). Since the IEs in the messages itself do not have descriptions any external references would be useful to cross reference.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "910ec976_79442d76",
@@ -171,6 +205,99 @@
         "startChar": 0,
         "endLine": 218,
         "endChar": 65
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd1bb567_dbc4cd82",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-05T21:17:33Z",
+      "side": 1,
+      "message": "As others have mentioned, it will be useful change the name VoipProfileInstance to something else as that is not an instance of VoiceProfile template.",
+      "parentUuid": "2c4b1ca4_4591ac64",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 65
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553e8c66_f095ef92",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-05T21:17:33Z",
+      "side": 1,
+      "message": "SaveOrUpdateServiceProfile?",
+      "range": {
+        "startLine": 754,
+        "startChar": 8,
+        "endLine": 754,
+        "endChar": 27
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc7aa602_89a95b2f",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-05T21:17:33Z",
+      "side": 1,
+      "message": "common.ID is the key path? In the ServiceProfile definition the key path is \"string\" but here \"common.ID\". It will be good to have common datatype for key path. Also update the comments for this API accordingly.",
+      "range": {
+        "startLine": 762,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 63
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae3aed91_5f14d3d5",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-05T21:17:33Z",
+      "side": 1,
+      "message": "DeleteServiceProfile?",
+      "range": {
+        "startLine": 762,
+        "startChar": 8,
+        "endLine": 762,
+        "endChar": 21
       },
       "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
