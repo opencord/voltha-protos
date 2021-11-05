@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5f5df29_483cd05d",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-11-05T13:59:00Z",
+      "side": 1,
+      "message": "I think we could have a repeated Instance here with the info for the VoipProfileInstance. I\u0027d still like to have only one profile, similar to what the tech_profile is.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d26d000_5e1e1269",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-11-05T13:59:00Z",
+      "side": 1,
+      "message": "why are we separating these two ?",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 65
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
