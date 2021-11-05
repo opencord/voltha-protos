@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "910ec976_79442d76",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2021-11-05T17:05:55Z",
+      "side": 1,
+      "message": "VoipProfileInstance name mislead us to think that it is an instance of VoipProfile. But in fact it is different than VoipProfile. It is per-subscriber SIP configuration. So I propose to change its name to something like \"SubscriberSipProfile\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4161e5b_8e2db4f7",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2021-11-05T17:05:55Z",
+      "side": 1,
+      "message": "I can\u0027t find the relation with the subscriber(PON+ONU+UNI).",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d5f5df29_483cd05d",
         "filename": "protos/voltha_protos/voip_profile.proto",
         "patchSetId": 4
@@ -96,6 +142,30 @@
       "side": 1,
       "message": "so this is something more like a Sadis config ? because the tech profile applies to all the ONUs in the system for that service, it\u0027s not a per subscriber element. If this is a per subscriber element we need to remove it from here and have a way to either load it into SADIS in ONOS or into VOLTHA, but it\u0027s not a tech profile.",
       "parentUuid": "8d685208_48367382",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 65
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4b1ca4_4591ac64",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2021-11-05T17:05:55Z",
+      "side": 1,
+      "message": "There is a generic, system-wise configuration for VOIP service. This is like tech profile definitions. This will probably be one (or a few) in the system. Operator will push this profile to VOLTHA probably in the first deployment time. The other one is per subscriber and it is pushed to VOLTHA when the subscriber gets a VOIP service. The configuration in ONU for a specific subscriber\u0027s VOIP service will be done by using the generic service configuration and the related user specific one. ONOS doesn\u0027t need to know about any of these configurations. So no need to put this info in to Sadis.",
+      "parentUuid": "6552702d_64638c45",
       "range": {
         "startLine": 217,
         "startChar": 0,
