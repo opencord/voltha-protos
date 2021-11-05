@@ -63,6 +63,30 @@
       },
       "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6552702d_64638c45",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-11-05T15:32:20Z",
+      "side": 1,
+      "message": "so this is something more like a Sadis config ? because the tech profile applies to all the ONUs in the system for that service, it\u0027s not a per subscriber element. If this is a per subscriber element we need to remove it from here and have a way to either load it into SADIS in ONOS or into VOLTHA, but it\u0027s not a tech profile.",
+      "parentUuid": "8d685208_48367382",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 65
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
