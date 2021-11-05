@@ -34,6 +34,24 @@
       "parentUuid": "bbf86e67_b555fa49",
       "revId": "fa9a88fa52a9d8e772afc7d99d39c00340e2425a",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5f3fa46_0a565330",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-05T14:11:53Z",
+      "side": 1,
+      "message": "Thanks for the review comments. I did set the patch to WIP until I find some answers to your questions. I will re-open it to review when the design of implementation is finished.",
+      "parentUuid": "d7c26ee4_f63f70b1",
+      "revId": "fa9a88fa52a9d8e772afc7d99d39c00340e2425a",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
