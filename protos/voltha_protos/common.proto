@@ -20,6 +20,16 @@ enum TestModeKeys {
     api_test=0;
 }
 
+message Connection {
+    // endpoint is the endpoint sending the connection message
+    string endpoint = 1;
+
+    // keep_alive_interval is used by the component initialing a stream connection 
+    // to indicate to the remote ednpoint how often it needs to send a keep alive
+    // notification
+    int64 keep_alive_interval = 2;
+}
+
 message AdminState {
     // Administrative State
     enum Types {

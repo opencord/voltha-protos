@@ -21,6 +21,10 @@ service AdapterService {
     // to the gRPC server hosting the AdapterService service
     rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
 
+    // KeepAliveConnection is used by the AdapterService client to detect a connection
+    // lost with the gRPC server hosting the AdapterService service
+    rpc KeepAliveConnection(common.Connection) returns(stream common.Connection);
+
     // Device
     rpc AdoptDevice(Device) returns(google.protobuf.Empty);
     rpc ReconcileDevice(Device) returns(google.protobuf.Empty);
@@ -82,6 +86,8 @@ service OnuInterAdapterService {
     // to the gRPC server hosting the OnuInterAdapterService service
     rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
 
+    rpc KeepAliveConnection(common.Connection) returns(stream common.Connection);
+
     rpc OnuIndication(OnuIndicationMessage) returns (google.protobuf.Empty);
     rpc OmciIndication(OmciMessage) returns (google.protobuf.Empty);
     rpc DownloadTechProfile(TechProfileDownloadMessage) returns (google.protobuf.Empty);
@@ -93,6 +99,8 @@ service OltInterAdapterService {
     // GetHealthStatus is used by an OltInterAdapterService client to verify connectivity
     // to the gRPC server hosting the OltInterAdapterService service
     rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
+
+    rpc KeepAliveConnection(common.Connection) returns(stream common.Connection);
 
     rpc ProxyOmciRequest(OmciMessage) returns (google.protobuf.Empty);
     rpc GetTechProfileInstance(TechProfileInstanceRequestMessage) returns (TechProfileDownloadMessage);

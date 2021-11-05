@@ -36,6 +36,11 @@ message DeviceTransientState {
 service CoreService {
 	//	 in coreProxy interface
 	rpc GetHealthStatus(google.protobuf.Empty) returns (HealthStatus);
+
+	// StreamConnection is used by the AdapterService client to detect a connection
+    // lost with the gRPC server hosting the AdapterService service
+    rpc KeepAliveConnection(common.Connection) returns(stream common.Connection);
+
 	rpc RegisterAdapter (AdapterRegistration) returns (google.protobuf.Empty);
 	rpc DeviceUpdate (Device) returns (google.protobuf.Empty);
 	rpc PortCreated (Port) returns (google.protobuf.Empty);
