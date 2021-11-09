@@ -277,6 +277,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ac1bd10_102a24cb",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-11-09T13:14:19Z",
+      "side": 1,
+      "message": "something like ConfigureUserVoip",
+      "parentUuid": "44ad9198_4a8e7985",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 65
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "553e8c66_f095ef92",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
