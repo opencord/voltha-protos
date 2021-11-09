@@ -100,6 +100,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d100b48_f15802ee",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000513
+      },
+      "writtenOn": "2021-11-09T07:25:52Z",
+      "side": 1,
+      "message": "Can you add \"Dial plan table max size\" attribute? This attribute is mandatory to Network Dial Plan ME.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d99cbe37_8d26fb54",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 4
