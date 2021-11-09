@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a2f361d_6d945aaf",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2021-11-09T13:36:32Z",
+      "side": 1,
+      "message": "what confuses me is Profile, really this is not a profile but a configuration that is specific for subscriber. I think we out to have a specific API for this and keep it separate from the VOP/TECH profile that are system wide configurations",
+      "parentUuid": "910ec976_79442d76",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4161e5b_8e2db4f7",
         "filename": "protos/voltha_protos/voip_profile.proto",
         "patchSetId": 4
