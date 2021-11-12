@@ -108,6 +108,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df6463f1_c2c605fa",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000513
+      },
+      "writtenOn": "2021-11-12T11:34:16Z",
+      "side": 1,
+      "message": "We need to \"realm\" attribute to each subscriber.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4161e5b_8e2db4f7",
         "filename": "protos/voltha_protos/voip_profile.proto",
         "patchSetId": 4
