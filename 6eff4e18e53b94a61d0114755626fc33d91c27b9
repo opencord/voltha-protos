@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4373d2e_b6062f21",
+        "filename": "protos/voltha_protos/system_wide_profile.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-12T10:42:52Z",
+      "side": 1,
+      "message": "no problem :) it is always open to name suggestions. I\u0027ll update them accordingly.",
+      "parentUuid": "5334e57f_bd56cbdf",
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf137abd_0614c3d8",
         "filename": "protos/voltha_protos/system_wide_profile.proto",
         "patchSetId": 7
