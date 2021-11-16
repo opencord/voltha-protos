@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f1b382c_eb1e2b93",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "do we really need a sub-message for this, why not just have it a string?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "398ec904_7077404b",
         "filename": "protos/voltha_protos/technology_profile.proto",
         "patchSetId": 8
@@ -31,6 +54,121 @@
       "writtenOn": "2021-11-16T00:15:06Z",
       "side": 1,
       "message": "Can you just add a comment for this IE that this is for GPON, XGPON and XGSPON Tech",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2622164_30f65ffe",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "is this by standard is this limited to 4? or is that a \"guess\" of how many may possibly needed? should this instead be an array /list?\n\neven if limited to 4, should this be an set array/list size",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5581ebc_13d687d2",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "why is this commented out in a new file? either we need it or we don\u0027t?",
+      "range": {
+        "startLine": 140,
+        "startChar": 11,
+        "endLine": 140,
+        "endChar": 22
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99bb5223_76971386",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "if we don\u0027t need it don\u0027t leave it as comments. if we need it make it a first class value.",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 21
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35f7097c_665a7a3a",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "should this be a bitset?",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 30
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b70646_b67a5189",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "bitset?",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 191,
+        "endChar": 37
+      },
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -53,6 +191,29 @@
         "startChar": 51,
         "endLine": 582,
         "endChar": 63
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcede963_705ab016",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-11-16T04:26:00Z",
+      "side": 1,
+      "message": "updates the the tech profiles are not longer going directly against the KV store? they are going through the API now?",
+      "range": {
+        "startLine": 583,
+        "startChar": 8,
+        "endLine": 583,
+        "endChar": 28
       },
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
