@@ -16,6 +16,86 @@
       "message": "Do not merge yet.",
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398ec904_7077404b",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-16T00:15:06Z",
+      "side": 1,
+      "message": "Can you just add a comment for this IE that this is for GPON, XGPON and XGSPON Tech",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d750c41_8ede2037",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-16T00:15:06Z",
+      "side": 1,
+      "message": "for PON TECH",
+      "range": {
+        "startLine": 582,
+        "startChar": 51,
+        "endLine": 582,
+        "endChar": 63
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5bfbce3_48bf40ae",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-16T00:15:06Z",
+      "side": 1,
+      "message": "VOIP profile",
+      "range": {
+        "startLine": 597,
+        "startChar": 26,
+        "endLine": 597,
+        "endChar": 46
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a007b5c1_43e7f7a0",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2021-11-16T00:15:06Z",
+      "side": 1,
+      "message": "Where is the key specified? The voip_user_profile.VoipUserProfile also does not contain the key.",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
