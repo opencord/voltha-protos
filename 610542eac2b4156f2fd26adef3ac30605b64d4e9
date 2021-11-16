@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13348cbb_c9d15609",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-16T14:51:14Z",
+      "side": 1,
+      "message": "Is this the actual KV store path or an ID of the tech profile being stored (and we just happen to use the ID as the suffix in the KV path)?  For a VoIP tech profile, would this field be the same as voipTechnologyProfileId? Who sets that field?",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f1b382c_eb1e2b93",
         "filename": "protos/voltha_protos/technology_profile.proto",
         "patchSetId": 8
@@ -43,6 +60,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fee02299_7e54f2d2",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-16T14:51:14Z",
+      "side": 1,
+      "message": "Why not starting with 1:",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "398ec904_7077404b",
         "filename": "protos/voltha_protos/technology_profile.proto",
         "patchSetId": 8
@@ -54,6 +88,23 @@
       "writtenOn": "2021-11-16T00:15:06Z",
       "side": 1,
       "message": "Can you just add a comment for this IE that this is for GPON, XGPON and XGSPON Tech",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bfbb556_34e0e031",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-16T14:51:14Z",
+      "side": 1,
+      "message": "Not sure I understand,  Do you mind provide an example?    If they are not set in a proto message how can they be extracted?",
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -215,6 +266,23 @@
         "endLine": 583,
         "endChar": 28
       },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f1891b_e4f46ad1",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-16T14:51:14Z",
+      "side": 1,
+      "message": "We have common.ID which looks the same as common.key.   If the intent is to have an explicit tech profile id then maybe create a TechProfileID in one of the tech profile proto.  Otherwise, maybe just use common.ID?",
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
