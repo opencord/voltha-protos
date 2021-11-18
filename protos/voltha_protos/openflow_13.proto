@@ -341,11 +341,23 @@ enum ofp_port_reason {
     OFPPR_MODIFY  = 2;         /* Some attribute of the port has changed. */
 };
 
+/* What changed about the physical device */
+enum ofp_device_connection {
+    OFPDEV_CONNECTED     = 0;         /* The device connected. */
+    OFPDEV_DISCONNECTED  = 1;         /* The device disconnected. */
+};
+
 /* A physical port has changed in the datapath */
 message ofp_port_status {
     //ofp_header header;
     ofp_port_reason reason = 1; /* One of OFPPR_*. */
     ofp_port desc = 2;
+};
+
+/* A physical device has changed in the datapath */
+message ofp_device_status {
+    //ofp_header header;
+    ofp_device_connection status = 1; /* One of OFPDEV_*. */
 };
 
 /* Modify behavior of the physical port */
@@ -2307,6 +2319,7 @@ message ChangeEvent {
     oneof event {
         ofp_port_status port_status = 2;
         ofp_error_msg error = 3;
+        ofp_device_status device_status = 4;
     }
 }
 
