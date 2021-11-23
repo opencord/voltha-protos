@@ -35,6 +35,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17418964_29b54108",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "it is not id, this is the full path for voltha KV. I am changing it\u0027s name to voipTechnologyProfileKey. This field will contain the path of the stored technology profile.",
+      "parentUuid": "13348cbb_c9d15609",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f1b382c_eb1e2b93",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-11-16T04:26:00Z",
       "side": 1,
       "message": "do we really need a sub-message for this, why not just have it a string?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc583143_403a0e80",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8f1b382c_eb1e2b93",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -75,6 +117,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e745ff1b_a4c530db",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fee02299_7e54f2d2",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "398ec904_7077404b",
@@ -88,6 +148,24 @@
       "writtenOn": "2021-11-16T00:15:06Z",
       "side": 1,
       "message": "Can you just add a comment for this IE that this is for GPON, XGPON and XGSPON Tech",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d564063a_ecb05dbf",
+        "filename": "protos/voltha_protos/technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "398ec904_7077404b",
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -109,6 +187,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb569b2_b8d7bf89",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "The initial design was based on G988-2017 omci spec. That was the reason behind the \"extraction\" here but anyway I removed all the commented lines as several people mentioned.",
+      "parentUuid": "2bfbb556_34e0e031",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2622164_30f65ffe",
@@ -122,6 +218,30 @@
       "writtenOn": "2021-11-16T04:26:00Z",
       "side": 1,
       "message": "is this by standard is this limited to 4? or is that a \"guess\" of how many may possibly needed? should this instead be an array /list?\n\neven if limited to 4, should this be an set array/list size",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c936140_3cf01032",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "it is limited to 4 and all of them are mandatory by the G.988 11/2017 spec.",
+      "parentUuid": "c2622164_30f65ffe",
       "range": {
         "startLine": 65,
         "startChar": 8,
@@ -155,6 +275,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8ab6c40_1e25ca45",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5581ebc_13d687d2",
+      "range": {
+        "startLine": 140,
+        "startChar": 11,
+        "endLine": 140,
+        "endChar": 22
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99bb5223_76971386",
@@ -168,6 +312,30 @@
       "writtenOn": "2021-11-16T04:26:00Z",
       "side": 1,
       "message": "if we don\u0027t need it don\u0027t leave it as comments. if we need it make it a first class value.",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 21
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17191a11_0c125177",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99bb5223_76971386",
       "range": {
         "startLine": 158,
         "startChar": 4,
@@ -201,6 +369,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb8f4ba_f560217a",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Each field is described as string in omci spec. (G988-2017)",
+      "parentUuid": "35f7097c_665a7a3a",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 30
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0b70646_b67a5189",
@@ -214,6 +406,30 @@
       "writtenOn": "2021-11-16T04:26:00Z",
       "side": 1,
       "message": "bitset?",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 191,
+        "endChar": 37
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6321f64f_f419ea9e",
+        "filename": "protos/voltha_protos/voip_technology_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "the design is based on G988-2017",
+      "parentUuid": "c0b70646_b67a5189",
       "range": {
         "startLine": 191,
         "startChar": 8,
@@ -247,6 +463,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d2d0da3_045a33d0",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9d750c41_8ede2037",
+      "range": {
+        "startLine": 582,
+        "startChar": 51,
+        "endLine": 582,
+        "endChar": 63
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcede963_705ab016",
@@ -260,6 +500,30 @@
       "writtenOn": "2021-11-16T04:26:00Z",
       "side": 1,
       "message": "updates the the tech profiles are not longer going directly against the KV store? they are going through the API now?",
+      "range": {
+        "startLine": 583,
+        "startChar": 8,
+        "endLine": 583,
+        "endChar": 28
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b66f6c13_09ce3f28",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "With such API, any type of system-wide profile like technology profile here, can be inserted into voltha DB.",
+      "parentUuid": "bcede963_705ab016",
       "range": {
         "startLine": 583,
         "startChar": 8,
@@ -287,6 +551,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf00e257_fec89de3",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "We can use common.ID as well however this is not an ID. In fact it is the full path for voltha KV. That\u0027s why I created another message called Key as Girish suggested",
+      "parentUuid": "37f1891b_e4f46ad1",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5bfbce3_48bf40ae",
@@ -310,6 +592,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a0f706_bee3b220",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b5bfbce3_48bf40ae",
+      "range": {
+        "startLine": 597,
+        "startChar": 26,
+        "endLine": 597,
+        "endChar": 46
+      },
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a007b5c1_43e7f7a0",
@@ -323,6 +629,24 @@
       "writtenOn": "2021-11-16T00:15:06Z",
       "side": 1,
       "message": "Where is the key specified? The voip_user_profile.VoipUserProfile also does not contain the key.",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6a6e4f_53b63e19",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a007b5c1_43e7f7a0",
       "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
