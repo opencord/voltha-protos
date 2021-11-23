@@ -185,6 +185,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3dd2d6f_4f8c15e6",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92a9cb8c_e3855a7c",
+      "range": {
+        "startLine": 583,
+        "startChar": 8,
+        "endLine": 583,
+        "endChar": 29
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e76dfce3_dc7a490a",
@@ -208,6 +232,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "150aeec4_34aeadb5",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e76dfce3_dc7a490a",
+      "range": {
+        "startLine": 591,
+        "startChar": 8,
+        "endLine": 591,
+        "endChar": 31
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b242665_737c4d66",
@@ -221,6 +269,30 @@
       "writtenOn": "2021-11-12T09:15:08Z",
       "side": 1,
       "message": "PutVoipUserProfile",
+      "range": {
+        "startLine": 598,
+        "startChar": 8,
+        "endLine": 598,
+        "endChar": 27
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27fbe10_0cee225c",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2021-11-23T13:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b242665_737c4d66",
       "range": {
         "startLine": 598,
         "startChar": 8,
