@@ -17,5 +17,6 @@ service OltInterAdapterService {
     rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
 
     rpc ProxyOmciRequest(inter_adapter.OmciMessage) returns (google.protobuf.Empty);
+    rpc ProxyOmciRequests(inter_adapter.OmciMessages) returns (google.protobuf.Empty);
     rpc GetTechProfileInstance(inter_adapter.TechProfileInstanceRequestMessage) returns (inter_adapter.TechProfileDownloadMessage);
 }
