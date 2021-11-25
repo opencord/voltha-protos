@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dce2e52_a48e427b",
+        "filename": "protos/voltha_protos/inter_adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-11-25T18:32:17Z",
+      "side": 1,
+      "message": "Should we call this message just OmciMessages? If there is another use case in the future which requires multiple messages to be sent at once the same message could be used.\n\nSimilarly the name of the rpc could be ProxyOmciRequests.\n\nWhat do you think?",
+      "revId": "f5e2dac132590e67520dcd4f1e4ceb2ef960065b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c148e9_c07a24b0",
+        "filename": "protos/voltha_protos/inter_adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-11-25T18:32:17Z",
+      "side": 1,
+      "message": "you can remove the empty line at the end of the file",
+      "revId": "f5e2dac132590e67520dcd4f1e4ceb2ef960065b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
