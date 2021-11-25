@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76006ae1_09042b37",
+        "filename": "protos/voltha_protos/inter_adapter.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-11-25T18:41:18Z",
+      "side": 1,
+      "message": "instead of message can we name is messages (it\u0027s a repeated, so a plural improves the readability of the generated code as well)",
+      "revId": "f5e2dac132590e67520dcd4f1e4ceb2ef960065b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61c148e9_c07a24b0",
         "filename": "protos/voltha_protos/inter_adapter.proto",
         "patchSetId": 2
