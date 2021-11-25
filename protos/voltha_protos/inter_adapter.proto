@@ -22,6 +22,14 @@ message OmciMessage {
     string child_device_id = 5;
 }
 
+message OmciMessages {
+    repeated bytes messages = 1;
+    common.ConnectStatus.Types connect_status = 2;
+    device.Device.ProxyAddress proxy_address = 3;
+    string parent_device_id = 4;
+    string child_device_id = 5;
+}
+
 message TechProfileDownloadMessage {
     string device_id = 1;
     uint32 uni_id = 2;
