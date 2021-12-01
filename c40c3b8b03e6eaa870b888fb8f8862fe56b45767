@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfa2a4be_d5755c37",
+        "filename": "protos/voltha_protos/inter_adapter.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-12-01T16:17:31Z",
+      "side": 1,
+      "message": "Each OmciMessage has the parent/child device details etc which we don\u0027t need to repeat as the messages are destined to the same onu. Only the omci bytes need to be repeated",
+      "parentUuid": "e191533c_9d9edec1",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c131c64_f59f15d3",
         "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2021-12-01T14:20:58Z",
       "side": 1,
       "message": "I was under the impression after the TST meeting where we discuss this approach that we will be using a streaming grpc for this?",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7267ecde_a4a344af",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-12-01T16:17:31Z",
+      "side": 1,
+      "message": "Hi Khen, yes you are correct that we discussed that we would use grpc streaming. \n\nBut when we came back and looked into the problem/use case here, it\u0027s better to use unary than streaming. The ONU adapter has a bunch of messages (32 in this case) to send and only after those 32 are sent out and a response comes back from the ONU, it can send the next bunch of 32 messages. So streaming does not really help as it\u0027s like one big message that needs to be sent out and the next big one.\n\nWe actually did try out streaming as well just to see how it performs and we see that the performance of unary is much better when using the bunched up messages. Logically if we stream each individual message over the stream the performance would be even lower as it incurs many more writes of smaller packets on the TCP connection.\n\nIf we have all the data that can be sent to the other end, then why stream it and not send it over a unary grpc.",
+      "parentUuid": "4c131c64_f59f15d3",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
