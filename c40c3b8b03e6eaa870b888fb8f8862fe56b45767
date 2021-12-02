@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8678908f_4acf690b",
+        "filename": "protos/voltha_protos/inter_adapter.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-12-02T13:44:47Z",
+      "side": 1,
+      "message": "I think we would leave the separation of the header for later. If w separate it out the existing code would need to undergo changes and we wanted to avoid changing the existing code as much as possible.",
+      "parentUuid": "4da04432_9aee36a0",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c131c64_f59f15d3",
         "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
         "patchSetId": 4
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "For sure unary is much simpler and no change is needed in the existing grpc code base, other than adding this new API.  \n\nDoes the OLT send the block of OMCI message it received to the OLT Agent in one big chunk or it is sending one message as a time?   And if there is an error returned for any of these message does the whole set of OMCI message get reverted back or a retry of the whole set of messages is done by the ONU adapter?   I am trying to understand the overall performance gain by sending an OMCI block.",
       "parentUuid": "02dece09_478ade96",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d1ed64_5c6f6e66",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-12-02T13:44:47Z",
+      "side": 1,
+      "message": "We have not done the optimization of the OLT adapter sending this bunch of messages as a single block to the agent. This can be done later. The OLT adapter still sends the messages as earlier, ie. one at a time to the agent. If there are any errors; the ONU will respond back with an error in the OMCI response and in that the entire bunch should be resent by the ONU adapter (this is as per the OMCI protocol)",
+      "parentUuid": "2ffabc67_a8178e2e",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
