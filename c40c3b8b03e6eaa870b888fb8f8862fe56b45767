@@ -212,6 +212,24 @@
       "parentUuid": "6d067827_5ab2cda3",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24efd15_0adb6751",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-12-02T14:28:36Z",
+      "side": 1,
+      "message": "Did you try the onu reconcile tests (onu restart scenarios)?",
+      "parentUuid": "c30fb98a_65ab1b82",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
