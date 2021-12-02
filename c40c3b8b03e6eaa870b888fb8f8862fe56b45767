@@ -176,6 +176,24 @@
       "parentUuid": "2ffabc67_a8178e2e",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d067827_5ab2cda3",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-12-02T14:19:13Z",
+      "side": 1,
+      "message": "The error scenario is a tricky one.   Let\u0027s assume the 32nd omcimessage keeps producing an error, then the entire 32 omcimessages will be resent to the olt adapter where they get dispatch one at a time until we get the error on the 32nd one and repeat the entire process.   \n\nI suggest getting the changes in the onu and olt adapters done and then test everything together (especially restart scenarios and some scale tests) before merging all of them together.   This way we will know if there is any tweak needed in the protos and the performance gain in our test scenarios - the error snenario I mentioned above may be a moot point if we do not see that happening in our tests.",
+      "parentUuid": "68d1ed64_5c6f6e66",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
