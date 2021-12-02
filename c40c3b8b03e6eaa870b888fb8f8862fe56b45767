@@ -194,6 +194,24 @@
       "parentUuid": "68d1ed64_5c6f6e66",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c30fb98a_65ab1b82",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-12-02T14:25:15Z",
+      "side": 1,
+      "message": "Yes, the changes in the ONU and OLT adapters are done and tested and it\u0027s working fine. We have done scale test of the upgrade on 32 ONUs simultaneously and that\u0027s fine as well.\n\nThose changes also should be up for review, but we need this patchset to be merged and then we can point the OLT and ONU adapter changes to this version of the protos and submit the changes.\n\nCan we get this one merged?",
+      "parentUuid": "6d067827_5ab2cda3",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
