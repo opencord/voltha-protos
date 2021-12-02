@@ -248,6 +248,24 @@
       "parentUuid": "e24efd15_0adb6751",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b786b3_645866ba",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-12-02T15:06:46Z",
+      "side": 1,
+      "message": "Amit, one of the test I use is \"make reconcile-openonu-go-adapter-test-att\" in the voltha-system-tests repo.   It\u0027s important to run these tests, especially with the OMCI change.  On ONU adapter restarts we are seeing a number of failures.  Most point to OMCI reconcile failures because of lost of connection.    It would be good to see the impact of this change with the reconcile tests (jut don\u0027t want to keep adding to the code base in that area while we are still having issues there).",
+      "parentUuid": "2db4035c_4fa92d1f",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
