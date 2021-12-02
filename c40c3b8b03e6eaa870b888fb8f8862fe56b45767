@@ -230,6 +230,24 @@
       "parentUuid": "c30fb98a_65ab1b82",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2db4035c_4fa92d1f",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2021-12-02T14:52:31Z",
+      "side": 1,
+      "message": "Hi Khen,\n\nNo we have not tried those tests as this change does not change anything in that regard. The change here is just to bundle the OMCI messages into one grpc request, the behavior should be the same as in the base code. If there already is an existing test case, would help if you could point us to that and we can run it as well.",
+      "parentUuid": "e24efd15_0adb6751",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
