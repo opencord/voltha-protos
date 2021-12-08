@@ -6,6 +6,7 @@ option java_outer_classname = "VolthaOnuInterAdapterService";
 
 package onu_inter_adapter_service;
 
+import "voltha_protos/common.proto";
 import "google/protobuf/empty.proto";
 import "voltha_protos/inter_adapter.proto";
 import "voltha_protos/health.proto";
@@ -13,7 +14,7 @@ import "voltha_protos/health.proto";
 service OnuInterAdapterService {
     // GetHealthStatus is used by an OnuInterAdapterService client to verify connectivity
     // to the gRPC server hosting the OnuInterAdapterService service
-    rpc GetHealthStatus(google.protobuf.Empty) returns (health.HealthStatus);
+    rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
 
     rpc OnuIndication(inter_adapter.OnuIndicationMessage) returns (google.protobuf.Empty);
     rpc OmciIndication(inter_adapter.OmciMessage) returns (google.protobuf.Empty);

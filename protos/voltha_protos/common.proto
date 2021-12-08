@@ -20,6 +20,18 @@ enum TestModeKeys {
     api_test=0;
 }
 
+message Connection {
+    // endpoint is the endpoint sending the request
+    string endpoint = 1;
+
+    // contextInfo represents additional contextual information
+    string contextInfo = 2;
+
+    // keep_alive_interval is used to indicate to the remote endpoint how often it 
+    // will get a keep alive notification
+    int64 keep_alive_interval = 3;
+}
+
 message AdminState {
     // Administrative State
     enum Types {

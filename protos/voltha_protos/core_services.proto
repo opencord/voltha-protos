@@ -16,7 +16,7 @@ import "voltha_protos/health.proto";
 // sole purpose of serving requests/updates from the Voltha adapters. 
 service CoreService {
 	//	 in coreProxy interface
-	rpc GetHealthStatus(google.protobuf.Empty) returns (health.HealthStatus);
+	rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
 	rpc RegisterAdapter (core_adapter.AdapterRegistration) returns (google.protobuf.Empty);
 	rpc DeviceUpdate (device.Device) returns (google.protobuf.Empty);
 	rpc PortCreated (device.Port) returns (google.protobuf.Empty);
