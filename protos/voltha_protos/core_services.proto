@@ -17,6 +17,7 @@ import "voltha_protos/health.proto";
 service CoreService {
 	//	 in coreProxy interface
 	rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
+    rpc KeepAlive(stream common.Connection) returns(google.protobuf.Empty);
 	rpc RegisterAdapter (core_adapter.AdapterRegistration) returns (google.protobuf.Empty);
 	rpc DeviceUpdate (device.Device) returns (google.protobuf.Empty);
 	rpc PortCreated (device.Port) returns (google.protobuf.Empty);
