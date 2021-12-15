@@ -20,7 +20,7 @@ import "voltha_protos/events.proto";
 service AdapterService {
     // GetHealthStatus is used by an AdapterService client to verify connectivity
     // to the gRPC server hosting the AdapterService service
-    rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
+    rpc GetHealthStatus(stream common.Connection) returns (stream health.HealthStatus);
 
     // Device
     rpc AdoptDevice(device.Device) returns(google.protobuf.Empty);
