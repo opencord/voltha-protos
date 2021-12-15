@@ -15,8 +15,10 @@ import "voltha_protos/health.proto";
 // The CoreService is a gRPC service implemented by the Voltha RW-Core for the
 // sole purpose of serving requests/updates from the Voltha adapters. 
 service CoreService {
-	//	 in coreProxy interface
-	rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
+	// GetHealthStatus is used by a CoreService client to verify connectivity
+    // to the gRPC server hosting the CoreService service
+    rpc GetHealthStatus(stream common.Connection) returns (stream health.HealthStatus);
+
 	rpc RegisterAdapter (core_adapter.AdapterRegistration) returns (google.protobuf.Empty);
 	rpc DeviceUpdate (device.Device) returns (google.protobuf.Empty);
 	rpc PortCreated (device.Port) returns (google.protobuf.Empty);
