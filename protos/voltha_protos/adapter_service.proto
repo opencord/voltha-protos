@@ -22,6 +22,10 @@ service AdapterService {
     // to the gRPC server hosting the AdapterService service
     rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
 
+    // KeepAlive is used by the AdapterService client to detect a connection
+    // lost with the gRPC server hosting the AdapterService service
+    rpc KeepAlive(stream common.Connection) returns(google.protobuf.Empty);
+
     // Device
     rpc AdoptDevice(device.Device) returns(google.protobuf.Empty);
     rpc ReconcileDevice(device.Device) returns(google.protobuf.Empty);

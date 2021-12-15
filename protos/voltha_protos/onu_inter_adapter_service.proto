@@ -16,6 +16,8 @@ service OnuInterAdapterService {
     // to the gRPC server hosting the OnuInterAdapterService service
     rpc GetHealthStatus(common.Connection) returns (health.HealthStatus);
 
+    rpc KeepAlive(stream common.Connection) returns(google.protobuf.Empty);
+
     rpc OnuIndication(inter_adapter.OnuIndicationMessage) returns (google.protobuf.Empty);
     rpc OmciIndication(inter_adapter.OmciMessage) returns (google.protobuf.Empty);
     rpc DownloadTechProfile(inter_adapter.TechProfileDownloadMessage) returns (google.protobuf.Empty);
