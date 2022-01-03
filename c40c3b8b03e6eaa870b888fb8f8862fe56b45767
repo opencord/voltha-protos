@@ -266,6 +266,24 @@
       "parentUuid": "2db4035c_4fa92d1f",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f61afb76_3a8cb08f",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000116
+      },
+      "writtenOn": "2022-01-03T09:43:48Z",
+      "side": 1,
+      "message": "have these tests been performed with the new images ? even though they are not used during reconciliation I agree with Khen that we need to make sure they do not affect existing code.",
+      "parentUuid": "14b786b3_645866ba",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
