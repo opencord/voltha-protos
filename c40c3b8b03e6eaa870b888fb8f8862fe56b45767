@@ -284,6 +284,24 @@
       "parentUuid": "14b786b3_645866ba",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e48951d_78afcd2c",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000635
+      },
+      "writtenOn": "2022-01-04T05:15:30Z",
+      "side": 1,
+      "message": "Hi, i have performed the \"make reconcile-openonu-go-adapter-test-att\" test, with the voltha and adapter images from the master branch, there are are 6 tests in the suite out of which \"Reconcile In Initial-Mib-Downloaded\" test fails,\nThe same result is seen when the test is performed with the new images.",
+      "parentUuid": "f61afb76_3a8cb08f",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
