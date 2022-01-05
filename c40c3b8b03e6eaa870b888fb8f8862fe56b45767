@@ -302,6 +302,24 @@
       "parentUuid": "f61afb76_3a8cb08f",
       "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cdbf633_a000819e",
+        "filename": "protos/voltha_protos/olt_inter_adapter_service.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000635
+      },
+      "writtenOn": "2022-01-05T13:29:04Z",
+      "side": 1,
+      "message": "Hi, The Reconcile tests has been performed with the new images and all the reconcile tests are passing, please find the logs below\nReconcile In Starting-OpenOmci :: Validates the Reconcile in Start... | PASS |\n------------------------------------------------------------------------------\nReconcile In Initial-Mib-Downloaded :: Validates the Reconcile in ... | PASS |\n------------------------------------------------------------------------------\nReconcile In Omci-Flows-Pushed :: Validates the Reconcile in omci-... | PASS |\n------------------------------------------------------------------------------\nReconcile For Disabled Onu Device :: Validates the Reconcile for d... | PASS |\n------------------------------------------------------------------------------\nOlt Deletion After Adapter Restart :: Validates the OLT deletion a... | PASS |\n------------------------------------------------------------------------------\nFlow Deletion After Adapter Restart :: Validates the flow(s) delet... | PASS |\n------------------------------------------------------------------------------\nVoltha ONUReconcileTests :: Test different Reconcile scenarios of ... | PASS |\n6 critical tests, 6 passed, 0 failed\n6 tests total, 6 passed, 0 failed",
+      "parentUuid": "2e48951d_78afcd2c",
+      "revId": "c40c3b8b03e6eaa870b888fb8f8862fe56b45767",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
