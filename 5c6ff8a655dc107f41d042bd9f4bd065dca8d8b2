@@ -16,6 +16,24 @@
       "message": "Did we see any performance improvement when running at scale?",
       "revId": "5c6ff8a655dc107f41d042bd9f4bd065dca8d8b2",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8038ae91_36b95a6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000635
+      },
+      "writtenOn": "2022-01-05T16:01:36Z",
+      "side": 1,
+      "message": "Yes, we did check the performance improvement at scale\nAll tests were done with a 11 MB image file and tested with BBSIM\n\nBefore we did the changes:\n- Download to a single ONU was taking 15mins with onu-adapter taking 870m CPU\n\nAfter the changes:\n- Download to a single ONU is taking 4mins with onu-adapter taking 165m CPU\n- Simultaneous download to 32 ONUs is taking around 6 mins with onu-adapter taking 1207m CPU",
+      "parentUuid": "cda0f27a_e79b76da",
+      "revId": "5c6ff8a655dc107f41d042bd9f4bd065dca8d8b2",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
