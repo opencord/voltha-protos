@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "9e820239addcf8acbaf661019ff4f0eda9e2c0b5",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799dc4df_f4b526b9",
+        "filename": "protos/voltha_protos/core_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2022-01-25T23:47:44Z",
+      "side": 1,
+      "message": "nit: indentation",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 4
+      },
+      "revId": "9e820239addcf8acbaf661019ff4f0eda9e2c0b5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
