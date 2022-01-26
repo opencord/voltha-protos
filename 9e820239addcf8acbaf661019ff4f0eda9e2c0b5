@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7cb57e5b_f02a79be",
+        "filename": "protos/voltha_protos/adapter_service.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-01-26T16:22:35Z",
+      "side": 1,
+      "message": "Are these two somewhat redundant? Does it make sense to convert GetHealthStatus to a streaming API call as opposed to introduce an additional function?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 0
+      },
+      "revId": "9e820239addcf8acbaf661019ff4f0eda9e2c0b5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "799dc4df_f4b526b9",
         "filename": "protos/voltha_protos/core_services.proto",
         "patchSetId": 2
