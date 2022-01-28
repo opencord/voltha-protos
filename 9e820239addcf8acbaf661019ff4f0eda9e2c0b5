@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dee0711a_577894e5",
+        "filename": "protos/voltha_protos/adapter_service.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2022-01-28T20:16:46Z",
+      "side": 1,
+      "message": "I wanted to cause minimal disruptions to existing code by creating a separate streaming RPC.  Let me check the amount of changes to have only one streaming connection for when setting up the connection and when monitoring the it.",
+      "parentUuid": "7cb57e5b_f02a79be",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 0
+      },
+      "revId": "9e820239addcf8acbaf661019ff4f0eda9e2c0b5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "799dc4df_f4b526b9",
         "filename": "protos/voltha_protos/core_services.proto",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-25T23:47:44Z",
       "side": 1,
       "message": "nit: indentation",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 4
+      },
+      "revId": "9e820239addcf8acbaf661019ff4f0eda9e2c0b5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f913f23a_60c221ee",
+        "filename": "protos/voltha_protos/core_services.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2022-01-28T20:16:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "799dc4df_f4b526b9",
       "range": {
         "startLine": 20,
         "startChar": 0,
