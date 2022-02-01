@@ -309,6 +309,7 @@ message IntfOperIndication {
     string type = 1;		// nni, pon
     fixed32 intf_id = 2;
     string oper_state = 3;      // up, down
+    fixed32 speed = 4;      // measured in Mbps
 }
 
 message OmciIndication {
