@@ -65,6 +65,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b73cfc4_08908cd2",
+        "filename": "protos/voltha_protos/adapter_service.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2022-02-08T22:24:04Z",
+      "side": 1,
+      "message": "Update done",
+      "parentUuid": "dee0711a_577894e5",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 0
+      },
+      "revId": "9e820239addcf8acbaf661019ff4f0eda9e2c0b5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "799dc4df_f4b526b9",
