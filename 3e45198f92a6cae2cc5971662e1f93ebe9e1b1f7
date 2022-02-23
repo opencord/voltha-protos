@@ -16,6 +16,24 @@
       "message": "can we remove them entirely just leaving the reserved ?",
       "revId": "3e45198f92a6cae2cc5971662e1f93ebe9e1b1f7",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb5ba681_849cf3e1",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2022-02-23T19:02:13Z",
+      "side": 1,
+      "message": "I think let it be this way for the moment.",
+      "parentUuid": "18d8cd6d_5acfc70a",
+      "revId": "3e45198f92a6cae2cc5971662e1f93ebe9e1b1f7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
