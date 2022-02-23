@@ -384,16 +384,19 @@ message DeviceInfo {
     // Total number of pon intf ports on the device
     fixed32 pon_ports = 12;
 
-    // If using global per-device technology profile. To be deprecated
-    string technology = 5;
-    fixed32 onu_id_start = 6;
-    fixed32 onu_id_end = 7;
-    fixed32 alloc_id_start = 8;
-    fixed32 alloc_id_end = 9;
-    fixed32 gemport_id_start = 10;
-    fixed32 gemport_id_end = 11;
-    fixed32 flow_id_start = 13;
-    fixed32 flow_id_end = 14;
+    reserved 5 to 11, 13, 14;
+    // Not used anymore, this information is defined per-range only
+    // and is fully provided by DeviceResourceRanges
+    //
+    // string technology = 5;
+    // fixed32 onu_id_start = 6;
+    // fixed32 onu_id_end = 7;
+    // fixed32 alloc_id_start = 8;
+    // fixed32 alloc_id_end = 9;
+    // fixed32 gemport_id_start = 10;
+    // fixed32 gemport_id_end = 11;
+    // fixed32 flow_id_start = 13;
+    // fixed32 flow_id_end = 14;
 
     message DeviceResourceRanges {
 
