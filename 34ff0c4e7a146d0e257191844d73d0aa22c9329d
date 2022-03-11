@@ -34,6 +34,24 @@
       "parentUuid": "17f93f12_3671379c",
       "revId": "34ff0c4e7a146d0e257191844d73d0aa22c9329d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37d7d4ef_09aaa6e6",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2022-03-11T19:32:11Z",
+      "side": 1,
+      "message": "We can, but I prefer to keep it this way for now as it would result more changes in adapter and agent. Also this element has little relevance at adapter, as voltha stack is mostly technology agnostic. This element is only used to derive the TP Path during flow configuration.",
+      "parentUuid": "d5070085_657bfbef",
+      "revId": "34ff0c4e7a146d0e257191844d73d0aa22c9329d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
