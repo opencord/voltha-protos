@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17f93f12_3671379c",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000689
+      },
+      "writtenOn": "2022-03-11T07:55:28Z",
+      "side": 1,
+      "message": "What are valid values for this attribute? Should be mentioned in comment? In general I am in favor of enums but the VOLTHA interface is more into using strings?",
+      "revId": "34ff0c4e7a146d0e257191844d73d0aa22c9329d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
