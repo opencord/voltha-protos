@@ -310,6 +310,29 @@ message IntfOperIndication {
     fixed32 intf_id = 2;
     string oper_state = 3;      // up, down
     fixed32 speed = 4;      // measured in Mbps
+    string technology = 5;
+
+    message PONResourceRanges {
+
+        message Pool {
+
+            enum PoolType {
+                ONU_ID = 0;
+                ALLOC_ID = 1;
+                GEMPORT_ID = 2;
+                FLOW_ID = 3;
+            }
+
+
+            PoolType type = 1;
+            fixed32 start = 3; // lower bound on IDs allocated from this pool
+            fixed32 end = 4; // upper bound on IDs allocated from this pool
+        }
+
+        repeated Pool pools = 3;
+    }
+
+    PONResourceRanges ranges = 6;
 }
 
 message OmciIndication {
