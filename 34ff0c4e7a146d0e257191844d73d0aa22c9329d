@@ -18,6 +18,23 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48fa5383_e6d1de26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2022-03-17T18:14:33Z",
+      "side": 1,
+      "message": "I have merged this since I have not received any further comments. If you find something is not right, please ping me or comment on this review and I will submit a new patch.",
+      "revId": "34ff0c4e7a146d0e257191844d73d0aa22c9329d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17f93f12_3671379c",
