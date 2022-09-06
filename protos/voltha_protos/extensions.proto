@@ -312,6 +312,34 @@ message GetRxPowerResponse {
     double rx_power = 5;
 }
 
+message GetOnuOmciTxRxStatsRequest{
+    google.protobuf.Empty empty = 1;
+}
+
+// see ITU-T G.988 clause 11.2.2 
+message GetOnuOmciTxRxStatsResponse {
+    // OMCI baseline Tx frames with AR bit set
+    uint32 base_tx_ar_frames = 1;
+    // OMCI baseline Rx frames with AK bit set
+    uint32 base_rx_ak_frames = 2;
+    // OMCI baseline Tx frames with AR bit unset
+    uint32 base_tx_no_ar_frames = 3;
+    // OMCI baseline Rx frames with AK bit unset
+    uint32 base_rx_no_ak_frames = 4;
+    // OMCI extended Tx frames with AR bit set
+    uint32 ext_tx_ar_frames = 5;
+    // OMCI extended Rx frames with AK bit set
+    uint32 ext_rx_ak_frames = 6;
+    // OMCI extended Tx frames with AR bit unset
+    uint32 ext_tx_no_ar_frames = 7;
+    // OMCI extended Rx frames with AK bit unset
+    uint32 ext_rx_no_ak_frames = 8;
+    // Number of retries of requests (tx) due to not received responses (Rx)
+    uint32 tx_omci_counter_retries = 9;
+    // Number of timeouts of requests (tx) due to not received responses (Rx) after configured number of retries
+    uint32 tx_omci_counter_timeouts = 10;
+}
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
@@ -327,6 +355,7 @@ message GetValueRequest {
         GetOnuCountersRequest onuPonInfo = 7;
         GetOmciEthernetFrameExtendedPmRequest onuInfo = 8;
         GetRxPowerRequest rxPower = 9;
+        GetOnuOmciTxRxStatsRequest onuOmciStats = 10;
     }
 }
 
@@ -360,6 +389,7 @@ message GetValueResponse {
         GetOnuCountersResponse onuPonCounters = 9;
         GetOmciEthernetFrameExtendedPmResponse onuCounters = 10;
         GetRxPowerResponse rxPower = 11;
+        GetOnuOmciTxRxStatsResponse onuOmciStats = 12;
     }
 }
 
