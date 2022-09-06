@@ -312,6 +312,23 @@ message GetRxPowerResponse {
     double rx_power = 5;
 }
 
+message GetOnuOmciStatsRequest{
+    google.protobuf.Empty empty = 1;
+}
+
+message GetOnuOmciStatsResponse {
+    uint32 base_tx_ar_frames = 1;
+    uint32 base_rx_ak_frames = 2;
+    uint32 base_tx_no_ar_frames = 3;
+    uint32 base_rx_no_ak_frames = 4;
+    uint32 ext_tx_ar_frames = 5;
+    uint32 ext_rx_ak_frames = 6;
+    uint32 ext_tx_no_ar_frames = 7;
+    uint32 ext_rx_no_ak_frames = 8;
+    uint32 tx_omci_counter_retries = 9;
+    uint32 tx_omci_counter_timeouts = 10;
+}
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
@@ -327,6 +344,7 @@ message GetValueRequest {
         GetOnuCountersRequest onuPonInfo = 7;
         GetOmciEthernetFrameExtendedPmRequest onuInfo = 8;
         GetRxPowerRequest rxPower = 9;
+        GetOnuOmciStatsRequest onuOmciStats = 10;
     }
 }
 
@@ -360,6 +378,7 @@ message GetValueResponse {
         GetOnuCountersResponse onuPonCounters = 9;
         GetOmciEthernetFrameExtendedPmResponse onuCounters = 10;
         GetRxPowerResponse rxPower = 11;
+        GetOnuOmciStatsResponse onuOmciStats = 12;
     }
 }
 
