@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd7045b_5d0d829f",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2022-09-06T11:50:18Z",
+      "side": 1,
+      "message": "Would it improve the readability/understanding if we were to call these\nGetOnuOmciCommunicationStatsRequest/GetOnuOmciCommunicationStatsResponse?\n\nThe word becomes too long but the thought is to somehow make the reader aware that we are talking about Omci TxRx stats... maybe GetOnuOmciTxRxStatsRequest/Response?",
+      "revId": "be09123d7754f80e6f91e61cb2f6194e895525b3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634dc867_f6a537d7",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2022-09-06T11:50:18Z",
+      "side": 1,
+      "message": "Hi,\n\nWould be nice if we can add some documentation which could help in understanding what the attributes mean",
+      "revId": "be09123d7754f80e6f91e61cb2f6194e895525b3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
