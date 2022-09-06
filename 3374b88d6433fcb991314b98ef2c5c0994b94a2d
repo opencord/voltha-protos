@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ae0ecce_6fcb7682",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000127
+      },
+      "writtenOn": "2022-09-06T15:43:51Z",
+      "side": 1,
+      "message": "This is just a query.\nLooking at the jira we can query the OMCI counter for all devices or single device. \nWhat will the be the targetId for all devices? Nil/empty targetId is all devices?\n\nmessage SingleGetValueRequest {\n    string targetId \u003d 1;\n    GetValueRequest request \u003d 2;\n}",
+      "revId": "3374b88d6433fcb991314b98ef2c5c0994b94a2d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
