@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccbcd3a9_e6fd5a36",
+        "filename": "VERSION",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2022-09-07T09:57:00Z",
+      "side": 1,
+      "message": "Sorry for the late comment. Not a critical one, but would it be better to change the version to 5.3.1 because we are introducing a new feature (which is backwards compatible and not breaking anything,  else we would have increased the major version). The last patch level is generally for bug fixes and not any change in interface/behavior.\n\nIf the comment is too late, you can ignore for now.",
+      "revId": "3374b88d6433fcb991314b98ef2c5c0994b94a2d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ae0ecce_6fcb7682",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
