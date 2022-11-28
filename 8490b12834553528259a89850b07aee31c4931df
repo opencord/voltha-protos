@@ -22,6 +22,30 @@
       },
       "revId": "8490b12834553528259a89850b07aee31c4931df",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c649ecc_3145b65e",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2022-11-28T18:26:35Z",
+      "side": 1,
+      "message": "The port_label would be what is used in the adapters as the label. like pon-0, pon-1... pon-15. The one that I deprecated was using the intf_id and onu_id, but the users of voltha generally do not know the onu_id and intf_id, so I used port_label and onu serial number, also these are attributes that get sent out in the events from voltha so users of voltha would know them.",
+      "parentUuid": "73f0b268_bb04ae9d",
+      "range": {
+        "startLine": 197,
+        "startChar": 11,
+        "endLine": 197,
+        "endChar": 21
+      },
+      "revId": "8490b12834553528259a89850b07aee31c4931df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
