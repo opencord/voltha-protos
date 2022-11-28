@@ -187,9 +187,19 @@ message GetOmciEthernetFrameExtendedPmRequest {
     bool reset = 3;
 }
 
+// DEPRECATED
 message GetRxPowerRequest {
     fixed32 intf_id = 1;
     fixed32 onu_id = 2;
+}
+
+message GetOltRxPowerRequest {
+    string port_label = 1;
+    // onu_sn is optional and if onu_sn is an empty string and the label is 
+    // of a PON port then it means that the Rx Power corresponding to all 
+    // the ONUs on that PON port is requested. In case the port_label is not
+    // of a PON port, the onu_sn does not have any significance 
+    string onu_sn = 2;
 }
 
 message GetOnuCountersResponse {
@@ -304,6 +314,19 @@ message GetOmciEthernetFrameExtendedPmResponse {
     Format omci_ethernet_frame_extended_pm_format= 3;
 }
 
+message RxPower {
+    string onu_sn = 1; // if the port on which RxPower is measured is not a PON port this will be empty ("") string
+    string status = 2;
+    string fail_reason = 3;
+    double rx_power = 4;
+}
+
+message GetOltRxPowerResponse {
+    string port_label= 1;
+    repeated RxPower rx_power = 2;
+}
+
+// DEPRECATED
 message GetRxPowerResponse {
     fixed32 intf_id= 1;
     fixed32 onu_id = 2;
@@ -354,8 +377,9 @@ message GetValueRequest {
         GetOnuFecHistory fecHistory = 6;
         GetOnuCountersRequest onuPonInfo = 7;
         GetOmciEthernetFrameExtendedPmRequest onuInfo = 8;
-        GetRxPowerRequest rxPower = 9;
+        GetRxPowerRequest rxPower = 9; // This is deprecated
         GetOnuOmciTxRxStatsRequest onuOmciStats = 10;
+        GetOltRxPowerRequest oltRxPower = 11;
     }
 }
 
@@ -388,8 +412,9 @@ message GetValueResponse {
         GetOnuFecHistoryResponse fecHistory = 8;
         GetOnuCountersResponse onuPonCounters = 9;
         GetOmciEthernetFrameExtendedPmResponse onuCounters = 10;
-        GetRxPowerResponse rxPower = 11;
+        GetRxPowerResponse rxPower = 11; // This is DEPRECATED
         GetOnuOmciTxRxStatsResponse onuOmciStats = 12;
+        GetOltRxPowerResponse oltRxPower = 13;
     }
 }
 
