@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f0b268_bb04ae9d",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2022-11-28T17:26:09Z",
+      "side": 1,
+      "message": "What does this string look like? Could you please provide an example? Why not using the intf_id here like the some other examples?",
+      "range": {
+        "startLine": 197,
+        "startChar": 11,
+        "endLine": 197,
+        "endChar": 21
+      },
+      "revId": "8490b12834553528259a89850b07aee31c4931df",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
