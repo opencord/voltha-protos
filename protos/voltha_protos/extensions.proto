@@ -363,6 +363,22 @@ message GetOnuOmciTxRxStatsResponse {
     uint32 tx_omci_counter_timeouts = 10;
 }
 
+message GetOnuOmciActiveAlarmsRequest{
+    google.protobuf.Empty empty = 1;
+}
+
+message AlarmData{
+    uint32 class_id = 1;
+    uint32 instance_id = 2;
+    string name = 3;
+    string description = 4;
+}
+
+message GetOnuOmciActiveAlarmsResponse{
+    repeated AlarmData active_alarms = 1;
+}
+
+
 message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
@@ -380,6 +396,7 @@ message GetValueRequest {
         GetRxPowerRequest rxPower = 9; // This is deprecated
         GetOnuOmciTxRxStatsRequest onuOmciStats = 10;
         GetOltRxPowerRequest oltRxPower = 11;
+        GetOnuOmciActiveAlarmsRequest onuActiveAlarms  = 12;
     }
 }
 
@@ -415,6 +432,7 @@ message GetValueResponse {
         GetRxPowerResponse rxPower = 11; // This is DEPRECATED
         GetOnuOmciTxRxStatsResponse onuOmciStats = 12;
         GetOltRxPowerResponse oltRxPower = 13;
+        GetOnuOmciActiveAlarmsResponse onuActiveAlarms = 14;
     }
 }
 
