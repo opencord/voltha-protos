@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "596871d7_a62491ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2022-12-29T17:34:29Z",
+      "side": 1,
+      "message": "Job status: SUCCESS\nJob logs reviewed, no problem content found so publishing to see what job is triggered downstream.",
+      "revId": "e6cdd8efb133b5b00460263ddb4990e536ff385c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
