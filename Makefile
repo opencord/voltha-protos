@@ -1,4 +1,6 @@
-# Copyright 2019-present Open Networking Foundation
+# -*- makefile -*-
+# -----------------------------------------------------------------------
+# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,12 +13,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# -----------------------------------------------------------------------
+
+$(if $(DEBUG),$(warning ENTER))
+
+.DEFAULT_GOAL := test
+
+TOP         ?= .
+MAKEDIR     ?= $(TOP)/makefiles
+
+$(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
+
+##--------------------##
+##---]  INCLUDES  [---##
+##--------------------##
+include $(MAKEDIR)/include.mk
 
 # Makefile for voltha-protos
 default: test
-
-# set default shell options
-SHELL = bash -e -o pipefail
 
 # tool containers
 VOLTHA_TOOLS_VERSION ?= 2.4.0
@@ -61,16 +75,27 @@ build: protos python-build go-protos java-protos
 
 test: python-test go-test java-test
 
-clean: python-clean java-clean go-clean
+## -----------------------------------------------------------------------
+## Process[-all] language targets
+## -----------------------------------------------------------------------
+go-all     : go-clean     go-protos                  go-test
+java-all   : java-clean   java-protos                java-test
+python-all : python-clean python-protos python-build python-test
 
+## -----------------------------------------------------------------------
 # Python targets
+## -----------------------------------------------------------------------
 python-protos: $(PROTO_PYTHON_PB2)
 
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
 venv_protos:
 	virtualenv -p python3 $@;\
 	source ./$@/bin/activate ; set -u ;\
 	pip install grpcio==1.39.0 protobuf==3.17.3 grpcio-tools==1.39.0 googleapis-common-protos==1.52.0
 
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
 $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
 	python -m grpc_tools.protoc \
@@ -83,15 +108,16 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_pr
     $<
 
 python-build: setup.py python-protos
-	rm -rf dist/
+	$(RM) -r dist/
 	python ./setup.py sdist
 
 python-test: tox.ini setup.py python-protos
 	tox
 
 python-clean:
-	find python/ -name '*.pyc' | xargs rm -f
-	rm -rf \
+	find python/ -name '*.pyc' \
+	    | xargs --no-run-if-empty $(RM)
+	$(RM) -r \
     .coverage \
     .tox \
     coverage.xml \
@@ -106,7 +132,7 @@ python-clean:
     $(PROTO_PYTHON_PB2_GRPC)
 
 go-clean:
-	rm -rf go/*
+	$(RM) -r go/*
 
 # Go targets
 go-protos: voltha.pb
@@ -139,7 +165,7 @@ java-protos: voltha.pb
 	    echo \$$x; \
 	    protoc --java_out=java_temp/src/main/java -I protos \$$x; \
 	  done"
-	#TODO: generate directly to the final location
+        #TODO: generate directly to the final location
 	@mkdir -p java
 	cp -r java_temp/src/main/java/* java/
 
@@ -149,5 +175,18 @@ java-test: java-protos
 	cd java_temp && mvn compile
 
 java-clean:
-	rm -rf java
-	rm -rf java_temp
+	$(RM) -r java
+	$(RM) -r java_temp
+
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
+clean: python-clean java-clean go-clean
+
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
+sterile : clean
+	$(RM) -r venv_protos
+
+$(if $(DEBUG),$(warning LEAVE))
+
+# [EOF]

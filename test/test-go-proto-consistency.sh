@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright 2018 the original author or authors.
+# Copyright 2018-2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,4 +50,3 @@ else
     echo "Test successful. All go proto build outputs are committed"
     exit 0
 fi
-

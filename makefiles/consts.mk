@@ -1,4 +1,6 @@
-# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# -*- makefile -*-
+# -----------------------------------------------------------------------
+# Copyright 2022 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,22 +13,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-FileCopyrightText: 2022 Open Networking Foundation (ONF) and the ONF Contributors
+# SPDX-License-Identifier: Apache-2.0
+# -----------------------------------------------------------------------
 
-from __future__ import absolute_import, print_function
-import unittest
+null        :=#
+space       := $(null) $(null)
+dot         ?= .
 
-from voltha_protos import device_pb2
+HIDE        ?= @
+SHELL       := bash -e -o pipefail
 
-class TestProtos(unittest.TestCase):
+env-clean   = /usr/bin/env --ignore-environment
 
-    @classmethod
-    def setUpClass(self):
-        print("in setup")
-
-    def test_proto_call(self):
-        """ initialization """
-
-        image_downloader = device_pb2.ImageDownload()
-
-        self.assertIsNotNone(image_downloader)
-
+# [EOF]
