@@ -19,6 +19,7 @@ message EventFilterRuleKey {
         kpi_event_type = 3;
         config_event_type = 4;
         device_event_type = 5;
+	onu_event_type  = 6;
     }
 }
 
@@ -151,6 +152,25 @@ message DeviceEvent {
     map<string, string> context = 4;
 
 }
+
+/*
+ * Describes the events specific to onu
+ */
+message OnuEvent {
+    // timestamp indicate the time 
+    string timestamp = 1;
+    // status indicate the status of port up/down Ind
+    string status = 2;
+    // serial_no indicate the onu serial no
+    string serial_no = 3;
+    // port_number indicate the port
+    uint32 port_number = 4;
+    //device_id indicate the device id
+    string device_id = 5;
+    // olt_serial_no indicate the olt serial number
+    string olt_serial_no = 6;
+}
+
 /*
  * Describes the events specific to an RPC request
  */
@@ -220,6 +240,7 @@ message EventType {
         KPI_EVENT2 = 2;
         DEVICE_EVENT = 3;
         RPC_EVENT = 4;
+        ONU_EVENT = 5;
     }
 }
 
@@ -283,6 +304,9 @@ message Event {
 
         // Refers to an RPC Event
         RPCEvent rpc_event = 6;
+
+        // Refers to an Onu Event
+        OnuEvent onu_event = 7;
 
         // Add other event types here.
 
