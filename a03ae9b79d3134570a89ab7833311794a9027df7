@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc7dc98_986ddfab",
+        "filename": "protos/voltha_protos/events.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2023-01-02T18:44:39Z",
+      "side": 1,
+      "message": "Why do we need this instead of using DeviceEvent?",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 18
+      },
+      "revId": "a03ae9b79d3134570a89ab7833311794a9027df7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
