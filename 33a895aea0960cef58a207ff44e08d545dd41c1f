@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be768c3_5f15076d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000671
+      },
+      "writtenOn": "2023-01-05T08:07:47Z",
+      "side": 1,
+      "message": "After VOLTHA 2.11 has been released, please increment the minor version (major.minor.patch) in the VERSION file. ",
+      "revId": "33a895aea0960cef58a207ff44e08d545dd41c1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
