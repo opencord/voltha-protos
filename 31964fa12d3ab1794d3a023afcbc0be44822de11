@@ -16,6 +16,24 @@
       "message": "Please do not merge until VOLTHA 2.11 released.",
       "revId": "31964fa12d3ab1794d3a023afcbc0be44822de11",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4b9e06e_542c039b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000959
+      },
+      "writtenOn": "2023-01-05T08:18:19Z",
+      "side": 1,
+      "message": "Thanks. I will ensure to merge this post VOLTHA 2.11 release.",
+      "parentUuid": "d04df03f_d1e47f86",
+      "revId": "31964fa12d3ab1794d3a023afcbc0be44822de11",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
