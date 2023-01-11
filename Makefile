@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2019-2022 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
-$(if $(DEBUG),$(warning ENTER))
-
 .DEFAULT_GOAL := test
 
 TOP         ?= .
@@ -24,13 +22,15 @@ MAKEDIR     ?= $(TOP)/makefiles
 
 $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 
+# Makefile for voltha-protos
+default: test
+
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
-include $(MAKEDIR)/include.mk
-
-# Makefile for voltha-protos
-default: test
+include $(MAKEDIR)/consts.mk
+include $(MAKEDIR)/help/include.mk
+include $(MAKEDIR)/help/variables.mk
 
 # tool containers
 VOLTHA_TOOLS_VERSION ?= 2.4.0
@@ -75,27 +75,19 @@ build: protos python-build go-protos java-protos
 
 test: python-test go-test java-test
 
-## -----------------------------------------------------------------------
-## Process[-all] language targets
-## -----------------------------------------------------------------------
-go-all     : go-clean     go-protos                  go-test
-java-all   : java-clean   java-protos                java-test
-python-all : python-clean python-protos python-build python-test
+clean: python-clean java-clean go-clean
 
-## -----------------------------------------------------------------------
+sterile: clean
+	$(RM) -r venv_protos
+
 # Python targets
-## -----------------------------------------------------------------------
 python-protos: $(PROTO_PYTHON_PB2)
 
-## -----------------------------------------------------------------------
-## -----------------------------------------------------------------------
 venv_protos:
 	virtualenv -p python3 $@;\
 	source ./$@/bin/activate ; set -u ;\
 	pip install grpcio==1.39.0 protobuf==3.17.3 grpcio-tools==1.39.0 googleapis-common-protos==1.52.0
 
-## -----------------------------------------------------------------------
-## -----------------------------------------------------------------------
 $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
 	source ./venv_protos/bin/activate ; set -u ;\
 	python -m grpc_tools.protoc \
@@ -115,8 +107,10 @@ python-test: tox.ini setup.py python-protos
 	tox
 
 python-clean:
-	find python/ -name '*.pyc' \
-	    | xargs --no-run-if-empty $(RM)
+#	find python -name '__pycache__' -type d -print0 \
+#	    | xargs -0 --no-run-if-empty $(RM) -r
+	find python -name '*.pyc' -type f -print0 \
+	    | xargs -0 --no-run-if-empty $(RM)
 	$(RM) -r \
     .coverage \
     .tox \
@@ -131,6 +125,7 @@ python-clean:
     $(PROTO_PYTHON_PB2) \
     $(PROTO_PYTHON_PB2_GRPC)
 
+# Why are we removing files under revision control ?
 go-clean:
 	$(RM) -r go/*
 
@@ -177,16 +172,5 @@ java-test: java-protos
 java-clean:
 	$(RM) -r java
 	$(RM) -r java_temp
-
-## -----------------------------------------------------------------------
-## -----------------------------------------------------------------------
-clean: python-clean java-clean go-clean
-
-## -----------------------------------------------------------------------
-## -----------------------------------------------------------------------
-sterile : clean
-	$(RM) -r venv_protos
-
-$(if $(DEBUG),$(warning LEAVE))
 
 # [EOF]

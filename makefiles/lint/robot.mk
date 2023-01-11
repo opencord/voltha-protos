@@ -32,8 +32,8 @@ lint : lint-robot
 
 lint-robot: vst_venv
 	source ./$</bin/activate \
-	    && set -u \
-	    && rflint $(LINT_ARGS) $(ROBOT_FILES)
+	    ; set -u \
+	    ; rflint $(LINT_ARGS) $(ROBOT_FILES)
 
 help::
 	@echo "  lint-robot           Syntax check robot sources using rflint"

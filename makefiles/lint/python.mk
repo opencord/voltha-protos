@@ -21,11 +21,12 @@ PYTHON_FILES ?= $(error PYTHON_FILES= is required)
 
 lint : lint-python
 
+# check deps for format and python3 cleanliness
 lint-python: vst_venv
-	-source ./$</bin/activate \
-	    && set -u \
-	    && pylint $(PYTHON_FILES) \
-	    && flake8 --max-line-length=99 --count $(PYTHON_FILES)
+	source ./$</bin/activate \
+	    ; set -u \
+	    ; pylint --py3k $(PYTHON_FILES) \
+	    ; flake8 --max-line-length=99 --count $(PYTHON_FILES)
 
 help::
 	@echo "  lint-python          Syntax check using pylint and flake8"

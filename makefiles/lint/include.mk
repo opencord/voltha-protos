@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2023 Open Networking Foundation
+# Copyright 2017-2022 Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,18 +18,11 @@
 help::
 	@echo
 	@echo "[LINT]"
-	@echo "  lint                       Static code analysis/syntax checking"
-	@echo "    LOCAL_LINT=1             Enable local linting w/o docker & jenkins overhead"
 
-ifdef LOCAL_LINT
-  # include $(MAKEDIR)/lint/json.mk              # venv dependency
-  include $(MAKEDIR)/lint/golang/sca.mk
-  include $(MAKEDIR)/lint/license/include.mk     # exclusions needed
-  # include $(MAKEDIR)/lint/python.mk
-  # include $(MAKEDIR)/lint/robot.mk             # venv dependency
-  # include $(MAKEDIR)/lint/yaml.mk              # venv needed -- alt: yamllint
-endif
-
-include $(MAKEDIR)/lint/shell.mk             # cleanup needed
+include $(MAKEDIR)/lint/json.mk
+include $(MAKEDIR)/lint/python.mk
+include $(MAKEDIR)/lint/robot.mk
+include $(MAKEDIR)/lint/shell.mk
+include $(MAKEDIR)/lint/yaml.mk
 
 # [EOF]

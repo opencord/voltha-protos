@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2017-2022 Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,32 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
-include $(MAKEDIR)/help/go.mk
-include $(MAKEDIR)/help/python.mk
-include $(MAKEDIR)/help/java.mk
-include $(MAKEDIR)/help/clean.mk
+# Parent makefile should include this early so help
+# message will be prefixed by a usage statement.
+help ::
+	@echo "Usage: $(MAKE) [options] [target] ..."
+	@echo
+	@echo '[Virtual Env]'
+	@echo '  venv           Create a python virtual environment'
+	@echo '  venv_protos    Create a python virtual environment'
+	@echo "  $(VENV_NAME)"
+	@echo
+	@echo '[ACTION] - golang, java and python'
+	@echo '  protos'
+	@echo '  build'
+	@echo '  test'
+	@echo
+	@echo '[CLEAN]'
+	@echo '  clean          Remove generated targets'
+	@echo '  sterile        clean + remove virtual env interpreter install'
+	@echo
+	@echo '[HELP]'
+	@echo '  help           Display program help'
+#	@echo '  help-verbose   Display additional targets and help'
+	@echo
+	@echo '[PROTOS: generate]'
+	@echo '  go-protos'
+	@echo '  java-protos'
+	@echo '  python-protos'
 
 # [EOF]

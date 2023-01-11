@@ -15,7 +15,7 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
-JSON_FILES ?= $(error JSON_FILES= is required)
+JSON_FILES ?= $(error JSON_FILES= is rqeuired)
 
 .PHONY: lint-json
 

@@ -23,7 +23,7 @@ lint : lint-shell
 
 lint-shell:
 	shellcheck --version
-	find . \( -name 'staging' -o -name 'vst_venv' -o -name 'vendor' \) -prune \
+	find . \( -name 'staging' -o -name 'vst_venv' \) -prune \
 	    -o -name '*.sh' ! -name 'activate.sh' -print0 \
 	| xargs -0 -n1 shellcheck
 
