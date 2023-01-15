@@ -30,6 +30,7 @@ todo ::
 	@echo "[TODO: voltha-protos]"
 	@echo "  o Cleanup lint complaints so lint target can be enabled by default."
 	@echo "  o Directory go/ is under reivsion control but go-* targets will remove content"
+	@echo "  o Update NO-LINT* targets to auto-enable based on source availability"
 
 $(if $(DEBUG),$(warning LEAVE))
 

@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2023 Open Networking Foundation
+# Copyright 2022 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,30 +14,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# SPDX-FileCopyrightText: 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# SPDX-FileCopyrightText: 2022 Open Networking Foundation (ONF) and the ONF Contributors
 # SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
+---
 
-$(if $(DEBUG),$(warning ENTER))
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
 
-MAKEDIR ?= $(error MAKEDIR= is required)
+rules:
+  document-start: disable
+  line-length:
+    max: 160
 
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
-
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/help/include.mk
-include $(MAKEDIR)/help/variables.mk
-include $(MAKEDIR)/lint/include.mk
-include $(MAKEDIR)/todo.mk
-
-$(if $(DEBUG),$(warning LEAVE))
-
-# [EOF]
+# -----------------------------------------------------------------------
+# .. seealso: https://gerrit.opencord.org/plugins/gitiles/helm-repo-tools/+/refs/heads/master/yamllint.conf
+# -----------------------------------------------------------------------
+#
+# extends: default
+#
+#rules:
+#  empty-lines:
+#    max-end: 1
+#  line-length:
+#    max: 120
+#  braces:
+#    min-spaces-inside: 0
+#    max-spaces-inside: 1
