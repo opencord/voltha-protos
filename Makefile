@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2019-2022 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,22 +15,30 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
+.PHONY: test
 .DEFAULT_GOAL := test
 
+##-------------------##
+##---]  GLOBALS  [---##
+##-------------------##
 TOP         ?= .
 MAKEDIR     ?= $(TOP)/makefiles
+
+export SHELL := bash -e -o pipefail
 
 $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 
 # Makefile for voltha-protos
 default: test
 
+## Library linting
+# NO-LINT-MAKEFILE := true    # cleanup needed
+NO-LINT-SHELL    := true    # cleanup needed
+
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/help/include.mk
-include $(MAKEDIR)/help/variables.mk
+include $(MAKEDIR)/include.mk
 
 # tool containers
 VOLTHA_TOOLS_VERSION ?= 2.4.0
@@ -107,8 +115,8 @@ python-test: tox.ini setup.py python-protos
 	tox
 
 python-clean:
-#	find python -name '__pycache__' -type d -print0 \
-#	    | xargs -0 --no-run-if-empty $(RM) -r
+	find python -name '__pycache__' -type d -print0 \
+	    | xargs -0 --no-run-if-empty $(RM) -r
 	find python -name '*.pyc' -type f -print0 \
 	    | xargs -0 --no-run-if-empty $(RM)
 	$(RM) -r \
@@ -172,5 +180,8 @@ java-test: java-protos
 java-clean:
 	$(RM) -r java
 	$(RM) -r java_temp
+
+# placeholder for library targets
+lint :
 
 # [EOF]

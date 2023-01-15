@@ -6,34 +6,37 @@
 ##-------------------##
 ##---]  GLOBALS  [---##
 ##-------------------##
+xargs-n1-local := $(subst -t,$(null),$(xargs-n1))#   inhibit cmd display
 
 # Gather sources to check
 # TODO: implement deps, only check modified files
-shell-check-find := find . -name '*.sh' -type f -print0
+make-check-find := find . \( -name makefile -o -name '*.mk' \) -type f -print0
 
-# shell-check    := $(env-clean) pylint
-shell-check      := shellcheck
+make-check    := $(env-clean) $(MAKE)
+make-check-args += --dry-run
+make-check-args += --keep-going
+make-check-args += --warn-undefined-variables
+make-check-args += --no-print-directory
 
-shell-check-args += -a
+# Quiet internal undef vars
+make-check-args += DEBUG=
 
 ##-------------------##
 ##---]  TARGETS  [---##
 ##-------------------##
-ifndef NO-LINT-SHELL
-  lint : lint-shell
+ifndef NO-LINT-MAKEFILE
+  lint : lint-make
 endif
 
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
-lint-shell:
-	$(shell-check) -V
-	@echo
-	$(HIDE)$(env-clean) $(shell-check-find) \
-	    | $(xargs-n1) $(shell-check) $(shell-check-args)
+lint-make:
+	$(HIDE)$(env-clean) $(make-check-find) \
+	    | $(xargs-n1-local) $(make-check) $(make-check-args)
 
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
 help ::
-	@echo '  lint-shell                    Syntax check shell sources'
+	@echo '  lint-make                     Syntax check [Mm]akefile and *.mk'
 
 # [EOF]

@@ -15,14 +15,24 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
+$(if $(DEBUG),$(warning ENTER))
+
+##-------------------##
+##---]  GLOBALS  [---##
+##-------------------##
 null         :=#
 space        :=$(null) $(null)
 dot          :=.
+
 HIDE         ?=@
 
-# use bash for pusdh/popd and quick failures.
-# virtual env(s) activate has undefined vars so no -u
-#   ^---+ verify this is still true
-export SHELL := bash -e -o pipefail
+env-clean   = /usr/bin/env --ignore-environment
+xargs-n1    := xargs -0 -t -n1 --no-run-if-empty
+
+have-shell-bash := $(filter bash,$(subst /,$(space),$(SHELL)))
+$(if $(have-shell-bash),$(null),\
+  $(eval export SHELL := /bin/bash -euo pipefail))
+
+$(if $(DEBUG),$(warning LEAVE))
 
 # [EOF]
