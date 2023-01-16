@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf01aff_f1f05aae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-01-16T00:04:43Z",
+      "side": 1,
+      "message": "Update library linting targets for the repository.\nBump VERSION file for a release build.",
+      "revId": "43416a82a6d7d068510e598dcb132a7401eecd92",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
