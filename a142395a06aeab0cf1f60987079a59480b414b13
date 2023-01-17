@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67832806_fe0d96d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-01-17T16:43:33Z",
+      "side": 1,
+      "message": "5.3.7 was a duplicate, bump to 5.3.8 for release",
+      "revId": "a142395a06aeab0cf1f60987079a59480b414b13",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
