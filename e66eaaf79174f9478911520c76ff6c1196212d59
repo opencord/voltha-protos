@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0719e24d_a0237b49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-01-17T15:58:03Z",
+      "side": 1,
+      "message": "voltha-proto unit testing and license check passsed.\nMerge to trigger a release job.",
+      "revId": "e66eaaf79174f9478911520c76ff6c1196212d59",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
