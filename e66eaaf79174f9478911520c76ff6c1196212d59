@@ -16,6 +16,23 @@
       "message": "voltha-proto unit testing and license check passsed.\nMerge to trigger a release job.",
       "revId": "e66eaaf79174f9478911520c76ff6c1196212d59",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "344b008c_8545af6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000947
+      },
+      "writtenOn": "2023-01-18T23:20:45Z",
+      "side": 1,
+      "message": "Not a blocker in my opinion, but you forgot to update the old copyright in some copied files:\nlint/makefile.mk\nlint/python.mk\nlint/shell.mk\nlint/yaml/yamllint\nlint/yaml/python.mk\nlint/yaml/todo\nlint/yaml/yamllint.helm\nlint/yaml/yamllint.mk\n\nThey all seem to show the \u00272022\u0027 date.   Since they\u0027re all new code in 2023 (even if copied), 2023 is more accurate and gives us an extra year if nobody ever updates them again :)\n",
+      "revId": "e66eaaf79174f9478911520c76ff6c1196212d59",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
