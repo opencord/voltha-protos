@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4877b540_4e277f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-01-19T16:36:01Z",
+      "side": 1,
+      "message": "Update lingering copyright notices per change_id:33731",
+      "revId": "ff9fe005a622d8a9950a1035c0d3e82cc3ca8bb8",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
