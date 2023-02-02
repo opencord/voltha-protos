@@ -230,6 +230,13 @@ service Openolt {
           body: "*"
         };
     }
+
+    rpc GetOltPonRxPower(PonRxPowerRequest) returns (PonRxPowerResponse) {
+        option (google.api.http) = {
+          post: "/v1/GetOltPonRxPower"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -792,6 +799,15 @@ message PonRxPowerData {
     string status = 3;
     RssiMeasurementFailReason fail_reason = 4;
     double rx_power_mean_dbm = 5;
+}
+
+message PonRxPowerRequest {
+    fixed32 int_id = 1;
+    fixed32 onu_id = 2;
+}
+
+message PonRxPowerResponse {
+    repeated PonRxPowerData rx_power_values = 1;
 }
 
 message Empty {}
