@@ -69,6 +69,23 @@
       "parentUuid": "1b3712a2_b7f7f143",
       "revId": "33a895aea0960cef58a207ff44e08d545dd41c1f",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f11f41_d327e026",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000671
+      },
+      "writtenOn": "2023-02-14T15:51:39Z",
+      "side": 1,
+      "message": "Sounds good - please rebase and increase version to 5.4.1. After this, we could merge this patch to give you the chance to update the voltctl and the openonu adapter patch with the new voltha-protos.",
+      "revId": "33a895aea0960cef58a207ff44e08d545dd41c1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
