@@ -51,6 +51,24 @@
       "message": "Looks good so far. Have you been able to test it with a local version yet? Please rebase and increment the minor version (major.minor.patch) in the VERSION file.",
       "revId": "33a895aea0960cef58a207ff44e08d545dd41c1f",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23db8d57_3a435a42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000959
+      },
+      "writtenOn": "2023-02-14T15:42:15Z",
+      "side": 1,
+      "message": "Yes. These changes are tested with the local version. Works fine.",
+      "parentUuid": "1b3712a2_b7f7f143",
+      "revId": "33a895aea0960cef58a207ff44e08d545dd41c1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
