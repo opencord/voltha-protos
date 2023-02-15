@@ -67,6 +67,23 @@
       "message": "recheck",
       "revId": "6230f4963f1c7f3c67f89456ed3a038f24dcebef",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2ab57e_c9111eaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000959
+      },
+      "writtenOn": "2023-02-15T06:40:41Z",
+      "side": 1,
+      "message": "Accidentally removed reviewers. Added them back. ",
+      "revId": "6230f4963f1c7f3c67f89456ed3a038f24dcebef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
