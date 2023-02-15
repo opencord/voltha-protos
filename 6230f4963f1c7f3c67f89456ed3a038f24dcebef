@@ -33,6 +33,23 @@
       "message": "\u003e Patch Set 4:\n\u003e \n\u003e Build Failed \n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_unit-test/559/ : FAILURE\n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_licensed/561/ : SUCCESS\n\nrecheck",
       "revId": "6230f4963f1c7f3c67f89456ed3a038f24dcebef",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94230878_b9e6ac1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-02-15T06:38:57Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "6230f4963f1c7f3c67f89456ed3a038f24dcebef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
