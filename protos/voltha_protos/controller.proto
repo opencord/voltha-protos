@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/controller";
+option java_package = "org.opencord.voltha.controller";
+
+/*
+ * Proto definitions used by controller to post events on the bus
+ * 
+ */
+
+package controller;
+import "google/protobuf/timestamp.proto";
+
+/*
+ * OnuEvent is the message sent out when the uni port of an ONU is activated or deactivated
+ */
+
+message OnuEvent {
+    // timestamp indicate the time
+    google.protobuf.Timestamp raised_ts = 1;
+    //"activated" and "deactivated" are the only string literals that are supported values of status.
+    //string instead of an enum has been used to retain backward compatibility with ONOS.
+    string status = 2;
+    // serial_no indicate the onu serial no
+    string serial_no = 3;
+    // port_number indicate the port
+    uint32 port_number = 4;
+    //device_id indicate the south bound device id of the olt device
+    string device_id = 5;
+    // olt_serial_no indicate the olt serial number
+    string olt_serial_no = 6;
+}
