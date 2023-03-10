@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/voltha-protos/v5/go/controller";
+option java_package = "org.opencord.voltha.controller";
+
+package controller;
+
+/*
+ * Describes the events specific to onu
+ */
+message OnuEvent {
+    // timestamp indicate the time 
+    string timestamp = 1;
+    // status indicate the status of port up/down Ind
+    string status = 2;
+    // serial_no indicate the onu serial no
+    string serial_no = 3;
+    // port_number indicate the port
+    uint32 port_number = 4;
+    //device_id indicate the device id
+    string device_id = 5;
+    // olt_serial_no indicate the olt serial number
+    string olt_serial_no = 6;
+}
