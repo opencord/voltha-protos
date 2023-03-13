@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b09f02_9761ad93",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-13T13:26:12Z",
+      "side": 1,
+      "message": "The Idea is here to get the current state of the object from the device and update the voltha incase any of the inidcations are missed during restart of the olt adapter.",
+      "revId": "1092f4a1ac0d8f3d5c0525a47494364fd9d6ce0c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
