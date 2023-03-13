@@ -230,6 +230,17 @@ service Openolt {
           body: "*"
         };
     }
+
+    /* 
+     * GetObjects gets takes in type of the object and request details as argument.
+     * Returns the Object from the device.
+     */
+    rpc GetObject(ObjectDataRequest) returns (ObjectDataResponse) {
+        option (google.api.http) = {
+          post: "/v1/GetObject"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -794,4 +805,54 @@ message PonRxPowerData {
     double rx_power_mean_dbm = 5;
 }
 
+enum AlarmState {
+    OFF   = 0;
+    ON    = 1;
+}
+
+/*
+ * contains the onu id, state of the onu and the information about the alarms on the onu.
+ * As of now only few alarms are added, any further information needed can be added to the structure.
+ */
+message OnuObjectData {
+    fixed32        onu_id  = 1;
+    enum OnuObjState {
+        NOT_CONFIGURED = 0;
+        ACTIVE         = 1;
+        INACTIVE       = 2;
+    }
+    OnuObjState   state = 2;
+    AlarmState    losi = 3;
+    AlarmState    lofi = 4;
+}
+
+/*
+ * IntfObjectData has the interface Id and if there are any alarms active on that interface.
+ * Any further information needed from the interface object can be added to the structure.
+ */
+message IntfObjectData {
+    fixed32      intf_id = 1;
+    AlarmState   los = 2;
+}
+
+/*
+ * ObjectDataResponse would have one of the responses of the requested object
+ */
+message ObjectDataResponse {
+    oneof data {
+        OnuObjectData   onu_object_data = 2;
+        IntfObjectData  intf_object_data = 3;
+    }
+}
+
+/*
+ * Object data request would contain request for one of the objects ONU/INTERFACE/SCHEDULERS/QUEUES
+ * As of now only ONU and INTERFACE objects are defined.
+ */
+message ObjectDataRequest {
+    oneof data {
+        Onu            onu_object_data = 1;
+        Interface      int_object_data = 2;
+    }
+}
 message Empty {}
