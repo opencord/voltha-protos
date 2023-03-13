@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f523e88_17117bb4",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-13T11:00:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb1786ad_75debb51",
+      "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9d539f2_5e57226e",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-10T08:40:25Z",
       "side": 1,
       "message": "Can we have some more description here which would help readers/users to understand what this Event is and where/how/when it could/should be used",
+      "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a381fa39_6d5ec162",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-13T11:00:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d539f2_5e57226e",
       "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c123566c_24b53814",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-13T11:00:14Z",
+      "side": 1,
+      "message": "Changed to timestamp",
+      "parentUuid": "49149b5e_9b8a97f4",
+      "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbc66873_c25eef27",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 2
@@ -71,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ec416de_a7727e3f",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-13T11:00:14Z",
+      "side": 1,
+      "message": "Keeping it according to onos, added commnet. eventually will move to enum",
+      "parentUuid": "dbc66873_c25eef27",
+      "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ca4f008_fb1e93a0",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 2
@@ -82,6 +154,24 @@
       "writtenOn": "2023-03-10T08:40:25Z",
       "side": 1,
       "message": "Which device_id is this? The logical device id at the controller or the device id at voltha?",
+      "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30bedd6_943cba90",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-13T11:00:14Z",
+      "side": 1,
+      "message": "sb voltha device id.",
+      "parentUuid": "7ca4f008_fb1e93a0",
       "revId": "b52f2e6917be5ed855149354cd4e581f4ef6accb",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
