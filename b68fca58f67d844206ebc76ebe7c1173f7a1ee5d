@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b8b489e_c1639aa7",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:36:57Z",
+      "side": 1,
+      "message": "The line \"Describes... state of the uni port of the ONU\" is redundant... Maybe we don\u0027t need it... The comment in line 16 should be sufficient... What do you think?",
+      "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f10c97e_9fbccc97",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:36:57Z",
+      "side": 1,
+      "message": "deactivated ... typo",
+      "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea351661_82b48d46",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:36:57Z",
+      "side": 1,
+      "message": "Can we write it as\n\n\"activated\" and \"deactivated\" are the only string literals that are supported values of status. string instead of an enum has been used to retain backward compatibility with ONOS.",
+      "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
