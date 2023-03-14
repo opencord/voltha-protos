@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bca75685_e9bcf67a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:49:20Z",
+      "side": 1,
+      "message": "VERSION file also needs an update",
+      "revId": "43815b5a20dbce89a1eb8de4923fc7aafd614167",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "befe718e_fe31de36",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:49:20Z",
+      "side": 1,
+      "message": "\"contains the onu id, state of the onu and the information about the alarms on the onu\"",
+      "revId": "43815b5a20dbce89a1eb8de4923fc7aafd614167",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de5852a_f620cabc",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:49:20Z",
+      "side": 1,
+      "message": "OnuObjState is not used anywhere",
+      "revId": "43815b5a20dbce89a1eb8de4923fc7aafd614167",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dafd56f4_0f4d203b",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:49:20Z",
+      "side": 1,
+      "message": "IntfObjectData has the interface Id and if there are any alarms active on that interface",
+      "revId": "43815b5a20dbce89a1eb8de4923fc7aafd614167",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67bdf31a_10bd9c4d",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:49:20Z",
+      "side": 1,
+      "message": "Please remove the trailing spaces",
+      "revId": "43815b5a20dbce89a1eb8de4923fc7aafd614167",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396deef5_3bfaf286",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-14T14:49:20Z",
+      "side": 1,
+      "message": "onu_object_data... typo",
+      "revId": "43815b5a20dbce89a1eb8de4923fc7aafd614167",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
