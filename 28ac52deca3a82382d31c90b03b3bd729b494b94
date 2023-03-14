@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe636106_770dd258",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-14T08:53:44Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "86722ad3_c38a4d10",
+      "revId": "28ac52deca3a82382d31c90b03b3bd729b494b94",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "258893c7_5847c4f0",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-13T11:15:26Z",
       "side": 1,
       "message": "The sentence \"Other components...\" is implicit and need not be mentioned",
+      "revId": "28ac52deca3a82382d31c90b03b3bd729b494b94",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc107dd_40e42671",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-14T08:53:44Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "258893c7_5847c4f0",
       "revId": "28ac52deca3a82382d31c90b03b3bd729b494b94",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4883fff_58b34822",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-14T08:53:44Z",
+      "side": 1,
+      "message": "Changed accordlingly",
+      "parentUuid": "b9156129_cb0e581d",
+      "revId": "28ac52deca3a82382d31c90b03b3bd729b494b94",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df598178_12a18a0f",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 3
@@ -65,6 +119,24 @@
       "writtenOn": "2023-03-13T11:15:26Z",
       "side": 1,
       "message": "Sentence is incomplete... how?",
+      "revId": "28ac52deca3a82382d31c90b03b3bd729b494b94",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e1171d5_77861a01",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-14T08:53:44Z",
+      "side": 1,
+      "message": "corrected",
+      "parentUuid": "df598178_12a18a0f",
       "revId": "28ac52deca3a82382d31c90b03b3bd729b494b94",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
