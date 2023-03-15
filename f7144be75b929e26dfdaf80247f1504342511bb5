@@ -16,6 +16,24 @@
       "message": "typo -- \" missing before activated",
       "revId": "f7144be75b929e26dfdaf80247f1504342511bb5",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "756325d8_fa4db515",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2023-03-15T12:28:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63f54816_e67bcf4f",
+      "revId": "f7144be75b929e26dfdaf80247f1504342511bb5",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
