@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78687850_4468eaa4",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-15T07:08:17Z",
+      "side": 1,
+      "message": "yes, line 16 should be fine,",
+      "parentUuid": "1b8b489e_c1639aa7",
+      "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f10c97e_9fbccc97",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 5
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0acefbf2_d35080ce",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-15T07:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f10c97e_9fbccc97",
+      "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea351661_82b48d46",
         "filename": "protos/voltha_protos/controller.proto",
         "patchSetId": 5
@@ -48,6 +84,24 @@
       "writtenOn": "2023-03-14T14:36:57Z",
       "side": 1,
       "message": "Can we write it as\n\n\"activated\" and \"deactivated\" are the only string literals that are supported values of status. string instead of an enum has been used to retain backward compatibility with ONOS.",
+      "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f8774f5_1466a9f0",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-15T07:08:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea351661_82b48d46",
       "revId": "b68fca58f67d844206ebc76ebe7c1173f7a1ee5d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
