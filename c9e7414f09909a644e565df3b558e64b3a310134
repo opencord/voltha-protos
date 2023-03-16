@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e19e78c_a0c2062f",
+        "filename": "protos/voltha_protos/controller.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2023-03-16T12:50:21Z",
+      "side": 1,
+      "message": "Sorry if it\u0027s discussed before but I wonder the scenario here! There is already DeviceChangeEvents defined for this kind of events. Why do we need to create another one here.\nI\u0027d also be pleased if you create a Jira issue here and attach add the jira key to the patch.",
+      "revId": "c9e7414f09909a644e565df3b558e64b3a310134",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
