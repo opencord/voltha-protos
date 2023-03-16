@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e79e66fd_11167b08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2023-03-16T15:54:52Z",
+      "side": 1,
+      "message": "Hi Abhilash, it would be nice if you can add more info into the VOL-4957. I understand VGC will push this event but I don\u0027t understand the reason why we need a new device event. The DeviceEvent in the events.proto file is pretty extendable via the Context map and even we can add new fields to the DeviceEvent if needed.",
+      "revId": "e876e3bbae818f86c0e63a0cf2c5dc7f2449fd4e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
