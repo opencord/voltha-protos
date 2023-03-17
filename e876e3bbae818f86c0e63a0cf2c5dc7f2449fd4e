@@ -34,6 +34,24 @@
       "parentUuid": "e79e66fd_11167b08",
       "revId": "e876e3bbae818f86c0e63a0cf2c5dc7f2449fd4e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dbd97e8_65c68343",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2023-03-17T10:54:23Z",
+      "side": 1,
+      "message": "Thanks. I understand the underlying motivation, but I have doubts whether this patch will fulfill its intended purpose. I cannot remember an event called ONUEvent in ONOS. Are you referring to an event mentioned in this link https://github.com/opencord/olt/blob/master/api/src/main/java/org/opencord/olt/AccessDeviceEvent.java, or have I completely missed?",
+      "parentUuid": "232a4c6a_a510e44c",
+      "revId": "e876e3bbae818f86c0e63a0cf2c5dc7f2449fd4e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
