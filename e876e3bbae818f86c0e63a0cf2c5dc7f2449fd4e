@@ -52,6 +52,24 @@
       "parentUuid": "232a4c6a_a510e44c",
       "revId": "e876e3bbae818f86c0e63a0cf2c5dc7f2449fd4e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af317b7_b25ad05a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-03-17T11:15:06Z",
+      "side": 1,
+      "message": "Hi Serkant, the actual impl is here https://github.com/opencord/kafka-onos/blob/89c55e0d94fbd4f82a1a0b702520d77f3fca4819/src/main/java/org/opencord/kafka/integrations/AccessDeviceKafkaIntegration.java#L103",
+      "parentUuid": "7dbd97e8_65c68343",
+      "revId": "e876e3bbae818f86c0e63a0cf2c5dc7f2449fd4e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
