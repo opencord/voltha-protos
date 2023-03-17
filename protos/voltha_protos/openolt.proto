@@ -820,6 +820,12 @@ message OnuObjectData {
         NOT_CONFIGURED = 0;
         ACTIVE         = 1;
         INACTIVE       = 2;
+        DISABLED       = 3;
+        /*
+         * There are other states in BAL for ONU, which voltha is not interested as of now.
+         * UNKNOWN is to be filled for the rest of the states other than NOT_CONFIGURED/ACTIVE/INACTIVE/DISABLED
+         */
+        UNKNOWN        = 4;
     }
     OnuObjState   state = 2;
     AlarmState    losi = 3;
