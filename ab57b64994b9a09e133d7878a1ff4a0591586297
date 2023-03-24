@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "870147dc_98174f01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2023-03-24T16:16:35Z",
+      "side": 1,
+      "message": "There is still a discussion on this at https://gerrit.opencord.org/c/openolt/+/34036 . Let\u0027s discuss this in TST and proceed accordingly.",
+      "revId": "ab57b64994b9a09e133d7878a1ff4a0591586297",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
