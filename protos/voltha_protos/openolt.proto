@@ -232,12 +232,23 @@ service Openolt {
     }
 
     /* 
-     * GetObjects gets takes in type of the object and request details as argument.
-     * Returns the Object from the device.
+     * GetOnuInfo takes Onu id, serialnumber, and pon interface as argument from the onu structure.
+     * Returns the Onu info from the device.
      */
-    rpc GetObject(ObjectDataRequest) returns (ObjectDataResponse) {
+    rpc GetOnuInfo(Onu) returns (OnuInfo) {
         option (google.api.http) = {
-          post: "/v1/GetObject"
+          post: "/v1/GetOnuInfo"
+          body: "*"
+        };
+    }
+
+    /*
+     * GetInterfaceInfo takes the intf id as argument.
+     * Returns the interface information from the device.
+     */
+    rpc GetInterfaceInfo(Onu) returns (IntfInfo) {
+        option (google.api.http) = {
+          post: "/v1/GetInterfaceInfo"
           body: "*"
         };
     }
@@ -814,12 +825,18 @@ enum AlarmState {
  * contains the onu id, state of the onu and the information about the alarms on the onu.
  * As of now only few alarms are added, any further information needed can be added to the structure.
  */
-message OnuObjectData {
+message OnuInfo {
     fixed32        onu_id  = 1;
     enum OnuObjState {
-        NOT_CONFIGURED = 0;
-        ACTIVE         = 1;
-        INACTIVE       = 2;
+        /*
+         * There are other states in BAL for ONU, which voltha is not interested as of now.
+         * UNKNOWN is to be filled for the rest of the states other than NOT_CONFIGURED/ACTIVE/INACTIVE/DISABLED
+         */
+        UNKNOWN        = 0;
+        NOT_CONFIGURED = 1;
+        ACTIVE         = 2;
+        INACTIVE       = 3;
+        DISABLED       = 4;
     }
     OnuObjState   state = 2;
     AlarmState    losi = 3;
@@ -827,32 +844,12 @@ message OnuObjectData {
 }
 
 /*
- * IntfObjectData has the interface Id and if there are any alarms active on that interface.
+ * IntfInfo has the interface Id and if there are any alarms active on that interface.
  * Any further information needed from the interface object can be added to the structure.
  */
-message IntfObjectData {
+message IntfInfo {
     fixed32      intf_id = 1;
     AlarmState   los = 2;
 }
 
-/*
- * ObjectDataResponse would have one of the responses of the requested object
- */
-message ObjectDataResponse {
-    oneof data {
-        OnuObjectData   onu_object_data = 2;
-        IntfObjectData  intf_object_data = 3;
-    }
-}
-
-/*
- * Object data request would contain request for one of the objects ONU/INTERFACE/SCHEDULERS/QUEUES
- * As of now only ONU and INTERFACE objects are defined.
- */
-message ObjectDataRequest {
-    oneof data {
-        Onu            onu_object_data = 1;
-        Interface      int_object_data = 2;
-    }
-}
 message Empty {}
