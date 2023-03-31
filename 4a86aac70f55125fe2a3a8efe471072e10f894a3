@@ -56,6 +56,23 @@
       },
       "revId": "4a86aac70f55125fe2a3a8efe471072e10f894a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb152571_39da047a",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2023-03-31T22:03:17Z",
+      "side": 1,
+      "message": "What about loam for GPON and lob, lopc_mic_error and lopc_miss for XGSPON?",
+      "revId": "4a86aac70f55125fe2a3a8efe471072e10f894a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
