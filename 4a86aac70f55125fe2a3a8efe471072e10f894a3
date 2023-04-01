@@ -73,6 +73,23 @@
       "message": "What about loam for GPON and lob, lopc_mic_error and lopc_miss for XGSPON?",
       "revId": "4a86aac70f55125fe2a3a8efe471072e10f894a3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99f31b06_0f8251eb",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2023-04-01T11:41:30Z",
+      "side": 1,
+      "message": "As far as I understand from the agent code, we intend to get only PON interface data. If so, we need to change the contract name to PonIntfInfo. If not, we need to add intf_type here (we don\u0027t have alarm state for NNI objects but we have port and link state information). We can also add PON state info (active_working, inactive etc) here if this will be useful. The comment implies that this structure will include useful info as needed. So, it may be wise to design it upfront to include NNI (and later LAG) interface types.",
+      "revId": "4a86aac70f55125fe2a3a8efe471072e10f894a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
