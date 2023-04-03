@@ -95,6 +95,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e75f457c_3b13550c",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2023-04-03T11:16:47Z",
+      "side": 1,
+      "message": "Ok. I understand that we will omit XGSPON OnuAlarm fields for now. However, for GPON, loam is still needed to be included here for the sake of completeness. This is because, BAL sends the state of these three alarms together in a single structure (i.e. bcmolt_onu_gpon_alarm_data) and the alarm processing logic in the control (or service) plane will probably want to see if loam is ON or OFF.",
+      "parentUuid": "c7621a4f_481b3462",
+      "revId": "4a86aac70f55125fe2a3a8efe471072e10f894a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99f31b06_0f8251eb",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 1
