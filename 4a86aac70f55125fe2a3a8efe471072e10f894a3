@@ -137,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87e25d1a_b93133e7",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2023-04-11T09:32:12Z",
+      "side": 1,
+      "message": "Added laomi.",
+      "parentUuid": "e75f457c_3b13550c",
+      "revId": "4a86aac70f55125fe2a3a8efe471072e10f894a3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99f31b06_0f8251eb",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 1
