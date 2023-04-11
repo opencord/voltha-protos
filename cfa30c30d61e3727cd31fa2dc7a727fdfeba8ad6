@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "cfa30c30d61e3727cd31fa2dc7a727fdfeba8ad6",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4749787_24e7851d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2023-04-11T17:29:30Z",
+      "side": 1,
+      "message": "Build fails because of a timeout when creating the zip. Going to open a task for that and approving the patch.",
+      "revId": "cfa30c30d61e3727cd31fa2dc7a727fdfeba8ad6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
