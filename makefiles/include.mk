@@ -35,6 +35,7 @@ NO-LINT-SHELL    := true    # cleanup needed
 include $(MAKEDIR)/consts.mk
 include $(MAKEDIR)/help/include.mk
 include $(MAKEDIR)/help/variables.mk
+include $(MAKEDIR)/virtualenv.mk#        # lint-{jjb,python} depends on venv
 include $(MAKEDIR)/lint/include.mk
 include $(MAKEDIR)/todo.mk
 

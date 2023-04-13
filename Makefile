@@ -24,7 +24,7 @@
 TOP         ?= .
 MAKEDIR     ?= $(TOP)/makefiles
 
-export SHELL := bash -e -o pipefail
+# export SHELL := bash -e -o pipefail
 
 $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 
@@ -70,6 +70,15 @@ PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.
 # Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
 .PHONY: voltha.pb
 
+##----------------##
+##---]  DEPS  [---##
+##----------------##
+infra-deps := $(null)
+infra-deps += Makefile
+infra-deps += $(venv-activate-script)
+
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
 print:
 	@echo "Proto files: $(PROTO_FILES)"
 	@echo "Python PB2 files: $(PROTO_PYTHON_PB2)"
@@ -83,22 +92,20 @@ build: protos python-build go-protos java-protos
 
 test: python-test go-test java-test
 
-clean: python-clean java-clean go-clean
+clean :: python-clean java-clean go-clean
 
-sterile: clean
-	$(RM) -r venv_protos
+sterile :: clean
+	$(RM) -r dist
 
-# Python targets
-python-protos: $(PROTO_PYTHON_PB2)
+## -----------------------------------------------------------------------
+## Python targets
+## -----------------------------------------------------------------------
+python-protos: $(infra-deps) $(PROTO_PYTHON_PB2)
 
-venv_protos:
-	virtualenv -p python3 $@;\
-	source ./$@/bin/activate ; set -u ;\
-	pip install grpcio==1.39.0 protobuf==3.17.3 grpcio-tools==1.39.0 googleapis-common-protos==1.52.0
-
-$(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto Makefile venv_protos
-	source ./venv_protos/bin/activate ; set -u ;\
-	python -m grpc_tools.protoc \
+$(PROTO_PYTHON_PB2): $(infra-deps)
+$(PROTO_PYTHON_DEST_DIR)/%_pb2.py: protos/voltha_protos/%.proto
+	$(activate) \
+    && python -m grpc_tools.protoc \
     -I protos \
     --python_out=python \
     --grpc_python_out=python \
@@ -128,12 +135,14 @@ python-clean:
     python/__pycache__ \
     python/test/__pycache__ \
     python/voltha_protos.egg-info \
-    venv_protos \
     $(PROTO_PYTHON_DEST_DIR)/*.desc \
     $(PROTO_PYTHON_PB2) \
     $(PROTO_PYTHON_PB2_GRPC)
 
-# Why are we removing files under revision control ?
+## -----------------------------------------------------------------------
+## Golang targets
+## -----------------------------------------------------------------------
+# Why are we removing files under revision control (go/*) ?
 go-clean:
 	$(RM) -r go/*
 
@@ -158,7 +167,9 @@ go-test:
 	test/test-go-proto-consistency.sh
 	${GO} mod verify
 
-# Java targets
+## -----------------------------------------------------------------------
+## Java targets
+## -----------------------------------------------------------------------
 java-protos: voltha.pb
 	@echo "Creating java files"
 	@mkdir -p java_temp/src/main/java
