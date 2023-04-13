@@ -15,25 +15,19 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
+$(if $(DEBUG),$(warning ENTER))
+
+##-------------------##
+##---]  GLOBALS  [---##
+##-------------------##
+
+## -----------------------------------------------------------------------
+## Intent: Display command usage
+## -----------------------------------------------------------------------
 help::
-	@echo
-	@echo "[LINT]"
+	@echo '  lint-golang           Syntax check golang sources'
+	@echo '    FIX=1               In-place file update'
 
-ONF_MAKE := $(MAKEDIR)
-
-include $(ONF_MAKE)/lint/golang/include.mk
-include $(ONF_MAKE)/lint/json.mk
-include $(ONF_MAKE)/lint/makefile.mk
-include $(ONF_MAKE)/lint/python.mk
-include $(ONF_MAKE)/lint/robot.mk
-include $(ONF_MAKE)/lint/shell.mk
-
-ifndef NO-LINT-YAML
-  ifdef YAML_FILES
-    include $(ONF_MAKE)/lint/yaml/python.mk
-  else
-    include $(ONF_MAKE)/lint/yaml/yamllint.mk
-  endif
-endif
+include $(MAKEDIR)/lint/golang/sca.mk
 
 # [EOF]

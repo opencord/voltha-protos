@@ -76,6 +76,15 @@ PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.
 # Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
 .PHONY: voltha.pb
 
+##----------------##
+##---]  DEPS  [---##
+##----------------##
+infra-deps := $(null)
+infra-deps += Makefile
+infra-deps += $(venv-activate-script)
+
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
 print:
 	@echo "Proto files: $(PROTO_FILES)"
 	@echo "Python PB2 files: $(PROTO_PYTHON_PB2)"
@@ -94,8 +103,10 @@ clean :: python-clean java-clean go-clean
 sterile :: clean
 	$(RM) -r java_temp
 
-# Python targets
-python-protos: $(PROTO_PYTHON_PB2)
+## -----------------------------------------------------------------------
+## Python targets
+## -----------------------------------------------------------------------
+python-protos: $(infra-deps) $(PROTO_PYTHON_PB2)
 
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
@@ -255,7 +266,7 @@ java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter
 java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter_service
 
 mkdir-args += -vp
-# mkdir-args += --mode=0777
+# mkdir-args += --mode=0777#     # Only a problem for local docker builds
 
 java-protos: voltha.pb
 

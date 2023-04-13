@@ -39,10 +39,10 @@ include $(MAKEDIR)/etc/include.mk
 include $(MAKEDIR)/virtualenv.mk
 
 include $(MAKEDIR)/help/variables.mk
+include $(MAKEDIR)/lint/include.mk
 include $(MAKEDIR)/todo.mk
 
 include $(MAKEDIR)/docker/include.mk
-include $(MAKEDIR)/lint/include.mk
 
 $(if $(DEBUG),$(warning LEAVE))
 
