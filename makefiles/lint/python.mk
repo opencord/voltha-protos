@@ -34,6 +34,6 @@ lint-python:
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
 help ::
-	@echo '  lint-python                   Syntax check python sources'
+	@echo '  lint-python                  Syntax check python sources'
 
 # [EOF]

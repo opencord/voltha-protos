@@ -18,29 +18,28 @@
 # Parent makefile should include this early so help
 # message will be prefixed by a usage statement.
 help ::
-	@echo "Usage: $(MAKE) [options] [target] ..."
 	@echo
-	@echo '[Virtual Env]'
-	@echo '  venv           Create a python virtual environment'
-	@echo '  venv_protos    Create a python virtual environment'
-	@echo "  $(VENV_NAME)"
+	@echo "Usage: $(MAKE) [options] [target] ..."
+
 	@echo
 	@echo '[ACTION] - golang, java and python'
 	@echo '  protos'
 	@echo '  build'
 	@echo '  test'
-	@echo
-	@echo '[CLEAN]'
-	@echo '  clean          Remove generated targets'
-	@echo '  sterile        clean + remove virtual env interpreter install'
+
 	@echo
 	@echo '[HELP]'
-	@echo '  help           Display program help'
+	@echo '  help                         Display program help'
 #	@echo '  help-verbose   Display additional targets and help'
+
 	@echo
 	@echo '[PROTOS: generate]'
 	@echo '  go-protos'
 	@echo '  java-protos'
 	@echo '  python-protos'
+
+	@echo
+	@echo '[MISC]'
+	@echo '  repair                       Recover from a common fatal build condition'
 
 # [EOF]

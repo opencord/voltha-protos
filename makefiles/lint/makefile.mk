@@ -37,6 +37,6 @@ lint-make:
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
 help ::
-	@echo '  lint-make                     Syntax check [Mm]akefile and *.mk'
+	@echo '  lint-make                    Syntax check [Mm]akefile and *.mk'
 
 # [EOF]

@@ -103,3 +103,6 @@ To use the libraries, import protos with the root path github.com/opencord/volth
 
 `make test` will run tests for all languages.
 
+## Miscelaneous
+
+[setup.py](https://gerrit.opencord.org/plugins/gitiles/voltha-protos/+/refs/heads/master/setup.py) and [requirements.txt](https://gerrit.opencord.org/plugins/gitiles/voltha-protos/+/refs/heads/master/requirements.txt) versions must be kept in sync.
