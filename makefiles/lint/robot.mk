@@ -38,6 +38,6 @@ lint-robot: vst_venv
 	    ; rflint $(LINT_ARGS) $(ROBOT_FILES)
 
 help::
-	@echo "  lint-robot           Syntax check robot sources using rflint"
+	@echo "  lint-robot                   Syntax check robot sources using rflint"
 
 # [EOF]

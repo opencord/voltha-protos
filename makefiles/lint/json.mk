@@ -32,6 +32,6 @@ lint-json: vst_venv
 	done
 
 help::
-	@echo "  lint-json            Syntax check json sources"
+	@echo "  lint-json                    Syntax check json sources"
 
 # [EOF]

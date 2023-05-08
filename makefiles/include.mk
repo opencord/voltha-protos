@@ -32,11 +32,16 @@ NO-LINT-SHELL    := true    # cleanup needed
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
-include $(MAKEDIR)/consts.mk
 include $(MAKEDIR)/help/include.mk
+
+include $(MAKEDIR)/consts.mk
+include $(MAKEDIR)/virtualenv.mk
+
 include $(MAKEDIR)/help/variables.mk
-include $(MAKEDIR)/lint/include.mk
 include $(MAKEDIR)/todo.mk
+
+include $(MAKEDIR)/docker/include.mk
+include $(MAKEDIR)/lint/include.mk
 
 $(if $(DEBUG),$(warning LEAVE))
 

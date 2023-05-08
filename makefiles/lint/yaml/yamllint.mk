@@ -42,7 +42,7 @@ lint lint-yaml:
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
 help::
-	@echo "  lint-yaml                     Syntax check yaml sources"
+	@echo "  lint-yaml                    Syntax check yaml sources"
 
 $(if $(DEBUG),$(warning ENTER))
 

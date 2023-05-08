@@ -23,7 +23,7 @@ $(if $(DEBUG),$(warning ENTER))
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
 help::
-	@echo "  todo                       Display future enhancement list"
+	@echo "  todo                         Display future enhancement list"
 
 todo ::
 	@echo
