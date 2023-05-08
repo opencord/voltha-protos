@@ -34,6 +34,6 @@ lint-shell:
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
 help ::
-	@echo '  lint-shell                    Syntax check shell sources'
+	@echo '  lint-shell                   Syntax check shell sources'
 
 # [EOF]
