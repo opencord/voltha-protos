@@ -4,7 +4,7 @@
 dist
 build
 .tox
-venv_protos
+.venv
 
 # go related
 go_temp
