@@ -30,7 +30,7 @@ $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 ## Enable setup.py debugging
 ##--------------------------
 # https://docs.python.org/3/distutils/setupscript.html#debugging-the-setup-script
-export DISTUTILS_DEBUG := 1
+export DISTUTILS_DEBUG      := 1
 
 # Makefile for voltha-protos
 default: test
@@ -94,8 +94,13 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
   protos/voltha_protos/%.proto \
   Makefile \
   $(venv-activate-script)
-	$(activate) \
-	&& python -m grpc_tools.protoc \
+
+	@echo 
+	@echo "** -----------------------------------------------------------------------"
+	@echo "** $(MAKE): processing target [$@]"
+	@echo "** -----------------------------------------------------------------------"
+
+	$(activate) && python -m grpc_tools.protoc \
     -I protos \
     --python_out=python \
     --grpc_python_out=python \
@@ -104,13 +109,30 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
     --include_source_info \
     $<
 
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 python-build: setup.py python-protos
 	$(RM) -r dist/
 	python ./setup.py sdist
 
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 python-test: tox.ini setup.py python-protos
-	tox
+	@echo
+	@echo "** -----------------------------------------------------------------------"
+	@echo "** $(MAKE): $@: ENTER"
+	@echo "** -----------------------------------------------------------------------"
 
+	$(activate) && python --version
+
+	tox
+	@echo "** $(MAKE): $@: LEAVE"
+
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 python-clean:
 	find python -name '__pycache__' -type d -print0 \
 	    | xargs -0 --no-run-if-empty $(RM) -r
@@ -147,11 +169,21 @@ go-clean:
 repair:
 	/usr/bin/env git checkout go
 
-
-# Go targets
+## -----------------------------------------------------------------------
+## Intent: Go targets
+## -----------------------------------------------------------------------
 go-protos: voltha.pb
-	@echo "Creating *.go.pb files"
+
+	@echo 
+	@echo "** -----------------------------------------------------------------------"
+	@echo "** $(MAKE): processing target [$@]"
+	@echo "** Creating *.go.pb files"
+	@echo "** -----------------------------------------------------------------------"
+
+	@echo
 	@echo "PROTO_FILES=$(PROTO_FILES)" | tr ' ' '\n'
+
+	@echo
 	${PROTOC_SH} $(quote-double)\
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
@@ -159,6 +191,9 @@ go-protos: voltha.pb
 	    protoc --go_out=plugins=grpc:/go/src -I protos \$$x; \
 	  done$(quote-double)
 
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 voltha.pb:
 	@echo "Creating $@"
 	$(HIDE)${PROTOC} -I protos -I protos/google/api \
@@ -166,11 +201,16 @@ voltha.pb:
 	  --descriptor_set_out=$@ \
 	  ${PROTO_FILES}
 
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 go-test:
 	test/test-go-proto-consistency.sh
 	${GO} mod verify
 
-# Java targets
+## -----------------------------------------------------------------------
+## Intent: Java targets
+## -----------------------------------------------------------------------
 java-protos: voltha.pb
 	@echo "Creating java files"
 	@mkdir -p java_temp/src/main/java
@@ -180,7 +220,10 @@ java-protos: voltha.pb
 	    echo \$$x; \
 	    protoc --java_out=java_temp/src/main/java -I protos \$$x; \
 	  done$(quote-double)
-        #TODO: generate directly to the final location
+
+        # Move files into place after all prototypes have generated.
+        # TODO: Remove the extra step, use makefile deps and
+        #       generate in-place as needed.
 	@mkdir -p java
 	cp -r java_temp/src/main/java/* java/
 
