@@ -3,8 +3,8 @@
 *.egg-info
 dist
 build
+.venv
 .tox
-venv_protos
 
 # go related
 go_temp

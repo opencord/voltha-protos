@@ -31,6 +31,7 @@ $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 ##--------------------------
 # https://docs.python.org/3/distutils/setupscript.html#debugging-the-setup-script
 export DISTUTILS_DEBUG := 1
+export DOCKER_DEBUG    := 1
 
 # Makefile for voltha-protos
 default: test
@@ -63,7 +64,7 @@ PROTO_PYTHON_PB2_GRPC := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_p
 PROTO_GO_DEST_DIR := go
 PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_GO_DEST_DIR)/$(call go_package_path,$(f))/%.pb.go,$(f)))
 PROTO_JAVA_DEST_DIR := java
-PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f))) 
+PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f)))
 
 # Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
 .PHONY: voltha.pb
@@ -94,8 +95,13 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
   protos/voltha_protos/%.proto \
   Makefile \
   $(venv-activate-script)
-	$(activate) \
-	&& python -m grpc_tools.protoc \
+
+	@echo
+	@echo "** -----------------------------------------------------------------------"
+	@echo "** $(MAKE): processing target [$@]"
+	@echo "** -----------------------------------------------------------------------"
+
+	$(activate) && python -m grpc_tools.protoc \
     -I protos \
     --python_out=python \
     --grpc_python_out=python \
@@ -104,13 +110,40 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
     --include_source_info \
     $<
 
-python-build: setup.py python-protos
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
+show:
+	$(call banner-enter,target $@)
+	@echo
+	$(call banner-leave,target $@)
+
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
+python-build: setup.py python-protos	
+
+	$(call banner-enter,target $@)
+
 	$(RM) -r dist/
 	python ./setup.py sdist
 
+	$(call banner-leave,target $@)
+
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 python-test: tox.ini setup.py python-protos
+	$(call banner-enter,target $@)
+
+	$(activate) && python --version
 	tox
 
+	$(call banner-leave,target $@)
+
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 python-clean:
 	find python -name '__pycache__' -type d -print0 \
 	    | xargs -0 --no-run-if-empty $(RM) -r
@@ -147,11 +180,21 @@ go-clean:
 repair:
 	/usr/bin/env git checkout go
 
-
-# Go targets
+## -----------------------------------------------------------------------
+## Intent: Go targets
+## -----------------------------------------------------------------------
 go-protos: voltha.pb
-	@echo "Creating *.go.pb files"
+
+	@echo
+	@echo "** -----------------------------------------------------------------------"
+	@echo "** $(MAKE): processing target [$@]"
+	@echo "** Creating *.go.pb files"
+	@echo "** -----------------------------------------------------------------------"
+
+	@echo
 	@echo "PROTO_FILES=$(PROTO_FILES)" | tr ' ' '\n'
+
+	@echo
 	${PROTOC_SH} $(quote-double)\
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
@@ -159,20 +202,39 @@ go-protos: voltha.pb
 	    protoc --go_out=plugins=grpc:/go/src -I protos \$$x; \
 	  done$(quote-double)
 
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 voltha.pb:
-	@echo "Creating $@"
-	$(HIDE)${PROTOC} -I protos -I protos/google/api \
-	  --include_imports --include_source_info \
+	$(call banner-enter,target $@)
+
+	${PROTOC} \
+	  -I protos \
+	  -I protos/google/api \
+	  --include_imports \
+	  --include_source_info \
 	  --descriptor_set_out=$@ \
 	  ${PROTO_FILES}
 
+	$(call banner-leave,target $@)
+
+## -----------------------------------------------------------------------
+## Intent:
+## -----------------------------------------------------------------------
 go-test:
+	$(call banner-enter,target $@)
+
 	test/test-go-proto-consistency.sh
 	${GO} mod verify
 
-# Java targets
+	$(call banner-leave,target $@)
+
+## -----------------------------------------------------------------------
+## Intent: Java targets
+## -----------------------------------------------------------------------
 java-protos: voltha.pb
-	@echo "Creating java files"
+	$(call banner-enter,target $@)
+
 	@mkdir -p java_temp/src/main/java
 	@${PROTOC_SH} $(quote-double) \
 	  set -e -o pipefail; \
@@ -180,15 +242,25 @@ java-protos: voltha.pb
 	    echo \$$x; \
 	    protoc --java_out=java_temp/src/main/java -I protos \$$x; \
 	  done$(quote-double)
-        #TODO: generate directly to the final location
-	@mkdir -p java
-	cp -r java_temp/src/main/java/* java/
 
-# Tests if the generated java classes are compilable
+        # Move files into place after all prototypes have generated.
+        # TODO: Remove the extra step, use makefile deps and
+        #       generate in-place as needed.
+	@mkdir -p java
+	cp -r java_temp/src/main/java/* java
+
+	$(call banner-leave,target $@)
+
+## -----------------------------------------------------------------------
+## Intent: Tests if the generated java classes are compilable
+## -----------------------------------------------------------------------
 java-test: java-protos
 	cp test/pom.xml java_temp
 	cd java_temp && mvn compile
 
+## -----------------------------------------------------------------------
+## Intent: Custodial service
+## -----------------------------------------------------------------------
 java-clean:
 	$(RM) -r java
 	$(RM) -r java_temp

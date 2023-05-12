@@ -32,9 +32,13 @@ if [ "$STAGED" == "staged" ] || [ "$UNTRACKED" != "" ]; then
     exit 1
 fi
 
+# TODO: Move this into the make clean target for one stop shopping.
 # delete and regenerate go protos
 rm -rf go/voltha.pb go/*/*.pb.go go_temp
+
+echo "$0: make go-protos: ENTER"
 make go-protos
+echo "$0: make go-protos: LEAVE"
 
 # Running git status ensures correct git diff-index picks up changes
 git status > /dev/null
@@ -50,3 +54,5 @@ else
     echo "Test successful. All go proto build outputs are committed"
     exit 0
 fi
+
+# [EOF]
