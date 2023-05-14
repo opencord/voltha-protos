@@ -67,6 +67,23 @@
       "message": "recheck",
       "revId": "705a8493b094f0001b9720004dc53adc63d087fb",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd8a6e21_f504a058",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000963
+      },
+      "writtenOn": "2023-05-14T18:45:32Z",
+      "side": 1,
+      "message": "\u003e Patch Set 4:\n\u003e \n\u003e Build Failed \n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_unit-test/588/ : FAILURE\n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_licensed/590/ : SUCCESS\n\nrecheck",
+      "revId": "705a8493b094f0001b9720004dc53adc63d087fb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
