@@ -182,6 +182,8 @@ service Openolt {
 
     rpc EnableIndication(Empty) returns (stream Indication) {}
 
+    rpc EnableIgmpIndication(Empty) returns (stream Indication) {}
+
     rpc PerformGroupOperation(Group) returns (Empty) {
         option (google.api.http) = {
           post: "/v1/PerformGroupOperation"
@@ -424,7 +426,15 @@ message DeviceInfo {
     string firmware_version = 4;
     string device_id = 16;
     string device_serial_number = 17;
-    bool previously_connected = 19; // used to indicate agent reconcile status
+
+    // VOLTHA previously connected flag
+    bool previously_connected = 19;
+    // IGMPCA previously connected flag
+    bool igmpca_previously_connected = 24;
+
+    // Multicast group ID range
+    fixed32 group_id_start = 22;
+    fixed32 group_id_end = 23;
 
     // Total number of pon intf ports on the device
     fixed32 pon_ports = 12;
