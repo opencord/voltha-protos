@@ -29,7 +29,6 @@ docker-run-app = $(docker-run) -v ${CURDIR}:/app#              # w/filesystem mo
 
 ## GhostBusters: Cross the streams
 ## Always pass -it to attach streams, jenkins + docker == test -t fail
-# is-stdin       = $(shell test -t 0 && { echo "-it" } || {echo '--tty'})#    # Attach streams if interactive
 is-stdin       = $(shell test -t 0 && { echo '--interactive' })#              # Attach streams if interactive
 is-stdin       += --tty#                                                      # Attach stdout else jenkins::docker is silent
 
@@ -41,6 +40,8 @@ vee-citools    = voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}
 PROTOC    = $(docker-run) -v ${CURDIR}:/app $(is-stdin) $(vee-citools)-protoc protoc
 PROTOC_SH = $(docker-run) -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v5 $(is-stdin) --workdir=/go/src/github.com/opencord/voltha-protos/v5 $(vee-citools)-protoc sh -c
 GO        = $(docker-run) -v ${CURDIR}:/app $(is-stdin) -v gocache:/.cache $(vee-golang) $(vee-citools)-golang go
+
+docker-sh = $(PROTOC_SH)
 
 $(if $(DEBUG),$(warning LEAVE))
 

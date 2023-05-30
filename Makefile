@@ -30,8 +30,8 @@ $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 ## Enable setup.py debugging
 ##--------------------------
 # https://docs.python.org/3/distutils/setupscript.html#debugging-the-setup-script
-export DISTUTILS_DEBUG := 1
-export DOCKER_DEBUG    := 1
+# export DISTUTILS_DEBUG := 1      # verbose: pip
+export DOCKER_DEBUG    := 1      # verbose: docker
 
 # Makefile for voltha-protos
 default: test
@@ -51,6 +51,7 @@ $(shell grep go_package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
 endef
 
 # Function to extract the last path component from package line in .proto files
+#   protos/voltha_protos/common.proto => common
 define java_package_path
 $(shell grep package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
 endef
@@ -85,9 +86,13 @@ test: python-test go-test java-test
 clean :: python-clean java-clean go-clean
 
 sterile :: clean
+	$(RM) -r java_temp
 
 # Python targets
 python-protos: $(PROTO_PYTHON_PB2)
+
+show-pb2:
+	@echo $(PROTO_PYTHON_PB2) | tr ' ' '\n'
 
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
@@ -191,21 +196,28 @@ go-protos: voltha.pb
 	@echo "** Creating *.go.pb files"
 	@echo "** -----------------------------------------------------------------------"
 
-	@echo
-	@echo "PROTO_FILES=$(PROTO_FILES)" | tr ' ' '\n'
+	$(docker-sh) $(quote-double) /bin/ls -ld /go/src $(quote-double)
 
-	@echo
+	${PROTOC_SH} $(quote-double) \
+	  find /go/src -print0 | xargs -0 /bin/ls -ld \
+	$(quote-double)
+
+	$(call banner-enter,target $@)
+
 	${PROTOC_SH} $(quote-double)\
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
 	    echo \$$x; \
 	    protoc --go_out=plugins=grpc:/go/src -I protos \$$x; \
-	  done$(quote-double)
+	  done\
+	  $(quote-double)
+
+	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent:
-## -----------------------------------------------------------------------
-voltha.pb:
+## ----------------------------------------------------------------------
+voltha.pb: show-proto-files
 	$(call banner-enter,target $@)
 
 	${PROTOC} \
@@ -232,16 +244,32 @@ go-test:
 ## -----------------------------------------------------------------------
 ## Intent: Java targets
 ## -----------------------------------------------------------------------
+
+java-protos-dirs += java_temp/src/main/java
+java-protos-dirs += java_temp/src/main/java/org
+# local docker problem
+java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter
+java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter_service
+
+mkdir-args += -vp
+mkdir-args += --mode=0777
+
 java-protos: voltha.pb
+
 	$(call banner-enter,target $@)
 
-	@mkdir -p java_temp/src/main/java
+#	$(RM) -fr java_temp
+	mkdir $(mkdir-args) $(java-protos-dirs)
+	$(docker-sh) $(quote-double) find $(java-protos-dirs) -print0 \
+	    | xargs -0 -n1 /bin/ls -ld $(quote-double)
+
 	@${PROTOC_SH} $(quote-double) \
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
 	    echo \$$x; \
 	    protoc --java_out=java_temp/src/main/java -I protos \$$x; \
-	  done$(quote-double)
+	  done\
+	  $(quote-double)
 
         # Move files into place after all prototypes have generated.
         # TODO: Remove the extra step, use makefile deps and
@@ -265,7 +293,17 @@ java-clean:
 	$(RM) -r java
 	$(RM) -r java_temp
 
-# placeholder for library targets
+## -----------------------------------------------------------------------
+## Intent: Placeholder for library targets
+## -----------------------------------------------------------------------
 lint :
 
+## -----------------------------------------------------------------------
+## Intent: Display/debug targets
+## -----------------------------------------------------------------------
+.PHONY: show-proto-files
+show-proto-files:
+	echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
+
 # [EOF]
+
