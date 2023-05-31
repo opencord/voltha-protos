@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "6eaeeaaa043503421380779c44a352e2691d3ad2",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e07aa6_02cbcc7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-05-31T14:05:01Z",
+      "side": 1,
+      "message": "recheck\n\nIgnoring patch merge conflict for now.\nRe-run job with latest makefile edits w/added debugging.",
+      "revId": "6eaeeaaa043503421380779c44a352e2691d3ad2",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
