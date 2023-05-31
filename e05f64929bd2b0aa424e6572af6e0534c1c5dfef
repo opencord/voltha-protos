@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3d218cf_07f52c92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-05-31T15:53:32Z",
+      "side": 1,
+      "message": "Recreated Vinod(s) patch + latest makefile edits.\nvoltha-protos unit test job #612 ran successfully.\nApplying +2 to approve the code merge and will abandon gerrt: 34180\n(Change-Id: I584b41b4de3833d0605a0a4fe39bd48cc312e9b5).\n\nDebugging has helped but we may still have a transient failure lurking somewhere in testing.",
+      "revId": "e05f64929bd2b0aa424e6572af6e0534c1c5dfef",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
