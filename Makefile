@@ -50,8 +50,14 @@ define go_package_path
 $(shell grep go_package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
 endef
 
+# -----------------------------------------------------------------------
 # Function to extract the last path component from package line in .proto files
-#   protos/voltha_protos/common.proto => common
+#   % grep 'package' will match:
+#     o package <name> ;
+#     o option java_package='<dot-pkg-fqdn>
+# -----------------------------------------------------------------------
+# RETURN: protos/voltha_protos/common.proto => common
+# -----------------------------------------------------------------------
 define java_package_path
 $(shell grep package $(1) | sed -n 's/.*\/\(.*\)";/\1/p')
 endef
@@ -90,9 +96,6 @@ sterile :: clean
 
 # Python targets
 python-protos: $(PROTO_PYTHON_PB2)
-
-show-pb2:
-	@echo $(PROTO_PYTHON_PB2) | tr ' ' '\n'
 
 ## -----------------------------------------------------------------------
 ## -----------------------------------------------------------------------
@@ -252,7 +255,7 @@ java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter
 java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter_service
 
 mkdir-args += -vp
-mkdir-args += --mode=0777
+# mkdir-args += --mode=0777
 
 java-protos: voltha.pb
 
