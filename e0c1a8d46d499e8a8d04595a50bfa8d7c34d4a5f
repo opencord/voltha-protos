@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54b0d69_ff91ac97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-06-01T14:22:05Z",
+      "side": 1,
+      "message": "Minor edits, update repo:voltha-proto to use more library makefile logic (lint, virtualenv, consts)",
+      "revId": "e0c1a8d46d499e8a8d04595a50bfa8d7c34d4a5f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
