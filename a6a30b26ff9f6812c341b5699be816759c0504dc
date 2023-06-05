@@ -124,6 +124,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6c6f214_90614cd8",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8da9dcd2_7b56a980",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df6463f1_c2c605fa",
@@ -137,6 +161,24 @@
       "writtenOn": "2021-11-12T11:34:16Z",
       "side": 1,
       "message": "We need to \"realm\" attribute to each subscriber.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d23c359e_3a6d400e",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6463f1_c2c605fa",
       "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -164,6 +206,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a96a5c_d8e07d25",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4161e5b_8e2db4f7",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5f5df29_483cd05d",
@@ -177,6 +243,24 @@
       "writtenOn": "2021-11-05T13:59:00Z",
       "side": 1,
       "message": "I think we could have a repeated Instance here with the info for the VoipProfileInstance. I\u0027d still like to have only one profile, similar to what the tech_profile is.",
+      "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65bd8a51_dfca5ca3",
+        "filename": "protos/voltha_protos/voip_profile.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5f5df29_483cd05d",
       "revId": "a6a30b26ff9f6812c341b5699be816759c0504dc",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },

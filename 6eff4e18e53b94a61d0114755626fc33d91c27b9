@@ -70,6 +70,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab26037a_e4ed829d",
+        "filename": "protos/voltha_protos/system_wide_profile.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4373d2e_b6062f21",
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf137abd_0614c3d8",
@@ -83,6 +101,30 @@
       "writtenOn": "2021-11-12T09:15:08Z",
       "side": 1,
       "message": "TechnologyProfileData",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cce16a2_5376e21b",
+        "filename": "protos/voltha_protos/system_wide_profile.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf137abd_0614c3d8",
       "range": {
         "startLine": 34,
         "startChar": 8,
@@ -116,6 +158,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b7473c3_6330bccd",
+        "filename": "protos/voltha_protos/system_wide_profile.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9f86d95_5988fdad",
+      "range": {
+        "startLine": 36,
+        "startChar": 42,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0eafbd70_a2113cee",
@@ -139,6 +205,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85012f37_f76719ca",
+        "filename": "protos/voltha_protos/voip_system_profile.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eafbd70_a2113cee",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 27
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d066b77e_f208f057",
@@ -152,6 +242,30 @@
       "writtenOn": "2021-11-12T09:15:08Z",
       "side": 1,
       "message": "VoipTechnologyProfile",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "6eff4e18e53b94a61d0114755626fc33d91c27b9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21f3cecc_7e9a4e95",
+        "filename": "protos/voltha_protos/voip_system_profile.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000816
+      },
+      "writtenOn": "2023-06-05T06:56:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d066b77e_f208f057",
       "range": {
         "startLine": 28,
         "startChar": 8,
