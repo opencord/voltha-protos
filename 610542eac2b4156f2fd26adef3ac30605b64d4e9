@@ -442,6 +442,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8be47fc_b8486383",
+        "filename": "protos/voltha_protos/voip_user_profile.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000513
+      },
+      "writtenOn": "2023-06-05T06:54:32Z",
+      "side": 1,
+      "message": "Why is it string type?",
+      "revId": "610542eac2b4156f2fd26adef3ac30605b64d4e9",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d750c41_8ede2037",
         "filename": "protos/voltha_protos/voltha.proto",
         "patchSetId": 8
