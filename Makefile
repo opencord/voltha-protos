@@ -154,10 +154,8 @@ python-build: setup.py python-protos
 ## -----------------------------------------------------------------------
 python-test: tox.ini setup.py python-protos
 	$(call banner-enter,target $@)
-
 	$(activate) && python --version
 	tox
-
 	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
@@ -204,20 +202,14 @@ repair:
 ## -----------------------------------------------------------------------
 go-protos: voltha.pb
 
-	@echo
-	@echo "** -----------------------------------------------------------------------"
-	@echo "** $(MAKE): processing target [$@]"
-	@echo "** Creating *.go.pb files"
-	@echo "** -----------------------------------------------------------------------"
-
-	$(docker-sh) $(quote-double) /bin/ls -ld /go/src $(quote-double)
-
-	${PROTOC_SH} $(quote-double) \
-	  find /go/src -print0 | xargs -0 /bin/ls -ld \
-	$(quote-double)
-
 	$(call banner-enter,target $@)
 
+#	$(docker-sh) $(quote-double) /bin/ls -ld /go/src $(quote-double)
+#	${PROTOC_SH} $(quote-double) \
+#	  find /go/src -print0 | xargs -0 /bin/ls -ld \
+#	$(quote-double)
+
+	@echo "** Creating *.go.pb files"
 	${PROTOC_SH} $(quote-double)\
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
@@ -289,7 +281,7 @@ java-protos: voltha.pb
         # TODO: Remove the extra step, use makefile deps and
         #       generate in-place as needed.
 	@mkdir -p java
-	cp -r java_temp/src/main/java/* java
+	rsync -r --checksum java_temp/src/main/java/. java/.
 
 	$(call banner-leave,target $@)
 
@@ -311,6 +303,15 @@ java-clean:
 ## Intent: Placeholder for library targets
 ## -----------------------------------------------------------------------
 lint :
+
+## -----------------------------------------------------------------------
+## Intent: Make sterile is unrecoverable due to handling of java_temp
+## -----------------------------------------------------------------------
+protos-clean:
+	$(MAKE) sterile
+	$(MAKE) build
+	$(MAKE) protos
+	$(MAKE) test
 
 ## -----------------------------------------------------------------------
 ## Intent: Display/debug targets
