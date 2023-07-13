@@ -203,13 +203,8 @@ repair:
 go-protos: voltha.pb
 
 	$(call banner-enter,target $@)
-
-#	$(docker-sh) $(quote-double) /bin/ls -ld /go/src $(quote-double)
-#	${PROTOC_SH} $(quote-double) \
-#	  find /go/src -print0 | xargs -0 /bin/ls -ld \
-#	$(quote-double)
-
 	@echo "** Creating *.go.pb files"
+
 	${PROTOC_SH} $(quote-double)\
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
@@ -318,7 +313,10 @@ protos-clean:
 ## -----------------------------------------------------------------------
 .PHONY: show-proto-files
 show-proto-files:
-	echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
+
+	$(call banner-enter,Target $@)
+	@echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
+	$(call banner-leave,Target $@)
 
 # [EOF]
 

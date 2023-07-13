@@ -1,5 +1,5 @@
 # -*- makefile -*-
-## -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Copyright 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-## -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # https://gerrit.opencord.org/plugins/gitiles/onf-make
 # ONF.makefile.version = 1.0
 # -----------------------------------------------------------------------

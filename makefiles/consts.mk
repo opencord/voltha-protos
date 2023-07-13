@@ -31,11 +31,19 @@ export quote-single := $(null)'$(null)#'
 export quote-double := $(null)"$(null)#"
 
 # [DEBUG] make {target} HIDE=
-HIDE        ?= @
+HIDE           ?= @
 
 env-clean      ?= /usr/bin/env --ignore-environment
 xargs-n1       := xargs -0 -t -n1 --no-run-if-empty
 xargs-n1-clean := $(env-clean) $(xargs-n1)
+
+## -----------------------------------------------------------------------
+## Intent: NOP command for targets whose dependencies do all heavy lifting
+## -----------------------------------------------------------------------
+## usage: foo bar tans
+## <tab>$(nop-command)
+## -----------------------------------------------------------------------
+nop-cmd        := :
 
 ## -----------------------------------------------------------------------
 ## Default shell:
