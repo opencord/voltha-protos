@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55136f92_469773a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2023-08-11T13:35:51Z",
+      "side": 1,
+      "message": "FYI\u003e Job failures: ttps://jira.opencord.org/browse/VOL-5122\n\nMain failure point is voltha.pb is being modified post commit.\nVery likely something is not up-to-date, the job re-{compiles,generates} and over-writes that last version checked in.\n\nps\u003e  We really should not have binaries under revision control for this reason, only source.\n\n\n\n",
+      "revId": "55113c6e1444ad4a25cfc8a4fae611c30313967c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
