@@ -1,0 +1,7 @@
+Code-Review+2: Joey Armstrong <joey@opennetworking.org>
+Verified+1: Jenkins Technical User <do-not-reply@opennetworking.org>
+Submitted-by: Joey Armstrong <joey@opennetworking.org>
+Submitted-at: Tue, 15 Aug 2023 12:57:26 +0000
+Reviewed-on: https://gerrit.opencord.org/c/voltha-protos/+/34523
+Project: voltha-protos
+Branch: refs/heads/voltha-2.12
