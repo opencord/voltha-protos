@@ -101,7 +101,6 @@ test: python-test go-test java-test
 clean :: python-clean java-clean go-clean
 
 sterile :: clean
-	$(RM) -r java_temp
 
 ## -----------------------------------------------------------------------
 ## Python targets
@@ -253,17 +252,17 @@ java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter
 java-protos-dirs += java_temp/src/main/java/org/opencord/voltha/adapter_service
 
 mkdir-args += -vp
-# mkdir-args += --mode=0777#     # Only a problem for local docker builds
 
 java-protos: voltha.pb
 
 	$(call banner-enter,target $@)
 
-#	$(RM) -fr java_temp
 	mkdir $(mkdir-args) $(java-protos-dirs)
+
 	$(docker-sh) $(quote-double) find $(java-protos-dirs) -print0 \
 	    | xargs -0 -n1 /bin/ls -ld $(quote-double)
 
+	$(if $(LOCAL_FIX_PERMS),chmod -R o+w java_temp)
 	@${PROTOC_SH} $(quote-double) \
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
@@ -271,6 +270,7 @@ java-protos: voltha.pb
 	    protoc --java_out=java_temp/src/main/java -I protos \$$x; \
 	  done\
 	  $(quote-double)
+	$(if $(LOCAL_FIX_PERMS),chmod -R o-w java_temp)
 
         # Move files into place after all prototypes have generated.
         # TODO: Remove the extra step, use makefile deps and
