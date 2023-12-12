@@ -25,12 +25,14 @@ ifdef DOCKER_DEBUG
   docker-run   += --debug
 endif
 docker-run     += run --rm --user $$(id -u):$$(id -g)#   # Docker command stem
-docker-run-app = $(docker-run) -v ${CURDIR}:/app#              # w/filesystem mount
+docker-run-app = $(docker-run) -v ${CURDIR}:/app#        # w/filesystem mount
 
-## GhostBusters: Cross the streams
-## Always pass -it to attach streams, jenkins + docker == test -t fail
-is-stdin       = $(shell test -t 0 && { echo '--interactive' })#              # Attach streams if interactive
-is-stdin       += --tty#                                                      # Attach stdout else jenkins::docker is silent
+# -----------------------------------------------------------------------
+# --interactive: Attach streams when stdout (fh==0) defined
+# --tty        : Always create a pseudo-tty else jenkins:docker is silent
+# -----------------------------------------------------------------------
+is-stdin       = $(shell test -t 0 && { echo '--interactive'; })
+is-stdin       += --tty
 
 # Docker volume mounts: container:/app/release <=> localhost:{pwd}/release
 vee-golang     = -v gocache-${VOLTHA_TOOLS_VERSION}:/go/pkg
@@ -38,7 +40,12 @@ vee-citools    = voltha/voltha-ci-tools:${VOLTHA_TOOLS_VERSION}
 
 # Tool Containers
 PROTOC    = $(docker-run) -v ${CURDIR}:/app $(is-stdin) $(vee-citools)-protoc protoc
-PROTOC_SH = $(docker-run) -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v5 $(is-stdin) --workdir=/go/src/github.com/opencord/voltha-protos/v5 $(vee-citools)-protoc sh -c
+
+PROTOC_SH := $(docker-run)
+PROTOC_SH += -v ${CURDIR}:/go/src/github.com/opencord/voltha-protos/v5
+PROTOC_SH += $(is-stdin) --workdir=/go/src/github.com/opencord/voltha-protos/v5
+PROTOC_SH += $(vee-citools)-protoc sh -c
+
 GO        = $(docker-run) -v ${CURDIR}:/app $(is-stdin) -v gocache:/.cache $(vee-golang) $(vee-citools)-golang go
 
 docker-sh = $(PROTOC_SH)

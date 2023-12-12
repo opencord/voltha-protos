@@ -25,7 +25,8 @@ $(if $(DEBUG),$(warning ENTER))
 ## Intent: Display command usage
 ## -----------------------------------------------------------------------
 help::
-	@echo '  lint-golang           Syntax check golang sources'
+	@printf '  %-33.33s %s\n' 'lint-golang' \
+	  'Syntax check golang sources'
 	@echo '    FIX=1               In-place file update'
 
 include $(MAKEDIR)/lint/golang/sca.mk
