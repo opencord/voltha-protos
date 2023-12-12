@@ -24,7 +24,6 @@ $(if $(DEBUG),$(warning ENTER))
 
 GOLANG_FILES ?= $(error GOLANG_FILES= is required)
 
-$(info loading)
 ## -----------------------------------------------------------------------
 ## Intent: Use the golang command to perform syntax checking.
 ##   o If UNSTABLE=1 syntax check all sources
