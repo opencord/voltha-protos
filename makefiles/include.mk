@@ -38,6 +38,8 @@ include $(MAKEDIR)/consts.mk
 include $(MAKEDIR)/etc/include.mk
 include $(MAKEDIR)/virtualenv.mk
 
+include $(MAKEDIR)/golang/include.mk
+
 include $(MAKEDIR)/help/variables.mk
 include $(MAKEDIR)/lint/include.mk
 include $(MAKEDIR)/todo.mk

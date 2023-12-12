@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2024 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,20 +17,22 @@
 # SPDX-FileCopyrightText: 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
 # SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
-# Usage:
-#
-# mytarget:
-#     $(call banner-enter,target $@)
-#     @echo "Hello World"
-#     $(call banner-leave,target $@)
-# -----------------------------------------------------------------------
 
 $(if $(DEBUG),$(warning ENTER))
+
+help-golang := $(null)
 
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
-include $(MAKEDIR)/etc/features.mk
+include $(MAKEDIR)/golang/commands.mk
+include $(MAKEDIR)/golang/upgrade.mk
+
+help-golang : $(help-golang)
+
+help ::
+	@printf '  %-33.33s %s\n' 'help-golang' \
+	  'Display available targets for the golang interpreter'
 
 $(if $(DEBUG),$(warning LEAVE))
 

@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2024 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2017-2023 Open Networking Foundation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,10 +27,21 @@
 
 $(if $(DEBUG),$(warning ENTER))
 
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/etc/features.mk
+target-banner = ** ---------------------------------------------------------------------------
+
+## -----------------------------------------------------------------------
+## Intent: Return a command line able to display a banner hilighting
+##         make target processing within a logfile.
+## -----------------------------------------------------------------------
+banner-enter=\
+    @echo -e \
+    "\n"\
+    "$(target-banner)\n"\
+    "** $(MAKE) ENTER: $(1)\n"\
+    "$(target-banner)"\
+
+banner-leave=\
+    @echo -e "** $(MAKE) LEAVE: $(1)"
 
 $(if $(DEBUG),$(warning LEAVE))
 
