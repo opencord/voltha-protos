@@ -27,21 +27,10 @@
 
 $(if $(DEBUG),$(warning ENTER))
 
-target-banner = ** ---------------------------------------------------------------------------
-
-## -----------------------------------------------------------------------
-## Intent: Return a command line able to display a banner hilighting
-##         make target processing within a logfile.
-## -----------------------------------------------------------------------
-banner-enter=\
-    @echo -e \
-    "\n"\
-    "$(target-banner)\n"\
-    "** $(MAKE) ENTER: $(1)\n"\
-    "$(target-banner)"\
-
-banner-leave=\
-    @echo -e "** $(MAKE) LEAVE: $(1)"
+##--------------------##
+##---]  INCLUDES  [---##
+##--------------------##
+include $(MAKEDIR)/etc/features.mk
 
 $(if $(DEBUG),$(warning LEAVE))
 

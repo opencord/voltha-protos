@@ -17,34 +17,31 @@
 # SPDX-FileCopyrightText: 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
 # SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
+# Usage:
+#
+# mytarget:
+#     $(call banner-enter,target $@)
+#     @echo "Hello World"
+#     $(call banner-leave,target $@)
+# -----------------------------------------------------------------------
 
 $(if $(DEBUG),$(warning ENTER))
 
-MAKEDIR ?= $(error MAKEDIR= is required)
+target-banner = ** ---------------------------------------------------------------------------
 
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
+## -----------------------------------------------------------------------
+## Intent: Return a command line able to display a banner hilighting
+##         make target processing within a logfile.
+## -----------------------------------------------------------------------
+banner-enter=\
+    @echo -e \
+    "\n"\
+    "$(target-banner)\n"\
+    "** $(MAKE) ENTER: $(1)\n"\
+    "$(target-banner)"\
 
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/help/include.mk
-
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
-
-include $(MAKEDIR)/golang/include.mk
-
-include $(MAKEDIR)/help/variables.mk
-include $(MAKEDIR)/lint/include.mk
-include $(MAKEDIR)/todo.mk
-
-include $(MAKEDIR)/docker/include.mk
+banner-leave=\
+    @echo -e "** $(MAKE) LEAVE: $(1)"
 
 $(if $(DEBUG),$(warning LEAVE))
 

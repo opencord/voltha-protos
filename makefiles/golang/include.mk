@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2023 Open Networking Foundation
+# Copyright 2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,31 +20,19 @@
 
 $(if $(DEBUG),$(warning ENTER))
 
-MAKEDIR ?= $(error MAKEDIR= is required)
-
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
+help-golang := $(null)
 
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
-include $(MAKEDIR)/help/include.mk
+include $(MAKEDIR)/golang/commands.mk
+include $(MAKEDIR)/golang/upgrade.mk
 
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
+help-golang : $(help-golang)
 
-include $(MAKEDIR)/golang/include.mk
-
-include $(MAKEDIR)/help/variables.mk
-include $(MAKEDIR)/lint/include.mk
-include $(MAKEDIR)/todo.mk
-
-include $(MAKEDIR)/docker/include.mk
+help ::
+	@printf '  %-33.33s %s\n' 'help-golang' \
+	  'Display available targets for the golang interpreter'
 
 $(if $(DEBUG),$(warning LEAVE))
 

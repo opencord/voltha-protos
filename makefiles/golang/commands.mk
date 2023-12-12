@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2023 Open Networking Foundation
+# Copyright 2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,31 +20,8 @@
 
 $(if $(DEBUG),$(warning ENTER))
 
-MAKEDIR ?= $(error MAKEDIR= is required)
-
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
-
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/help/include.mk
-
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
-
-include $(MAKEDIR)/golang/include.mk
-
-include $(MAKEDIR)/help/variables.mk
-include $(MAKEDIR)/lint/include.mk
-include $(MAKEDIR)/todo.mk
-
-include $(MAKEDIR)/docker/include.mk
+# Distinguish between local and docker go command
+# GO      ?= go
 
 $(if $(DEBUG),$(warning LEAVE))
 
