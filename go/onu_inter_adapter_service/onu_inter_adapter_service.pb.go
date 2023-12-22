@@ -355,3 +355,4 @@ var _OnuInterAdapterService_serviceDesc = grpc.ServiceDesc{
 	},
 	Metadata: "voltha_protos/onu_inter_adapter_service.proto",
 }
+# [EOF] - delta:force
