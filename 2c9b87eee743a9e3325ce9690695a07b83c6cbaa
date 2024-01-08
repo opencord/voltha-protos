@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2817fb92_de4dceb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-01-08T22:19:05Z",
+      "side": 1,
+      "message": "Helping this patch along to avoid VERSION problems between release branch and main.",
+      "revId": "2c9b87eee743a9e3325ce9690695a07b83c6cbaa",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
