@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afcb2ea5_27ede615",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "Seems fine to me. I think the copyright lines need to be updated though?",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e5f4071_cd00a61f",
+        "filename": "makefiles/etc/features.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "Should this be updated to 2024?",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d426912_3bd119af",
+        "filename": "makefiles/etc/features.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "This should match the copyright line at the top too.",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ba373f_0c49d943",
+        "filename": "makefiles/golang/commands.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "Should this be 2024?\n\nThe years don\u0027t match the SPDX line below.",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f266cbaf_72528b79",
+        "filename": "makefiles/golang/commands.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "This should match the line at the top.",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "978fecb6_99b2bd54",
+        "filename": "makefiles/golang/include.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "Should this be 2024?",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da77d9fd_7b59e2fd",
+        "filename": "makefiles/golang/include.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "This line should match the copyright line above.",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "130b7668_f951900b",
+        "filename": "makefiles/golang/upgrade.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "Should the year be 2024?",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637f8fc4_aa2f0699",
+        "filename": "makefiles/golang/upgrade.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001008
+      },
+      "writtenOn": "2024-01-10T19:15:28Z",
+      "side": 1,
+      "message": "This line should match the copyright line above.",
+      "revId": "f8220516dad9e40fa059b357636fafaffb6a5528",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
