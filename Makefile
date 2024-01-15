@@ -204,6 +204,8 @@ go-protos: voltha.pb
 	$(call banner-enter,target $@)
 	@echo "** Creating *.go.pb files"
 
+	$(if $(LOCAL_FIX_PERMS),chmod -R o+w $(PROTO_GO_DEST_DIR))
+
 	${PROTOC_SH} $(quote-double)\
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
@@ -211,6 +213,8 @@ go-protos: voltha.pb
 	    protoc --go_out=plugins=grpc:/go/src -I protos \$$x; \
 	  done\
 	  $(quote-double)
+
+	$(if $(LOCAL_FIX_PERMS),chmod -R o-w $(PROTO_GO_DEST_DIR))
 
 	$(call banner-leave,target $@)
 
