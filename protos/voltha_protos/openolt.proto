@@ -23,6 +23,7 @@ import "google/api/annotations.proto";
 import "voltha_protos/tech_profile.proto";
 import "voltha_protos/ext_config.proto";
 import "voltha_protos/extensions.proto";
+import "voltha_protos/common.proto";
 
 service Openolt {
 
@@ -252,6 +253,41 @@ service Openolt {
           body: "*"
         };
     }
+
+    /*
+     * GetAllocIdStatistics takes onuId and allocId as argument.
+     * This method includes a default wait period of 10 secs before collecting the stats.
+     * The caller has to be aware of this wait and handle it accordingly.
+     * Returns AllocId statistics in the form of OnuAllocStatistics structure
+     */
+    rpc GetAllocIdStatistics(OnuPacket) returns (OnuAllocIdStatistics) {
+        option (google.api.http) = {
+            post: "/v1/GetAllocIdStatistics"
+            body: "*"
+        };
+    }
+
+    /*
+     * GetPonPortStatistics takes interface id and type as argument from Interface structure.
+     * Returns Pon port statistics in the form of PonStatsData structure.
+     */
+     rpc GetPonPortStatistics(Interface) returns (common.PortStatistics) {
+        option (google.api.http) = {
+          post: "/v1/GetPonPortStatistics"
+          body: "*"
+        };
+    }
+
+    /*
+     * GetNniPortStatistics takes takes interface id and type as argument from Interface structure.
+     * Returns Nni port statistics in the form of NniStatsData structure
+     */
+     rpc GetNniPortStatistics(Interface) returns (common.PortStatistics) {
+        option (google.api.http) = {
+          post: "/v1/GetNniPortStatistics"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -263,7 +299,7 @@ message Indication {
         OnuIndication onu_ind = 5;
         OmciIndication omci_ind = 6;
         PacketIndication pkt_ind = 7;
-        PortStatistics port_stats = 8;
+        common.PortStatistics port_stats = 8;
         FlowStatistics flow_stats = 9;
         AlarmIndication alarm_ind= 10;
     }
@@ -377,6 +413,7 @@ message PacketIndication {
 
 message Interface {
     fixed32 intf_id = 1;
+    fixed32 intf_type = 2;
 }
 
 message Heartbeat {
@@ -409,6 +446,7 @@ message OnuPacket {
     fixed32 onu_id = 2;
     fixed32 port_no = 4;
     fixed32 gemport_id = 5;
+    fixed32 alloc_id = 6;
     bytes pkt = 3;
 }
 
@@ -546,49 +584,6 @@ message Flow {
 message SerialNumber {
     bytes vendor_id = 1;
     bytes vendor_specific = 2;
-}
-
-message PortStatistics {
-    fixed32 intf_id = 1;
-    fixed64 rx_bytes = 2;
-    fixed64 rx_packets = 3;
-    fixed64 rx_ucast_packets = 4;
-    fixed64 rx_mcast_packets = 5;
-    fixed64 rx_bcast_packets = 6;
-    fixed64 rx_error_packets = 7;
-    fixed64 rx_frames = 17;
-    fixed64 rx_frames_64 = 18;
-    fixed64 rx_frames_65_127 = 19;
-    fixed64 rx_frames_128_255 = 20;
-    fixed64 rx_frames_256_511 = 21;
-    fixed64 rx_frames_512_1023 = 22;
-    fixed64 rx_frames_1024_1518 = 23;
-    fixed64 rx_frames_1519_2047 = 24;
-    fixed64 rx_frames_2048_4095 = 25;
-    fixed64 rx_frames_4096_9216 = 26;
-    fixed64 rx_frames_9217_16383 = 27;
-    fixed64 rx_crc_errors = 14;
-
-    fixed64 tx_bytes = 8;
-    fixed64 tx_packets = 9;
-    fixed64 tx_ucast_packets = 10;
-    fixed64 tx_mcast_packets = 11;
-    fixed64 tx_bcast_packets = 12;
-    fixed64 tx_error_packets = 13;
-    fixed64 tx_frames = 28;
-    fixed64 tx_frames_64 = 29;
-    fixed64 tx_frames_65_127 = 30;
-    fixed64 tx_frames_128_255 = 31;
-    fixed64 tx_frames_256_511 = 32;
-    fixed64 tx_frames_512_1023 = 33;
-    fixed64 tx_frames_1024_1518 = 34;
-    fixed64 tx_frames_1519_2047 = 35;
-    fixed64 tx_frames_2048_4095 = 36;
-    fixed64 tx_frames_4096_9216 = 37;
-    fixed64 tx_frames_9217_16383 = 38;
-
-    fixed64 bip_errors = 15;
-    fixed32 timestamp = 16;
 }
 
 message OnuStatistics {
@@ -814,6 +809,12 @@ message PonRxPowerData {
     string status = 3;
     RssiMeasurementFailReason fail_reason = 4;
     double rx_power_mean_dbm = 5;
+}
+
+message OnuAllocIdStatistics {
+    fixed32 intfId = 1;
+    fixed32 allocId = 2;
+    fixed64 rxBytes = 3;
 }
 
 enum AlarmState {
