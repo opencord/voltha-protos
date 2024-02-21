@@ -252,6 +252,41 @@ service Openolt {
           body: "*"
         };
     }
+
+    /*
+     * GetAllocIdStatistics takes onuId and allocId as argument.
+     * This method includes a default wait period of 10 secs before collecting the stats.
+     * The caller has to be aware of this wait and handled accordingly.
+     * Returns AllocId statistics in the form of OnuAllocStatistics structure
+     */
+    rpc GetAllocIdStatistics(OnuPacket) returns (OnuAllocIdStatistics) {
+        option (google.api.http) = {
+            post: "/v1/GetAllocIdStatistics"
+            body: "*"
+        };
+    }
+
+    /*
+     * GetPonPortStatistics takes interface id and type as argument from Interface structure.
+     * Returns Pon port statistics in the form of PonStatsData structure
+     */
+     rpc GetPonPortStatistics(Interface) returns (PortStatistics) {
+        option (google.api.http) = {
+          post: "/v1/GetPonPortStatistics"
+          body: "*"
+        };
+    }
+
+    /*
+     * GetNniPortStatistics takes takes interface id and type as argument from Interface structure.
+     * Returns Nni port statistics in the form of NniStatsData structure
+     */
+     rpc GetNniPortStatistics(Interface) returns (PortStatistics) {
+        option (google.api.http) = {
+          post: "/v1/GetNniPortStatistics"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -377,6 +412,7 @@ message PacketIndication {
 
 message Interface {
     fixed32 intf_id = 1;
+    fixed32 intf_type = 2;
 }
 
 message Heartbeat {
@@ -409,6 +445,7 @@ message OnuPacket {
     fixed32 onu_id = 2;
     fixed32 port_no = 4;
     fixed32 gemport_id = 5;
+    fixed32 alloc_id = 6;
     bytes pkt = 3;
 }
 
@@ -568,6 +605,20 @@ message PortStatistics {
     fixed64 rx_frames_4096_9216 = 26;
     fixed64 rx_frames_9217_16383 = 27;
     fixed64 rx_crc_errors = 14;
+    fixed64 rxUndersizePackets = 39;
+    fixed64 rxOversizePackets = 40;
+    fixed64 rxGem = 43;
+    fixed64 rxGemDropped = 44;
+    fixed64 rxGemIdle = 45;
+    fixed64 rxGemCorrected = 46;
+    fixed64 rxGemIllegal = 47;    
+    fixed64 rxFragmentError = 48;
+    fixed64 rxPacketsDropped = 49;
+    fixed64 rxCpuOmciPacketsDropped = 50;
+    fixed64 rxCpu = 51;
+    fixed64 rxOmci = 52;
+    fixed64 rxOmciPacketsCrcError = 53;
+    fixed64 rxFcsErrorPackets = 62;
 
     fixed64 tx_bytes = 8;
     fixed64 tx_packets = 9;
@@ -586,8 +637,18 @@ message PortStatistics {
     fixed64 tx_frames_2048_4095 = 36;
     fixed64 tx_frames_4096_9216 = 37;
     fixed64 tx_frames_9217_16383 = 38;
+    fixed64 txUndersizePackets = 41;
+    fixed64 txOversizePackets = 42;
+    fixed64 txGem = 54;
+    fixed64 txCpu = 55;
+    fixed64 txOmci = 56;
+    fixed64 txDroppedIllegalLength = 57;
+    fixed64 txDroppedTpidMiss = 58;
+    fixed64 txDroppedVidMiss = 59;
+    fixed64 txDroppedTotal = 60;
 
     fixed64 bip_errors = 15;
+    fixed64 bip_units = 61;
     fixed32 timestamp = 16;
 }
 
@@ -814,6 +875,12 @@ message PonRxPowerData {
     string status = 3;
     RssiMeasurementFailReason fail_reason = 4;
     double rx_power_mean_dbm = 5;
+}
+
+message OnuAllocIdStatistics {
+    fixed32 intfId = 1;
+    fixed32 allocId = 2;
+    fixed64 rxBytes = 3;
 }
 
 enum AlarmState {
