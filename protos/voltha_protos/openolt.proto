@@ -252,6 +252,39 @@ service Openolt {
           body: "*"
         };
     }
+
+    /*
+     * GetOnuAllocGemStatistics takes Onu id, intf_id and serial number as argument from Onu structure.
+     * Returns Alloc and Gem stats for the Onu in the form of OnuStatsResponse structure
+     */
+    rpc GetOnuAllocGemStatistics(Onu) returns (OnuStatsResponse) {
+        option (google.api.http) = {
+          post: "/v1/GetOnuAllocGemStatistics"
+          body: "*"
+        };
+    }
+
+    /*
+     * GetPonPortStatistics takes interface id and type as argument from Interface structure.
+     * Returns Pon port statistics in the form of PonStatsData structure
+     */
+     rpc GetPonPortStatistics(Interface) returns (PonStatsData) {
+        option (google.api.http) = {
+          post: "/v1/GetPonPortStatistics"
+          body: "*"
+        };
+    }
+
+    /*
+     * GetNniPortStatistics takes takes interface id and type as argument from Interface structure.
+     * Returns Nni port statistics in the form of NniStatsData structure
+     */
+     rpc GetNniPortStatistics(Onu) returns (NniStatsData) {
+        option (google.api.http) = {
+          post: "/v1/GetNniPortStatistics"
+          body: "*"
+        };
+    }
 }
 
 message Indication {
@@ -377,6 +410,7 @@ message PacketIndication {
 
 message Interface {
     fixed32 intf_id = 1;
+    fixed32 intf_type = 2;
 }
 
 message Heartbeat {
@@ -814,6 +848,76 @@ message PonRxPowerData {
     string status = 3;
     RssiMeasurementFailReason fail_reason = 4;
     double rx_power_mean_dbm = 5;
+}
+
+message NniStatsData {
+    fixed32 nniPort = 1;
+    fixed32 rxBytes = 2;
+    fixed32 rxPackets = 3;
+    fixed32 rxUcastPackets = 4;
+    fixed32 rxMcastPackets = 5;
+    fixed32 rxBcastPackets = 6;
+    fixed32 rxErrorPackets = 7;
+    fixed32 rxFcsErrorPackets = 8;
+    fixed32 rxUndersizePackets = 9;
+    fixed32 rxOversizePackets = 10;
+    fixed32 txBytes = 11;
+    fixed32 txPackets = 12;
+    fixed32 txUcastPackets = 13;
+    fixed32 txMcastPackets = 14;
+    fixed32 txBcastPackets = 15;
+    fixed32 txErrorPackets = 16;
+    fixed32 txUndersizePackets = 17;
+    fixed32 txOversizePackets = 18;
+}
+
+message PonStatsData {
+    fixed32 intfId = 1;
+    fixed32 bipUnits = 2;
+    fixed32 bipErrors = 3;
+    fixed32 rxPackets = 4;
+    fixed32 rxGem = 5;
+    fixed32 rxGemDropped = 6;
+    fixed32 rxGemIdle = 7;
+    fixed32 rxGemCorrected = 8;
+    fixed32 rxGemIllegal = 9;
+    fixed32 rxCrcError = 10;
+    fixed32 rxFragmentError = 11;
+    fixed32 rxPacketsDropped = 12;
+    fixed32 rxCpuOmciPacketsDropped = 13;
+    fixed32 rxCpu = 14;
+    fixed32 rxOmci = 15;
+    fixed32 rxOmciPacketsCrcError = 16;
+    fixed32 txPackets = 17;
+    fixed32 txGem = 18;
+    fixed32 txCpu = 19;
+    fixed32 txOmci = 20;
+    fixed32 txDroppedIllegalLength = 21;
+    fixed32 txDroppedTpidMiss = 22;
+    fixed32 txDroppedVidMiss = 23;
+    fixed32 txDroppedTotal = 24;
+}
+
+message OnuGemPortInfo {
+    fixed32 gemId = 1;
+    fixed32 rxPackets = 2;
+    fixed32 rxBytes = 3;
+    fixed32 txPackets = 4;
+    fixed32 txBytes = 5;
+}
+
+message OnuAllocIdInfo {
+    fixed32 allocId = 1;
+    fixed32 rxBytes = 2;
+}
+
+message OnuAllocGemStatsResponse {
+    OnuAllocIdInfo allocIdInfo = 1;
+    repeated OnuGemPortInfo gemPortInfo = 2;
+}
+
+message OnuStatsResponse {
+    repeated OnuAllocGemStatsResponse onuStatsInfo = 1;
 }
 
 enum AlarmState {

@@ -143,6 +143,7 @@ message GetOnuEthernetBridgePortHistory {
         DOWNSTREAM = 2;
     }
     Direction direction = 1;
+    string onuDeviceId = 2;
 }
 
 message GetOnuEthernetBridgePortHistoryResponse {
@@ -160,6 +161,34 @@ message GetOnuEthernetBridgePortHistoryResponse {
      uint32 packets256To511octets = 12;
      uint32 packets512To1023octets = 13;
      uint32 packets1024To1518octets = 14;
+}
+
+// GetOnuAllocGemHistoryRequest collects GEM and AllocId stats from ONU 
+message GetOnuAllocGemHistoryRequest {
+    string onuDeviceId = 1;
+}
+
+message OnuGemPortHistoryData {
+    uint32 gemId = 1;
+    uint32 transmittedGEMFrames= 2;
+    uint32 receivedGEMFrames = 3;
+    uint32 receivedPayloadBytes= 4;
+    uint32 transmittedPayloadBytes = 5;
+    uint32 encryptionKeyErrors = 6;
+}
+
+message OnuAllocIdData {
+    uint32 allocId = 1;
+    uint32 rxBytes = 2;
+}
+
+message OnuAllocGemHistoryData {
+    OnuAllocIdData onuAllocIdInfo = 1;
+    repeated OnuGemPortHistoryData gemPortInfo = 2;
+}
+
+message GetOnuAllocGemHistoryResponse {
+    repeated OnuAllocGemHistoryData onuAllocGemHistoryData = 1;
 }
 
 message GetOnuFecHistory {
@@ -200,6 +229,89 @@ message GetOltRxPowerRequest {
     // the ONUs on that PON port is requested. In case the port_label is not
     // of a PON port, the onu_sn does not have any significance 
     string onu_sn = 2;
+}
+
+message GetPonStatsRequest {
+    string ponLabel = 1;
+}
+
+message GetPonStatsResponse {
+    uint32 ponLabel = 1;
+    uint32 bipUnits = 2;
+    uint32 bipErrors = 3;
+    uint32 rxPackets = 4;
+    uint32 rxGem = 5;
+    uint32 rxGemDropped = 6;
+    uint32 rxGemIdle = 7;
+    uint32 rxGemCorrected = 8;
+    uint32 rxGemIllegal = 9;
+    uint32 rxCrcError = 10;
+    uint32 rxFragmentError = 11;
+    uint32 rxPacketsDropped = 12;
+    uint32 rxCpuOmciPacketsDropped = 13;
+    uint32 rxCpu = 14;
+    uint32 rxOmci = 15;
+    uint32 rxOmciPacketsCrcError = 16;
+    uint32 txPackets = 17;
+    uint32 txGem = 18;
+    uint32 txCpu = 19;
+    uint32 txOmci = 20;
+    uint32 txDroppedIllegalLength = 21;
+    uint32 txDroppedTpidMiss = 22;
+    uint32 txDroppedVidMiss = 23;
+    uint32 txDroppedTotal = 24;
+}
+
+message GetNNIStatsRequest {
+    uint32 nniPort = 1;
+}
+
+message GetNNIStatsResponse {
+    uint32 nniPort = 1;
+    uint32 rxBytes = 2;
+    uint32 rxPackets = 3;
+    uint32 rxUcastPackets = 4;
+    uint32 rxMcastPackets = 5;
+    uint32 rxBcastPackets = 6;
+    uint32 rxErrorPackets = 7;
+    uint32 rxFcsErrorPackets = 8;
+    uint32 rxUndersizePackets = 9;
+    uint32 rxOversizePackets = 10;
+    uint32 txBytes = 11;
+    uint32 txPackets = 12;
+    uint32 txUcastPackets = 13;
+    uint32 txMcastPackets = 14;
+    uint32 txBcastPackets = 15;
+    uint32 txErrorPackets = 16;
+    uint32 txUndersizePackets = 17;
+    uint32 txOversizePackets = 18;
+}
+
+// GetOnuStatsFromOltRequest collects GEM and AllocId stats from the OLT for a particular ONU.
+message GetOnuStatsFromOltRequest {
+    string onuDeviceId = 1;
+}
+
+message OnuGemPortInfoFromOlt {
+    uint32 gemId = 1;
+    uint32 rxPackets = 2;
+    uint32 rxBytes = 3;
+    uint32 txPackets = 4;
+    uint32 txBytes = 5;
+}
+
+message OnuAllocIdInfoFromOlt {
+    uint32 allocId = 1;
+    uint32 rxBytes = 2;
+}
+
+message OnuAllocGemStatsFromOltResponse {
+    OnuAllocIdInfoFromOlt allocIdInfo = 1;
+    repeated OnuGemPortInfoFromOlt gemPortInfo = 2;
+}
+
+message GetOnuStatsFromOltResponse {
+    repeated OnuAllocGemStatsFromOltResponse allocGemStatsInfo = 1;
 }
 
 message GetOnuCountersResponse {
@@ -397,6 +509,10 @@ message GetValueRequest {
         GetOnuOmciTxRxStatsRequest onuOmciStats = 10;
         GetOltRxPowerRequest oltRxPower = 11;
         GetOnuOmciActiveAlarmsRequest onuActiveAlarms  = 12;
+        GetOnuAllocGemHistoryRequest onuAllocGemStats = 13;
+        GetOnuStatsFromOltRequest onuStatsFromOlt = 14;
+        GetPonStatsRequest oltPonStats = 15;
+        GetNNIStatsRequest oltNniStats = 16;
     }
 }
 
@@ -433,6 +549,10 @@ message GetValueResponse {
         GetOnuOmciTxRxStatsResponse onuOmciStats = 12;
         GetOltRxPowerResponse oltRxPower = 13;
         GetOnuOmciActiveAlarmsResponse onuActiveAlarms = 14;
+        GetOnuAllocGemHistoryResponse onuAllocGemStatsResponse = 15;
+        GetOnuStatsFromOltResponse onuStatsFromOltResponse = 16;
+        GetPonStatsResponse oltPonStatsResponse = 17;
+        GetNNIStatsResponse oltNniStatsResponse = 18;
     }
 }
 
