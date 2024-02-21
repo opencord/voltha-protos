@@ -162,6 +162,34 @@ message GetOnuEthernetBridgePortHistoryResponse {
      uint32 packets1024To1518octets = 14;
 }
 
+// GetOnuAllocGemHistoryRequest collects GEM and AllocId stats from ONU 
+message GetOnuAllocGemHistoryRequest {
+    google.protobuf.Empty empty = 1;
+}
+
+message OnuGemPortHistoryData {
+    uint32 gemId = 1;
+    uint32 transmittedGEMFrames= 2;
+    uint32 receivedGEMFrames = 3;
+    uint32 receivedPayloadBytes= 4;
+    uint32 transmittedPayloadBytes = 5;
+    uint32 encryptionKeyErrors = 6;
+}
+
+message OnuAllocIdData {
+    uint32 allocId = 1;
+    uint32 rxBytes = 2;
+}
+
+message OnuAllocGemHistoryData {
+    OnuAllocIdData onuAllocIdInfo = 1;
+    repeated OnuGemPortHistoryData gemPortInfo = 2;
+}
+
+message GetOnuAllocGemHistoryResponse {
+    repeated OnuAllocGemHistoryData onuAllocGemHistoryData = 1;
+}
+
 message GetOnuFecHistory {
     google.protobuf.Empty empty = 1;
 }
@@ -200,6 +228,96 @@ message GetOltRxPowerRequest {
     // the ONUs on that PON port is requested. In case the port_label is not
     // of a PON port, the onu_sn does not have any significance 
     string onu_sn = 2;
+}
+
+message GetPonStatsRequest {
+    oneof portInfo {
+        string portLabel = 1;
+        fixed32 portId = 2;
+    }
+}
+
+message GetPonStatsResponse {
+    uint32 ponPort = 1;
+    uint64 bipUnits = 2;
+    uint64 bipErrors = 3;
+    uint64 rxPackets = 4;
+    uint64 rxGem = 5;
+    uint64 rxGemDropped = 6;
+    uint64 rxGemIdle = 7;
+    uint64 rxGemCorrected = 8;
+    uint64 rxGemIllegal = 9;
+    uint64 rxCrcError = 10;
+    uint64 rxFragmentError = 11;
+    uint64 rxPacketsDropped = 12;
+    uint64 rxCpuOmciPacketsDropped = 13;
+    uint64 rxCpu = 14;
+    uint64 rxOmci = 15;
+    uint64 rxOmciPacketsCrcError = 16;
+    uint64 txPackets = 17;
+    uint64 txGem = 18;
+    uint64 txCpu = 19;
+    uint64 txOmci = 20;
+    uint64 txDroppedIllegalLength = 21;
+    uint64 txDroppedTpidMiss = 22;
+    uint64 txDroppedVidMiss = 23;
+    uint64 txDroppedTotal = 24;
+}
+
+message GetNNIStatsRequest {
+    oneof portInfo {
+        string portLabel = 1;
+        fixed32 portId = 2;
+    }
+}
+
+message GetNNIStatsResponse {
+    uint32 nniPort = 1;
+    uint64 rxBytes = 2;
+    uint64 rxPackets = 3;
+    uint64 rxUcastPackets = 4;
+    uint64 rxMcastPackets = 5;
+    uint64 rxBcastPackets = 6;
+    uint64 rxErrorPackets = 7;
+    uint64 rxFcsErrorPackets = 8;
+    uint64 rxUndersizePackets = 9;
+    uint64 rxOversizePackets = 10;
+    uint64 txBytes = 11;
+    uint64 txPackets = 12;
+    uint64 txUcastPackets = 13;
+    uint64 txMcastPackets = 14;
+    uint64 txBcastPackets = 15;
+    uint64 txErrorPackets = 16;
+    uint64 txUndersizePackets = 17;
+    uint64 txOversizePackets = 18;
+}
+
+// GetOnuStatsFromOltRequest collects GEM and AllocId stats from the OLT for a particular ONU.
+message GetOnuStatsFromOltRequest {
+    fixed32 intfId = 1;
+    fixed32 onuId = 2;
+}
+
+message OnuGemPortInfoFromOlt {
+    uint32 gemId = 1;
+    uint64 rxPackets = 2;
+    uint64 rxBytes = 3;
+    uint64 txPackets = 4;
+    uint64 txBytes = 5;
+}
+
+message OnuAllocIdInfoFromOlt {
+    uint32 allocId = 1;
+    uint64 rxBytes = 2;
+}
+
+message OnuAllocGemStatsFromOltResponse {
+    OnuAllocIdInfoFromOlt allocIdInfo = 1;
+    repeated OnuGemPortInfoFromOlt gemPortInfo = 2;
+}
+
+message GetOnuStatsFromOltResponse {
+    repeated OnuAllocGemStatsFromOltResponse allocGemStatsInfo = 1;
 }
 
 message GetOnuCountersResponse {
@@ -464,6 +582,10 @@ message GetValueRequest {
         GetOltRxPowerRequest oltRxPower = 11;
         GetOnuOmciActiveAlarmsRequest onuActiveAlarms  = 12;
         GetOffloadedAppsStatisticsRequest offloadedAppsStats = 13;
+        GetOnuAllocGemHistoryRequest onuAllocGemStats = 14;
+        GetOnuStatsFromOltRequest onuStatsFromOlt = 15;
+        GetPonStatsRequest oltPonStats = 16;
+        GetNNIStatsRequest oltNniStats = 17;
     }
 }
 
@@ -501,6 +623,10 @@ message GetValueResponse {
         GetOltRxPowerResponse oltRxPower = 13;
         GetOnuOmciActiveAlarmsResponse onuActiveAlarms = 14;
         GetOffloadedAppsStatisticsResponse offloadedAppsStats = 15;
+        GetOnuAllocGemHistoryResponse onuAllocGemStatsResponse = 16;
+        GetOnuStatsFromOltResponse onuStatsFromOltResponse = 17;
+        GetPonStatsResponse oltPonStatsResponse = 18;
+        GetNNIStatsResponse oltNniStatsResponse = 19;
     }
 }
 
@@ -564,7 +690,7 @@ message SetValueResponse {
 
 message SingleGetValueRequest {
     string targetId = 1;
-    GetValueRequest request = 2;
+    GetValueRequest request = 2;  
 }
 
 message SingleGetValueResponse{
