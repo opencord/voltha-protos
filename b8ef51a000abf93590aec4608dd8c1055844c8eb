@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ede55a0c_f114d60d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-02-23T19:54:28Z",
+      "side": 1,
+      "message": "Hi,\n\nIn the first line of your commit message, could you also append a brief summary or a copy \u0026 paste titles from the jira ticket to label the patch:\n\n[VOL-5255] Use all uplink interfaces not only interface 0 at OLT\n\n\nWhen the first line is truncated, viewing the gerrit dashboard, queries, etc to triage code reviews will look something like this:\n\nhttps://gerrit.opencord.org\n[VOL-5255]\n[VOL-5255]\n[VOL-5255]\n[VOL-5255]\n\nThanks\n\n\nhttps://docs.voltha.org/master/howto/code/commit-message.html#pull-request-commit-message\nhttps://docs.voltha.org/master/overview/contributing.html#submitting-code\n",
+      "revId": "b8ef51a000abf93590aec4608dd8c1055844c8eb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
