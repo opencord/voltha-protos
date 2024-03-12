@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f7a296f_9ec7db55",
+        "filename": "protos/voltha_protos/tech_profile.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2024-03-12T10:17:00Z",
+      "side": 1,
+      "message": "We use \"network_intf_id\" for NNI ID and \"access_intf_id\" for PON ID in Flow object (see openolt.proto). For the sake of consistency and to prevent confusion, I recommend changing intf_id and nni_intf_id to access_intf_id and network_intf_id. I understand that we probably don\u0027t want to disturb the code by renaming intf_id here but with this addition and without any comment, it will confuse those examining the proto contract. Btw, we should avoid using \"nni\" since when we later include LAG support, we will talk about network_intf_type \u003d {lag,nni} enumeration. To sum up, for the least, I propose changing the name of this variable to network_intf_id. In addition, if we want to preserve consistency and reduce ambiguity, we also need to change intf_id to access_intf_id.",
+      "revId": "8b0ba208d86888284b0ab202f8df0a9a4dca18f1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
