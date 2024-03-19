@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fcbc3e3_68cc0a98",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2024-03-19T15:35:51Z",
+      "side": 1,
+      "message": "Why do we need the onuDeviceId here? Isn\u0027t the targetId present in SingleGetValueRequest  enough?",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70857ac1_df4cef01",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2024-03-19T15:35:51Z",
+      "side": 1,
+      "message": "Why do we need the onuDeviceId here? Isn\u0027t the targetId present in SingleGetValueRequest  enough?",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
