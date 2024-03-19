@@ -67,6 +67,24 @@
       "message": "what is the Pon Label? is that something that voltha knows?",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b240156_bb234d51",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2024-03-19T21:18:06Z",
+      "side": 1,
+      "message": "I think it should be called port label and not pon label",
+      "parentUuid": "83db47f6_323c2dcb",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
