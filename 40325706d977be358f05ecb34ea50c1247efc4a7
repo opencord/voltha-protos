@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6580cafe_f3c35c3f",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-03-19T13:44:30Z",
+      "side": 1,
+      "message": "there is already stats in the file ,PortStatistics. we can make use of that instead of creating a new one",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "408f25c6_0fac8000",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-03-19T13:44:30Z",
+      "side": 1,
+      "message": "same as above comment",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24653456_45e0733c",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-03-19T13:44:30Z",
+      "side": 1,
+      "message": "same here it is already defined in the file, GemPortStatistics",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e6834c_ed51a264",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-03-19T13:44:30Z",
+      "side": 1,
+      "message": "OnuallocIdStatistics?",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
