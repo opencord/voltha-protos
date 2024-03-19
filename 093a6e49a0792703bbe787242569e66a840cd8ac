@@ -50,6 +50,23 @@
       "message": "Why do we need the onuDeviceId here? Isn\u0027t the targetId present in SingleGetValueRequest  enough?",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83db47f6_323c2dcb",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-03-19T17:24:44Z",
+      "side": 1,
+      "message": "what is the Pon Label? is that something that voltha knows?",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
