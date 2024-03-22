@@ -175,6 +175,24 @@
       "parentUuid": "3a560654_946e0df4",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6df2ed_cd443003",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T12:44:13Z",
+      "side": 1,
+      "message": "The field \u0027portLabel\u0027 corresponds to the \u0027Label\u0027 field from the below output,\n\n$voltctl device port list ce1366d3-4226-5a99-af0d-54984437ea13\nPORTNO       LABEL      TYPE            ADMINSTATE    OPERSTATUS    DEVICEID                                PEERS\n536870942    pon-30     PON_OLT         ENABLED       DISCOVERED    ce1366d3-4226-5a99-af0d-54984437ea13    []\n536870926    pon-14     PON_OLT         ENABLED       DISCOVERED    ce1366d3-4226-5a99-af0d-54984437ea13    []\n\nFor ex, \u0027pon-30\u0027 is the value of portLabel. We can extract intfId and perform the query for that particular port.",
+      "parentUuid": "1933fd24_9fd7188f",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
