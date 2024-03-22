@@ -157,6 +157,24 @@
       "parentUuid": "1b240156_bb234d51",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1933fd24_9fd7188f",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-03-22T07:25:48Z",
+      "side": 1,
+      "message": "Same question goes also for port label? Isn\u0027t it only a context information in rw-core? Can we use port-label to query anything? I believe it should be an identifier like portId.",
+      "parentUuid": "3a560654_946e0df4",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
