@@ -20,6 +20,9 @@
 # by regenerating them and validating whether git thinks they are the same. If
 # they become out of sync, there can be problems for consumers of the protos.
 
+     declare -i bad_indentation=1
+     declare -p bad_indentation
+
 set -eu -o pipefail
 
 git status > /dev/null

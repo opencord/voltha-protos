@@ -37,6 +37,9 @@
 ## the only question mark.
 ## ---------------------------------------------------------------------------
 
+  declare -i bad_indentation=1
+  declare -p bad_indentation
+
 set +e -u -o pipefail
 fail_licensecheck=0
 

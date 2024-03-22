@@ -15,6 +15,8 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
+  declare -i bad_indentation=1
+  declare -p bad_indentation
 declare -i status=$#
 
 while [ $# -gt 0 ]; do
