@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5a6b81b_72d9ed79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Done. Removed the tar file.",
+      "parentUuid": "de5795ce_dac5f6ac",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fcbc3e3_68cc0a98",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 3
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2dde629f_0b79ca73",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Done. Removed onuDeviceId as suggested.",
+      "parentUuid": "1fcbc3e3_68cc0a98",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70857ac1_df4cef01",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 3
@@ -48,6 +84,24 @@
       "writtenOn": "2024-03-19T15:35:51Z",
       "side": 1,
       "message": "Why do we need the onuDeviceId here? Isn\u0027t the targetId present in SingleGetValueRequest  enough?",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb31a7d_75766a71",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Done. Removed onuDeviceId as suggested.",
+      "parentUuid": "70857ac1_df4cef01",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -83,6 +137,24 @@
       "side": 1,
       "message": "I think it should be called port label and not pon label",
       "parentUuid": "83db47f6_323c2dcb",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a560654_946e0df4",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Yes, changed it to port label.",
+      "parentUuid": "1b240156_bb234d51",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

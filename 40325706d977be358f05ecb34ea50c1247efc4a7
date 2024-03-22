@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23be5679_976b3a57",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Done. Using PortStatistics and added new fields to it.",
+      "parentUuid": "6580cafe_f3c35c3f",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "408f25c6_0fac8000",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-19T13:44:30Z",
       "side": 1,
       "message": "same as above comment",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "274be5ff_bbba10e2",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Done. Using PortStatistics and added new fields to it.",
+      "parentUuid": "408f25c6_0fac8000",
       "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35f24a98_a39a8a1d",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "Done. Using the existing GemPortStatistics and deleted the new one.",
+      "parentUuid": "24653456_45e0733c",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27e6834c_ed51a264",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 2
@@ -65,6 +119,24 @@
       "writtenOn": "2024-03-19T13:44:30Z",
       "side": 1,
       "message": "OnuallocIdStatistics?",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fee11d9d_4c4022ff",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-22T06:31:37Z",
+      "side": 1,
+      "message": "OnuAllocIdStatistics doesn\u0027t exist. Hence created a new struct named OnuAllocIdInfo",
+      "parentUuid": "27e6834c_ed51a264",
       "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
