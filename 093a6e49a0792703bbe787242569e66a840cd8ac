@@ -211,6 +211,24 @@
       "parentUuid": "8f6df2ed_cd443003",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ea7607_ac38c8d6",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2024-03-26T12:02:33Z",
+      "side": 1,
+      "message": "I would suggest to make it a oneof (portLabel, portID) so that both are possible. When the API also contains an identifier of the device then the portLabel is sufficieint to uniquely identify a port and can be used. I think that most users of voltha (at least the ones I know of :)) always use the ports in the context of a device and identifying them using the labels is far easier from an applications/user perspective.",
+      "parentUuid": "975575d2_ae108712",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
