@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bd83a0f_d1685df2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-03-26T16:07:15Z",
+      "side": 1,
+      "message": "Why do same messages exist in both extensions.proto and openolt.proto?",
+      "revId": "f9385bbe9666ccb018d63db4b1957c15b08f0b72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8393d2_6699b68a",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-03-26T16:07:15Z",
+      "side": 1,
+      "message": "Does this request history about all Allocs and GEMs in ONU? I don\u0027t see any Id in the request.",
+      "revId": "f9385bbe9666ccb018d63db4b1957c15b08f0b72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe940eb_23853280",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-03-26T16:07:15Z",
+      "side": 1,
+      "message": "There isn\u0027t a specific alloc Id that is queried in the Request message. So which alloc is returned here?",
+      "revId": "f9385bbe9666ccb018d63db4b1957c15b08f0b72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
