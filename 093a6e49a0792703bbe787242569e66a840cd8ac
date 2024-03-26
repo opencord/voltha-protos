@@ -193,6 +193,24 @@
       "parentUuid": "1933fd24_9fd7188f",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975575d2_ae108712",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-03-26T11:36:49Z",
+      "side": 1,
+      "message": "Since portLabel is a string field, it can be set to any value. Using the portID instead of the label might be better.  For example, querying and listing ports based on IDs would be simpler. I believe rw-core API shouldn\u0027t expose functionality based on portLabel.",
+      "parentUuid": "8f6df2ed_cd443003",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
