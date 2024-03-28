@@ -233,6 +233,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6065bd00_8c52010a",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-28T08:08:35Z",
+      "side": 1,
+      "message": "As suggested, I\u0027ve included both portLabel and portId in the request, as a oneof field.",
+      "parentUuid": "91ea7607_ac38c8d6",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c52f09fb_960d1e37",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 3
@@ -244,6 +262,30 @@
       "writtenOn": "2024-03-26T16:07:15Z",
       "side": 1,
       "message": "There is already a GetGemPortStatistics rpc.",
+      "range": {
+        "startLine": 260,
+        "startChar": 8,
+        "endLine": 260,
+        "endChar": 32
+      },
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b032b437_a94efc72",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-28T08:08:35Z",
+      "side": 1,
+      "message": "We have changed the openolt proto a bit and now the Gem and AllocId stats will be queried separately. Hence we\u0027ll use the existing GetGemPortStatistics rpc along with the newly defined GetAllocIdStatistics rpc.",
+      "parentUuid": "c52f09fb_960d1e37",
       "range": {
         "startLine": 260,
         "startChar": 8,

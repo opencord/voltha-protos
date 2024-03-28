@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a9d4f6c_679d3510",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-28T08:08:35Z",
+      "side": 1,
+      "message": "The request will be made for the Onu which is identified by the SingleValueGetRequest.targetId. The stats for all the allocIds and gems associated with the Onu will queried.",
+      "parentUuid": "2c8393d2_6699b68a",
+      "revId": "f9385bbe9666ccb018d63db4b1957c15b08f0b72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fe940eb_23853280",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 5
@@ -48,6 +66,24 @@
       "writtenOn": "2024-03-26T16:07:15Z",
       "side": 1,
       "message": "There isn\u0027t a specific alloc Id that is queried in the Request message. So which alloc is returned here?",
+      "revId": "f9385bbe9666ccb018d63db4b1957c15b08f0b72",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c352d9_118f6588",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-03-28T08:08:35Z",
+      "side": 1,
+      "message": "The Onu device will be queried based on the targetId. The stats of all allocIds and gems associated with the Onu will be returned in this response.",
+      "parentUuid": "5fe940eb_23853280",
       "revId": "f9385bbe9666ccb018d63db4b1957c15b08f0b72",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
