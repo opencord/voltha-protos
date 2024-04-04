@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6993fe00_8b5f0c33",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2024-04-04T17:24:46Z",
+      "side": 1,
+      "message": "For Broadcom-based OLTs, we first need to enable statistics for an Alloc Id before we query the alloc ID statistics (stats collection for alloc ids is disabled by default). And after we get what we need, we need to disable the stats for that alloc ID since the max number of alloc IDs for which stats can be collected is quite limited (As far as I know, it is 16 per OLT, not per PON, in ASGvOLT64 and ASXvOLT16). So, we should either have separate grpc methods to enable/disable stats for a specific alloc id (or set of alloc ids) or we should give a duration to GetAllocIdStatistics where we first enable stats for the corresponding alloc id,wait for that duration, collect the stats and disable stats for the alloc id and return the stats.",
+      "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
