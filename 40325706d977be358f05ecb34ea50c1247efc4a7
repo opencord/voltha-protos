@@ -36,6 +36,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de010273_09d942b7",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-04-16T14:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23be5679_976b3a57",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "408f25c6_0fac8000",
@@ -71,6 +89,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e55f805_81b6ac89",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-04-16T14:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "274be5ff_bbba10e2",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24653456_45e0733c",
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "Done. Using the existing GemPortStatistics and deleted the new one.",
       "parentUuid": "24653456_45e0733c",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c06347b_79c891e9",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-04-16T14:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35f24a98_a39a8a1d",
       "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -155,6 +209,24 @@
       "side": 1,
       "message": "Since we\u0027ve changed the openolt proto, now defined a new struct OnuAllocIdStatistics. Gem and AllocId stats will be queried in separate rpcs.",
       "parentUuid": "fee11d9d_4c4022ff",
+      "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01229466_0bce4644",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-04-16T14:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f97d0157_799ff822",
       "revId": "40325706d977be358f05ecb34ea50c1247efc4a7",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
