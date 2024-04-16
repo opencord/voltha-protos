@@ -34,6 +34,24 @@
       "parentUuid": "6993fe00_8b5f0c33",
       "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c09734_191091d5",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2024-04-16T15:41:15Z",
+      "side": 1,
+      "message": "Hi Sridhar, I have just dropped a comment to your change on the agent side. As I wrote in my previous comment, we need to wait for some time, which may be given as a parameter to GetAllocIdStatistics, before we collect and disable the stats for an allocId after we enable stats for it, if we want to handle this enable and collect actions at once with a single grpc method.",
+      "parentUuid": "236d8162_f4e66c69",
+      "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
