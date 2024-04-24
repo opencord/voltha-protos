@@ -52,6 +52,24 @@
       "parentUuid": "236d8162_f4e66c69",
       "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48df4351_c2f3b1d0",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-04-24T08:43:11Z",
+      "side": 1,
+      "message": "Hi Burak. We will add a wait with pre configured interval in the agent after enabling the alloc stats. After the wait, agent will collect the stats and disable it. We will not make this time interval parameterized for the GetAllocIdStats grpc method, as it would lead to NB setting different intervals which cannot be controlled. Higher the interval set by NB, might result in grpc timeouts.",
+      "parentUuid": "71c09734_191091d5",
+      "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
