@@ -106,6 +106,24 @@
       "parentUuid": "cb5531e5_e142c719",
       "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7034c9c_e9aaadc1",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000558
+      },
+      "writtenOn": "2024-04-30T07:16:44Z",
+      "side": 1,
+      "message": "Thanks. I am giving +1 with a very minor suggestion: \"handled\" --\u003e \"handle it\"",
+      "parentUuid": "6130cde9_725e9635",
+      "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
