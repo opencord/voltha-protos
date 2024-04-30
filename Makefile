@@ -139,7 +139,7 @@ show:
 ## -----------------------------------------------------------------------
 ## Intent:
 ## -----------------------------------------------------------------------
-python-build: setup.py python-protos	
+python-build: setup.py python-protos
 
 	$(call banner-enter,target $@)
 
@@ -149,12 +149,20 @@ python-build: setup.py python-protos
 	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
-## Intent:
+## Intent: Invoke tox to install a python interpreter then run tests.
+## -----------------------------------------------------------------------
+## See Also:
+##   o https://tox.wiki/en/latest/cli_interface.html#tox-verbosity
+##     every -v increases, every -q decreases verbosity level,
+##     default WARNING (level:2)
+##     map 0=CRITICAL|1=ERROR|2=WARNING|3=INFO|4=DEBUG|5=NOTSET
 ## -----------------------------------------------------------------------
 python-test: tox.ini setup.py python-protos
 	$(call banner-enter,target $@)
+
 	$(activate) && python --version
-	tox
+	tox -vvv
+
 	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
@@ -323,4 +331,3 @@ show-proto-files:
 	$(call banner-leave,Target $@)
 
 # [EOF]
-
