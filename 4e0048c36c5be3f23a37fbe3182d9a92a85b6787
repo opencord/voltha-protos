@@ -88,6 +88,24 @@
       "parentUuid": "48df4351_c2f3b1d0",
       "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6130cde9_725e9635",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-04-30T06:57:48Z",
+      "side": 1,
+      "message": "Added the comment.",
+      "parentUuid": "cb5531e5_e142c719",
+      "revId": "4e0048c36c5be3f23a37fbe3182d9a92a85b6787",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
