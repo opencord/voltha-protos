@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d61fb0_c6addd02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2024-04-30T07:45:19Z",
+      "side": 1,
+      "message": "recheck\n\nUnit tests are failing in pipeline",
+      "revId": "13ea90b1bebf4ba35df9a23a88c533d4bd5dcdf2",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
