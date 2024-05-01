@@ -50,6 +50,23 @@
       "message": "Triage for failure details from the job captured as comments the patch ticket:\n    https://jira.opencord.org/browse/VOL-5291",
       "revId": "13ea90b1bebf4ba35df9a23a88c533d4bd5dcdf2",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a83a7878_788d4b2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-05-01T13:42:28Z",
+      "side": 1,
+      "message": "patch 35128 is also showing merge conflicts",
+      "revId": "13ea90b1bebf4ba35df9a23a88c533d4bd5dcdf2",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
