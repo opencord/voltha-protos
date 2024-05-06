@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2019-2024 Open Networking Foundation Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,17 +14,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
+# SPDX-FileCopyrightText: 2019-2024 Open Networking Foundation Contributors
+# SPDX-License-Identifier: Apache-2.0
+# -----------------------------------------------------------------------
+# Intent:
+# -----------------------------------------------------------------------
 
 .PHONY: test
 .DEFAULT_GOAL := test
 
+$(if $(findstring disabled-joey,$(USER)),\
+   $(eval USE_LF_MK := 1)) # special snowflake
+
+##--------------------##
+##---]  INCLUDES  [---##
+##--------------------##
+ifdef USE_LF_MK
+  include lf/include.mk
+else
+  include lf/transition.mk
+endif # ifdef USE_LF_MK
+
 ##-------------------##
 ##---]  GLOBALS  [---##
 ##-------------------##
-TOP         ?= .
-MAKEDIR     ?= $(TOP)/makefiles
-
-$(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
+# TOP         ?= .
+# MAKEDIR     ?= $(TOP)/makefiles
+#
+# $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 
 ##--------------------------
 ## Enable setup.py debugging
@@ -73,7 +90,8 @@ PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.pro
 PROTO_JAVA_DEST_DIR := java
 PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f)))
 
-# Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
+# Force pb file to be regenerated every time.
+# Otherwise the make process assumes generated version is still valid
 .PHONY: voltha.pb
 
 ##----------------##

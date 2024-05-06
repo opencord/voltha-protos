@@ -36,7 +36,7 @@ include $(MAKEDIR)/help/include.mk
 
 include $(MAKEDIR)/consts.mk
 include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
+# include $(MAKEDIR)/virtualenv.mk
 
 include $(MAKEDIR)/golang/include.mk
 
