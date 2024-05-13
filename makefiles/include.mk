@@ -34,10 +34,23 @@ NO-LINT-SHELL    := true    # cleanup needed
 ##--------------------##
 include $(MAKEDIR)/help/include.mk
 
+include $(MAKEDIR)/consts.mk
+include $(MAKEDIR)/etc/include.mk
+
+ifdef NO_VENV
+  activate-python      := /usr/bin/python3
+  venv-activate-script := /bin/true
+
+else
+  include $(MAKEDIR)/virtualenv.mk
+  activate-python = $(activate) && python
+endif
+
 include $(MAKEDIR)/golang/include.mk
 
 include $(MAKEDIR)/help/variables.mk
 include $(MAKEDIR)/lint/include.mk
+include $(MAKEDIR)/todo.mk
 
 include $(MAKEDIR)/docker/include.mk
 
