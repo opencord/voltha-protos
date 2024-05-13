@@ -36,7 +36,15 @@ include $(MAKEDIR)/help/include.mk
 
 include $(MAKEDIR)/consts.mk
 include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
+
+ifdef NO_VENV
+  activate-python      := /usr/bin/python3
+  venv-activate-script := /bin/true
+
+else
+  include $(MAKEDIR)/virtualenv.mk
+  activate-python = $(activate) && python
+endif
 
 include $(MAKEDIR)/golang/include.mk
 

@@ -37,11 +37,11 @@ banner-enter=\
     @echo -e \
     "\n"\
     "$(target-banner)\n"\
-    "** $(MAKE) ENTER: $(1)\n"\
-    "$(target-banner)"\
+    "** $(MAKE) ENTER $(1): $$(date '+%Y-%m-%d %H:%M:%S')\n"\
+    "$(target-banner)"
 
 banner-leave=\
-    @echo -e "** $(MAKE) LEAVE: $(1)"
+    @echo -e "** $(MAKE) LEAVE: $(1): $$(date '+%Y-%m-%d %H:%M:%S')"
 
 $(if $(DEBUG),$(warning LEAVE))
 

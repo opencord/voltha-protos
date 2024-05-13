@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2019-2024 Open Networking Foundation Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
+# SPDX-FileCopyrightText: 2019-2024 Open Networking Foundation Contributors
+# SPDX-License-Identifier: Apache-2.0
+# -----------------------------------------------------------------------
+# Intent:
+# -----------------------------------------------------------------------
 
 .PHONY: test
 .DEFAULT_GOAL := test
@@ -23,6 +28,8 @@
 ##-------------------##
 TOP         ?= .
 MAKEDIR     ?= $(TOP)/makefiles
+
+TOX			?= tox
 
 $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 
@@ -92,15 +99,38 @@ print:
 	@echo "JAVA PB files: $(PROTO_JAVA_PB)"
 
 # Generic targets
-protos: python-protos go-protos java-protos
+protos       := python-protos go-protos java-protos
+protos       : protos-enter protos-leave
+protos-leave : $(protos)
 
-build: protos python-build go-protos java-protos
+build        := protos python-build go-protos java-protos
+build        : build-enter build build-leave
+build-leave  : $(build)
 
-test: python-test go-test java-test
+test         := python-test go-test java-test
+test         : test-enter test-leave
+test-leave   : $(test)
 
-clean :: python-clean java-clean go-clean
+clean        := python-clean java-clean go-clean
+clean        :: clean-enter clean-leave
+clean-leave  : $(clean)
 
 sterile :: clean
+
+## -----------------------------------------------------------------------
+## Intent: These wildcards can add start/stop timestamps to targets
+##         with dependencies and no shell commands to run.
+## -----------------------------------------------------------------------
+## Usage:
+##   tgt       := foo bar tans
+##   tgt       : tgt-enter tgt-leave
+##   tgt-leave : $(tgt)
+## -----------------------------------------------------------------------
+%-enter  :
+	$(call banner-enter,target $(subst -enter,$(null),$@))
+
+%-leave :
+	$(call banner-leave,target $(subst -leave,$(null),$@))
 
 ## -----------------------------------------------------------------------
 ## Python targets
@@ -114,12 +144,9 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
   Makefile \
   $(venv-activate-script)
 
-	@echo
-	@echo "** -----------------------------------------------------------------------"
-	@echo "** $(MAKE): processing target [$@]"
-	@echo "** -----------------------------------------------------------------------"
+	$(call banner-enter,target $@)
 
-	$(activate) && python -m grpc_tools.protoc \
+	$(activate-python) -m grpc_tools.protoc \
     -I protos \
     --python_out=python \
     --grpc_python_out=python \
@@ -127,6 +154,8 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
     --include_imports \
     --include_source_info \
     $<
+
+	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent:
@@ -160,8 +189,8 @@ python-build: setup.py python-protos
 python-test: tox.ini setup.py python-protos
 	$(call banner-enter,target $@)
 
-	$(activate) && python --version
-	tox -vvv
+	$(activate-python) --version
+	$(TOX) -vvv
 
 	$(call banner-leave,target $@)
 
@@ -169,6 +198,9 @@ python-test: tox.ini setup.py python-protos
 ## Intent:
 ## -----------------------------------------------------------------------
 python-clean:
+	$(call banner-enter,target $@)
+
+# 	makefile/virtualenv/include.mk :: sterile
 	find python -name '__pycache__' -type d -print0 \
 	    | xargs -0 --no-run-if-empty $(RM) -r
 	find python -name '*.pyc' -type f -print0 \
@@ -187,14 +219,18 @@ python-clean:
     $(PROTO_PYTHON_PB2) \
     $(PROTO_PYTHON_PB2_GRPC)
 
+	$(call banner-enter,target $@)
+
 ## -----------------------------------------------------------------------
 ## Intent: Revert go to a clean state.
 ##   o TODO - go/ directory should not be placed under revision control.
 ##   o Build should retrieve versioned sources from a central repo.
 ## -----------------------------------------------------------------------
 go-clean:
+	$(call banner-enter,target $@)
 	$(RM) -r go/*
 	$(HIDE)$(MAKE) repair
+	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent: Recover from a fatal failed build state:
@@ -210,7 +246,6 @@ repair:
 go-protos: voltha.pb
 
 	$(call banner-enter,target $@)
-	@echo "** Creating *.go.pb files"
 
 	$(if $(LOCAL_FIX_PERMS),chmod -R o+w $(PROTO_GO_DEST_DIR))
 
@@ -296,15 +331,21 @@ java-protos: voltha.pb
 ## Intent: Tests if the generated java classes are compilable
 ## -----------------------------------------------------------------------
 java-test: java-protos
+	$(call banner-enter,target $@)
+
 	cp test/pom.xml java_temp
 	cd java_temp && mvn compile
+
+	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent: Custodial service
 ## -----------------------------------------------------------------------
 java-clean:
+	$(call banner-enter,target $@)
 	$(RM) -r java
 	$(RM) -r java_temp
+	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent: Placeholder for library targets
@@ -329,5 +370,40 @@ show-proto-files:
 	$(call banner-enter,Target $@)
 	@echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
 	$(call banner-leave,Target $@)
+
+## -----------------------------------------------------------------------
+## Intent: Dispaly makefile target help
+## -----------------------------------------------------------------------
+help ::
+	@printf '  %-33.33s %s\n' 'show-proto-files' \
+	  'Display a list of PROTO_FILES= generated by this makefile'
+#	protos, build, test, clean -- generic targets
+
+	@printf '  %-33.33s %s\n' 'protos-clean' \
+	  'Remove all generated prototype files'
+
+	@printf '\n[PROTOS: golang]\n'
+	@printf '  %-33.33s %s\n' 'go-clean' \
+	  'Remove all generated go prototype files'
+	@printf '  %-33.33s %s\n' 'go-protos' \
+	  'Generate go prototypes'
+	@printf '  %-33.33s %s\n' 'go-test' \
+	  'Unit test generated go sources'
+
+	@printf '\n[PROTOS: java]\n'
+	@printf '  %-33.33s %s\n' 'java-clean' \
+	  'Remove all generated java prototype files'
+	@printf '  %-33.33s %s\n' 'java-protos' \
+	  'Generate java prototypes'
+	@printf '  %-33.33s %s\n' 'java-test' \
+	  'Unit test generated java sources'
+
+	@printf '\n[PROTOS: python]\n'
+	@printf '  %-33.33s %s\n' 'python-clean' \
+	  'Remove all generated python prototype files'
+	@printf '  %-33.33s %s\n' 'python-protos' \
+	  'Generate python prototypes'
+	@printf '  %-33.33s %s\n' 'python-test' \
+	  'Unit test generated python sources'
 
 # [EOF]
