@@ -16,6 +16,23 @@
       "message": "please resolve the merge conflict and bump up the version in VERSION file.",
       "revId": "4960a3e4b0637f76f8f00e9267b07e75b0e090de",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb611d7_23924b15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-05-14T13:31:17Z",
+      "side": 1,
+      "message": "recheck\n\nfailure logs have rotated out of history.\nRe-run the job for status output and will click [keep this build forever] to retain the log afterward.\n",
+      "revId": "4960a3e4b0637f76f8f00e9267b07e75b0e090de",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
