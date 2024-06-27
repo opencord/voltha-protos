@@ -1,5 +1,19 @@
+{% if date.start and date.end %}
+
+  {% if date.start eq date.end %}
+    {% set date.range = {{ date.end } %}
+  {% else
+    {% set date.range = {{ date.start }}-{{ date.end } %}
+  {% endif %}
+
+% else %}
+    {% set date.range = {{ date.end }
+{% endif %}
+
+{% set copyright = {{ date.range }} Open Networking Foundation Contributors %}
+
 # -----------------------------------------------------------------------
-# Copyright 2023-2024 Open Networking Foundation Contributors
+# Copyright {{ copyright }}
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,17 +27,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
-# SPDX-FileCopyrightText: 2023-2024 Open Networking Foundation Contributors
+# SPDX-FileCopyrightText: {{ copyright }}
 # SPDX-License-Identifier: Apache-2.0
-# -----------------------------------------------------------------------
-
-googleapis-common-protos==1.52.0
-grpcio==1.39.0
-grpcio-tools==1.39.0
-nose2[coverage_plugin]
-protobuf==3.17.3
-
-pre-commit
-ansys-pre-commit-hooks
-
-# [EOF]
+# ----------------------------------------------------------------------

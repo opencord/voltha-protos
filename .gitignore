@@ -1,9 +1,14 @@
+*~
+*\#*
+
+logs/
+
 # python related
 *.pyc
 *.egg-info
 dist
 build
-.venv
+# .venv
 .tox
 
 # go related
