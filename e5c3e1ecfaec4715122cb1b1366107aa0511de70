@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfccbc0_7a8bf863",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Changes look good overall.\nA few suggestions inlined to simplify future maintenance.\n\nI\u0027ll pull this patch into the new prototype AMI image being spun up for jenkins nodes to verify it is building cleanly with permutations of the golang and python interpreter(s).",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81031308_ea5c9d86",
+        "filename": "go/extension/extensions.pb.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Not required, just a suggestion:\n\nIntroduce an extra data structure/access methods to centrally store attributes:\n  * offset (~named constant)\n  * error message\n  * etc\n\nThen modify all relevant functions to access field data by named constant.\nThis helps avoid introducing typos when new elements are added in the *_name and *_value gettr() functions.  New/complete records are added to central storage then getters simply pull by constant name.\n\nHmmm, can also map default gettr behavior to return error or undefined when an invalid string \u003d\u003e \u0027PpOeIa\u0027 is passed.\n\nObviously this will introduce extra overhead compared to string indexing --implementation changes should be profiled to verify they are not detrimental.\n\n\n[PSEUDO CODE]\n\nget_statistics_rec():\n    // NAMED_CONSTANT : { key:val, key:val, key:val }\n    UNDEFINED :\n       \u0027name\u0027  : \"UNDEFINED\"\n       \u0027value\u0027 : 0\n       [...]\n    PPOEIA :\n      \u0027name\u0027  : \"PPoeIA\"\n      \u0027value\u0027 : 1\n      [...]\n \nname  \u003d GetOffloadedAppsStatisticsRequest_OffloadedApp_name(PPOEIA)\nvalue \u003d GetOffloadedAppsStatisticsRequest_OffloadedApp_value(PPOEIA)",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56203632_f6b9f992",
+        "filename": "go/extension/extensions.pb.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 3075,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "For readability long strings like `protobuf:....,omitempty\"\u0027 can be constructed using mutli-line concatenation.  Better yet define and assign the string early and reference them using a named variable\n\nThat allows playing games to make the code self documenting:\n   [stats_proto_attrs] \u003d \\\n   \u0027\u0027\u0027 \\\n   + \u0027protobuff:\u0027        // Specify protobuff attributes\n   + \u0027variant\u0027           // not to be confused with \u0027vagrant\u0027\n   + \u0027,1 opt\u0027\n   + \u0027name\u003dstatsFor\u0027,    // Destination name\n   + \u0027proto3\u0027            // Version 3 prototypes (?)\n   [....]\n   + \u0027\u0027\u0027\n\ntype GetOffloaded... struct {\n   StatsFor GetOffloaded... [stats_proto_attrs]",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3658e2d_e5405c67",
+        "filename": "go/extension/extensions.pb.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 3213,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Could a string template be used to refactor some of the duplicate attribute strings ?  The main delta seems to be \u0027variant:{1..9}\u0027 and option_82_removed_packets*\n\nOr even some form of string concatentation:\n    \u0027\u0027\u0027 + protobuff(2) + json:\"in_bad_packets_from_server,omitempty\" + \u0027\u0027\u0027\n\nThe latter answer would extend refactoring to attributes on lines 3321-3329\nalso lines: 3429-3437",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f910a2_1c8d220e",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Stray whitespace suffix\n\nThe pre-commit hook tool can fix this\n\n% echo \u0027precommit\u0027 \u003e\u003e rquirements.txt\n% make venv\n% source .venv/bin/activate\n% pre-commit\n\n## Yes this command sequence should be simplified.\n## \u0027make pre-commit\u0027 exists in a few repositories but not available everywhere yet.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2ac549_6e3983b6",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Could these statements defined in terms of derived values ?\nDefining in terms of incrementing values would help avoid potential typos and helps make re-organizing or re-numbering code trivial.\n\n[PSEUDEO CODE]\n\nunit init                         \u003d 0\nuint in_bad_packets_from_client   \u003d 1 + init\nuint32 in_bad_packets_from_server \u003d 1 + uint in_bad_packets_from_client\n[ ... ]",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "570c89ed_93faab34",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Lines 498-503\n-------------\nVisually declaration type does not match assigned values {bool,string} VS [1..4]\nShould string accessNodeID \u003d \"4\" (?)\n\nOr might side effects be in play, the assignment defines a named constant that can be used to programatically access storage or index reference data (error message, attributes, etc).\n\nA few comments documenting what the field(s) and value(s) represent would be helpful",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc25311_7a62fbf4",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 1,
+      "message": "Could these assignments be changed to assign based on default increasing values VS explicitly passing a value ?\n\nReplacing explicit assignment with default number (or initialize the first REASON_UNDEFINED\u003d0 to guarantee undefined is always zero) would help with future maintenance if the list is reordered or values need to change.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}

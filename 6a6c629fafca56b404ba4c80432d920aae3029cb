@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6824a98_fc6b1f44",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T15:29:41Z",
+      "side": 0,
+      "message": "lines 436-438 were hi-lighted in the review editor.\nSuspect this is likely trailing whitespace to be removed.",
+      "revId": "6a6c629fafca56b404ba4c80432d920aae3029cb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
