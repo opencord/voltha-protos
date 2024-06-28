@@ -386,7 +386,7 @@ message GetOffloadedAppsStatisticsRequest {
         DHCPv6RA = 3;
     }
     // The offloaded application whose statistics are requested
-    OffloadedApp statsFor = 1; 
+    OffloadedApp statsFor = 1;
 }
 
 message GetOffloadedAppsStatisticsResponse {
@@ -440,7 +440,7 @@ message GetValueRequest {
     oneof request {
         GetDistanceRequest distance = 1;
         GetOnuUniInfoRequest uniInfo = 2;
-        // Corresponds to PmMetricId.PON_PORT_COUNTERS, PmMetricId.NNI_PORT_COUNTERS 
+        // Corresponds to PmMetricId.PON_PORT_COUNTERS, PmMetricId.NNI_PORT_COUNTERS
         GetOltPortCounters oltPortInfo = 3;
         // Corresponds to PmMetricId.PON_OPTICAL
         GetOnuPonOpticalInfo onuOpticalInfo = 4;
