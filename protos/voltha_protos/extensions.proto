@@ -386,7 +386,7 @@ message GetOffloadedAppsStatisticsRequest {
         DHCPv6RA = 3;
     }
     // The offloaded application whose statistics are requested
-    OffloadedApp statsFor = 1; 
+    OffloadedApp statsFor = 1;
 }
 
 message GetOffloadedAppsStatisticsResponse {
