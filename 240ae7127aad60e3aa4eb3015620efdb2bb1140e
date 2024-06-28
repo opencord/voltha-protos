@@ -35,6 +35,23 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "986b94df_3636a88b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T22:00:24Z",
+      "side": 1,
+      "message": "Oh also this patch is showing a merge conflict.",
+      "revId": "240ae7127aad60e3aa4eb3015620efdb2bb1140e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cbd25af_667af6a7",
