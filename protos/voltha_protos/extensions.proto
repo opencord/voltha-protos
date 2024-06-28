@@ -378,6 +378,63 @@ message GetOnuOmciActiveAlarmsResponse{
     repeated AlarmData active_alarms = 1;
 }
 
+message GetOffloadedAppsStatisticsRequest {
+    enum OffloadedApp {
+        UNDEFINED = 0;
+        PPPoeIA = 1;
+        DHCPv4RA = 2;
+        DHCPv6RA = 3;
+    }
+    // The offloaded application whose statistics are requested
+    OffloadedApp statsFor = 1; 
+}
+
+message GetOffloadedAppsStatisticsResponse {
+    // From https://www.netconfcentral.org/modules/bbf-l2-dhcpv4-relay/2017-05-08
+    message DHCPv4RAStats {
+        uint32 in_bad_packets_from_client = 1;
+        uint32 in_bad_packets_from_server = 2;
+        uint32 in_packets_from_client = 3;
+        uint32 in_packets_from_server = 4;
+        uint32 out_packets_to_server = 5;
+        uint32 out_packets_to_client = 6;
+        uint32 option_82_inserted_packets_to_server = 7;
+        uint32 option_82_removed_packets_to_client = 8;
+        uint32 option_82_not_inserted_to_server = 9;
+    }
+
+    // From https://raw.githubusercontent.com/BroadbandForum/yang/master/standard/networking/bbf-ldra.yang (revision 2023-12-15)
+    message DHCPv6RAStats {
+        uint32 in_bad_packets_from_client = 1;
+        uint32 in_bad_packets_from_server = 2;
+        uint32 option_17_inserted_packets_to_server = 3;
+        uint32 option_17_removed_packets_to_client = 4;
+        uint32 option_18_inserted_packets_to_server = 5;
+        uint32 option_18_removed_packets_to_client = 6;
+        uint32 option_37_inserted_packets_to_server = 7;
+        uint32 option_37_removed_packets_to_client = 8;
+        uint32 outgoing_mtu_exceeded_packets_from_client = 9;
+    }
+
+    // From https://www.netconfcentral.org/modules/bbf-pppoe-intermediate-agent/2022-03-01/source/raw/
+    message PPPoeIAStats {
+        uint32 in_bad_packets_from_client = 1;
+        uint32 in_bad_packets_from_server = 2;
+        uint32 in_packets_from_client = 3;
+        uint32 in_packets_from_server = 4;
+        uint32 out_packets_to_server = 5;
+        uint32 out_packets_to_client = 6;
+        uint32 vendor_specific_tag_inserted_packets_to_server = 7;
+        uint32 vendor_specific_tag_removed_packets_to_client = 8;
+        uint32 outgoing_mtu_exceeded_packets_from_client = 9;
+    }
+
+    oneof stats {
+        DHCPv4RAStats dhcpv4RaStats = 1;
+        DHCPv6RAStats dhcpv6RaStats = 2;
+        PPPoeIAStats pppoeIaStats = 3;
+    }
+}
 
 message GetValueRequest {
     oneof request {
@@ -397,6 +454,7 @@ message GetValueRequest {
         GetOnuOmciTxRxStatsRequest onuOmciStats = 10;
         GetOltRxPowerRequest oltRxPower = 11;
         GetOnuOmciActiveAlarmsRequest onuActiveAlarms  = 12;
+        GetOffloadedAppsStatisticsRequest offloadedAppsStats = 13;
     }
 }
 
@@ -433,12 +491,35 @@ message GetValueResponse {
         GetOnuOmciTxRxStatsResponse onuOmciStats = 12;
         GetOltRxPowerResponse oltRxPower = 13;
         GetOnuOmciActiveAlarmsResponse onuActiveAlarms = 14;
+        GetOffloadedAppsStatisticsResponse offloadedAppsStats = 15;
     }
+}
+
+message AppOffloadConfig {
+    bool enableDHCPv4RA = 1;
+    bool enableDHCPv6RA = 2;
+    bool enablePPPoEIA = 3;
+    string accessNodeID = 4;
+}
+
+message AppOffloadOnuConfig {
+    string onuDeviceId = 1;
+
+    message PerUniConfig {
+        string agentRemoteID = 2; // Fill with A4 lineID
+        string agentCircuitID = 3; // In case of A4 this is created by the OLTs using the accessNodeID
+        uint32 onuUniId = 4;
+    }
+
+    repeated PerUniConfig perUniInfo = 5;
+
 }
 
 message SetValueRequest {
     oneof request {
         config.AlarmConfig alarm_config = 1;
+        AppOffloadConfig app_offload_config = 2;
+        AppOffloadOnuConfig app_offload_onu_config = 3;
     }
 }
 
@@ -452,6 +533,9 @@ message SetValueResponse {
     enum ErrorReason {
         REASON_UNDEFINED = 0;
         UNSUPPORTED = 1;
+        INVALID_DEVICE_ID = 2;
+        INVALID_ONU_DEVICE_ID = 3;
+        INVALID_UNI_ID = 4;
     }
     Status status = 1;
     ErrorReason errReason = 2;
