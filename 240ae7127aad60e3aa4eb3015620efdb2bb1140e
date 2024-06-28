@@ -16,6 +16,57 @@
       "message": "Please Update the VERSION file.",
       "revId": "240ae7127aad60e3aa4eb3015620efdb2bb1140e",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab58c86_06cafc4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T21:59:50Z",
+      "side": 1,
+      "message": "Minor whitespace cleanup suggestions added.\n\nCan you also visit the patch:\n  https://gerrit.opencord.org/c/voltha-protos/+/35128\n\nThen click on the [8 unresolved] items beneath the commit message box.\nSome of the review discussion items contain the comment \u0027Done\u0027.\n\nIf you also click the [Done] button in the lower right hand corner of the review dialog, that action will close the review item and remove it from the unresolved counter.",
+      "revId": "240ae7127aad60e3aa4eb3015620efdb2bb1140e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cbd25af_667af6a7",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T21:59:50Z",
+      "side": 1,
+      "message": "Trailing whitespace at end-of-line",
+      "revId": "240ae7127aad60e3aa4eb3015620efdb2bb1140e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfb08ff_b261ca9d",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T21:59:50Z",
+      "side": 1,
+      "message": "Stray whitespace suffixed on line.\n\nThe pre-commit tool can automate fixing these in bulk:\n\n% make venv\n% source .venv/bin/activate\n% pre-commit\n\n## make pre-commit is defined in a few repositories but not yet available everywhere.",
+      "revId": "240ae7127aad60e3aa4eb3015620efdb2bb1140e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }

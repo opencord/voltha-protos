@@ -36,6 +36,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12702d7b_6ddccd8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T21:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a6b81b_72d9ed79",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fcbc3e3_68cc0a98",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Done. Removed onuDeviceId as suggested.",
       "parentUuid": "1fcbc3e3_68cc0a98",
+      "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd08a44a_bbd144eb",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-06-28T21:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dde629f_0b79ca73",
       "revId": "093a6e49a0792703bbe787242569e66a840cd8ac",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
