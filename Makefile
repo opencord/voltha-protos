@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2019-2024 Open Networking Foundation Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
+# SPDX-FileCopyrightText: 2019-2024 Open Networking Foundation Contributors
+# SPDX-License-Identifier: Apache-2.0
+# -----------------------------------------------------------------------
 
 .PHONY: test
-.DEFAULT_GOAL := test
+export .DEFAULT_GOAL := test
 
 ##-------------------##
 ##---]  GLOBALS  [---##
@@ -91,11 +94,16 @@ print:
 	@echo "Go PB files: $(PROTO_GO_PB)"
 	@echo "JAVA PB files: $(PROTO_JAVA_PB)"
 
-# Generic targets
+## -----------------------------------------------------------------------
+## Generic targets
+## -----------------------------------------------------------------------
+.PHONY: protos
 protos: python-protos go-protos java-protos
 
-build: protos python-build go-protos java-protos
+.PHONY: build
+build: protos python-build
 
+.PHONY: test
 test: python-test go-test java-test
 
 clean :: python-clean java-clean go-clean
@@ -144,7 +152,7 @@ python-build: setup.py python-protos
 	$(call banner-enter,target $@)
 
 	$(RM) -r dist/
-	python ./setup.py sdist
+	$(activate) && python ./setup.py sdist
 
 	$(call banner-leave,target $@)
 

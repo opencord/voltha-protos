@@ -25,3 +25,5 @@ java
 
 #editors
 .idea/
+
+.venv/
