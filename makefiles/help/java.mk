@@ -16,9 +16,9 @@
 # -----------------------------------------------------------------------
 
 help ::
-	@echo '[JAVA]'
-	@echo '  java-all       Build & test all java targets'
-	@echo '  java-protos'
-	@echo '  java-test'
+	@printf '\n[LANGUAGE: java]\n'
+	@printf '  %-33.33s %s\n' 'java-all'    'Build & test all java targets'
+	@printf '  %-33.33s %s\n' 'java-protos' 'Generate java prototypes'
+	@printf '  %-33.33s %s\n' 'java-test'   'Validate generated prototypes'
 
 # [EOF]
