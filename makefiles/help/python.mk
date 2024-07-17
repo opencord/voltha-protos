@@ -16,12 +16,10 @@
 # -----------------------------------------------------------------------
 
 help ::
-	@echo
-	@echo '[PYTHON]'
-	@echo '  python-all      Build & test all python targets'
-	@echo '  python-protos'
-	@echo '  python-build'
-	@echo '  python-test'
-	@echo	
+	@printf '\n[LANGUAGE: python]\n'
+	@printf '  %-33.33s %s\n' 'python-all'    'Invoke all python makefile targets'
+	@printf '  %-33.33s %s\n' 'python-protos' 'Generate python prototypes'
+	@printf '  %-33.33s %s\n' 'python-build'  'Compile python prototypes'
+	@printf '  %-33.33s %s\n' 'python-test'   'Validate generated prototypes'
 
 # [EOF]
