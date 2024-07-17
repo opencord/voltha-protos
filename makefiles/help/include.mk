@@ -23,23 +23,15 @@ help ::
 
 	@echo
 	@echo '[ACTION] - golang, java and python'
-	@echo '  protos'
-	@echo '  build'
-	@echo '  test'
-
-	@echo
-	@echo '[HELP]'
-	@echo '  help                         Display program help'
+	@printf '  %-33.33s %s\n' 'protos' 'Generate prototypes'
+	@printf '  %-33.33s %s\n' 'build'  'Invoke build for prototypes'
+	@printf '  %-33.33s %s\n' 'test'   'Invoke prototype testing'
+	@printf '  %-33.33s %s\n' 'repair' 'Local builds: repair generated docker file ownership'
 #	@echo '  help-verbose   Display additional targets and help'
 
-	@echo
-	@echo '[PROTOS: generate]'
-	@echo '  go-protos'
-	@echo '  java-protos'
-	@echo '  python-protos'
-
-	@echo
-	@echo '[MISC]'
-	@echo '  repair                       Recover from a common fatal build condition'
+include $(MAKEDIR)/help/go.mk
+include $(MAKEDIR)/help/java.mk
+include $(MAKEDIR)/help/python.mk
+include $(MAKEDIR)/help/variables.mk
 
 # [EOF]
