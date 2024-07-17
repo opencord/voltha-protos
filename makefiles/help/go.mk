@@ -16,10 +16,9 @@
 # -----------------------------------------------------------------------
 
 help ::
-	@echo
-	@echo '[GO]'
-	@echo '  go-all      Build & test all go targets'
-	@echo '  go-protos'
-	@echo '  go-test'
+	@printf '\n[LANGUAGE: go]\n'
+	@printf '  %-33.33s %s\n' 'go-all'    'Build & test all go targets'
+	@printf '  %-33.33s %s\n' 'go-protos' 'Generate go prototypes'
+	@printf '  %-33.33s %s\n' 'go-test'   'Validate generated prototypes'
 
 # [EOF]

@@ -30,3 +30,5 @@ java
 
 #editors
 .idea/
+
+.venv/
