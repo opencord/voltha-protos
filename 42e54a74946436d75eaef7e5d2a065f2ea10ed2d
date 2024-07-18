@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "42e54a74946436d75eaef7e5d2a065f2ea10ed2d",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60cd2b61_debea182",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-18T21:16:05Z",
+      "side": 1,
+      "message": "recheck\n\nAdd build user to the docker group so jenkins can connect to the service",
+      "revId": "42e54a74946436d75eaef7e5d2a065f2ea10ed2d",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
