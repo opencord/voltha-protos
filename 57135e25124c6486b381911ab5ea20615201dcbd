@@ -16,6 +16,23 @@
       "message": "recheck\n\nThis patch will fail on a docker permission denied error but the \u0027No Builds Executed\u0027 status should disappear.",
       "revId": "57135e25124c6486b381911ab5ea20615201dcbd",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c88e3af_f14da817",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-23T14:55:05Z",
+      "side": 1,
+      "message": "Very minor, the copyright notice can be condensed a bit:\n    https://github.com/joey-onf/copyright/blob/origin/master/notice\n\nSince the project has become part of The Linux Foundation, copyright notice can be abbreviated to:\n\n\"Copyright 2018-2024 Open Networking Foundation Contributors\"",
+      "revId": "57135e25124c6486b381911ab5ea20615201dcbd",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
