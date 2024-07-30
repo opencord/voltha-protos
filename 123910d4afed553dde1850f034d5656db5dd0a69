@@ -33,6 +33,23 @@
       "message": "recheck\n\nAgain after restarting docker and docker.socket services.\n/var/run/docker.sock was mia last attempt.",
       "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1df6566_c1951da9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-30T20:14:11Z",
+      "side": 1,
+      "message": "recheck\n\nFixed problem in apt packages.\nUpdate jenkins node for licensecheck job to use the new AMI voltha-1804-micro",
+      "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
