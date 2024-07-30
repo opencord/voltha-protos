@@ -67,6 +67,23 @@
       "message": "recheck\n\nRe-run with resident docker running in debug mode\n",
       "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b207b391_174bd67d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-30T21:01:14Z",
+      "side": 1,
+      "message": "recheck\n\nfinally /var/run/docker.socket created with proper group ownership.\nLets see if the job can run, then verify socket is persistent.",
+      "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
