@@ -50,6 +50,23 @@
       "message": "recheck\n\nFixed problem in apt packages.\nUpdate jenkins node for licensecheck job to use the new AMI voltha-1804-micro",
       "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1d35ee_41386ac2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-30T20:26:47Z",
+      "side": 1,
+      "message": "recheck\n\nRe-run with resident docker running in debug mode\n",
+      "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
