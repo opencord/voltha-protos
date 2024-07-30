@@ -16,6 +16,23 @@
       "message": "recheck\n\nWell that was silly.  Docker service was kinda running but system socket was in need of the sqlite package in order to accept requests.  Recheck to see if the permission denied for docker mounts has been resolved.",
       "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4dbccc5_02cdaeac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-30T19:54:08Z",
+      "side": 1,
+      "message": "recheck\n\nAgain after restarting docker and docker.socket services.\n/var/run/docker.sock was mia last attempt.",
+      "revId": "123910d4afed553dde1850f034d5656db5dd0a69",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
