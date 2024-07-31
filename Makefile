@@ -73,7 +73,14 @@ PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.pro
 PROTO_JAVA_DEST_DIR := java
 PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f)))
 
-# Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
+# -----------------------------------------------------------------------
+# Force pb file to be regenerated every time.  Otherwise the make process
+# assumes generated version is still valid.
+# -----------------------------------------------------------------------
+# [TODO]
+#   - Revisit: fix target to be dependency driven.
+#   - When source not modified make "voltha.pb" behavior always a NOP
+# -----------------------------------------------------------------------
 .PHONY: voltha.pb
 
 ##----------------##
@@ -227,9 +234,12 @@ go-protos: voltha.pb
 	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
-## Intent:
+## Intent: Regenerate voltha.pb
 ## ----------------------------------------------------------------------
-voltha.pb: show-proto-files
+voltha-pb	+= show-proto-files
+voltha-pb	+= docker-debug-joey
+
+voltha.pb: $(voltha-pb)
 	$(call banner-enter,target $@)
 
 	${PROTOC} \
@@ -328,6 +338,19 @@ show-proto-files:
 
 	$(call banner-enter,Target $@)
 	@echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
+	$(call banner-leave,Target $@)
+
+## -----------------------------------------------------------------------
+## Intent: Debug mode
+##   - New image not logging ssh connections while job is running (?!?)
+##   - We should be on label=voltha-1804-micro.
+##   - Let(s) see what the reality is while checking configs.
+## -----------------------------------------------------------------------
+.PHONY: docker-debug-joey
+docker-debug-joey:
+
+	$(call banner-enter,Target $@)
+	ip --brief addr
 	$(call banner-leave,Target $@)
 
 # [EOF]
