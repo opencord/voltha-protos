@@ -8,7 +8,7 @@ logs/
 *.egg-info
 dist
 build
-# .venv
+.venv/
 .tox
 
 # go related
