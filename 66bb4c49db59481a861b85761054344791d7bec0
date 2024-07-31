@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f549b2_126465fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-07-31T16:38:33Z",
+      "side": 1,
+      "message": "review input welcome.\n\nMerge so job debugging can continue in repo:voltha-protos",
+      "revId": "66bb4c49db59481a861b85761054344791d7bec0",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
