@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a4a9ff9_cf18ada1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-21T12:59:11Z",
+      "side": 1,
+      "message": "recheck\n\ngit clone problem was due to an ssh config issue.\nFix in, verify the problem is resolved.",
+      "revId": "54df78e793966fdd82f1656c3f4484c51e99e28f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
