@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc600aa_cf9832aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-23T15:47:55Z",
+      "side": 1,
+      "message": "Now that repo:onf-make installed as a git submodule...\nNext round of makefile edits needed to transition from include makefiles/* to include library makefiles via include lf/onf-make/makefiles/*.",
+      "revId": "88270dfbb0d92977f4078653de39961a91bdf01b",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
