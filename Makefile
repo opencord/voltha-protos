@@ -15,16 +15,28 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
+$(if $(DEBUG),$(warning ENTER))
+
 .PHONY: test
-.DEFAULT_GOAL := test
+.DEFAULT_GOAL   := test
+MAKECMDGOALS    ?= test
 
 ##-------------------##
 ##---]  GLOBALS  [---##
 ##-------------------##
-TOP         ?= .
-MAKEDIR     ?= $(TOP)/makefiles
+$(if $(findstring joey,$(USER)),\
+   $(eval USE_LF_MK := 1)) # special snowflake
 
-$(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
+##--------------------##
+##---]  INCLUDES  [---##
+##--------------------##
+ifdef USE_LF_MK
+  include lf/include.mk
+else
+  include lf/transition.mk
+  include $(legacy-mk)/include.mk
+endif # ifdef USE_LF_MK
+
 
 ##--------------------------
 ## Enable setup.py debugging
@@ -32,18 +44,6 @@ $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 # https://docs.python.org/3/distutils/setupscript.html#debugging-the-setup-script
 # export DISTUTILS_DEBUG := 1      # verbose: pip
 export DOCKER_DEBUG    := 1      # verbose: docker
-
-# Makefile for voltha-protos
-default: test
-
-## Library linting
-# NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-SHELL    := true    # cleanup needed
-
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/include.mk
 
 # Function to extract the last path component from go_package line in .proto files
 define go_package_path
