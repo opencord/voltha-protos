@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e31d9fb_02d0f18d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-23T15:04:13Z",
+      "side": 1,
+      "message": "Oh also this patch will configure the repository to use library makefiles from repo:onf-make:\n   https://gerrit.opencord.org/plugins/gitiles/onf-make/+/refs/heads/master\n\nIntent is for access to the latest logic in makefiles/virtualenv/.\nThe \u0027make venv\u0027 target will facilitate using a versioned python interpreter rather than system provided /usr/bin/python3 to support upgrades and using python v3.12.",
+      "revId": "19dad067f45cfe2909fd95f5989817be565b40b1",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
