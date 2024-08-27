@@ -17,13 +17,25 @@
 # SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
 
+## Lint
+pre-commit
+ansys-pre-commit-hooks
+
+# googleapis-common-protos
+# protobuf
+
+# grpcio
+# grpcio-tools
+
+# Test coverage
+nose2[coverage_plugin]
+
+# -----------------------------------------------------------------------
+# Changeset with pkg versions: 9a57710f6ae5903009cfdd85ebdf4df970027679
+# -----------------------------------------------------------------------
 googleapis-common-protos==1.52.0
 grpcio==1.39.0
 grpcio-tools==1.39.0
-nose2[coverage_plugin]
 protobuf==3.17.3
-
-pre-commit
-ansys-pre-commit-hooks
 
 # [EOF]
