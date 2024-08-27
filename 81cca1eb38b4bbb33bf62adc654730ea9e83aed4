@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1bda5a3_ca27afaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-27T19:24:31Z",
+      "side": 1,
+      "message": "Staging patch for voltha-protos, added 3.12 and 3.13 as supported interpreters.",
+      "revId": "81cca1eb38b4bbb33bf62adc654730ea9e83aed4",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
