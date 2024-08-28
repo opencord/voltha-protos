@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c882cbf2_55259d09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-28T23:29:59Z",
+      "side": 1,
+      "message": "This now passes on the current builders. It looks like many of the changes that have occurred since this was opened, that it is now in conflict with, are causing issues. Depending on how many of those changes were specific to build failures, it may be best to reset the code to this commit\u0027s parent (or back to 9e03368227d45ffe095d4be6b9164080e8fb952c, two commits ahead of the parent, which looks like the last commit that wasn\u0027t specifically about build failures that are no longer occurring).",
+      "revId": "240ae7127aad60e3aa4eb3015620efdb2bb1140e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cbd25af_667af6a7",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 14
