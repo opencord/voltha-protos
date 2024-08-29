@@ -32,11 +32,14 @@ NO-LINT-SHELL    := true    # cleanup needed
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
-include $(MAKEDIR)/help/include.mk
+# include $(MAKEDIR)/help/include.mk
+include $(MAKEDIR)/lint/include.mk
 
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
+ifdef USE_LEGACY_DOCKER_MK
+  include $(MAKEDIR)/docker/include.mk
+else
+  include $(onf-mk-dir)/docker/include.mk
+endif
 
 include $(MAKEDIR)/golang/include.mk
 
