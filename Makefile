@@ -27,6 +27,9 @@ MAKECMDGOALS    ?= test
 $(if $(findstring joey,$(USER)),\
    $(eval USE_LF_MK := 1)) # special snowflake
 
+# export USE_LF_MK  := 1
+# export USE_LEGACY_DOCKER_MK := 1
+
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
@@ -36,7 +39,6 @@ else
   include lf/transition.mk
   include $(legacy-mk)/include.mk
 endif # ifdef USE_LF_MK
-
 
 ##--------------------------
 ## Enable setup.py debugging
@@ -121,10 +123,7 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
   Makefile \
   $(venv-activate-script)
 
-	@echo
-	@echo "** -----------------------------------------------------------------------"
-	@echo "** $(MAKE): processing target [$@]"
-	@echo "** -----------------------------------------------------------------------"
+	$(call banner-enter,$@)
 
 	$(activate) && python -m grpc_tools.protoc \
     -I protos \
@@ -135,13 +134,16 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
     --include_source_info \
     $<
 
+	$(call banner-leave,$@)
+
+
 ## -----------------------------------------------------------------------
 ## Intent:
 ## -----------------------------------------------------------------------
-show:
-	$(call banner-enter,target $@)
-	@echo
-	$(call banner-leave,target $@)
+#show:#
+#	$(call banner-enter,target $@)
+#	@echo
+#	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent:
@@ -151,7 +153,7 @@ python-build: setup.py python-protos
 	$(call banner-enter,target $@)
 
 	$(RM) -r dist/
-	python ./setup.py sdist
+	$(activate) && python ./setup.py sdist
 
 	$(call banner-leave,target $@)
 
@@ -209,7 +211,7 @@ go-clean:
 ##   o chicken-n-egg: make becomes fatal when go/ is removed and proten fails.
 ## -----------------------------------------------------------------------
 repair:
-	/usr/bin/env git checkout go
+	$(GIT) checkout go
 
 ## -----------------------------------------------------------------------
 ## Intent: Go targets
@@ -237,7 +239,6 @@ go-protos: voltha.pb
 ## Intent: Regenerate voltha.pb
 ## ----------------------------------------------------------------------
 voltha-pb	+= show-proto-files
-voltha-pb	+= docker-debug-joey
 
 voltha.pb: $(voltha-pb)
 	$(call banner-enter,target $@)
@@ -341,16 +342,9 @@ show-proto-files:
 	$(call banner-leave,Target $@)
 
 ## -----------------------------------------------------------------------
-## Intent: Debug mode
-##   - New image not logging ssh connections while job is running (?!?)
-##   - We should be on label=voltha-1804-micro.
-##   - Let(s) see what the reality is while checking configs.
 ## -----------------------------------------------------------------------
-.PHONY: docker-debug-joey
-docker-debug-joey:
-
-	$(call banner-enter,Target $@)
-	ip --brief addr
-	$(call banner-leave,Target $@)
+help ::
+	@printf 'Usage: make [options] [target] ...'
+	@printf '    USE_LF_MAKE=1   conditional use library makefiles from repo:onf-make'
 
 # [EOF]
