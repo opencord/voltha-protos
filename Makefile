@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2019-2024 Open Networking Foundation Contributors
+# Copyright 2019-2023 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,20 +14,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
-# SPDX-FileCopyrightText: 2019-2024 Open Networking Foundation Contributors
-# SPDX-License-Identifier: Apache-2.0
-# -----------------------------------------------------------------------
+
+$(if $(DEBUG),$(warning ENTER))
 
 .PHONY: test
-export .DEFAULT_GOAL := test
+.DEFAULT_GOAL   := test
+MAKECMDGOALS    ?= test
 
 ##-------------------##
 ##---]  GLOBALS  [---##
 ##-------------------##
-TOP         ?= .
-MAKEDIR     ?= $(TOP)/makefiles
+$(if $(findstring joey,$(USER)),\
+   $(eval USE_LF_MK := 1)) # special snowflake
 
-$(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
+# export USE_LF_MK  := 1
+# export USE_LEGACY_DOCKER_MK := 1
+
+##--------------------##
+##---]  INCLUDES  [---##
+##--------------------##
+ifdef USE_LF_MK
+  include lf/include.mk
+else
+  include lf/transition.mk
+  include $(legacy-mk)/include.mk
+endif # ifdef USE_LF_MK
 
 ##--------------------------
 ## Enable setup.py debugging
@@ -35,18 +46,6 @@ $(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 # https://docs.python.org/3/distutils/setupscript.html#debugging-the-setup-script
 # export DISTUTILS_DEBUG := 1      # verbose: pip
 export DOCKER_DEBUG    := 1      # verbose: docker
-
-# Makefile for voltha-protos
-default: test
-
-## Library linting
-# NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-SHELL    := true    # cleanup needed
-
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/include.mk
 
 # Function to extract the last path component from go_package line in .proto files
 define go_package_path
@@ -76,7 +75,14 @@ PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.pro
 PROTO_JAVA_DEST_DIR := java
 PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f)))
 
-# Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
+# -----------------------------------------------------------------------
+# Force pb file to be regenerated every time.  Otherwise the make process
+# assumes generated version is still valid.
+# -----------------------------------------------------------------------
+# [TODO]
+#   - Revisit: fix target to be dependency driven.
+#   - When source not modified make "voltha.pb" behavior always a NOP
+# -----------------------------------------------------------------------
 .PHONY: voltha.pb
 
 ##----------------##
@@ -94,16 +100,11 @@ print:
 	@echo "Go PB files: $(PROTO_GO_PB)"
 	@echo "JAVA PB files: $(PROTO_JAVA_PB)"
 
-## -----------------------------------------------------------------------
-## Generic targets
-## -----------------------------------------------------------------------
-.PHONY: protos
+# Generic targets
 protos: python-protos go-protos java-protos
 
-.PHONY: build
-build: protos python-build
+build: protos python-build go-protos java-protos
 
-.PHONY: test
 test: python-test go-test java-test
 
 clean :: python-clean java-clean go-clean
@@ -122,10 +123,7 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
   Makefile \
   $(venv-activate-script)
 
-	@echo
-	@echo "** -----------------------------------------------------------------------"
-	@echo "** $(MAKE): processing target [$@]"
-	@echo "** -----------------------------------------------------------------------"
+	$(call banner-enter,$@)
 
 	$(activate) && python -m grpc_tools.protoc \
     -I protos \
@@ -136,13 +134,16 @@ $(PROTO_PYTHON_DEST_DIR)/%_pb2.py: \
     --include_source_info \
     $<
 
+	$(call banner-leave,$@)
+
+
 ## -----------------------------------------------------------------------
 ## Intent:
 ## -----------------------------------------------------------------------
-show:
-	$(call banner-enter,target $@)
-	@echo
-	$(call banner-leave,target $@)
+#show:#
+#	$(call banner-enter,target $@)
+#	@echo
+#	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
 ## Intent:
@@ -210,7 +211,7 @@ go-clean:
 ##   o chicken-n-egg: make becomes fatal when go/ is removed and proten fails.
 ## -----------------------------------------------------------------------
 repair:
-	/usr/bin/env git checkout go
+	$(GIT) checkout go
 
 ## -----------------------------------------------------------------------
 ## Intent: Go targets
@@ -235,9 +236,11 @@ go-protos: voltha.pb
 	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
-## Intent:
+## Intent: Regenerate voltha.pb
 ## ----------------------------------------------------------------------
-voltha.pb: show-proto-files
+voltha-pb	+= show-proto-files
+
+voltha.pb: $(voltha-pb)
 	$(call banner-enter,target $@)
 
 	${PROTOC} \
@@ -337,5 +340,11 @@ show-proto-files:
 	$(call banner-enter,Target $@)
 	@echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
 	$(call banner-leave,Target $@)
+
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
+help ::
+	@printf 'Usage: make [options] [target] ...'
+	@printf '    USE_LF_MAKE=1   conditional use library makefiles from repo:onf-make'
 
 # [EOF]
