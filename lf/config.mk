@@ -50,7 +50,7 @@ NO-LINT-PYTHON    := true#               # Note[1]
 ##---------------------------------##
 ##---] Conditional make logic  [---##
 ##---------------------------------##
-# USE-ONF-DOCKER-MK      := true
+USE-ONF-DOCKER-MK      := true
 # USE-ONF-GERRIT-MK      := true
 # USE-ONF-GIT-MK         := true
 # USE-ONF-JJB-MK         := true

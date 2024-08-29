@@ -34,7 +34,7 @@ lf-sbx-root   := $(subst /lf/include.mk,$(null),$(lf-sbx-root))
 onf-mk-abs    := $(abspath $(lastword $(MAKEFILE_LIST)))
 onf-mk-top    := $(subst /include.mk,$(null),$(onf-mk-abs))
 onf-mk-lib    := $(onf-mk-top)/onf-make/makefiles
-onf-mk-loc    := $(onf-mk-top)/local
+onf-mk-loc    := $(onf-mk-top)/local/makefiles
 
 TOP           ?= $(patsubst %/makefiles/include.mk,%,$(onf-mk-abs))
 

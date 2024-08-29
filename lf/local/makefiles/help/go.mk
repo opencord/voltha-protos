@@ -13,35 +13,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# SPDX-FileCopyrightText: 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
-# SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
 
-$(if $(DEBUG),$(warning ENTER))
-
-MAKEDIR ?= $(error MAKEDIR= is required)
-
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
-
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-# include $(MAKEDIR)/help/include.mk
-include $(MAKEDIR)/lint/include.mk
-
-ifdef USE_LEGACY_DOCKER_MK
-  include $(MAKEDIR)/docker/include.mk
-else
-  include $(onf-mk-dir)/docker/include.mk
-endif
-
-
-$(if $(DEBUG),$(warning LEAVE))
+help ::
+	@echo
+	@echo '[GO]'
+	@echo '  go-all      Build & test all go targets'
+	@echo '  go-protos'
+	@echo '  go-test'
 
 # [EOF]
