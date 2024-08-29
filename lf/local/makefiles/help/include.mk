@@ -17,10 +17,11 @@
 # SPDX-FileCopyrightText: 2017-2024 Open Networking Foundation Contributors
 # SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
-# Intent: This makefile is the top level source for including
-#         per-repository makefile logic and configs.
-# Import hierarchy:
-#   Makefile      -> lf/include.mk
-#   lf/include.mk -> lf/onf-make/include.mk    # library makefiles
-#   lf/include.mk -> lf/local/include.mk       # per-repo makefiles
-# -----------------------------------------------------------------------
+
+include $(onf-mk-loc)/help/clean.mk
+include $(onf-mk-loc)/help/go.mk
+include $(onf-mk-loc)/help/include.mk
+include $(onf-mk-loc)/help/java.mk
+include $(onf-mk-loc)/help/python.mk
+
+# [EOF]

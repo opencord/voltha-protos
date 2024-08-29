@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http:#www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -50,7 +50,7 @@ NO-LINT-PYTHON    := true#               # Note[1]
 ##---------------------------------##
 ##---] Conditional make logic  [---##
 ##---------------------------------##
-# USE-ONF-DOCKER-MK      := true
+USE-ONF-DOCKER-MK      := true
 # USE-ONF-GERRIT-MK      := true
 # USE-ONF-GIT-MK         := true
 # USE-ONF-JJB-MK         := true

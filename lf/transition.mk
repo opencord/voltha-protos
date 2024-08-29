@@ -39,12 +39,16 @@ MAKEDIR       ?= $(TOP)/makefiles
 # set default shell options
 SHELL = bash -e -o pipefail
 
+GIT           ?= /usr/bin/env git
+
 # dependency of virtualenv::sterile
 clean ::
 
 ##--------------------##
 ##---]  INCLUDES  [---##
 ##--------------------##
+include $(legacy-mk)/help/include.mk
+
 include $(lf-sbx-root)/lf/config.mk
 include $(onf-mk-dir)/consts.mk
 # include.mk depends on ONF_MAKEDIR

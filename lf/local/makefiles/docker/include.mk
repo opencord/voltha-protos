@@ -1,6 +1,6 @@
 # -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2017-2024 Open Networking Foundation (ONF) and the ONF Contributors
+# Copyright 2024 Open Networking Foundation Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,35 +13,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# SPDX-FileCopyrightText: 2017-2023 Open Networking Foundation (ONF) and the ONF Contributors
+# -----------------------------------------------------------------------
+# SPDX-FileCopyrightText: 2023-2024 Open Networking Foundation Contributors
 # SPDX-License-Identifier: Apache-2.0
+# -----------------------------------------------------------------------
+# Intent: per-repository definition of PROTOC_SH and GO_SH commands
 # -----------------------------------------------------------------------
 
 $(if $(DEBUG),$(warning ENTER))
 
-MAKEDIR ?= $(error MAKEDIR= is required)
+include $(onf-mk-loc)/docker/config/include.mk
 
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
+# per-repository filesystem mounts for docker
+docker-argv-mounts += -v ${CURDIR}:$(protoc-sh-docker-mount)
+docker-argv-mounts += --workdir $(protoc-sh-docker-mount)
 
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-# include $(MAKEDIR)/help/include.mk
-include $(MAKEDIR)/lint/include.mk
-
-ifdef USE_LEGACY_DOCKER_MK
-  include $(MAKEDIR)/docker/include.mk
-else
-  include $(onf-mk-dir)/docker/include.mk
-endif
-
+PROTOC_SH          := $(call get-cmd-docker-argv-protoc-sh,docker-argv-mounts)
+GO_SH              := $(call get-cmd-docker-go-sh)
 
 $(if $(DEBUG),$(warning LEAVE))
 
 # [EOF]
+
