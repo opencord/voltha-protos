@@ -24,6 +24,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fc652b1_83a016d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-30T18:23:04Z",
+      "side": 1,
+      "message": "Will update the commit message, edits were merged into a separate patch so are no longer needed here.",
+      "parentUuid": "25f5c040_dbd6e9c4",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9c8617d_00612334",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-30T17:58:11Z",
       "side": 1,
       "message": "Why is this a pound sign? Find/replace perhaps?",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1208240_badb40ab",
+        "filename": "lf/local/makefiles/docker/config/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-30T18:23:04Z",
+      "side": 1,
+      "message": "Old problem from a tool used to automate bulk copyright edits, string should be ://.\nBehavior is correct in the current script version but a few \u0027http#www\u0027 strings were checked in early on before the proper string \u0027http://www\u0027 was written out.\n\nhttps://github.com/joey-onf/copyright",
+      "parentUuid": "e9c8617d_00612334",
       "range": {
         "startLine": 9,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4653678c_8b20fc00",
+        "filename": "lf/local/makefiles/docker/config/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-30T18:23:04Z",
+      "side": 1,
+      "message": "This syntax is used to guard against a horribly subtle bug that can be introduced when commenting code.\n\nWhile constructing a makefile path variable, if you tab over to comment the line, whitespace will become part of the value definition.  Next double-quote the var used within a shell command and it will silently construct a broken path\n\ndocker-mount :\u003d /foo/bar            # local filesystem mount\ndocker \"$(docker-mount)\"   constructs \"/foo/bar\u003cspace\u003e\u003cspace\u003e\u003cspace\" **BOOM*\n\nAppending an octothorpe directly to the commented string helps prevent stray whitespace from becoming part of the value.\n\n\nSubtle problem due to the invisible characters and the fact behavior does not manifest everywhere within makefiles or composite variables, only when used directly for shell expansion.",
+      "parentUuid": "ca2e639c_ec52c92f",
+      "range": {
+        "startLine": 26,
+        "startChar": 74,
+        "endLine": 26,
+        "endChar": 79
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71b0ce89_1649b223",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-08-30T17:58:11Z",
       "side": 1,
       "message": "Pound sign again.",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19445026_0b1f4686",
+        "filename": "lf/local/makefiles/docker/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-30T18:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71b0ce89_1649b223",
       "range": {
         "startLine": 9,
         "startChar": 7,
@@ -116,6 +212,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c98c3e2_1cdc46b7",
+        "filename": "lf/local/makefiles/help/python.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-30T18:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ae51734_5db6f99c",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fa17ae0_f7206bb6",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-08-30T17:58:11Z",
       "side": 1,
       "message": "Pound sign again.",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac1b33d_3344b193",
+        "filename": "lf/local/makefiles/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2024-08-30T18:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fa17ae0_f7206bb6",
       "range": {
         "startLine": 9,
         "startChar": 7,
