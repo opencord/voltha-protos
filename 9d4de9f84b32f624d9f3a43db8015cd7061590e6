@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f5c040_dbd6e9c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "I don\u0027t see this in this change.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c8617d_00612334",
+        "filename": "lf/local/makefiles/docker/config/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "Why is this a pound sign? Find/replace perhaps?",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2e639c_ec52c92f",
+        "filename": "lf/local/makefiles/docker/config/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "What\u0027s up with these trailing pound signs on this line and the next?",
+      "range": {
+        "startLine": 26,
+        "startChar": 74,
+        "endLine": 26,
+        "endChar": 79
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71b0ce89_1649b223",
+        "filename": "lf/local/makefiles/docker/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "Pound sign again.",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae51734_5db6f99c",
+        "filename": "lf/local/makefiles/help/python.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "Dangling whitespace.",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa17ae0_f7206bb6",
+        "filename": "lf/local/makefiles/include.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "Pound sign again.",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "9d4de9f84b32f624d9f3a43db8015cd7061590e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
