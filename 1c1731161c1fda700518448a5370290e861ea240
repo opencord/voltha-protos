@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "1c1731161c1fda700518448a5370290e861ea240",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd57080_9555daa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-09-04T03:28:10Z",
+      "side": 1,
+      "message": "As a reminder,to resolve the verification job failure, you might need to add the public SSH key of the new image to the authorized keys on the Gerrit server @Eric. ",
+      "revId": "1c1731161c1fda700518448a5370290e861ea240",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
