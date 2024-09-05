@@ -20,31 +20,17 @@
 
 $(if $(DEBUG),$(warning ENTER))
 
-MAKEDIR ?= $(error MAKEDIR= is required)
+## -----------------------------------------------------------------------
+## -----------------------------------------------------------------------
+help::
+	@echo "  todo                         Display future enhancement list"
 
-NO-LINT-MAKEFILE := true    # cleanup needed
-NO-LINT-JSON     := true    # pyenv needed
-NO-LINT-PYTHON   := true    # cleanup needed
-NO-LINT-ROBOT    := true    # pyenv needed
-NO-LINT-SHELL    := true    # cleanup needed
-# NO-LINT-YAML     := true
-
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-include $(MAKEDIR)/help/include.mk
-
-include $(MAKEDIR)/consts.mk
-include $(MAKEDIR)/etc/include.mk
-include $(MAKEDIR)/virtualenv.mk
-
-include $(MAKEDIR)/golang/include.mk
-
-include $(MAKEDIR)/help/variables.mk
-include $(MAKEDIR)/lint/include.mk
-include $(MAKEDIR)/todo.mk
-
-include $(MAKEDIR)/docker/include.mk
+todo ::
+	@echo
+	@echo "[TODO: voltha-protos]"
+	@echo "  o Cleanup lint complaints so lint target can be enabled by default."
+	@echo "  o Directory go/ is under reivsion control but go-* targets will remove content"
+	@echo "  o Update NO-LINT* targets to auto-enable based on source availability"
 
 $(if $(DEBUG),$(warning LEAVE))
 

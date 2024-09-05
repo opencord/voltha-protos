@@ -15,28 +15,16 @@
 # limitations under the License.
 # -----------------------------------------------------------------------
 
-$(if $(DEBUG),$(warning ENTER))
-
 .PHONY: test
-.DEFAULT_GOAL   := test
-MAKECMDGOALS    ?= test
+.DEFAULT_GOAL := test
 
 ##-------------------##
 ##---]  GLOBALS  [---##
 ##-------------------##
-$(if $(findstring joey,$(USER)),\
-   $(eval USE_LF_MK := 1)) # special snowflake
+TOP         ?= .
+MAKEDIR     ?= $(TOP)/makefiles
 
-##--------------------##
-##---]  INCLUDES  [---##
-##--------------------##
-ifdef USE_LF_MK
-  include lf/include.mk
-else
-  include lf/transition.mk
-  include $(legacy-mk)/include.mk
-endif # ifdef USE_LF_MK
-
+$(if $(VERBOSE),$(eval export VERBOSE=$(VERBOSE))) # visible to include(s)
 
 ##--------------------------
 ## Enable setup.py debugging
@@ -44,6 +32,18 @@ endif # ifdef USE_LF_MK
 # https://docs.python.org/3/distutils/setupscript.html#debugging-the-setup-script
 # export DISTUTILS_DEBUG := 1      # verbose: pip
 export DOCKER_DEBUG    := 1      # verbose: docker
+
+# Makefile for voltha-protos
+default: test
+
+## Library linting
+# NO-LINT-MAKEFILE := true    # cleanup needed
+NO-LINT-SHELL    := true    # cleanup needed
+
+##--------------------##
+##---]  INCLUDES  [---##
+##--------------------##
+include $(MAKEDIR)/include.mk
 
 # Function to extract the last path component from go_package line in .proto files
 define go_package_path
@@ -73,14 +73,7 @@ PROTO_GO_PB:= $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.pro
 PROTO_JAVA_DEST_DIR := java
 PROTO_JAVA_PB := $(foreach f, $(PROTO_FILES), $(patsubst protos/voltha_protos/%.proto,$(PROTO_JAVA_DEST_DIR)/$(call java_package_path,$(f))/%.pb.java,$(f)))
 
-# -----------------------------------------------------------------------
-# Force pb file to be regenerated every time.  Otherwise the make process
-# assumes generated version is still valid.
-# -----------------------------------------------------------------------
-# [TODO]
-#   - Revisit: fix target to be dependency driven.
-#   - When source not modified make "voltha.pb" behavior always a NOP
-# -----------------------------------------------------------------------
+# Force pb file to be regenrated every time.  Otherwise the make process assumes generated version is still valid
 .PHONY: voltha.pb
 
 ##----------------##
@@ -234,12 +227,9 @@ go-protos: voltha.pb
 	$(call banner-leave,target $@)
 
 ## -----------------------------------------------------------------------
-## Intent: Regenerate voltha.pb
+## Intent:
 ## ----------------------------------------------------------------------
-voltha-pb	+= show-proto-files
-voltha-pb	+= docker-debug-joey
-
-voltha.pb: $(voltha-pb)
+voltha.pb: show-proto-files
 	$(call banner-enter,target $@)
 
 	${PROTOC} \
@@ -338,19 +328,6 @@ show-proto-files:
 
 	$(call banner-enter,Target $@)
 	@echo -e "PROTO_FILES:\n$(PROTO_FILES)" | tr ' ' '\n'
-	$(call banner-leave,Target $@)
-
-## -----------------------------------------------------------------------
-## Intent: Debug mode
-##   - New image not logging ssh connections while job is running (?!?)
-##   - We should be on label=voltha-1804-micro.
-##   - Let(s) see what the reality is while checking configs.
-## -----------------------------------------------------------------------
-.PHONY: docker-debug-joey
-docker-debug-joey:
-
-	$(call banner-enter,Target $@)
-	ip --brief addr
 	$(call banner-leave,Target $@)
 
 # [EOF]

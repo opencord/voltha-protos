@@ -1,19 +1,6 @@
-{% if date.start and date.end %}
-
-  {% if date.start eq date.end %}
-    {% set date.range = {{ date.end } %}
-  {% else
-    {% set date.range = {{ date.start }}-{{ date.end } %}
-  {% endif %}
-
-% else %}
-    {% set date.range = {{ date.end }
-{% endif %}
-
-{% set copyright = {{ date.range }} Open Networking Foundation Contributors %}
-
+# -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright {{ copyright }}
+# Copyright 2023-2024 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,6 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
-# SPDX-FileCopyrightText: {{ copyright }}
-# SPDX-License-Identifier: Apache-2.0
-# ----------------------------------------------------------------------
+
+##--------------------------------##
+##---]  Disable lint targets  [---##
+##--------------------------------##
+NO-LINT-DOC8      := true
+# NO-LINT-GOLANG  := true
+NO-LINT-GROOVY    := true
+NO-LINT-JJB       := true
+NO-LINT-JSON      := true
+# NO-LINT-MAKE    := false
+NO-LINT-PYTHON    := true
+NO-LINT-ROBOT     := true
+# NO-LINT-SHELL   := true
+NO-LINT-YAML    := true
+
+# [EOF]
