@@ -23,7 +23,4 @@ grpcio-tools==1.39.0
 nose2[coverage_plugin]
 protobuf==3.17.3
 
-pre-commit
-ansys-pre-commit-hooks
-
 # [EOF]
