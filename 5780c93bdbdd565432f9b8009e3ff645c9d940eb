@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8add8174_425e4f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-09-05T23:02:29Z",
+      "side": 1,
+      "message": "This patch brings the repo back to a previous point where builds are working. Every commit being reverted was made by Joey after the deletion of the old Jenkins AMI, so none of them passed CI. I believe that rebasing newer changes off the top of this will allow CI for the repo to work accurately again (that is, only fail if the actual tests fail).",
+      "revId": "5780c93bdbdd565432f9b8009e3ff645c9d940eb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
