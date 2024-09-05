@@ -1,5 +1,6 @@
+# -*- makefile -*-
 # -----------------------------------------------------------------------
-# Copyright 2023-2024 Open Networking Foundation Contributors
+# Copyright 2023-2024 Open Networking Foundation (ONF) and the ONF Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,17 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
-# SPDX-FileCopyrightText: 2023-2024 Open Networking Foundation Contributors
-# SPDX-License-Identifier: Apache-2.0
-# -----------------------------------------------------------------------
 
-googleapis-common-protos==1.52.0
-grpcio==1.39.0
-grpcio-tools==1.39.0
-nose2[coverage_plugin]
-protobuf==3.17.3
-
-pre-commit
-ansys-pre-commit-hooks
+##--------------------------------##
+##---]  Disable lint targets  [---##
+##--------------------------------##
+NO-LINT-DOC8      := true
+# NO-LINT-GOLANG  := true
+NO-LINT-GROOVY    := true
+NO-LINT-JJB       := true
+NO-LINT-JSON      := true
+# NO-LINT-MAKE    := false
+NO-LINT-PYTHON    := true
+NO-LINT-ROBOT     := true
+# NO-LINT-SHELL   := true
+NO-LINT-YAML    := true
 
 # [EOF]
