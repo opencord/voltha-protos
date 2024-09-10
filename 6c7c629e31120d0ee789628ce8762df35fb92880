@@ -16,6 +16,24 @@
       "message": "Now fails with a permission error with the new image \"jenkins@gerrit.opencord.org: Permission denied (publickey).\" @Eric.",
       "revId": "6c7c629e31120d0ee789628ce8762df35fb92880",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb9b906a_6b2ea5be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-09-10T01:00:31Z",
+      "side": 1,
+      "message": "This won\u0027t fail the same way anymore (that was an issue with it using the wrong build image), but it will still fail CI until it\u0027s rebased on top of https://gerrit.opencord.org/c/voltha-protos/+/35330.",
+      "parentUuid": "3c2cec75_a0330ea2",
+      "revId": "6c7c629e31120d0ee789628ce8762df35fb92880",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
