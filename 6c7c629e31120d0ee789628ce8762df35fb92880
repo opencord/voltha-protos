@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c2cec75_a0330ea2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2024-09-10T00:34:38Z",
+      "side": 1,
+      "message": "Now fails with a permission error with the new image \"jenkins@gerrit.opencord.org: Permission denied (publickey).\" @Eric.",
+      "revId": "6c7c629e31120d0ee789628ce8762df35fb92880",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
