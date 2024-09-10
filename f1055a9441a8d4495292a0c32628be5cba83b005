@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84cba37a_c988a3d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2024-09-10T00:12:22Z",
+      "side": 1,
+      "message": "I\u0027ve updated the commit message so that the intent of this change is not only present here on the Gerrit patch.",
+      "revId": "f1055a9441a8d4495292a0c32628be5cba83b005",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
