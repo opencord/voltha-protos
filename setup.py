@@ -46,10 +46,10 @@ setup(
     packages = find_packages(where="python"),
     package_dir = {"": "python"},
     install_requires = [
-        "grpcio==1.39.0",
-        "protobuf==3.17.3",
-        "grpcio-tools==1.39.0",
-        "googleapis-common-protos==1.52.0"
+        "grpcio==1.66.1",
+        "protobuf==5.28.1",
+        "grpcio-tools==1.66.1",
+        "googleapis-common-protos==1.65.0"
     ],
     include_package_data=True,
 )
