@@ -194,6 +194,108 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e99cf4a_7e4e238e",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-10-29T18:28:31Z",
+      "side": 1,
+      "message": "What would be the strategy when we need different configuration types for different offloaded apps? e.g. dhcp app may require some other configuration parameters.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766ce509_34eb8768",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-10-29T18:28:31Z",
+      "side": 1,
+      "message": "What is accessNodeId? What is the format? It would be nice if it is something from BBF Yang models.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abed72d9_5440851e",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-10-29T18:28:31Z",
+      "side": 1,
+      "message": "How is different AppOffloadConfig and AppOffloadOnuConfig? Assuming the apps only runs on OLT, naming seems a bit misleading.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc1716a_f507b0d7",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-10-29T18:28:31Z",
+      "side": 1,
+      "message": "The A4 related comments should be removed.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb765244_e0d66353",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-10-29T18:28:31Z",
+      "side": 1,
+      "message": "What is the format of agentCircuitId? A reference to BBF YANG model or RFC would be nice.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c7e4081_abfcb365",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-10-29T18:28:31Z",
+      "side": 1,
+      "message": "Is this ID defined before? What is the format? A comment would be nice",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "acc25311_7a62fbf4",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 1
