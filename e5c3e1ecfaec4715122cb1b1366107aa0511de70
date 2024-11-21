@@ -211,6 +211,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "150dbb7c_4091b2db",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2024-11-21T12:32:51Z",
+      "side": 1,
+      "message": "Serkant thanks for all the comments. I have tried to address them. Can you please have a look.\n\nIn this case we would want to then update this structure to hold those configuration as well. Depending on the number and complexity of the configuration parameters we might need to restructure.",
+      "parentUuid": "6e99cf4a_7e4e238e",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "766ce509_34eb8768",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 1
