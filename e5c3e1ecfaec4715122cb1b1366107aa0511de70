@@ -159,6 +159,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28d5d276_18ba800e",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "I think netconfcentral is a third party web site. We can reference directly from github with the version info. e.g. https://github.com/BroadbandForum/yang/blob/master/standard/application/bbf-d-olt-dhcpra.yang",
+      "range": {
+        "startLine": 419,
+        "startChar": 24,
+        "endLine": 419,
+        "endChar": 38
+      },
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c7f0bb_849bb668",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "I think we should keep those one by one. The flexibility of reporting anything using the \"map\" structure may lead to interop issues in the future. Thoughts?",
+      "range": {
+        "startLine": 421,
+        "startChar": 15,
+        "endLine": 421,
+        "endChar": 41
+      },
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "570c89ed_93faab34",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 1
@@ -227,6 +273,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "637473ce_15d8ac87",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "150dbb7c_4091b2db",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "766ce509_34eb8768",
@@ -240,6 +304,24 @@
       "writtenOn": "2024-10-29T18:28:31Z",
       "side": 1,
       "message": "What is accessNodeId? What is the format? It would be nice if it is something from BBF Yang models.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec938d3_8b9fbd4b",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "766ce509_34eb8768",
       "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -261,6 +343,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1610f0ba_df6cb03d",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "abed72d9_5440851e",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecc1716a_f507b0d7",
@@ -274,6 +374,24 @@
       "writtenOn": "2024-10-29T18:28:31Z",
       "side": 1,
       "message": "The A4 related comments should be removed.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "854e6f10_fbea3271",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ecc1716a_f507b0d7",
       "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -295,6 +413,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a42ad088_4e241735",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb765244_e0d66353",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c7e4081_abfcb365",
@@ -308,6 +444,24 @@
       "writtenOn": "2024-10-29T18:28:31Z",
       "side": 1,
       "message": "Is this ID defined before? What is the format? A comment would be nice",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fcf825d_65a0234a",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-21T18:23:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5c7e4081_abfcb365",
       "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
