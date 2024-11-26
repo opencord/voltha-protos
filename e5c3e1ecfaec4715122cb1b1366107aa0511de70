@@ -229,6 +229,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40666e62_581660b1",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000097
+      },
+      "writtenOn": "2024-11-26T17:28:29Z",
+      "side": 1,
+      "message": "Uploaded patchset #4, where I have both the bbf specified stats also an additional attribute to expose if OLT implementations have other specific stats. Please have a look.",
+      "parentUuid": "582c42f4_ab2c9e1e",
+      "range": {
+        "startLine": 421,
+        "startChar": 15,
+        "endLine": 421,
+        "endChar": 41
+      },
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "570c89ed_93faab34",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 1
