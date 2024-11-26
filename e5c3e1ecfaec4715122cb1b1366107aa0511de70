@@ -251,6 +251,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb426a51_bd101420",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-26T21:49:34Z",
+      "side": 1,
+      "message": "This looks good to me. Thanks.",
+      "parentUuid": "40666e62_581660b1",
+      "range": {
+        "startLine": 421,
+        "startChar": 15,
+        "endLine": 421,
+        "endChar": 41
+      },
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "570c89ed_93faab34",

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "105014c0_cf79d433",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2024-11-26T21:49:34Z",
+      "side": 1,
+      "message": "Overall, the changes look good to me. In the future, it would be great to extend this functionality to other apps, such as LLDP and IGMP.",
+      "revId": "02633c3600698869fe6aec49cd9a88fe47c3c30c",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
