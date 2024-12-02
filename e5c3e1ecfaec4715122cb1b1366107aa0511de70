@@ -53,6 +53,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe4397d7_90ab5eda",
+        "filename": "go/extension/extensions.pb.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba221d03_ae7d6b77",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56203632_f6b9f992",
@@ -88,6 +106,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0942b79_515d4467",
+        "filename": "go/extension/extensions.pb.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 3075,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6147b3a_4a353525",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3658e2d_e5405c67",
@@ -105,6 +141,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d3e5c23_ccb0e45e",
+        "filename": "go/extension/extensions.pb.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 3213,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3658e2d_e5405c67",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9f910a2_1c8d220e",
@@ -118,6 +172,24 @@
       "writtenOn": "2024-06-28T15:29:41Z",
       "side": 1,
       "message": "Stray whitespace suffix\n\nThe pre-commit hook tool can fix this\n\n% echo \u0027precommit\u0027 \u003e\u003e rquirements.txt\n% make venv\n% source .venv/bin/activate\n% pre-commit\n\n## Yes this command sequence should be simplified.\n## \u0027make pre-commit\u0027 exists in a few repositories but not available everywhere yet.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5393d694_af11a315",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9f910a2_1c8d220e",
       "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -157,6 +229,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "353be7a2_5dcd68b2",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "641b5d79_c58ca32b",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28d5d276_18ba800e",
@@ -170,6 +260,30 @@
       "writtenOn": "2024-11-21T18:23:26Z",
       "side": 1,
       "message": "I think netconfcentral is a third party web site. We can reference directly from github with the version info. e.g. https://github.com/BroadbandForum/yang/blob/master/standard/application/bbf-d-olt-dhcpra.yang",
+      "range": {
+        "startLine": 419,
+        "startChar": 24,
+        "endLine": 419,
+        "endChar": 38
+      },
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "702417f4_e8066e3a",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28d5d276_18ba800e",
       "range": {
         "startLine": 419,
         "startChar": 24,
@@ -363,6 +477,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6c68d1a_a589d32d",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "016a9b69_c4247f9d",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "766ce509_34eb8768",
@@ -551,6 +683,24 @@
       "writtenOn": "2024-06-28T15:29:41Z",
       "side": 1,
       "message": "Could these assignments be changed to assign based on default increasing values VS explicitly passing a value ?\n\nReplacing explicit assignment with default number (or initialize the first REASON_UNDEFINED\u003d0 to guarantee undefined is always zero) would help with future maintenance if the list is reordered or values need to change.",
+      "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c9a55bb_73bdbf7c",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acc25311_7a62fbf4",
       "revId": "e5c3e1ecfaec4715122cb1b1366107aa0511de70",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

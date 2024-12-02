@@ -16,6 +16,24 @@
       "message": "lines 436-438 were hi-lighted in the review editor.\nSuspect this is likely trailing whitespace to be removed.",
       "revId": "6a6c629fafca56b404ba4c80432d920aae3029cb",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5ad26d_4b3329aa",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2024-12-02T04:09:01Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c6824a98_fc6b1f44",
+      "revId": "6a6c629fafca56b404ba4c80432d920aae3029cb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
