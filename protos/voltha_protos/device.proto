@@ -274,6 +274,7 @@ message ImageState {
         IMAGE_COMMIT_ABORTING = 8;
         IMAGE_COMMIT_ABORTED = 9;
         IMAGE_DOWNLOADING = 10;
+        IMAGE_DOWNLOADING_ABORTED = 11;
     }
 
     // image version
