@@ -8,21 +8,23 @@ package core;
 message DeviceTransientState {
     // Transient State for devices
     enum Types {
-	// The transient state of the device is not set
-	NONE = 0;
-	// The state of the device in core is any state, i.e DELETING, DELETED, DELETE_FAILED, NONE.
-	// This state is only used for transitions.
-	ANY = 1;
-	// The device is in FORCE_DELETING state
-	FORCE_DELETING = 2;
-	// The device is getting deleted from adapter state
-	DELETING_FROM_ADAPTER = 3;
-	// The device is deleted from adapter and is getting deleted in core.
-	DELETING_POST_ADAPTER_RESPONSE = 4;
-	// State to represent that the device deletion is failed
-	DELETE_FAILED = 5;
-    // State to represent that reconcile is in progress
-    RECONCILE_IN_PROGRESS = 6;
+        // The transient state of the device is not set
+        NONE = 0;
+        // The state of the device in core is any state, i.e DELETING, DELETED, DELETE_FAILED, NONE.
+        // This state is only used for transitions.
+        ANY = 1;
+        // The device is in FORCE_DELETING state
+        FORCE_DELETING = 2;
+        // The device is getting deleted from adapter state
+        DELETING_FROM_ADAPTER = 3;
+        // The device is deleted from adapter and is getting deleted in core.
+        DELETING_POST_ADAPTER_RESPONSE = 4;
+        // State to represent that the device deletion is failed
+        DELETE_FAILED = 5;
+        // State to represent that reconcile is in progress
+        RECONCILE_IN_PROGRESS = 6;
+        // State to represent that olt reboot is in progress
+        OLT_REBOOT_IN_PROGRESS = 7;
     }
     Types transient_state = 1;
 }
