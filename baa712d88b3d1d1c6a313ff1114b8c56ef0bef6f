@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b248d88_9dfb38ea",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-04-25T17:22:28Z",
+      "side": 1,
+      "message": "It might be useful to add the option to retrieving a specific alloc as well.\nAlso I don\u0027t see which ONU identifier in the message. Where do we know which onu this is?",
+      "range": {
+        "startLine": 167,
+        "startChar": 20,
+        "endLine": 167,
+        "endChar": 25
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0291d408_9baf97c2",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-04-25T17:22:28Z",
+      "side": 1,
+      "message": "For the naming consistency this could be OnuAllocHistoryData.\nBesides another message OnuAllocIdInfoFromOlt defined below with the same structure. What is the difference, why we need same thing twice?",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 22
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de5f9cf5_6a5cdce7",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-04-25T17:22:28Z",
+      "side": 1,
+      "message": "We already have a PortStatistics structure in openolt.proto. Why don\u0027t we use the same,  instead duplicate it here?",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 4
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fa9ef7_f649111f",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-04-25T17:22:28Z",
+      "side": 1,
+      "message": "why don\u0027t we use PortStatistics in openolt.proto?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 4
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
