@@ -16,6 +16,23 @@
       "message": "\u003e Patch Set 3: Verified+1\n\u003e \n\u003e Build Successful \n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_licensed/709/ : SUCCESS\n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_unit-test/717/ : SUCCESS\n\nrecheck",
       "revId": "50f304db4c19fc2b594cf4c6c79b91903babc2f3",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a22c142_dfc41cf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000971
+      },
+      "writtenOn": "2025-04-30T12:11:29Z",
+      "side": 1,
+      "message": "\u003e Patch Set 3: Verified+1\n\u003e \n\u003e Build Successful \n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_licensed/709/ : SUCCESS\n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_unit-test/717/ : SUCCESS\n\nrecheck",
+      "revId": "50f304db4c19fc2b594cf4c6c79b91903babc2f3",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
