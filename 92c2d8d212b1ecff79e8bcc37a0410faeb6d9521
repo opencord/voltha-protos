@@ -63,6 +63,30 @@
       },
       "revId": "92c2d8d212b1ecff79e8bcc37a0410faeb6d9521",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34a0607_f8025672",
+        "filename": "protos/voltha_protos/core.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001019
+      },
+      "writtenOn": "2025-04-30T12:10:22Z",
+      "side": 1,
+      "message": "Removed OLT_ both in core and voltha-proto.",
+      "parentUuid": "977290a4_0ad3e391",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "92c2d8d212b1ecff79e8bcc37a0410faeb6d9521",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
