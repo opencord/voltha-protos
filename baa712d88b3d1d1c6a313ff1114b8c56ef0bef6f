@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b9a8e20_d90d5763",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001025
+      },
+      "writtenOn": "2025-05-07T05:51:04Z",
+      "side": 1,
+      "message": "the implemention at the onu adapter is to retrieve counters for all the allocIDs of a particular requested onu, hence we are not specifically mentioning the alloc id.\n\nregarding the onu id from the message, we get it from the single get value request as device_id  is a parameter",
+      "parentUuid": "4b248d88_9dfb38ea",
+      "range": {
+        "startLine": 167,
+        "startChar": 20,
+        "endLine": 167,
+        "endChar": 25
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0291d408_9baf97c2",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-25T17:22:28Z",
       "side": 1,
       "message": "For the naming consistency this could be OnuAllocHistoryData.\nBesides another message OnuAllocIdInfoFromOlt defined below with the same structure. What is the difference, why we need same thing twice?",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 22
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8558fb3c_e3e6c3c9",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001025
+      },
+      "writtenOn": "2025-05-07T05:51:04Z",
+      "side": 1,
+      "message": "to maintain the naming consistancy will change it accordingly\n\nwe have defined OnuAllocIdInfoFromOlt for the case of open-olt-adapter\nand to bring in more clarity on the naming convention",
+      "parentUuid": "0291d408_9baf97c2",
       "range": {
         "startLine": 179,
         "startChar": 8,
