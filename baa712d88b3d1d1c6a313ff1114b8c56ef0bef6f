@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "edaede30_c816414f",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1001025
+      },
+      "writtenOn": "2025-05-13T12:47:50Z",
+      "side": 1,
+      "message": "Moved the Portstatistics from openolt.proto to common.proto, so that it can be used in both openolt.proto and extension.proto and using that in GetPonStatsResponse",
+      "parentUuid": "de5f9cf5_6a5cdce7",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 4
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8fa9ef7_f649111f",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 3
@@ -131,6 +155,30 @@
       "writtenOn": "2025-04-25T17:22:28Z",
       "side": 1,
       "message": "why don\u0027t we use PortStatistics in openolt.proto?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 4
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2711b3_9c043a00",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1001025
+      },
+      "writtenOn": "2025-05-13T12:47:50Z",
+      "side": 1,
+      "message": "Moved the Portstatistics from openolt.proto to common.proto, so that it can be used in both openolt.proto and extension.proto and using that in GetNNIStatsResponse",
+      "parentUuid": "d8fa9ef7_f649111f",
       "range": {
         "startLine": 274,
         "startChar": 0,
