@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87e260b3_a0a34dbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000960
+      },
+      "writtenOn": "2025-05-28T07:57:37Z",
+      "side": 1,
+      "message": "\u003e Patch Set 1: Verified-1\n\u003e \n\u003e Build Failed \n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_unit-test/729/ : FAILURE\n\u003e \n\u003e https://jenkins.opencord.org/job/verify_voltha-protos_licensed/721/ : SUCCESS\n\nRECHECK",
+      "revId": "45a5e2efefac40c1d2475c7773c96e041fe7aeeb",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
