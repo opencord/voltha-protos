@@ -428,6 +428,8 @@ message DeviceInfo {
 
     // Total number of pon intf ports on the device
     fixed32 pon_ports = 12;
+    // Total number of nni intf ports on the device
+    fixed32 nni_ports = 20;
 
     reserved 5 to 11, 13, 14;
     // Not used anymore, this information is defined per-range only
