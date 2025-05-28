@@ -129,6 +129,7 @@ message TrafficQueues {
     fixed32 port_no = 5;
     repeated TrafficQueue traffic_queues = 6;
     fixed32 tech_profile_id = 7;
+    fixed32 network_intf_id = 8;
 }
 
 message InstanceControl {
