@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1e356c1_0eb9f030",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001025
+      },
+      "writtenOn": "2025-06-02T13:06:21Z",
+      "side": 1,
+      "message": "\u003e the implemention at the onu adapter is to retrieve counters for all the allocIDs of a particular requested onu, hence we are not specifically mentioning the alloc id.\n\u003e \n\u003e regarding the onu id from the message, we get it from the single get value request as device_id  is a parameter\n\n\n\n“Please ignore my previous comment — it’s incorrect.”\n\n1.The onu id from the message, we get it from the single get value request as device_id  is a parameter\n\n2.Since the customer will request statistics for a specific ONU and would not know the corresponding AllocIDs, the implementation retrieves counters for all AllocIDs associated with the requested ONU",
+      "parentUuid": "0b9a8e20_d90d5763",
+      "range": {
+        "startLine": 167,
+        "startChar": 20,
+        "endLine": 167,
+        "endChar": 25
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0291d408_9baf97c2",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 3
