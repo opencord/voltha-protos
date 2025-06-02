@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "010cd0e8_eb1bce35",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-02T10:59:53Z",
+      "side": 1,
+      "message": "There can be 1 or more Gem entries per alloc, the gemcounters will have to be under the alloc id",
+      "revId": "d2030ff4c43e5a0e9c2f6841c786e6ad0be54215",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
