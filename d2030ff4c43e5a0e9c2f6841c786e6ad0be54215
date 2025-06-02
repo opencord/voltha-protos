@@ -33,6 +33,24 @@
       "message": "where is the API to get gem stats ?",
       "revId": "d2030ff4c43e5a0e9c2f6841c786e6ad0be54215",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0bcccdd_86b06b0c",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001025
+      },
+      "writtenOn": "2025-06-02T13:13:25Z",
+      "side": 1,
+      "message": "we use GetGemPortStatistics API for fetching the GEM stats from the OLT",
+      "parentUuid": "b5e50e5b_e0d5d015",
+      "revId": "d2030ff4c43e5a0e9c2f6841c786e6ad0be54215",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
