@@ -18,6 +18,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "826bbe3b_ade67486",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-10T15:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "010cd0e8_eb1bce35",
+      "revId": "d2030ff4c43e5a0e9c2f6841c786e6ad0be54215",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5e50e5b_e0d5d015",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "we use GetGemPortStatistics API for fetching the GEM stats from the OLT",
       "parentUuid": "b5e50e5b_e0d5d015",
+      "revId": "d2030ff4c43e5a0e9c2f6841c786e6ad0be54215",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1e9be6_fdf5eb80",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-10T15:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bcccdd_86b06b0c",
       "revId": "d2030ff4c43e5a0e9c2f6841c786e6ad0be54215",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }

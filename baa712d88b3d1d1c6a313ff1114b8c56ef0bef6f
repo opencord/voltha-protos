@@ -72,6 +72,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ad490fe_6e1e6f46",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-10T15:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1e356c1_0eb9f030",
+      "range": {
+        "startLine": 167,
+        "startChar": 20,
+        "endLine": 167,
+        "endChar": 25
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0291d408_9baf97c2",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "to maintain the naming consistancy will change it accordingly\n\nwe have defined OnuAllocIdInfoFromOlt for the case of open-olt-adapter\nand to bring in more clarity on the naming convention",
       "parentUuid": "0291d408_9baf97c2",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 22
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad166849_85718829",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-10T15:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8558fb3c_e3e6c3c9",
       "range": {
         "startLine": 179,
         "startChar": 8,
@@ -166,6 +214,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0c120a9_cfcb74ce",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-10T15:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edaede30_c816414f",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 4
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8fa9ef7_f649111f",
@@ -203,6 +275,30 @@
       "side": 1,
       "message": "Moved the Portstatistics from openolt.proto to common.proto, so that it can be used in both openolt.proto and extension.proto and using that in GetNNIStatsResponse",
       "parentUuid": "d8fa9ef7_f649111f",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 4
+      },
+      "revId": "baa712d88b3d1d1c6a313ff1114b8c56ef0bef6f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "496835bd_666c8637",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-06-10T15:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d2711b3_9c043a00",
       "range": {
         "startLine": 274,
         "startChar": 0,
