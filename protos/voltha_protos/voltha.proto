@@ -608,5 +608,12 @@ service VolthaService {
             delete: "/api/v1/voip_user_profile/{key}/delete"
         };
     }
+    
+    // Disables the ONU at the PLOAM , different from DisableDevice
+    rpc DisableChildSerialNumber(device.OnuSerialNumber) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/disable_child_serial_number"
+        };
+    }
 }
 
