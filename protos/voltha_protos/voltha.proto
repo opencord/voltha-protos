@@ -608,5 +608,35 @@ service VolthaService {
             delete: "/api/v1/voip_user_profile/{key}/delete"
         };
     }
+
+    // Disables the ONU, stops it from participating in the ranging process. different from DisableDevice
+    rpc DisableOnuDevice (common.ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/disable_onu_device"
+        };
+    }
+
+    // Enables the ONU at the PLOAM , enables the ONU to participate in the ranging process. different from EnableDevice
+    rpc EnableOnuDevice (common.ID) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/enable_onu_device"
+        };
+    }
+
+    
+    // Disables the ONU at the PLOAM , different from DisableDevice. This would be used if the Device is not present in the VOLTHA
+    rpc DisableOnuSerialNumber(device.OnuSerialNumberOnOLTPon) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/disable_onu_serial_number"
+        };
+    }
+
+    // Disables the ONU at the PLOAM , different from EnableDevice. This would be used if the Device is not present in the VOLTHA
+    rpc EnableOnuSerialNumber(device.OnuSerialNumberOnOLTPon) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/enable_onu_serial_number"
+        };
+    }
+
 }
 
