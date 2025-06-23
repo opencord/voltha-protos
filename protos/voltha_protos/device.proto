@@ -493,3 +493,11 @@ message SimulateAlarmRequest {
     string onu_serial_number = 9;
     OperationType operation = 10;
 }
+
+// Represents a serialNumber of a  child device on a olt pon port
+message OnuSerialNumberOfOLTPon {
+    common.ID    olt_device_id = 1;
+    device.Port   port = 2;
+    string serial_number = 3;
+}
+
