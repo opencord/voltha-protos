@@ -493,3 +493,7 @@ message SimulateAlarmRequest {
     string onu_serial_number = 9;
     OperationType operation = 10;
 }
+
+message OnuSerialNumber {
+    string serial_nmuber = 1;
+}

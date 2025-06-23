@@ -288,6 +288,26 @@ service Openolt {
           body: "*"
         };
     }
+
+    /*
+     * Disable ONU serailnumber, disable device at PLOAM
+     * Returns success if the call towards the device is success, error otherwise.
+     */
+    rpc DisableOnuSerialNumber(InterfaceOnuSerialNumber) returns (Empty) {
+       option (google.api.http) = {
+         post: "/v1/DisableOnuSerialNumber"
+       };
+    }
+
+    /* 
+     * Enables ONU serailnumber, enable device at PLOAM
+     * Returns success if the call towards the device is success, error otherwise.
+     */
+    rpc EnableOnuSerialNumber(InterfaceOnuSerialNumber) returns (Empty) {
+       option (google.api.http) = {
+         post: "/v1/EnableOnuSerialNumber"
+       };
+    }
 }
 
 message Indication {
@@ -302,6 +322,8 @@ message Indication {
         common.PortStatistics port_stats = 8;
         FlowStatistics flow_stats = 9;
         AlarmIndication alarm_ind= 10;
+        OnuDisabledIndication  onu_disabled_ind = 11;
+        OnuEnabledIndication   onu_enabled_ind = 12;
     }
 }
 
@@ -362,6 +384,19 @@ message OnuIndication {
     ActivationFailReason fail_reason = 6;
 
 }
+
+message OnuDisabledIndication {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    SerialNumber serial_number = 4;
+}
+
+message OnuEnabledIndication {
+    fixed32 intf_id = 1;
+    fixed32 onu_id = 2;
+    SerialNumber serial_number = 4;
+}
+
 
 message IntfOperIndication {
     string type = 1;		// nni, pon
@@ -862,6 +897,15 @@ message PonIntfInfo {
     }
     PonIntfState state = 3;
     AlarmState   los = 4;
+}
+
+/*
+ * Message used for disabling device by serialnumber, disable at PLOAM
+ */
+message InterfaceOnuSerialNumber {
+    fixed32          intf_id = 1;
+    fixed32          onu_id = 2;
+    SerialNumber     onu_serial_number = 3;
 }
 
 message Empty {}
