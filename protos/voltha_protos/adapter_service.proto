@@ -85,4 +85,6 @@ service AdapterService {
     rpc SetExtValue(core_adapter.SetExtValueMessage) returns (google.protobuf.Empty);
     rpc GetSingleValue(extension.SingleGetValueRequest) returns (extension.SingleGetValueResponse);
     rpc SetSingleValue(extension.SingleSetValueRequest) returns (extension.SingleSetValueResponse);
+    rpc DisableChildSerialNumber(device.Device) returns (google.protobuf.Empty);
+    rpc EnableChildSerialNumber(device.Device) returns (google.protobuf.Empty);
 }
