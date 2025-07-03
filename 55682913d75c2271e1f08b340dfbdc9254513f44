@@ -33,6 +33,23 @@
       "message": "Disable serial number message also have an enable flag which determines whether to disable the serial number between power cycling . Having that field will be useful.",
       "revId": "55682913d75c2271e1f08b340dfbdc9254513f44",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5f548a_720eada9",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1000790
+      },
+      "writtenOn": "2025-07-03T04:43:41Z",
+      "side": 1,
+      "message": "serial number should contain vendor_id and vendor_specific.\nmessage SerialNumber {\n    bytes vendor_id \u003d 1;\n    bytes vendor_specific \u003d 2;\n}",
+      "revId": "55682913d75c2271e1f08b340dfbdc9254513f44",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }

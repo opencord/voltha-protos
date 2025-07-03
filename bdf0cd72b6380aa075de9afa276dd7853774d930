@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c8b308_cde96149",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1000790
+      },
+      "writtenOn": "2025-07-03T04:43:41Z",
+      "side": 1,
+      "message": "Yes, we should have control flag for determine Enable/Disable.",
+      "revId": "bdf0cd72b6380aa075de9afa276dd7853774d930",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
