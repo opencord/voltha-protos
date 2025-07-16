@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "046f719f_fdaf944b",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-07-16T21:20:11Z",
+      "side": 1,
+      "message": "ChildDevice notation is not generally used in openolt interface, it is the jargon between voltha components.",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 3
+      },
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "282f4156_e0fb0bc8",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-07-16T21:20:11Z",
+      "side": 1,
+      "message": "EnableChildDevice and EnableOnuSerialNumber are almost same RPCs. The only difference is the onu_id in one of them. I suggest to use a single RPC with a single message structure and send onu-id empty in one case.\nAlso you don\u0027t need to define InterfaceOnuSerialNumber and InterfaceOnuSerialNumberOnuId messages, you can use OnuEnabledIndication instead by removing the Indication term(i.e. OnuEnable).\nSo my suggestion is to use a sinle RPC for Enable, like:\nEnableOnu(OnuEnable) \nAll of the above applies to Disable RPCs as well.",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 25
+      },
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
