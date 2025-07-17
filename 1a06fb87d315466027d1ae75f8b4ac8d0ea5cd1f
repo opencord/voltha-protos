@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39eb96f1_c60e0782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-07-17T06:23:28Z",
+      "side": 1,
+      "message": "I think we need more explicit API naming here. My initial thought is DisablePloam and EnablePloam, but I\u0027m open to other suggestions.\nAs Mahir said, we already have Enable/Disable Device/Port APIs to administratively change the state of the device/port. ",
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "046f719f_fdaf944b",
