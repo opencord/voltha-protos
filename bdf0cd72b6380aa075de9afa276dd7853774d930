@@ -34,6 +34,24 @@
       "parentUuid": "c7c8b308_cde96149",
       "revId": "bdf0cd72b6380aa075de9afa276dd7853774d930",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790afa10_f513c801",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-07-18T10:35:51Z",
+      "side": 1,
+      "message": "Defining different , the interfaces will be clean.",
+      "parentUuid": "4f02852c_20440841",
+      "revId": "bdf0cd72b6380aa075de9afa276dd7853774d930",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }

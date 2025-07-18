@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a55dd631_94f211eb",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-07-18T10:35:51Z",
+      "side": 1,
+      "message": "Corrected it",
+      "parentUuid": "046f719f_fdaf944b",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 3
+      },
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "282f4156_e0fb0bc8",
         "filename": "protos/voltha_protos/openolt.proto",
         "patchSetId": 5
@@ -54,6 +78,30 @@
       "writtenOn": "2025-07-16T21:20:11Z",
       "side": 1,
       "message": "EnableChildDevice and EnableOnuSerialNumber are almost same RPCs. The only difference is the onu_id in one of them. I suggest to use a single RPC with a single message structure and send onu-id empty in one case.\nAlso you don\u0027t need to define InterfaceOnuSerialNumber and InterfaceOnuSerialNumberOnuId messages, you can use OnuEnabledIndication instead by removing the Indication term(i.e. OnuEnable).\nSo my suggestion is to use a sinle RPC for Enable, like:\nEnableOnu(OnuEnable) \nAll of the above applies to Disable RPCs as well.",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 25
+      },
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9e008d_88289849",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-07-18T10:35:51Z",
+      "side": 1,
+      "message": "I kept the calls seperate because if i club into single call, the onuid will be marshalled by default to 0 , and 0 is valid onu-id . agent will not be able to make out if a onu-id was indeed provided or not",
+      "parentUuid": "282f4156_e0fb0bc8",
       "range": {
         "startLine": 309,
         "startChar": 8,
