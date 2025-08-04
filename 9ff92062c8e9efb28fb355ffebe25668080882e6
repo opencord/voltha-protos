@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c058d8b_6dca9ca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-08-04T11:07:55Z",
+      "side": 1,
+      "message": "I have two suggestions for better API design: \n\nOption 1: Use a single API and differentiated input messages\nmessage OnuIdentifier {\n    oneof id_type {\n        InterfaceOnuId onuid \u003d 1;         \n        InterfaceOnuSerialNumber sn \u003d 2;\n    }\n}\nrpc DisableOnu (OnuIdentifier)...\n\nOption 2: Seperate APIs related with the action\nrpc DisableActiveOnu (InterfaceOnuId): Disable an activated ONU which has an ONU id.\nrpc DisablePreprovisionedOnu: This is an ONU connected to the OLT but is not activated yet. I believe VOLTHA enables all the ONUs automatically so this is a case where an ONU is problematatic and could not be activated in normal methods. PreprovisionedONU may not cover this case entirerly but I could not find out a better name.\n",
+      "revId": "9ff92062c8e9efb28fb355ffebe25668080882e6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
