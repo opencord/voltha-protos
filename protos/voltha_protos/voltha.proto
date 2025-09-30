@@ -608,5 +608,13 @@ service VolthaService {
             delete: "/api/v1/voip_user_profile/{key}/delete"
         };
     }
+
+    // Update the Device configuration, for now only ip address updation is supported
+    rpc UpdateDevice(device.UpdateDeviceConfig) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/update_device"
+        };
+    }
+
 }
 
