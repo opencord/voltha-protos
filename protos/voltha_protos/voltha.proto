@@ -638,5 +638,12 @@ service VolthaService {
         };
     }
 
+    // Update the Device configuration, for now only ip address updation is supported
+    rpc UpdateDevice(device.UpdateDevice) returns(google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/update_device"
+        };
+    }
+
 }
 

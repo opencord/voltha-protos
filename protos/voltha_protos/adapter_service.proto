@@ -89,4 +89,5 @@ service AdapterService {
     rpc EnableOnuDevice (device.Device) returns(google.protobuf.Empty);
     rpc DisableOnuSerialNumber(device.OnuSerialNumberOnOLTPon) returns (google.protobuf.Empty);
     rpc EnableOnuSerialNumber(device.OnuSerialNumberOnOLTPon) returns (google.protobuf.Empty);
+    rpc UpdateDevice(device.UpdateDevice) returns(google.protobuf.Empty);
 }
