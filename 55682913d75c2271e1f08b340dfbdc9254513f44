@@ -53,6 +53,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5c3020_44b5a622",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d962c730_560b4888",
+      "revId": "55682913d75c2271e1f08b340dfbdc9254513f44",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec5f548a_720eada9",

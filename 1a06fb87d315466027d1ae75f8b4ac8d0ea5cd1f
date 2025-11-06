@@ -65,6 +65,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a4baf78_d5849f56",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a55dd631_94f211eb",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 3
+      },
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "282f4156_e0fb0bc8",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "I kept the calls seperate because if i club into single call, the onuid will be marshalled by default to 0 , and 0 is valid onu-id . agent will not be able to make out if a onu-id was indeed provided or not",
       "parentUuid": "282f4156_e0fb0bc8",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 25
+      },
+      "revId": "1a06fb87d315466027d1ae75f8b4ac8d0ea5cd1f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d70a123_61b24842",
+        "filename": "protos/voltha_protos/openolt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d9e008d_88289849",
       "range": {
         "startLine": 309,
         "startChar": 8,

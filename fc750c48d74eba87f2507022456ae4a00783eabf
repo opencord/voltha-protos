@@ -48,6 +48,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89ffcf5a_566bc8e7",
+        "filename": "protos/voltha_protos/adapter_service.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c012914f_7b20a94b",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 26
+      },
+      "revId": "fc750c48d74eba87f2507022456ae4a00783eabf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f08567e7_af48c2db",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "done",
       "parentUuid": "f08567e7_af48c2db",
+      "range": {
+        "startLine": 613,
+        "startChar": 8,
+        "endLine": 613,
+        "endChar": 23
+      },
+      "revId": "fc750c48d74eba87f2507022456ae4a00783eabf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5783ceb2_0acb51a6",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6cc87f5_795c913e",
       "range": {
         "startLine": 613,
         "startChar": 8,
@@ -142,6 +190,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8bb247a_52448c24",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5aa8ce6_a2cb7590",
+      "range": {
+        "startLine": 615,
+        "startChar": 27,
+        "endLine": 615,
+        "endChar": 47
+      },
+      "revId": "fc750c48d74eba87f2507022456ae4a00783eabf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91f06d3d_5c540c71",
@@ -179,6 +251,30 @@
       "side": 1,
       "message": "chnaged",
       "parentUuid": "91f06d3d_5c540c71",
+      "range": {
+        "startLine": 622,
+        "startChar": 27,
+        "endLine": 622,
+        "endChar": 46
+      },
+      "revId": "fc750c48d74eba87f2507022456ae4a00783eabf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd8caf02_97d1c96e",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0612dd3_2b74b453",
       "range": {
         "startLine": 622,
         "startChar": 27,
@@ -236,6 +332,30 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5434300_7f06be5e",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b02d582f_2db2ab8c",
+      "range": {
+        "startLine": 630,
+        "startChar": 27,
+        "endLine": 630,
+        "endChar": 54
+      },
+      "revId": "fc750c48d74eba87f2507022456ae4a00783eabf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cf103cc_ee379d4b",
@@ -273,6 +393,30 @@
       "side": 1,
       "message": "chnaged",
       "parentUuid": "6cf103cc_ee379d4b",
+      "range": {
+        "startLine": 637,
+        "startChar": 27,
+        "endLine": 637,
+        "endChar": 53
+      },
+      "revId": "fc750c48d74eba87f2507022456ae4a00783eabf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c964a3a_f43e183e",
+        "filename": "protos/voltha_protos/voltha.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5f9dadf_f0e3ead1",
       "range": {
         "startLine": 637,
         "startChar": 27,
