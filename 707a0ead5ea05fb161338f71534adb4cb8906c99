@@ -63,6 +63,30 @@
       },
       "revId": "707a0ead5ea05fb161338f71534adb4cb8906c99",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d37e2fbc_383b5a63",
+        "filename": "protos/voltha_protos/device.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2025-11-06T10:37:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd26236c_620156ec",
+      "range": {
+        "startLine": 498,
+        "startChar": 23,
+        "endLine": 498,
+        "endChar": 25
+      },
+      "revId": "707a0ead5ea05fb161338f71534adb4cb8906c99",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
