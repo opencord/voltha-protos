@@ -186,4 +186,16 @@ message PortStatistics {
     fixed64 bip_errors = 15;
     fixed64 bip_units = 61;
     fixed32 timestamp = 16;
+
+    fixed64 rx_ucast_frames = 63;
+    fixed64 rx_mcast_frames = 64;
+    fixed64 rx_bcast_frames = 65;
+    fixed64 rx_error_frames = 66;
+    fixed64 rx_right_frames = 67;
+    fixed64 tx_ucast_frames = 68;
+    fixed64 tx_mcast_frames = 69;
+    fixed64 tx_bcast_frames = 70;
+    fixed64 tx_error_frames = 71;
+    fixed64 rx_discarded_frames = 72;
+
 }
