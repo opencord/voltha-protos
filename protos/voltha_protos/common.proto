@@ -124,11 +124,16 @@ message OperationResp {
 message PortStatistics {
     fixed32 intf_id = 1;
     fixed64 rx_bytes = 2;
-    fixed64 rx_packets = 3;
-    fixed64 rx_ucast_packets = 4;
-    fixed64 rx_mcast_packets = 5;
-    fixed64 rx_bcast_packets = 6;
-    fixed64 rx_error_packets = 7;
+    // Deprecated: OLT being a Layer 2 device, use rx_frames (field 17) instead
+    fixed64 rx_packets = 3 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use rx_ucast_frames (field 63) instead
+    fixed64 rx_ucast_packets = 4 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use rx_mcast_frames (field 64) instead
+    fixed64 rx_mcast_packets = 5 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use rx_bcast_frames (field 65) instead
+    fixed64 rx_bcast_packets = 6 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use rx_error_frames (field 66) instead
+    fixed64 rx_error_packets = 7 [deprecated = true];
     fixed64 rx_frames = 17;
     fixed64 rx_frames_64 = 18;
     fixed64 rx_frames_65_127 = 19;
@@ -157,11 +162,16 @@ message PortStatistics {
     fixed64 rxFcsErrorPackets = 62;
 
     fixed64 tx_bytes = 8;
-    fixed64 tx_packets = 9;
-    fixed64 tx_ucast_packets = 10;
-    fixed64 tx_mcast_packets = 11;
-    fixed64 tx_bcast_packets = 12;
-    fixed64 tx_error_packets = 13;
+    // Deprecated: OLT being a Layer 2 device, use tx_frames (field 28) instead
+    fixed64 tx_packets = 9 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use tx_ucast_frames (field 68) instead
+    fixed64 tx_ucast_packets = 10 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use tx_mcast_frames (field 69) instead
+    fixed64 tx_mcast_packets = 11 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use tx_bcast_frames (field 70) instead
+    fixed64 tx_bcast_packets = 12 [deprecated = true];
+    // Deprecated: OLT being a Layer 2 device, use tx_error_frames (field 71) instead
+    fixed64 tx_error_packets = 13 [deprecated = true];
     fixed64 tx_frames = 28;
     fixed64 tx_frames_64 = 29;
     fixed64 tx_frames_65_127 = 30;
@@ -186,4 +196,16 @@ message PortStatistics {
     fixed64 bip_errors = 15;
     fixed64 bip_units = 61;
     fixed32 timestamp = 16;
+
+    fixed64 rx_ucast_frames = 63;
+    fixed64 rx_mcast_frames = 64;
+    fixed64 rx_bcast_frames = 65;
+    fixed64 rx_error_frames = 66;
+    fixed64 rx_right_frames = 67;
+    fixed64 tx_ucast_frames = 68;
+    fixed64 tx_mcast_frames = 69;
+    fixed64 tx_bcast_frames = 70;
+    fixed64 tx_error_frames = 71;
+    fixed64 rx_discarded_frames = 72;
+
 }
