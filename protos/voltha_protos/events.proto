@@ -107,6 +107,16 @@ message MetricInformation {
 }
 
 /*
+ * Struct to group metadata for a metric (or group of metrics) with the key-value
+ * pairs of collected metrics using 64-bit unsigned integers.
+ * This is used for counters that can exceed the precision of float (e.g., FEC, GEM counters).
+ */
+message MetricInformation64 {
+    MetricMetaData metadata = 1;
+    map<string, uint64> metrics = 2;
+}
+
+/*
  * Legacy KPI Event structured.  In mid-August, the KPI event format was updated
  *                               to a more easily parsable format. See VOL-1140
  *                               for more information.
@@ -132,6 +142,21 @@ message KpiEvent2 {
     // of the time this entire KpiEvent was published to the kafka bus
 
     repeated MetricInformation slice_data = 3;
+}
+
+/*
+ * KpiEvent3 with support for 64-bit unsigned integer counters.
+ * Use this for metrics that require full 64-bit precision (e.g., FEC counters, GEM counters).
+ */
+message KpiEvent3 {
+    // Type of KPI Event
+    KpiEventType.Types type = 1;
+
+    // Fields used when for slice:
+    double ts = 2; // UTC time-stamp of data in slice mode (seconds since epoch)
+    // of the time this entire KpiEvent was published to the kafka bus
+
+    repeated MetricInformation64 slice_data = 3;
 }
 
 /*
@@ -220,6 +245,7 @@ message EventType {
         KPI_EVENT2 = 2;
         DEVICE_EVENT = 3;
         RPC_EVENT = 4;
+        KPI_EVENT3 = 5;
     }
 }
 
@@ -284,7 +310,8 @@ message Event {
         // Refers to an RPC Event
         RPCEvent rpc_event = 6;
 
-        // Add other event types here.
+        // Refers to KpiEvent3 (64-bit counter support)
+        KpiEvent3 kpi_event3 = 7;
 
     }
 }
