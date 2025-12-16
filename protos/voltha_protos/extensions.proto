@@ -43,16 +43,16 @@ message ValueSpecifier {
 }
 
 message ReturnValues {
-    uint32  Set = 1;       // Specifies what values are
+    uint32  Set = 1; // Specifies what values are
                            // set/valid in return
 
     uint32 Unsupported = 2; // Specifies requested values not
                             // supported by the device
 
-    uint32 Error  = 3;      // Specifies requested values not
+    uint32 Error  = 3; // Specifies requested values not
                             // fetched because of error
 
-    uint32 Distance = 4;    // Value of distance Set includes
+    uint32 Distance = 4; // Value of distance Set includes
                             // DISTANCE
 
 }
@@ -104,7 +104,7 @@ message GetOltPortCounters {
         Port_ETHERNET_NNI = 1;
         Port_PON_OLT = 2;
     }
-    uint32 portNo = 1;  // Device-unique port number
+    uint32 portNo = 1; // Device-unique port number
     PortType portType = 2;
 }
 
@@ -175,6 +175,11 @@ message OnuGemPortHistoryData {
     uint32 receivedPayloadBytes= 4;
     uint32 transmittedPayloadBytes = 5;
     uint32 encryptionKeyErrors = 6;
+    fixed64 transmitted_gem_frames_64 = 7;
+    fixed64 received_gem_frames_64 = 8;
+    fixed64 received_payload_bytes_64 = 9;
+    fixed64 transmitted_payload_bytes_64 = 10; 
+    fixed64 encryption_key_errors_64 = 11;
 }
 
 message OnuAllocHistoryData {
@@ -201,6 +206,10 @@ message GetOnuFecHistoryResponse {
     uint32 fecSeconds = 3;
     uint32 totalCodeWords = 4;
     uint32 uncorrectableCodeWords = 5;
+    fixed64 fec_corrected_bytes_64 = 6;
+    fixed64 fec_corrected_code_words_64 = 7;
+    fixed64 total_code_words_64 = 8;
+    fixed64 uncorrectable_code_words_64 = 9;
 }
 
 message GetOnuCountersRequest {
@@ -366,6 +375,16 @@ message GetOnuCountersResponse {
         // reported timestamp in seconds since epoch
         fixed32 timestamp = 27;
     }
+    oneof is_hec_errors {
+        fixed64 hec_errors = 28;
+    }
+    oneof is_tx_octets {
+        fixed64 tx_octets = 29;
+    }
+    oneof is_rx_octets {
+        fixed64 rx_octets = 30; 
+    }
+
 }
 
 message OmciEthernetFrameExtendedPm {
