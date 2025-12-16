@@ -43,16 +43,16 @@ message ValueSpecifier {
 }
 
 message ReturnValues {
-    uint32  Set = 1;       // Specifies what values are
+    uint32  Set = 1; // Specifies what values are
                            // set/valid in return
 
     uint32 Unsupported = 2; // Specifies requested values not
                             // supported by the device
 
-    uint32 Error  = 3;      // Specifies requested values not
+    uint32 Error  = 3; // Specifies requested values not
                             // fetched because of error
 
-    uint32 Distance = 4;    // Value of distance Set includes
+    uint32 Distance = 4; // Value of distance Set includes
                             // DISTANCE
 
 }
@@ -104,7 +104,7 @@ message GetOltPortCounters {
         Port_ETHERNET_NNI = 1;
         Port_PON_OLT = 2;
     }
-    uint32 portNo = 1;  // Device-unique port number
+    uint32 portNo = 1; // Device-unique port number
     PortType portType = 2;
 }
 
@@ -172,9 +172,18 @@ message OnuGemPortHistoryData {
     uint32 gemId = 1;
     uint32 transmittedGEMFrames= 2;
     uint32 receivedGEMFrames = 3;
-    uint32 receivedPayloadBytes= 4;
-    uint32 transmittedPayloadBytes = 5;
+    
+    // Deprecated: uint32 cannot handle large byte counters and will overflow after ~4GB.
+    // Use received_payload_bytes_64 instead for full 64-bit precision.
+    uint32 receivedPayloadBytes= 4 [deprecated = true];
+    
+    // Deprecated: uint32 cannot handle large byte counters and will overflow after ~4GB.
+    // Use transmitted_payload_bytes_64 instead for full 64-bit precision.
+    uint32 transmittedPayloadBytes = 5 [deprecated = true];
+    
     uint32 encryptionKeyErrors = 6;
+    fixed64 received_payload_bytes_64 = 7;
+    fixed64 transmitted_payload_bytes_64 = 8; 
 }
 
 message OnuAllocHistoryData {
@@ -196,11 +205,28 @@ message GetOnuFecHistory {
 }
 
 message GetOnuFecHistoryResponse {
-    uint32 correctedBytes = 1;
-    uint32 correctedCodeWords = 2;
+    // Deprecated: uint32 cannot handle large counter values and will overflow.
+    // Use fec_corrected_bytes_64 instead for full 64-bit precision.
+    uint32 correctedBytes = 1 [deprecated = true];
+    
+    // Deprecated: uint32 cannot handle large counter values and will overflow.
+    // Use fec_corrected_code_words_64 instead for full 64-bit precision.
+    uint32 correctedCodeWords = 2 [deprecated = true];
+    
     uint32 fecSeconds = 3;
-    uint32 totalCodeWords = 4;
-    uint32 uncorrectableCodeWords = 5;
+    
+    // Deprecated: uint32 cannot handle large counter values and will overflow.
+    // Use total_code_words_64 instead for full 64-bit precision.
+    uint32 totalCodeWords = 4 [deprecated = true];
+    
+    // Deprecated: uint32 cannot handle large counter values and will overflow.
+    // Use uncorrectable_code_words_64 instead for full 64-bit precision.
+    uint32 uncorrectableCodeWords = 5 [deprecated = true];
+    
+    fixed64 fec_corrected_bytes_64 = 6;
+    fixed64 fec_corrected_code_words_64 = 7;
+    fixed64 total_code_words_64 = 8;
+    fixed64 uncorrectable_code_words_64 = 9;
 }
 
 message GetOnuCountersRequest {
@@ -365,6 +391,9 @@ message GetOnuCountersResponse {
     oneof is_timestamp {
         // reported timestamp in seconds since epoch
         fixed32 timestamp = 27;
+    }
+    oneof is_hec_errors {
+        fixed64 hec_errors = 28;
     }
 }
 
