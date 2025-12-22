@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd24f58_ddc7365d",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-22T18:10:05Z",
+      "side": 1,
+      "message": "Why do we need these changes? \nrx_ucast_frames and rx_ucast_packets: Are these different?",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387c9411_fcab2677",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-22T18:10:05Z",
+      "side": 1,
+      "message": "Why do we need these changes? \nrx_octets and rx_bytes: Are these different?",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6edff3_0514b8d7",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-22T18:10:05Z",
+      "side": 1,
+      "message": "Why do we need this change? \ntransmittedGEMFrames and transmitted_gem_frames_64: Are these different, and why is the format different now? (camel case vs snake case)",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b3312a_9b7048e2",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-22T18:10:05Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d48909c_93887e5c",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-22T18:10:05Z",
+      "side": 1,
+      "message": "same comment",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8c2e10_af91b5a5",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-22T18:10:05Z",
+      "side": 1,
+      "message": "same comment",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
