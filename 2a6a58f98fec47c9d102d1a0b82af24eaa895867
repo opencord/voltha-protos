@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4ce5aac_85d32bff",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2025-12-23T17:59:59Z",
+      "side": 1,
+      "message": "Totally agree with Serkant.",
+      "parentUuid": "1f9a31d7_1c8fb031",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "387c9411_fcab2677",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 2
