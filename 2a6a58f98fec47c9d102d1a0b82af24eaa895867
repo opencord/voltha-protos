@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f9a31d7_1c8fb031",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "You\u0027re right and I understand the technical motivation. However, this may lead to confusion and also creates redundancy in the API. I suggest keeping the existing fields (rx_packets) and adding a comment in the .proto file. \ne.g. Represents Layer 2 frames (often referred to as packets in this schema).",
+      "parentUuid": "84617212_860f7257",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "387c9411_fcab2677",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 2
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "They represent the same  , most of the OLT vendors preferred octets as indicated in the ITU-T standard and to accomodate those cases added octets as additional attributes.",
       "parentUuid": "387c9411_fcab2677",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f2a173_ba452cbf",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "938e9f3a_8d32a3a8",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -108,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e51994b_d0b712d3",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "I suggest converting the existing ones from uint32 to uint64",
+      "parentUuid": "7218f23b_af9131d5",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93b3312a_9b7048e2",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
@@ -137,6 +191,41 @@
       "side": 1,
       "message": "With the XGSPON ONTS, when the traffic is run at line speed the existing 32 bit counters are rolling over and needed to introduce  64 bit field attributes. The proto buf guide has indicated usage of snake case for field attributes and hence  have used snake case for the newly added attributes.",
       "parentUuid": "93b3312a_9b7048e2",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2d32771_6b5371aa",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "same as above.",
+      "parentUuid": "0d5b0406_89d1609a",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0701eb0_c73168ee",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "I don\u0027t see any reference to hec_errors in protos! Could it be a typo?",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -178,6 +267,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f94dfa65_c8bf2bbe",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "Suggest re-using the tx_packets instead of a new counter.",
+      "parentUuid": "1243a4c5_ee1d9051",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8c2e10_af91b5a5",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
@@ -207,6 +314,24 @@
       "side": 1,
       "message": "The proto buf guide has indicated usage of snake case for field attributes and hence  have used snake case for the newly added attributes.",
       "parentUuid": "ad8c2e10_af91b5a5",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b8b781_b0dbfa1c",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2025-12-23T17:28:59Z",
+      "side": 1,
+      "message": "Suggest re-using rx_packets instead of a new counter",
+      "parentUuid": "4c5a395b_514d76c3",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
