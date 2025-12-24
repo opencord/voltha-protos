@@ -250,6 +250,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "177752f9_157edbf1",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1000959
+      },
+      "writtenOn": "2025-12-24T06:03:07Z",
+      "side": 1,
+      "message": "Few of the OLT vendors detect the bit errors in the Header and report them. This attribute is defined to represent those errors.",
+      "parentUuid": "a0701eb0_c73168ee",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d48909c_93887e5c",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
