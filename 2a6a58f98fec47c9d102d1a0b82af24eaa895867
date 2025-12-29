@@ -180,6 +180,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9490a0ca_bdf106bb",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000959
+      },
+      "writtenOn": "2025-12-29T05:46:12Z",
+      "side": 1,
+      "message": "The existing functionality built on uint32 will have backward compatibility issues if the existing attribute is modified, hence introduced a new attribute to handle the compatibility issues.",
+      "parentUuid": "6e51994b_d0b712d3",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93b3312a_9b7048e2",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
@@ -227,6 +245,24 @@
       "side": 1,
       "message": "same as above.",
       "parentUuid": "0d5b0406_89d1609a",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f72dc4c_b8c1a186",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000959
+      },
+      "writtenOn": "2025-12-29T05:46:12Z",
+      "side": 1,
+      "message": "The existing functionality built on uint32 will have backward compatibility issues if the existing attribute is modified, hence introduced a new attribute to handle the compatibility issues.",
+      "parentUuid": "d2d32771_6b5371aa",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
