@@ -226,7 +226,7 @@ go-protos: voltha.pb
 	  set -e -o pipefail; \
 	  for x in ${PROTO_FILES}; do \
 	    echo \$$x; \
-	    protoc --go_out=plugins=grpc:/go/src -I protos \$$x; \
+	    protoc --go_out=. --go_opt=module=github.com/opencord/voltha-protos/v5 --go-grpc_out=. --go-grpc_opt=module=github.com/opencord/voltha-protos/v5 -I protos -I protos/google/api \$$x; \
 	  done\
 	  $(quote-double)
 
@@ -317,8 +317,8 @@ java-clean:
 ## -----------------------------------------------------------------------
 ## Intent: Placeholder for library targets
 ## -----------------------------------------------------------------------
-lint :
-
+lint:
+	golangci-lint run -v ./...
 ## -----------------------------------------------------------------------
 ## Intent: Make sterile is unrecoverable due to handling of java_temp
 ## -----------------------------------------------------------------------
