@@ -1,13 +1,16 @@
 module github.com/opencord/voltha-protos/v5
 
-go 1.16
+go 1.25.3
 
 require (
-	github.com/golang/protobuf v1.5.3
-	google.golang.org/genproto/googleapis/api v0.0.0-20230706204954-ccb25ca9f130
-	google.golang.org/grpc v1.56.2
+	google.golang.org/genproto/googleapis/api v0.0.0-20251213004720-97cd9d5aeac2
+	google.golang.org/grpc v1.77.0
+	google.golang.org/protobuf v1.36.11
 )
 
-replace google.golang.org/genproto => google.golang.org/genproto v0.0.0-20230711160842-782d3b101e98
-
-replace github.com/golang/protobuf => github.com/golang/protobuf v1.5.3
+require (
+	golang.org/x/net v0.46.1-0.20251013234738-63d1a5100f82 // indirect
+	golang.org/x/sys v0.37.0 // indirect
+	golang.org/x/text v0.30.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20251124214823-79d6a2a48846 // indirect
+)
