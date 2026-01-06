@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83d98d9a_012cce05",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2026-01-06T22:47:55Z",
+      "side": 1,
+      "message": "Please let us know the resolution for this comment!",
+      "parentUuid": "d4ce5aac_85d32bff",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "387c9411_fcab2677",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 2
@@ -121,6 +139,24 @@
       "side": 1,
       "message": "Same as above.",
       "parentUuid": "938e9f3a_8d32a3a8",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11ab6d09_19751ed5",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2026-01-06T22:47:55Z",
+      "side": 1,
+      "message": "Please let us know the resolution for this comment!",
+      "parentUuid": "10f2a173_ba452cbf",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -198,6 +234,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31f79ff0_12a0320b",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2026-01-06T22:47:55Z",
+      "side": 1,
+      "message": "Could you please explain the issue with backward compatibility? If we strictly need both uint32 and uint64, I suggest adding a deprecated flag to the uint32 fields and keeping those fields for 1 or 2 versions in the code.",
+      "parentUuid": "9490a0ca_bdf106bb",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93b3312a_9b7048e2",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
@@ -269,6 +323,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df4eb458_e688c1c7",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2026-01-06T22:47:55Z",
+      "side": 1,
+      "message": "same as above.",
+      "parentUuid": "4f72dc4c_b8c1a186",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0701eb0_c73168ee",
         "filename": "protos/voltha_protos/extensions.proto",
         "patchSetId": 2
@@ -298,6 +370,24 @@
       "side": 1,
       "message": "Few of the OLT vendors detect the bit errors in the Header and report them. This attribute is defined to represent those errors.",
       "parentUuid": "a0701eb0_c73168ee",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1950d9e_3ed8f86a",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2026-01-06T22:47:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "177752f9_157edbf1",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
