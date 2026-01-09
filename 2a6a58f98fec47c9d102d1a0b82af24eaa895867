@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed168dd3_d47c3f14",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2026-01-09T12:14:18Z",
+      "side": 1,
+      "message": "As the OLT is layer 2 only, can we rename it as frames instead and keep frames only. \non a port frames and packets are different and counters may differ, for OLT we can keep it as frames as OLT works on l2 mostly",
+      "parentUuid": "454a35b7_97d0e5eb",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "387c9411_fcab2677",
         "filename": "protos/voltha_protos/common.proto",
         "patchSetId": 2
