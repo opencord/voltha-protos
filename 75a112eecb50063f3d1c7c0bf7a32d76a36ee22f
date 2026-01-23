@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe718b6f_34a1de48",
+        "filename": "protos/voltha_protos/common.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000404
+      },
+      "writtenOn": "2026-01-23T05:56:36Z",
+      "side": 1,
+      "message": "I think rx_packets should also be deprecated, right?",
+      "revId": "75a112eecb50063f3d1c7c0bf7a32d76a36ee22f",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
