@@ -322,6 +322,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d8fe54f_bdd76cb6",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2026-01-29T06:00:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f668b74f_152649fe",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93b3312a_9b7048e2",
@@ -425,6 +443,24 @@
       "side": 1,
       "message": "Deprecating the fields that are being replaced with 64 bit precision fields.",
       "parentUuid": "df4eb458_e688c1c7",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0912558_4391f3fc",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2026-01-29T06:00:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74b26467_e5cb62b4",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
@@ -553,6 +589,24 @@
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51b0e3cd_5fcd895b",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2026-01-29T06:00:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b227963_456f26b7",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8c2e10_af91b5a5",
@@ -620,6 +674,24 @@
       "side": 1,
       "message": "Agree. Backing out the newly introduced fields.",
       "parentUuid": "b1b8b781_b0dbfa1c",
+      "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c46af6_9b1a9ced",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2026-01-29T06:00:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5194faf0_07d9504d",
       "revId": "2a6a58f98fec47c9d102d1a0b82af24eaa895867",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
