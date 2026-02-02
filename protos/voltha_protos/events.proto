@@ -108,12 +108,13 @@ message MetricInformation {
 
 /*
  * Struct to group metadata for a metric (or group of metrics) with the key-value
- * pairs of collected metrics using 64-bit unsigned integers.
- * This is used for counters that can exceed the precision of float (e.g., FEC, GEM counters).
+ * pairs of collected metrics using 64-bit double precision floating point.
+ * This supports both floating-point metrics and large integer counters up to 2^53
+ * (e.g., FEC counters, GEM counters, optical power levels).
  */
 message MetricInformation64 {
     MetricMetaData metadata = 1;
-    map<string, uint64> metrics = 2;
+    map<string, double> metrics = 2;
 }
 
 /*
