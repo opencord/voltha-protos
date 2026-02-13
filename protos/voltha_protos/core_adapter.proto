@@ -23,7 +23,7 @@ message AdapterRegistration {
 message ChildDeviceFilter {
     string parent_id = 1;
     string serial_number = 2;
-    uint32 onu_id = 3;
+    optional uint32 onu_id = 3;
     uint32 parent_port_no = 4;
 }
 
