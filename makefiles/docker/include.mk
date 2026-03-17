@@ -18,7 +18,7 @@
 $(if $(DEBUG),$(warning ENTER))
 
 # tool containers
-VOLTHA_TOOLS_VERSION ?= 3.2.1
+VOLTHA_TOOLS_VERSION ?= 3.2.2
 
 docker-run     := docker
 ifdef DOCKER_DEBUG
