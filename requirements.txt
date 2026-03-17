@@ -18,9 +18,9 @@
 # -----------------------------------------------------------------------
 
 googleapis-common-protos==1.52.0
-grpcio==1.39.0
-grpcio-tools==1.39.0
+grpcio>=1.60.0
+grpcio-tools>=1.60.0
 nose2[coverage_plugin]
-protobuf==3.17.3
+protobuf>=4.25.0
 
 # [EOF]
