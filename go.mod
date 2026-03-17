@@ -1,6 +1,6 @@
 module github.com/opencord/voltha-protos/v5
 
-go 1.25.3
+go 1.25.5
 
 require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20251213004720-97cd9d5aeac2
