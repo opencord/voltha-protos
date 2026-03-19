@@ -33,6 +33,23 @@
       "message": "\u003e Patch Set 1:\n\u003e \n\u003e Build Failed \n\u003e \n\u003e https://jenkins.lfbroadband.org/job/verify_voltha-protos_unit-test/782/ : FAILURE\n\u003e \n\u003e https://jenkins.lfbroadband.org/job/verify_voltha-protos_licensed/766/ : SUCCESS\n\nrecheck",
       "revId": "1a3f91cbcc11be86c2a638bdc093b92bdc9fefa2",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f9050f7_b225190a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2026-03-19T03:42:29Z",
+      "side": 1,
+      "message": "Please set the new versions in setup.py as well.",
+      "revId": "1a3f91cbcc11be86c2a638bdc093b92bdc9fefa2",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
