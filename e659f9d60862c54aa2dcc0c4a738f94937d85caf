@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39e987c2_68da9219",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2026-03-21T00:02:54Z",
+      "side": 1,
+      "message": "Looks like there\u0027s a conflict between the latest protobuf package and nose2. Please take a look at the CI logs.",
+      "revId": "e659f9d60862c54aa2dcc0c4a738f94937d85caf",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
