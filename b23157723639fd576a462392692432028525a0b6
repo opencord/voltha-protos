@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "b23157723639fd576a462392692432028525a0b6",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d24bcef9_ae67342c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001024
+      },
+      "writtenOn": "2026-03-26T11:04:23Z",
+      "side": 1,
+      "message": "\u003e Patch Set 3:\n\u003e \n\u003e Build Failed \n\u003e \n\u003e https://jenkins.lfbroadband.org/job/pypi-publish_voltha-protos/187/ : FAILURE\n\u003e \n\u003e https://jenkins.lfbroadband.org/job/version-tag_wildcard/974/ : SUCCESS\n\nremerge",
+      "revId": "b23157723639fd576a462392692432028525a0b6",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
