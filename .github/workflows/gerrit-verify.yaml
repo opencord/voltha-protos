@@ -52,7 +52,7 @@ permissions: read-all
 jobs:
   call-composed-verify:
     # yamllint disable-line rule:line-length
-    uses: opencord/shared-workflows/.github/workflows/verify-sanity-test.yaml@main
+    uses: opencord/shared-workflows/workflows/verify-unit-tests.yaml@main
     with:
       GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}
       GERRIT_CHANGE_ID: ${{ inputs.GERRIT_CHANGE_ID }}
