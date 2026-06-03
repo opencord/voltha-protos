@@ -5981,6 +5981,11 @@ type GetOffloadedAppsStatisticsResponse_PPPoeIAStats struct {
 	OutgoingMtuExceededPacketsFromClient     uint32 `protobuf:"varint,9,opt,name=outgoing_mtu_exceeded_packets_from_client,json=outgoingMtuExceededPacketsFromClient,proto3" json:"outgoing_mtu_exceeded_packets_from_client,omitempty"`
 	// Name value pairs that gives the flexibility to report different statistics that implementations may choose
 	AdditionalStats map[string]string `protobuf:"bytes,10,rep,name=additional_stats,json=additionalStats,proto3" json:"additional_stats,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	PadiPackets     uint32            `protobuf:"varint,11,opt,name=padi_packets,json=padiPackets,proto3" json:"padi_packets,omitempty"`
+	PadoPackets     uint32            `protobuf:"varint,12,opt,name=pado_packets,json=padoPackets,proto3" json:"pado_packets,omitempty"`
+	PadsPackets     uint32            `protobuf:"varint,13,opt,name=pads_packets,json=padsPackets,proto3" json:"pads_packets,omitempty"`
+	PadrPackets     uint32            `protobuf:"varint,14,opt,name=padr_packets,json=padrPackets,proto3" json:"padr_packets,omitempty"`
+	PadtPackets     uint32            `protobuf:"varint,15,opt,name=padt_packets,json=padtPackets,proto3" json:"padt_packets,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -6083,6 +6088,41 @@ func (x *GetOffloadedAppsStatisticsResponse_PPPoeIAStats) GetAdditionalStats() m
 		return x.AdditionalStats
 	}
 	return nil
+}
+
+func (x *GetOffloadedAppsStatisticsResponse_PPPoeIAStats) GetPadiPackets() uint32 {
+	if x != nil {
+		return x.PadiPackets
+	}
+	return 0
+}
+
+func (x *GetOffloadedAppsStatisticsResponse_PPPoeIAStats) GetPadoPackets() uint32 {
+	if x != nil {
+		return x.PadoPackets
+	}
+	return 0
+}
+
+func (x *GetOffloadedAppsStatisticsResponse_PPPoeIAStats) GetPadsPackets() uint32 {
+	if x != nil {
+		return x.PadsPackets
+	}
+	return 0
+}
+
+func (x *GetOffloadedAppsStatisticsResponse_PPPoeIAStats) GetPadrPackets() uint32 {
+	if x != nil {
+		return x.PadrPackets
+	}
+	return 0
+}
+
+func (x *GetOffloadedAppsStatisticsResponse_PPPoeIAStats) GetPadtPackets() uint32 {
+	if x != nil {
+		return x.PadtPackets
+	}
+	return 0
 }
 
 type AppOffloadOnuConfig_PerUniConfig struct {
@@ -6474,7 +6514,7 @@ const file_voltha_protos_extensions_proto_rawDesc = "" +
 	"\tUNDEFINED\x10\x00\x12\v\n" +
 	"\aPPPoeIA\x10\x01\x12\f\n" +
 	"\bDHCPv4RA\x10\x02\x12\f\n" +
-	"\bDHCPv6RA\x10\x03\"\x8b\x16\n" +
+	"\bDHCPv6RA\x10\x03\"\xba\x17\n" +
 	"\"GetOffloadedAppsStatisticsResponse\x12c\n" +
 	"\rdhcpv4RaStats\x18\x01 \x01(\v2;.extension.GetOffloadedAppsStatisticsResponse.DHCPv4RAStatsH\x00R\rdhcpv4RaStats\x12c\n" +
 	"\rdhcpv6RaStats\x18\x02 \x01(\v2;.extension.GetOffloadedAppsStatisticsResponse.DHCPv6RAStatsH\x00R\rdhcpv6RaStats\x12`\n" +
@@ -6508,7 +6548,7 @@ const file_voltha_protos_extensions_proto_rawDesc = "" +
 	" \x03(\v2P.extension.GetOffloadedAppsStatisticsResponse.DHCPv6RAStats.AdditionalStatsEntryR\x0fadditionalStats\x1aB\n" +
 	"\x14AdditionalStatsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\xb9\x06\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\xe8\a\n" +
 	"\fPPPoeIAStats\x12>\n" +
 	"\x1cin_error_packets_from_client\x18\x01 \x01(\rR\x18inErrorPacketsFromClient\x12>\n" +
 	"\x1cin_error_packets_from_server\x18\x02 \x01(\rR\x18inErrorPacketsFromServer\x123\n" +
@@ -6520,7 +6560,12 @@ const file_voltha_protos_extensions_proto_rawDesc = "" +
 	"-vendor_specific_tag_removed_packets_to_client\x18\b \x01(\rR'vendorSpecificTagRemovedPacketsToClient\x12W\n" +
 	")outgoing_mtu_exceeded_packets_from_client\x18\t \x01(\rR$outgoingMtuExceededPacketsFromClient\x12z\n" +
 	"\x10additional_stats\x18\n" +
-	" \x03(\v2O.extension.GetOffloadedAppsStatisticsResponse.PPPoeIAStats.AdditionalStatsEntryR\x0fadditionalStats\x1aB\n" +
+	" \x03(\v2O.extension.GetOffloadedAppsStatisticsResponse.PPPoeIAStats.AdditionalStatsEntryR\x0fadditionalStats\x12!\n" +
+	"\fpadi_packets\x18\v \x01(\rR\vpadiPackets\x12!\n" +
+	"\fpado_packets\x18\f \x01(\rR\vpadoPackets\x12!\n" +
+	"\fpads_packets\x18\r \x01(\rR\vpadsPackets\x12!\n" +
+	"\fpadr_packets\x18\x0e \x01(\rR\vpadrPackets\x12!\n" +
+	"\fpadt_packets\x18\x0f \x01(\rR\vpadtPackets\x1aB\n" +
 	"\x14AdditionalStatsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\a\n" +

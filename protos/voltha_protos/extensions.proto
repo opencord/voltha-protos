@@ -513,7 +513,7 @@ message GetOffloadedAppsStatisticsResponse {
         uint32 option_82_not_inserted_to_server = 9;
 
         // Name value pairs that gives the flexibility to report different statistics that implementations may choose
-        map<string, string> additional_stats = 10; 
+        map<string, string> additional_stats = 10;
     }
 
     message DHCPv6RAStats {
@@ -545,7 +545,12 @@ message GetOffloadedAppsStatisticsResponse {
         uint32 outgoing_mtu_exceeded_packets_from_client = 9;
 
         // Name value pairs that gives the flexibility to report different statistics that implementations may choose
-        map<string, string> additional_stats = 10; 
+        map<string, string> additional_stats = 10;
+           uint32 padi_packets = 11;
+        uint32 pado_packets = 12;
+        uint32 pads_packets = 13;
+        uint32 padr_packets = 14;
+        uint32 padt_packets = 15;
     }
     
     oneof stats {
