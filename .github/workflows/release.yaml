@@ -1,0 +1,33 @@
+---
+name: PyPI release
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    # Only invoked on release tag pushes
+    tags:
+      - v*.*.*
+
+env:
+  python-version: 3.10
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Configure Python
+        # yamllint disable-line rule:line-length
+        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
+        with:
+          python-version: ${{ env.python-version }}
+
+      - name: Build package distribution files
+        uses: opencord/shared-workflows/.github/workflows/verify-unit-tests.yaml@main
+        with:
+          pypi-username: ${{ secrets.PYPI_USERNAME }}
+          pypi-password: ${{ secrets.PYPI_PASSWORD }}
+          prep-commands: "make python-protos"
