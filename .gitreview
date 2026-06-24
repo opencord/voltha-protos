@@ -1,5 +1,5 @@
 [gerrit]
-host=gerrit.opencord.org
+host=gerrit.lfbroadband.org
 port=29418
 project=voltha-protos.git
 defaultremote=origin
