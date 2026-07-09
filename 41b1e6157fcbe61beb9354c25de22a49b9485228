@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16a2737f_b5d82d93",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1000218
+      },
+      "writtenOn": "2026-07-09T17:03:56Z",
+      "side": 1,
+      "message": "There is also PPPoeIAStats above. Are these two for different purposes? Same for DHCP counters as well.",
+      "range": {
+        "startLine": 578,
+        "startChar": 12,
+        "endLine": 578,
+        "endChar": 27
+      },
+      "revId": "41b1e6157fcbe61beb9354c25de22a49b9485228",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
