@@ -22,6 +22,30 @@
       },
       "revId": "41b1e6157fcbe61beb9354c25de22a49b9485228",
       "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2920954_ebaa889b",
+        "filename": "protos/voltha_protos/extensions.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1000537
+      },
+      "writtenOn": "2026-07-10T04:40:09Z",
+      "side": 1,
+      "message": "That counters are not per subscriber and are generic counters which have been processed. The new one is for subscriber and are specific packets counting the PPPoe and dhcp packets",
+      "parentUuid": "16a2737f_b5d82d93",
+      "range": {
+        "startLine": 578,
+        "startChar": 12,
+        "endLine": 578,
+        "endChar": 27
+      },
+      "revId": "41b1e6157fcbe61beb9354c25de22a49b9485228",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
     }
   ]
 }
