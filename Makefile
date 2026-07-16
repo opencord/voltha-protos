@@ -169,7 +169,7 @@ python-test: tox.ini setup.py python-protos
 	$(call banner-enter,target $@)
 
 	$(activate) && python --version
-	tox -vvv
+	.venv/bin/tox -vvv
 
 	$(call banner-leave,target $@)
 
