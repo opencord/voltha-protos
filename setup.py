@@ -49,7 +49,7 @@ setup(
         "grpcio>=1.60.0",
         "protobuf>=4.25.0",
         "grpcio-tools>=1.60.0",
-        "googleapis-common-protos==1.56.4"
+        "googleapis-common-protos>=1.75.0"
     ],
     include_package_data=True,
 )

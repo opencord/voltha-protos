@@ -17,9 +17,10 @@
 # SPDX-License-Identifier: Apache-2.0
 # -----------------------------------------------------------------------
 
-googleapis-common-protos==1.56.4
+googleapis-common-protos>=1.75.0
 grpcio>=1.60.0
 grpcio-tools>=1.60.0
+tox>=4
 nose2[coverage_plugin]
 protobuf>=4.25.0
 

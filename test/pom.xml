@@ -28,8 +28,8 @@
   <version>3.0-SNAPSHOT</version>
 
   <properties>
-     <maven.compiler.source>1.8</maven.compiler.source>
-     <maven.compiler.target>1.8</maven.compiler.target>
+     <maven.compiler.source>11</maven.compiler.source>
+     <maven.compiler.target>11</maven.compiler.target>
      <encoding>UTF-8</encoding>
   </properties>
 
@@ -42,8 +42,8 @@
   </dependency>
   <dependency>
     <groupId>com.google.api.grpc</groupId>
-    <artifactId>googleapis-common-protos</artifactId>
-    <version>0.0.3</version>
+    <artifactId>proto-google-common-protos</artifactId>
+    <version>2.68.0</version>
   </dependency>
 </dependencies>
 
