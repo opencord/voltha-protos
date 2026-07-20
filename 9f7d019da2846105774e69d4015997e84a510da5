@@ -1,0 +1,9 @@
+Verified+1: Voltha Jobbuilder <releng+voltha-jobbuilder@linuxfoundation.org>
+Code-Review+1: Eric Ball <eball@linuxfoundation.org>
+Code-Review+1: Serkant Uluderya <serkant.uluderya@netsia.com>
+Code-Review+2: Mahir Gunyel <mahir.gunyel@netsia.com>
+Submitted-by: Mahir Gunyel <mahir.gunyel@netsia.com>
+Submitted-at: Mon, 20 Jul 2026 22:30:04 +0000
+Reviewed-on: https://gerrit.lfbroadband.org/c/voltha-protos/+/38147
+Project: voltha-protos
+Branch: refs/heads/master
