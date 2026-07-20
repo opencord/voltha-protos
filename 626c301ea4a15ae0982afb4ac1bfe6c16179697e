@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf164d28_a3ed9b44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001013
+      },
+      "writtenOn": "2026-07-20T20:58:14Z",
+      "side": 1,
+      "message": "lgtm, other than the commit message. Period should be removed from the subject line, and there should be an empty line between subject and body.",
+      "revId": "626c301ea4a15ae0982afb4ac1bfe6c16179697e",
+      "serverId": "2a2bfe1b-c5c2-48ed-9ac8-16438ab24388"
+    }
+  ]
+}
