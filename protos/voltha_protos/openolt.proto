@@ -685,6 +685,7 @@ message GemPortStatistics {
     fixed64 rx_bytes = 4;
     fixed64 tx_packets = 5;
     fixed64 tx_bytes = 6;
+    fixed32 onu_id= 7;
     fixed32 timestamp = 26;
 }
 
